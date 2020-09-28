@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+    Route::get('products', 'productController@index');
+    Route::get('/product/create', 'productController@create');
+    Route::post('/product/create', 'productController@store');
+
+
+    Route::get('categories', 'categoryController@index');
+    Route::get('/category/create', 'categoryController@create');
+    Route::post('/category/create', 'categoryController@store');
 });
+
+
+Route::get('login', 'loginController@index')->name('login');
+Route::post('login', 'loginController@store');
+Route::get('logout', 'loginController@logout');
