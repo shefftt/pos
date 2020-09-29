@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/customers/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/sales/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/categoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/categoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/customerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/customerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/supplierController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/loginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/loginRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,12 +159,24 @@
       <option name="presentableId" value="Default" />
       <updated>1601108626370</updated>
       <workItem from="1601108645894" duration="730000" />
-      <workItem from="1601387569275" duration="11906000" />
+      <workItem from="1601387569275" duration="13322000" />
     </task>
+    <task id="LOCAL-00001" summary="add">
+      <created>1601404431516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601404431517</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add" />
+    <option name="LAST_COMMIT_MESSAGE" value="add" />
   </component>
   <component name="WindowStateProjectService">
     <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601403562658">
@@ -185,6 +187,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601393437364" />
+    <state x="425" y="18" key="CommitChangelistDialog2" timestamp="1601404426146">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="425" y="18" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1601404426146" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601108771225">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
