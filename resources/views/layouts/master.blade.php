@@ -250,6 +250,35 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{url('stocks')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        المخازن
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{url('Purchase')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        المشتريات
+                                    </p>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="{{url('suppliers')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        الموردين
+                                    </p>
+                                </a>
+                            </li>
+
                             <li class="nav-header">اخرى</li>
                             <li class="nav-item">
                                 <a href="{{url('logout')}}" class="nav-link">
@@ -278,6 +307,7 @@
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">الرئسيه</a></li>
                                 <li class="breadcrumb-item active">التصنيفات</li>
+
                             </ol>
                             x`</div><!-- /.col -->
                     </div><!-- /.row -->

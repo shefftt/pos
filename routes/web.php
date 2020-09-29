@@ -27,6 +27,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
+
+
+    Route::get('stocks', 'stockController@index');
+    Route::get('/stock/create', 'stockController@create');
+    Route::post('/stock/create', 'stockController@store');
+
+
+    Route::get('Purchase', 'purchaseController@index');
+    Route::get('/Purchase/create', 'purchaseController@create');
+    Route::post('/Purchase/create', 'purchaseController@store');
+
+
+    Route::get('suppliers', 'suppliersController@index');
+    Route::get('/suppliers/create', 'suppliersController@create');
+    Route::post('/suppliers/create', 'suppliersController@store');
+
 });
 
 
