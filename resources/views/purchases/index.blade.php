@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'المشتريات')
+@section('title' ,'انشاء فاتورة مشتريات')
 
 <div class="card">
     <div class="card-header">
@@ -9,7 +9,7 @@
                 <h6>فواتير المشتريات</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/Purchase/create')}}" role="button"> اضافة فاتوره</a>
+                <a class="btn btn-dark" href="{{url('/purchase/create')}}" role="button"> انشاء فاتوره</a>
 
             </div>
         </div>
@@ -28,18 +28,16 @@
             </thead>
             <tbody>
             <?php $i =1; ?>
-            @foreach($purchases as $purchases)
+            @foreach($purchases as $purchase)
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
-                    <td>{{$product->supplier_id}}</td>
-                    <td>{{$product->stock_id}}</td>
-                    <td>{{$product->total}}</td>
+                    <td>{{$purchase->supplier->name}}</td>
+                    <td>{{$purchase->stock->name}}</td>
+                    <td>{{$purchase->total}}</td>
 
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
-                        <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+                        <a class="btn  btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
 
                     </td>
                 </tr>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Model\purchase_invoice_h;
-use App\Model\purchase_invoice_d;
-use Illuminate\Http\Request;
+use App\Model\stock;
+use App\model\supplier;
 
 class purchaseController extends Controller
 {
@@ -15,8 +15,16 @@ class purchaseController extends Controller
 
     public function create()
     {
-        $purchase_invoice_h =  purchase_invoice_h::all();
-        $purchase_invoice_d =  purchase_invoice_d::all();
-        return view('purchases.create', compact('purchase_invoice_h','purchase_invoice_d'));
+
+        $suppliers =  supplier::all();
+        $stocks    =  stock::all();
+        return view('purchases.create', compact('suppliers', 'stocks'));
+    }
+
+    protected function show($id)
+    {
+
+        $invoice =  purchase_invoice_h::find($id);
+        return view('purchases.show', compact('invoice'));
     }
 }
