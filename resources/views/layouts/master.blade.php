@@ -261,7 +261,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{url('Purchase')}}" class="nav-link">
+                                <a href="{{url('purchase')}}" class="nav-link">
                                     <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         المشتريات
@@ -303,13 +303,14 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">الرئسيه</a></li>
                                 <li class="breadcrumb-item active">التصنيفات</li>
 
                             </ol>
-                            x`</div><!-- /.col -->
+                        </div> -->
+                        <!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>

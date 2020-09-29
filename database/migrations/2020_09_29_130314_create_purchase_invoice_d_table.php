@@ -16,10 +16,10 @@ class CreatePurchaseInvoiceDTable extends Migration
         Schema::create('purchase_invoice_d', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
+            $table->string('price');
+            $table->string('invoice_id');
             $table->string('qyt');
             $table->float('sub_total');
-            $table->string('purchase_price');
-            $table->string('sale_price');
 
             $table->timestamps();
         });
