@@ -52,7 +52,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('stock')}}">المخازن</a>
+                    <a class="nav-link" href="{{url('stocks')}}">المخازن</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('sales')}}">المبيعات</a>
@@ -60,6 +60,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('purchase')}}">المشتريات</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">المواد البشريه</a>
                 </li>
@@ -69,7 +70,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('settings')}}">الاعدادات</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('customers')}}">العملاء</a>
+                </li>
             </ul>
 
             <!-- SEARCH FORM -->
@@ -268,6 +271,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{url('sales')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        المبيبعات
+                                    </p>
+                                </a>
+                            </li>
 
 
                             <li class="nav-item">
@@ -275,6 +286,14 @@
                                     <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         الموردين
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{url('customers')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        العملاء
                                     </p>
                                 </a>
                             </li>

@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
 
+    Route::get('customers','customerController@index');
+
 
     Route::get('stocks', 'stockController@index');
     Route::get('/stock/create', 'stockController@create');
@@ -37,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Purchase', 'purchaseController@index');
     Route::get('/Purchase/create', 'purchaseController@create');
     Route::post('/Purchase/create', 'purchaseController@store');
+
+    Route::get('sales','salesController@index');
+
 
 
     Route::get('suppliers', 'suppliersController@index');
