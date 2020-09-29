@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
     public function index()
-    {
+    { //return Hash::('pass')
+
         return view('auth.login');
     }
 
