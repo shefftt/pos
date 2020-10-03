@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
 
-    Route::get('customers','customerController@index');
+    Route::get('customers', 'customerController@index');
 
 
     Route::get('stocks', 'stockController@index');
@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
 
-    Route::get('sales','salesController@index');
+    Route::get('sales', 'salesController@index');
 
 
 
@@ -49,9 +49,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/supplier/create', 'supplierController@create');
     Route::post('/supplier/create', 'supplierController@store');
 
+    Route::get('/pos', 'supplierController@create');
 });
+    Route::get('pos', 'posController@index');
 
+    Route::get('/submit', function () {
+        $product_name = request()->product_name;
+        return \App\Model\product::where('name', 'LIKE', '%' . $product_name . '%')->get();
+    });
 
-Route::get('login', 'loginController@index')->name('login');
-Route::post('login', 'loginController@store');
-Route::get('logout', 'loginController@logout');
+    Route::get('/create_invoice', function () {
+        return request()->all();
+        // return request('products_table');
+    });
+
+    Route::get('login', 'loginController@index')->name('login');
+    Route::post('login', 'loginController@store');
