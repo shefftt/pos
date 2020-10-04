@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/products/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/productController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/productController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/loginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/loginRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,6 +164,7 @@
       <workItem from="1601461932193" duration="2498000" />
       <workItem from="1601570536395" duration="34000" />
       <workItem from="1601795282603" duration="11086000" />
+      <workItem from="1601827186474" duration="337000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1601404431516</created>
@@ -202,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601545069326</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="edit proudects">
+      <created>1601827502965</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601827502966</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +209,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
-    <option name="LAST_COMMIT_MESSAGE" value="add" />
+    <MESSAGE value="edit proudects" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit proudects" />
   </component>
   <component name="WindowStateProjectService">
     <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601403562658">
