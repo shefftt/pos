@@ -22,7 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('products', 'productController@index');
     Route::get('/product/create', 'productController@create');
     Route::post('/product/create', 'productController@store');
-
+    Route::get('/product/edit/{id}', 'productController@edit');
+    Route::put('/product/edit/{id}', 'productController@update');
 
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
