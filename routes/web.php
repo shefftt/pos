@@ -49,6 +49,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('suppliers', 'supplierController@index');
     Route::get('/supplier/create', 'supplierController@create');
     Route::post('/supplier/create', 'supplierController@store');
+    Route::get('/supplier/edit/{id}', 'supplierController@edit');
+    Route::post('/supplier/update/{id}', 'supplierController@update');
+    Route::get('/supplier/show/{id}', 'supplierController@show');
+
+
+
+    Route::get('accounts', 'accountController@index');
+    Route::get('/account/create', 'accountController@create');
+    Route::post('/account/create', 'accountController@store');
+
+
 
     Route::get('/pos', 'supplierController@create');
 });

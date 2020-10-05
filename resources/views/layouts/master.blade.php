@@ -298,6 +298,16 @@
                                 </a>
                             </li>
 
+
+                            <li class="nav-item">
+                                <a href="{{url('accounts')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        الحسابات
+                                    </p>
+                                </a>
+                            </li>
+
                             <li class="nav-header">اخرى</li>
                             <li class="nav-item">
                                 <a href="{{url('logout')}}" class="nav-link">

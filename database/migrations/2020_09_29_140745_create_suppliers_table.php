@@ -18,6 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('address');
+            $table->string('balance')->default(0);;
             $table->timestamps();
         });
     }
