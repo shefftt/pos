@@ -48,7 +48,7 @@ class productRequest extends FormRequest
             'qyt.integer' => 'عفوا يجب ان تكون الكميه فى شكل ارقام',
             'purchase_price.integer' => 'عفوا يجب ان يكون سعر الشراء فى شكل ارقام',
             'sale_price.integer' => 'عفوا يجب ان يكون سعر البيع فى شكل ارقام',
-            'category_id.required' => 'التصنيف اجبار    ى',
+            'category_id.required' => 'التصنيف اجبارى',
             'sale_price.required' => 'سعر الببيع اجبارى',
             'stock_id.required' => 'المخزن الافتراضى اجبارى'
         ];

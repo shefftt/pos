@@ -42,7 +42,7 @@
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
                         <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">اضافة كميه</a>
                     </td>
                 </tr>

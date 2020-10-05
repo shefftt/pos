@@ -2212,9 +2212,7 @@ var Toast = Swal.mixin({
   },
   methods: {
     btnSave: function btnSave() {
-      var _this = this;
-
-      // console.log("btnSave");
+      console.log("btnSave");
       axios.get("/sales/user", {
         params: {
           products_table: this.products_table,
@@ -2224,21 +2222,23 @@ var Toast = Swal.mixin({
         // this.products_table.total = null;
         // const map = new Map(Object.entries(this.products_table));
         if (response.status == 201) {
-          _this.products_table = [];
-          _this.total = null;
           alert(response.data);
+          this.products_table = [];
+          this.products_table.total = null;
         }
+
+        console.log("save " + response.data);
       })["catch"](function (error) {}); // alert("dddddddddddd")
     },
     get_product_name: function get_product_name() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get("/submit", {
         params: {
           product_name: this.product_name
         }
       }).then(function (response) {
-        _this2.products = response.data;
+        _this.products = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("dddddddddddddddddddd");
@@ -2338,6 +2338,7 @@ var Toast = Swal.mixin({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CustomerComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerComponent */ "./resources/js/components/CustomerComponent.vue");
 //
 //
 //
@@ -2428,9 +2429,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+var Toast = Swal.mixin({
+  toast: true,
+  showConfirmButton: false,
+  timer: 3000
+});
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Customer: _CustomerComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   mounted: function mounted() {
-    console.log("fffffffffffffff");
+    console.log("");
   },
   data: function data() {
     return {
@@ -2442,18 +2458,44 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    get_product_name: function get_product_name() {
+    btnSave: function btnSave() {
       var _this = this;
+
+      // console.log("btnSave");
+      axios.get("/api/pos", {
+        params: {
+          products_table: this.products_table,
+          total: this.total
+        }
+      }).then(function (response) {
+        // this.products_table.total = null;
+        // console.log(this.products_table[0].name);
+        console.log(response); // alert(response.data);
+        // const map = new Map(Object.entries(this.products_table));
+
+        if (response.status === 201) {
+          _this.products_table = [];
+          _this.total = null;
+          alert(response.data);
+        }
+
+        if (response.status === 204) {
+          alert("الرجاء وضع منتجات اولا");
+        }
+      })["catch"](function (error) {});
+    },
+    get_product_name: function get_product_name() {
+      var _this2 = this;
 
       axios.get("/submit", {
         params: {
           product_name: this.product_name
         }
       }).then(function (response) {
-        _this.products = response.data;
+        _this2.products = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
-          console.log("dddddddddddddddddddd");
+          console.log("");
         }
       });
     },
@@ -2468,11 +2510,11 @@ __webpack_require__.r(__webpack_exports__);
             return o.id === product.id;
           });
           obj.qyt += 1;
-          obj.subtottal = obj.price * obj.qyt;
+          obj.subtotal = obj.price * obj.qyt;
         }
-      }
+      } // console.log(obj);
+      // return;
 
-      console.log(obj); // return;
 
       if (product_exe !== true) {
         this.products_table.push({
@@ -2480,7 +2522,7 @@ __webpack_require__.r(__webpack_exports__);
           name: product.name,
           price: product.sale_price,
           qyt: 1,
-          subtottal: product.sale_price
+          subtotal: product.sale_price
         });
       }
 
@@ -2491,15 +2533,47 @@ __webpack_require__.r(__webpack_exports__);
 
     /**
      * حذف المنتج من الفاتوره
-     * @param object product كافه بييانات المنتج
+     * @param product
      */
-    remvoe_form_table: function remvoe_form_table(product) {
+    remove_form_table: function remove_form_table(product) {
       // تحديث السعر الكلى
-      this.total -= product.subtottal; // جلب الاندكس بتاع المنتج فى الجدول
+      this.total -= product.subtotal; // جلب الاندكس بتاع المنتج فى الجدول
 
       var id = this.products_table.indexOf(product); // حذف المنتج من الجدول
 
       this.products_table.splice(id, 1);
+    },
+    in_crease: function in_crease(product) {
+      var obj; // التاكد من عدم وجود المنتج فى القائمه
+
+      for (var i = 0; i < this.products_table.length; i++) {
+        if (this.products_table[i].id === product.id) {
+          obj = this.products_table.find(function (o) {
+            return o.id === product.id;
+          });
+          obj.qyt += 1;
+          obj.subtotal = obj.price * obj.qyt;
+        }
+      }
+
+      this.total += obj.price;
+    },
+    de_crease: function de_crease(product) {
+      var obj; // التاكد من عدم وجود المنتج فى القائمه
+
+      for (var i = 0; i < this.products_table.length; i++) {
+        if (this.products_table[i].id === product.id) {
+          obj = this.products_table.find(function (o) {
+            return o.id === product.id;
+          });
+
+          if (obj.qyt > 1) {
+            obj.qyt -= 1;
+            obj.subtotal = obj.price * obj.qyt;
+            this.total -= obj.price;
+          }
+        }
+      }
     },
     create_product: function create_product() {
       alert("create_product");
@@ -2530,7 +2604,7 @@ __webpack_require__.r(__webpack_exports__);
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.15';
+  var VERSION = '4.17.20';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -6237,8 +6311,21 @@ __webpack_require__.r(__webpack_exports__);
      * @returns {Array} Returns the new sorted array.
      */
     function baseOrderBy(collection, iteratees, orders) {
+      if (iteratees.length) {
+        iteratees = arrayMap(iteratees, function(iteratee) {
+          if (isArray(iteratee)) {
+            return function(value) {
+              return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+            }
+          }
+          return iteratee;
+        });
+      } else {
+        iteratees = [identity];
+      }
+
       var index = -1;
-      iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee()));
+      iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
 
       var result = baseMap(collection, function(value, key, collection) {
         var criteria = arrayMap(iteratees, function(iteratee) {
@@ -6495,6 +6582,10 @@ __webpack_require__.r(__webpack_exports__);
         var key = toKey(path[index]),
             newValue = value;
 
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+          return object;
+        }
+
         if (index != lastIndex) {
           var objValue = nested[key];
           newValue = customizer ? customizer(objValue, key, nested) : undefined;
@@ -6647,11 +6738,14 @@ __webpack_require__.r(__webpack_exports__);
      *  into `array`.
      */
     function baseSortedIndexBy(array, value, iteratee, retHighest) {
-      value = iteratee(value);
-
       var low = 0,
-          high = array == null ? 0 : array.length,
-          valIsNaN = value !== value,
+          high = array == null ? 0 : array.length;
+      if (high === 0) {
+        return 0;
+      }
+
+      value = iteratee(value);
+      var valIsNaN = value !== value,
           valIsNull = value === null,
           valIsSymbol = isSymbol(value),
           valIsUndefined = value === undefined;
@@ -8136,10 +8230,11 @@ __webpack_require__.r(__webpack_exports__);
       if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
         return false;
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(array);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var arrStacked = stack.get(array);
+      var othStacked = stack.get(other);
+      if (arrStacked && othStacked) {
+        return arrStacked == other && othStacked == array;
       }
       var index = -1,
           result = true,
@@ -8301,10 +8396,11 @@ __webpack_require__.r(__webpack_exports__);
           return false;
         }
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(object);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var objStacked = stack.get(object);
+      var othStacked = stack.get(other);
+      if (objStacked && othStacked) {
+        return objStacked == other && othStacked == object;
       }
       var result = true;
       stack.set(object, other);
@@ -11685,6 +11781,10 @@ __webpack_require__.r(__webpack_exports__);
      * // The `_.property` iteratee shorthand.
      * _.filter(users, 'active');
      * // => objects for ['barney']
+     *
+     * // Combining several predicates using `_.overEvery` or `_.overSome`.
+     * _.filter(users, _.overSome([{ 'age': 36 }, ['age', 40]]));
+     * // => objects for ['fred', 'barney']
      */
     function filter(collection, predicate) {
       var func = isArray(collection) ? arrayFilter : baseFilter;
@@ -12434,15 +12534,15 @@ __webpack_require__.r(__webpack_exports__);
      * var users = [
      *   { 'user': 'fred',   'age': 48 },
      *   { 'user': 'barney', 'age': 36 },
-     *   { 'user': 'fred',   'age': 40 },
+     *   { 'user': 'fred',   'age': 30 },
      *   { 'user': 'barney', 'age': 34 }
      * ];
      *
      * _.sortBy(users, [function(o) { return o.user; }]);
-     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
      *
      * _.sortBy(users, ['user', 'age']);
-     * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+     * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
      */
     var sortBy = baseRest(function(collection, iteratees) {
       if (collection == null) {
@@ -17317,11 +17417,11 @@ __webpack_require__.r(__webpack_exports__);
 
       // Use a sourceURL for easier debugging.
       // The sourceURL gets injected into the source that's eval-ed, so be careful
-      // with lookup (in case of e.g. prototype pollution), and strip newlines if any.
-      // A newline wouldn't be a valid sourceURL anyway, and it'd enable code injection.
+      // to normalize all kinds of whitespace, so e.g. newlines (and unicode versions of it) can't sneak in
+      // and escape the comment, thus injecting code that gets evaled.
       var sourceURL = '//# sourceURL=' +
         (hasOwnProperty.call(options, 'sourceURL')
-          ? (options.sourceURL + '').replace(/[\r\n]/g, ' ')
+          ? (options.sourceURL + '').replace(/\s/g, ' ')
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -17354,8 +17454,6 @@ __webpack_require__.r(__webpack_exports__);
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      // Like with sourceURL, we take care to not check the option's prototype,
-      // as this configuration is a code injection vector.
       var variable = hasOwnProperty.call(options, 'variable') && options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
@@ -18062,6 +18160,9 @@ __webpack_require__.r(__webpack_exports__);
      * values against any array or object value, respectively. See `_.isEqual`
      * for a list of supported value comparisons.
      *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
+     *
      * @static
      * @memberOf _
      * @since 3.0.0
@@ -18077,6 +18178,10 @@ __webpack_require__.r(__webpack_exports__);
      *
      * _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
       return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
@@ -18090,6 +18195,9 @@ __webpack_require__.r(__webpack_exports__);
      * **Note:** Partial comparisons will match empty array and empty object
      * `srcValue` values against any array or object value, respectively. See
      * `_.isEqual` for a list of supported value comparisons.
+     *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
      *
      * @static
      * @memberOf _
@@ -18107,6 +18215,10 @@ __webpack_require__.r(__webpack_exports__);
      *
      * _.find(objects, _.matchesProperty('a', 4));
      * // => { 'a': 4, 'b': 5, 'c': 6 }
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
       return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
@@ -18330,6 +18442,10 @@ __webpack_require__.r(__webpack_exports__);
      * Creates a function that checks if **all** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -18356,6 +18472,10 @@ __webpack_require__.r(__webpack_exports__);
      * Creates a function that checks if **any** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -18375,6 +18495,9 @@ __webpack_require__.r(__webpack_exports__);
      *
      * func(NaN);
      * // => false
+     *
+     * var matchesFunc = _.overSome([{ 'a': 1 }, { 'a': 2 }])
+     * var matchesPropertyFunc = _.overSome([['a', 1], ['a', 2]])
      */
     var overSome = createOver(arraySome);
 
@@ -20420,12 +20543,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card col-4" }, [
+  return _c("div", { staticClass: "col-8" }, [
+    _c("div", { staticClass: "card text-right" }, [
       _c("div", { staticClass: "card-header" }, [
         _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "form-group ml-auto" }),
+          _vm._v(" "),
           _c("div", { staticClass: "form-group mr-auto" }, [
-            _c("label", { attrs: { for: "" } }),
+            _c("label", { attrs: { for: "product_name" } }),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -20437,7 +20562,11 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "اسم المنتج" },
+              attrs: {
+                id: "product_name",
+                type: "text",
+                placeholder: "اسم المنتج"
+              },
               domProps: { value: _vm.product_name },
               on: {
                 keyup: _vm.get_product_name,
@@ -20496,26 +20625,41 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(product.price))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(product.qyt))]),
+                _c("td", [
+                  _c("i", {
+                    staticClass: "nav-icon fa fa-plus-circle label-success",
+                    on: {
+                      click: function($event) {
+                        return _vm.in_crease(product)
+                      }
+                    }
+                  }),
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(product.qyt) +
+                      "\n                                "
+                  ),
+                  _c("i", {
+                    staticClass: "nav-icon fa fa-remove label-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.de_crease(product)
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(product.subtottal))]),
+                _c("td", [_vm._v(_vm._s(product.subtotal))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c(
-                    "p",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.remvoe_form_table(product)
-                        }
+                  _c("i", {
+                    staticClass: "nav-icon fa fa-remove label-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.remove_form_table(product)
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                remove\n                            "
-                      )
-                    ]
-                  )
+                    }
+                  })
                 ])
               ])
             }),
@@ -20542,12 +20686,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "form-group" }, [
           _c(
             "button",
             { staticClass: "btn btn-success", on: { click: _vm.btnSave } },
-            [_vm._v("اضافه")]
+            [_vm._v("\n                    اضافه\n                ")]
           )
         ])
       ])
@@ -20675,7 +20819,12 @@ function normalizeComponent (
     options._ssrRegister = hook
   } else if (injectStyles) {
     hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
       : injectStyles
   }
 
@@ -20684,7 +20833,7 @@ function normalizeComponent (
       // for template-only hot-reload because in that case the render fn doesn't
       // go through the normalizer
       options._injectStyles = hook
-      // register for functioal component in vue file
+      // register for functional component in vue file
       var originalRender = options.render
       options.render = function renderWithStyleInjection (h, context) {
         hook.call(context)
@@ -20717,8 +20866,8 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -26157,7 +26306,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.11';
+Vue.version = '2.6.12';
 
 /*  */
 
@@ -28363,7 +28512,7 @@ function updateDOMProps (oldVnode, vnode) {
       // skip the update if old and new VDOM state is the same.
       // `value` is handled separately because the DOM value may be temporarily
       // out of sync with VDOM state due to focus, composition and modifiers.
-      // This  #4521 by skipping the unnecesarry `checked` update.
+      // This  #4521 by skipping the unnecessary `checked` update.
       cur !== oldProps[key]
     ) {
       // some property updates can throw
@@ -30608,7 +30757,7 @@ function parse (
       }
     },
     comment: function comment (text, start, end) {
-      // adding anyting as a sibling to the root node is forbidden
+      // adding anything as a sibling to the root node is forbidden
       // comments should still be allowed, but ignored
       if (currentParent) {
         var child = {
@@ -33044,8 +33193,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\projects\mobileStore\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\projects\mobileStore\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
