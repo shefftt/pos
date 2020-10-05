@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
+    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="git inti">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/categoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/categoryRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/stockRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/stockRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/supplierRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/supplierRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_29_140745_create_suppliers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_29_140745_create_suppliers_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +15,19 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -126,16 +136,22 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1i2bKyPyGuBtTmBLGgsC1fkkLXb" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/pos" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -143,7 +159,14 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\panda180\Tower Dev\pos\resources\views\pos" />
+      <recent name="E:\panda180\Tower Dev\pos\resources\views\purchases" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -151,10 +174,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="" />
@@ -162,47 +182,122 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601108626370</updated>
-      <workItem from="1601108645894" duration="730000" />
-      <workItem from="1601387569275" duration="14736000" />
-      <workItem from="1601447159571" duration="2320000" />
+      <workItem from="1601108645894" duration="2719000" />
+      <workItem from="1601143686222" duration="1106000" />
+      <workItem from="1601154842987" duration="6384000" />
+      <workItem from="1601291363558" duration="5372000" />
+      <workItem from="1601389501052" duration="9123000" />
+      <workItem from="1601464034285" duration="4807000" />
+      <workItem from="1601560484273" duration="5826000" />
+      <workItem from="1601717082783" duration="2362000" />
+      <workItem from="1601808947560" duration="1870000" />
+      <workItem from="1601884399310" duration="2105000" />
     </task>
-    <task id="LOCAL-00001" summary="add">
-      <created>1601404431516</created>
+    <task id="LOCAL-00001" summary="git inti">
+      <created>1601112128064</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1601404431517</updated>
+      <updated>1601112128064</updated>
     </task>
-    <task id="LOCAL-00002" summary="add">
-      <created>1601412702701</created>
+    <task id="LOCAL-00002" summary="git inti">
+      <created>1601112723575</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1601412702701</updated>
+      <updated>1601112723575</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="git inti">
+      <created>1601297287245</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601297287245</updated>
+    </task>
+    <task id="LOCAL-00004" summary="laravel">
+      <created>1601367371020</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1601367371020</updated>
+    </task>
+    <task id="LOCAL-00005" summary="suppliers ans purchase invoice">
+      <created>1601412318040</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601412318040</updated>
+    </task>
+    <task id="LOCAL-00006" summary="git inti">
+      <created>1601539898604</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601539898604</updated>
+    </task>
+    <task id="LOCAL-00007" summary="git inti">
+      <created>1601540652381</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601540652382</updated>
+    </task>
+    <task id="LOCAL-00008" summary="git inti">
+      <created>1601717605490</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601717605490</updated>
+    </task>
+    <task id="LOCAL-00009" summary="edit purchase  table">
+      <created>1601896753546</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601896753546</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add" />
-    <option name="LAST_COMMIT_MESSAGE" value="add" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="laravel" />
+    <MESSAGE value="suppliers ans purchase invoice" />
+    <MESSAGE value="git inti" />
+    <MESSAGE value="edit purchase  table" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit purchase  table" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601403562658">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="2077" y="344" key="#Notifications" timestamp="1601539952403">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1601403562658" />
-    <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601393437364">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="2077" y="344" key="#Notifications/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601539952403" />
+    <state x="1918" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601541416703">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601393437364" />
-    <state x="425" y="18" key="CommitChangelistDialog2" timestamp="1601412701256">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1918" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601541416703" />
+    <state x="2056" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601392127851">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="425" y="18" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1601412701256" />
+    <state x="2056" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601392127851" />
+    <state x="38" y="71" width="1866" height="849" key="CommitChangelistDialog2" timestamp="1601896751084">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="38" y="71" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1601896751084" />
+    <state x="1420" y="102" width="1866" height="849" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601717602141" />
+    <state x="1776" y="117" key="DiffContextDialog" timestamp="1601539852296">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1776" y="117" key="DiffContextDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601539852296" />
+    <state x="2105" y="262" key="FileChooserDialogImpl" timestamp="1601569253483">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2105" y="262" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601569253483" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601108771225">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -219,22 +314,33 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state x="152" y="68" width="1372" height="725" key="MergeDialog" timestamp="1601412882260">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1493" y="0" width="1514" height="1040" key="MergeDialog" timestamp="1601540283397">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="152" y="68" width="1372" height="725" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1601412882260" />
-    <state x="438" y="191" key="MultipleFileMergeDialog" timestamp="1601412882272">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1493" y="0" width="1514" height="1040" key="MergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601540283397" />
+    <state x="1964" y="281" key="MultipleFileMergeDialog" timestamp="1601540230159">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="438" y="191" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1601412882272" />
-    <state x="460" y="209" key="Vcs.Push.Dialog.v2" timestamp="1601412858754">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1964" y="281" key="MultipleFileMergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601540230159" />
+    <state x="2161" y="443" key="NewPhpFileDialog" timestamp="1601211266922">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1918" y="253" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601112026226" />
-    <state x="460" y="209" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1601412858754" />
-    <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601413502310">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="2161" y="443" key="NewPhpFileDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601211266922" />
+    <state x="1827" y="165" key="SettingsEditor" timestamp="1601143545461">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1601413502310" />
+    <state x="1827" y="165" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601143545461" />
+    <state x="2173" y="433" key="VCS.ChangelistChooser" timestamp="1601717546640">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2173" y="433" key="VCS.ChangelistChooser/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601717546640" />
+    <state x="1918" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601717661566">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1918" y="253" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601717661566" />
+    <state x="2143" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601539913557">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2143" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601539913557" />
   </component>
 </project>
