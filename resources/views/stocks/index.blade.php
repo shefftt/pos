@@ -10,7 +10,6 @@
             </div>
             <div class="col text-left">
                 <a class="btn btn-secondary" href="{{url('/stock/create')}}" role="button">اضافة مخزن </a>
-
             </div>
         </div>
     </div>
@@ -35,7 +34,7 @@
                     <td>{{$stock->status}}</td>
 
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/stock/')}}/{{$stock->id}}" role="button">عرض</a>
                         <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
                         <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
 

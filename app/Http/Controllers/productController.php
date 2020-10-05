@@ -15,6 +15,12 @@ class productController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function show($id){
+        $products = product::find($id);
+        return view('products.show',compact('products'));
+
+    }
+
 
     public function create()
     {
@@ -43,6 +49,12 @@ class productController extends Controller
         return redirect('products');
     }
 
+    public function CheckStatus($id){
+        $products = product::find($id);
+        $products->status=0;
+        $products->save();
+        return redirect('products');
+    }
 
 
 }
