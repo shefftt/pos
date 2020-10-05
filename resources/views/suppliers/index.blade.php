@@ -37,9 +37,9 @@
                     <td>{{$supplier->address}}</td>
 
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/supplier/show')}}/{{$supplier->id}}" role="button">عرض</a>
                         <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/supplier/edit')}}/{{$supplier->id}}" role="button">تعديل</a>
 
                     </td>
                 </tr>
