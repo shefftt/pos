@@ -5,6 +5,7 @@ use App\Http\Requests\userRequest;
 use App\user;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -23,11 +24,36 @@ class userController extends Controller
         return view('users.create', compact('users'));
     }
 
-    public function store(userRequest $request)
+    public function store(Request $request)
     {
-        $validated  = $request->validated();
+        $users = new User();
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->password = Hash::make($request['password']);
 
-        user::create($validated);
+        $users->save();
+
+
+        return redirect('users');
+    }
+
+    public function cancel($id)
+    {
+        $user = user::find($id);
+        $user->status  = 0;
+
+
+        $user->save();
+        return redirect('users');
+    }
+
+    public function activate($id)
+    {
+        $user = user::find($id);
+        $user->status  = 1;
+
+
+        $user->save();
         return redirect('users');
     }
 

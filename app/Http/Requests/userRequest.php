@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class userRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class userRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
+            'email' =>  Hash::make('request'),
             'password' => 'required',
 
         ];

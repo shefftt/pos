@@ -5,8 +5,15 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">
-                <h6>{{$supplier->name}}</h6>
+            <div class="form-group col-md-10">
+                <h6>{{$supplier->name}}</h6></div>
+            <div class="form-group col-md-2">
+
+<h6  style="
+    padding-right: 7rem;
+">
+                    <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/supplier/payment')}}/{{$supplier->id}}" role="button" >دفع</a>
+</h6></div>
             </div>
 
         </div>
@@ -16,25 +23,23 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>رقم الفاتوره  </th>
+                <th>رقم الفاتورة</th>
                 <th>المبلغ</th>
                 <th>من حساب </th>
                 <th>الي حساب </th>
 
 
-                <th>الضبط</th>
             </tr>
             </thead>
             <tbody>
             <?php $i =1; ?>
-            @foreach($suppliers_show as $supplier_show)
+            @foreach($supplier->transaction as $supplier_show)
                 <tr>
                     <td scope="row">{{$i++}}</td>
-                    <!-- id 	name 	phone 	address -->
                     <td>{{$supplier_show->transactionable_id}}</td>
                     <td>{{$supplier_show->amount}}</td>
                     <td>{{$supplier_show->from}}</td>
-                    <td>{{$supplier_show->from}}</td>
+                    <td>{{$supplier_show->to}}</td>
 
 
                 </tr>
