@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="" />
+    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +122,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1i2bKyPyGuBtTmBLGgsC1fkkLXb" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -146,7 +150,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -201,11 +205,37 @@
       <option name="project" value="LOCAL" />
       <updated>1601827502966</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="edit proudects">
+      <created>1601987350409</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601987350481</updated>
+    </task>
+    <task id="LOCAL-00007" summary="edit proudects">
+      <created>1601987721180</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601987721180</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
@@ -217,13 +247,15 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1601403562658" />
-    <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601393437364">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="452" y="156" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601975482196">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="452" y="156" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1601975482196" />
     <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601393437364" />
-    <state x="425" y="18" key="CommitChangelistDialog2" timestamp="1601545065554">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="363" y="0" key="CommitChangelistDialog2" timestamp="1601987717207">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="363" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1601987717207" />
     <state x="425" y="18" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1601545065554" />
     <state x="220" y="114" key="DiffContextDialog" timestamp="1601451084189">
       <screen x="0" y="0" width="1600" height="860" />
@@ -261,10 +293,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="438" y="191" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1601412882272" />
-    <state x="460" y="209" key="Vcs.Push.Dialog.v2" timestamp="1601545694658">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="393" y="177" key="Vcs.Push.Dialog.v2" timestamp="1601987739590">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1918" y="253" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601112026226" />
+    <state x="393" y="177" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1601987739590" />
     <state x="460" y="209" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1601545694657" />
     <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601539670090">
       <screen x="0" y="0" width="1600" height="860" />
@@ -278,5 +311,16 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1601539648799" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/users/index.blade.php</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
