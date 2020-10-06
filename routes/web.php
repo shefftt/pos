@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('products', 'productController@index');
     Route::get('/product/create', 'productController@create');
     Route::post('/product/create', 'productController@store');
+    Route::post('/product/CheckStatus/{id}', 'productController@CheckStatus');
+    Route::get('/product/{id}', 'productController@show');
     Route::get('/product/edit/{id}', 'productController@edit');
     Route::put('/product/edit/{id}', 'productController@update');
 
@@ -35,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stocks', 'stockController@index');
     Route::get('/stock/create', 'stockController@create');
     Route::post('/stock/create', 'stockController@store');
+    Route::get('/stock/{id}', 'stockController@show');
 
 
     Route::get('purchase', 'purchaseController@index');
