@@ -18,6 +18,8 @@ class CreatePurchaseInvoiceHTable extends Migration
             $table->integer('supplier_id');
             $table->string('total');
             $table->integer('stock_id');
+            $table->integer('payment_method_id');
+            $table->integer('account_id');
             $table->timestamps();
         });
     }
