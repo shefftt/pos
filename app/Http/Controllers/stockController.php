@@ -14,6 +14,10 @@ class stockController extends Controller
         $stocks =  stock::paginate(10);
         return view('stocks.index', compact('stocks'));
     }
+    public function show($id){
+        $stocks =  stock::find($id);
+        return view('stocks.show', compact('stocks'));
+    }
 
     public function create()
     {

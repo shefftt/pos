@@ -23,4 +23,5 @@ class purchase_invoice_h extends Model
     {
         return $this->belongsTo(stock::class);
     }
+
 }

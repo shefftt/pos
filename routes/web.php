@@ -22,7 +22,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('products', 'productController@index');
     Route::get('/product/create', 'productController@create');
     Route::post('/product/create', 'productController@store');
-
+    Route::post('/product/CheckStatus/{id}', 'productController@CheckStatus');
+    Route::get('/product/{id}', 'productController@show');
+    Route::get('/product/edit/{id}', 'productController@edit');
+    Route::put('/product/edit/{id}', 'productController@update');
 
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
@@ -34,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stocks', 'stockController@index');
     Route::get('/stock/create', 'stockController@create');
     Route::post('/stock/create', 'stockController@store');
+    Route::get('/stock/{id}', 'stockController@show');
 
 
     Route::get('purchase', 'purchaseController@index');
@@ -48,6 +52,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('suppliers', 'supplierController@index');
     Route::get('/supplier/create', 'supplierController@create');
     Route::post('/supplier/create', 'supplierController@store');
+    Route::get('/supplier/edit/{id}', 'supplierController@edit');
+    Route::post('/supplier/update/{id}', 'supplierController@update');
+    Route::get('/supplier/show/{id}', 'supplierController@show');
+    Route::get('/supplier/payment/{id}', 'supplierController@payment');
+    Route::post('/supplier/payment/{id}', 'supplierController@payment_add_post');
+
+
+    Route::get('accounts', 'accountController@index');
+    Route::get('/account/create', 'accountController@create');
+    Route::post('/account/create', 'accountController@store');
+
+    Route::get('users', 'userController@index');
+    Route::get('/user/create', 'userController@create');
+    Route::post('/user/create', 'userController@store');
+    Route::get('/user/cancel/{id}', 'userController@cancel');
+        Route::get('/user/activate/{id}', 'userController@activate');
+
+
 
     Route::get('/pos', 'supplierController@create');
 });

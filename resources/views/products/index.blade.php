@@ -39,11 +39,26 @@
                     <td>{{$product->purchase_price}}</td>
                     <td>{{$product->sale_price}}</td>
                     <td>{{$product->category->name}}</td>
+
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
-                        <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+                        <div class="form-group">
+                            <div class="row">
+                        @if(!$product->status==0)
+                        <form action="{{url('/product/CheckStatus')}}/{{$product->id}}" method="post">
+                          @csrf
+                            <button class="btn  btn-sm btn-danger" type="submit">ايقاف</button>
+                        </form>
+                        @else
+                            <span class="label label-sm label-success">
+                                تم الايقاف
+                            </span>
+                        @endif
+                                <br>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">اضافة كميه</a>
+                            </div>
+
+                        </div>
                     </td>
                 </tr>
                 @endforeach

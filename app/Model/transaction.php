@@ -1,0 +1,13 @@
+<?php
+
+namespace App\model;
+use App\Model\purchase_invoice_h;
+use App\model\supplier;
+use Illuminate\Database\Eloquent\Model;
+
+class transaction extends Model
+{
+
+
+
+}
