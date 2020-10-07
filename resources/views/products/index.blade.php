@@ -55,7 +55,7 @@
                         @endif
                                 <br>
                         <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">اضافة كميه</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
                             </div>
 
                         </div>

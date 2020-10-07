@@ -35,6 +35,13 @@ class productController extends Controller
         $stocks     =  stock::all();
         return view('products.edit', compact('categories', 'stocks','products'));
     }
+    public function store(productRequest $request)
+    {
+
+        $validated  = $request->validated();
+        product::create($validated);
+        return redirect('products');
+    }
 
     public function update(Request $request,$id)
     {

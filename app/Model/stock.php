@@ -12,5 +12,9 @@ class stock extends Model
 
         return $this->hasMany(purchase_invoice_h::class);
     }
+    public function purchase_invoice_d(){
+
+        return $this->hasManyThrough(purchase_invoice_d::class,purchase_invoice_h::class,'stock_id','invoice_id','id','id');
+    }
 
 }
