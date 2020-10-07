@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/products/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/stocks/show.blade.php" afterDir="false" />
+    <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="proudect">
+      <change afterPath="$PROJECT_DIR$/resources/views/customers/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/productController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/productController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/stockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/stockController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/purchase_invoice_h.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/purchase_invoice_h.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/stock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/stock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/stocks/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/stocks/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/stocks/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/stocks/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +139,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/koshstore2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -150,6 +147,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -177,7 +175,11 @@
       <workItem from="1601570536395" duration="34000" />
       <workItem from="1601795282603" duration="11086000" />
       <workItem from="1601827186474" duration="1037000" />
-      <workItem from="1601891086228" duration="13296000" />
+      <workItem from="1601891086228" duration="16603000" />
+      <workItem from="1601963992909" duration="3005000" />
+      <workItem from="1601968574772" duration="7528000" />
+      <workItem from="1601981896805" duration="4145000" />
+      <workItem from="1601987619611" duration="7973000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1601404431516</created>
@@ -221,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601827539879</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="proudect">
+      <created>1601910888719</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601910888719</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +239,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
     <MESSAGE value="edit proudects" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit proudects" />
+    <MESSAGE value="proudect" />
+    <option name="LAST_COMMIT_MESSAGE" value="proudect" />
   </component>
   <component name="WindowStateProjectService">
     <state x="521" y="177" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601403562658">
@@ -241,14 +251,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601393437364" />
-    <state x="425" y="18" width="1066" height="824" key="CommitChangelistDialog2" timestamp="1601827536987">
+    <state x="425" y="18" width="1066" height="824" key="CommitChangelistDialog2" timestamp="1601964656677">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="425" y="18" width="1066" height="824" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1601827536987" />
-    <state x="220" y="114" key="DiffContextDialog" timestamp="1601910740210">
+    <state x="425" y="18" width="1066" height="824" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1601964656677" />
+    <state x="220" y="114" key="DiffContextDialog" timestamp="1601964695859">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="220" y="114" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1601910740210" />
+    <state x="220" y="114" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1601964695859" />
     <state x="580" y="184" key="FileChooserDialogImpl" timestamp="1601456308620">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -285,22 +295,33 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="589" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601909584468" />
-    <state x="460" y="209" key="Vcs.Push.Dialog.v2" timestamp="1601827603228">
+    <state x="460" y="209" key="Vcs.Push.Dialog.v2" timestamp="1601964717232">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="1918" y="253" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601112026226" />
-    <state x="460" y="209" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1601827603228" />
+    <state x="460" y="209" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1601964717232" />
     <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601891624140">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1601891624139" />
-    <state x="548" y="218" key="git4idea.merge.GitPullDialog" timestamp="1601910666378">
+    <state x="548" y="218" key="git4idea.merge.GitPullDialog" timestamp="1601913670795">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="548" y="218" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1601910666378" />
+    <state x="548" y="218" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1601913670795" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1601539648799">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1601539648799" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/layouts/master.blade.php</url>
+          <line>220</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

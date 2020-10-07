@@ -32,7 +32,7 @@
                     <td>{{$customer->address}}</td>
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">توقيف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">عرض</a>
 
                     </td>
                 </tr>

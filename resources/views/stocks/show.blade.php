@@ -18,16 +18,18 @@
             <tr>
                 <th>#</th>
 
+                <th>المنتج</th>
                 <th>الكميه</th>
             </tr>
             </thead>
             <tbody>
             <?php $i =1; ?>
-            @foreach($stocks->purchase_invoice_h as $stock)
+            @foreach($stocks->purchase_invoice_d as $stock)
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
-                    <td>{{$stock->total}}</td>
+                    <td>{{$stock->product->name}}</td>
+                    <td>{{$stock->qyt}}</td>
 
 
                 </tr>
