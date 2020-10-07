@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'اضافة فاتورة ')
+@section('title' ,'انشاء  فاتورة ')
+
 
 <div class="card">
     <div class="card-header">
@@ -98,4 +99,5 @@
     </form>
 </div>
 
+<purchase/>
 @endsection

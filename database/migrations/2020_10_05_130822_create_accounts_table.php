@@ -17,6 +17,7 @@ class CreateAccountsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->string('code');
             $table->timestamps();
         });
     }
