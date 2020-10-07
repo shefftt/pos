@@ -37,11 +37,22 @@
 
 
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
-                        <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/user/edit')}}/{{$user->id}}" role="button">تعديل</a>
+
+
+    @if (($user->status)==1)
+
+                             <a name="" id="" class="btn  btn-sm btn-danger" href="{{url('/user/cancel')}}/{{$user->id}}" role="button">ايقاف</a>
+
+                        @else
+                            <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/user/activate')}}/{{$user->id}}" role="button">تنشيط</a>
+
+                        @endif
+
+
+
 
                     </td>
+
                 </tr>
             @endforeach
             </tbody>

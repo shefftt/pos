@@ -6,7 +6,9 @@ use App\Http\Requests\supplierRequest;
 use App\Model\stock;
 use App\model\supplier;
 use App\model\transaction;
+use App\Model\purchase_invoice_h;
 use Illuminate\Http\Request;
+use App\Http\Requests\transactionRequest;
 
 class supplierController extends Controller
 {
@@ -59,7 +61,23 @@ class supplierController extends Controller
         $suppliers_show = transaction::where('transactionable_id', '=', $id)->get();
 
         return view('suppliers.show',compact('supplier','suppliers_show'));
+
     }
 
+    public function payment($id)
+    {
+        $payment =  transaction::find($id);
+        $accounts =  account::all();
+        return view('suppliers.payment',compact('payment'));
+    }
+
+
+    public function payment_add_post(transactionRequest $request)
+    {
+        $validated  = $request->validated();
+
+        transaction::create($validated);
+        return redirect('suppliers');
+    }
 
 }

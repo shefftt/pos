@@ -19,6 +19,7 @@ class CreatePurchaseInvoiceDTable extends Migration
             $table->string('price');
             $table->string('invoice_id');
             $table->string('qyt');
+            $table->string('current_qyt');
             $table->float('sub_total');
 
             $table->timestamps();

@@ -55,7 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/supplier/edit/{id}', 'supplierController@edit');
     Route::post('/supplier/update/{id}', 'supplierController@update');
     Route::get('/supplier/show/{id}', 'supplierController@show');
-
+    Route::get('/supplier/payment/{id}', 'supplierController@payment');
+    Route::post('/supplier/payment/{id}', 'supplierController@payment_add_post');
 
 
     Route::get('accounts', 'accountController@index');
@@ -65,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users', 'userController@index');
     Route::get('/user/create', 'userController@create');
     Route::post('/user/create', 'userController@store');
+    Route::get('/user/cancel/{id}', 'userController@cancel');
+        Route::get('/user/activate/{id}', 'userController@activate');
 
 
 

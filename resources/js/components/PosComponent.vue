@@ -206,7 +206,7 @@ export default {
         },
         in_crease(product) {
             let obj;
-            // التاكد من عدم وجود المنتج فى القائمه
+            // التاكد من عدمlogin وجود المنتج فى القائمه
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
