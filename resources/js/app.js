@@ -1,6 +1,7 @@
 import './bootstrap';
 import Vue from 'vue';
 import axios from 'axios'
+import swal from 'sweetalert';
 
 // require('./bootstrap');
 window.Vue = require('vue');

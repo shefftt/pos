@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
         return \App\Model\product::where('name', 'LIKE', '%' . $product_name . '%')->get();
     });
 
+
+
     Route::get('/create_invoice', function () {
         return request()->all();
         // return request('products_table');

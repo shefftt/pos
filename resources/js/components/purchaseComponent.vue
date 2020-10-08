@@ -4,15 +4,38 @@
             <div class="card-header">
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="stock_id">المخزن</label>
+                        <label for="stock_id">الموردين</label>
                         <select
                             class="form-control form-control-sm"
-                            name="stock_id"
-                            id="stock_id"
+                            name="supplier_id"
+                            id="supplier_id"
+                            v-model="supplier_id"
                         >
-                            <option>المخزن الاول</option>
-                            <option>المخزن الثاني</option>
-                            <option>المخزن الثالث</option>
+                            <option
+                                v-for="supplier in suppliers"
+                                :value="supplier.id"
+                                :key="supplier.id"
+                            >
+                                {{ supplier.name }}</option
+                            >
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="account_id">طريقه الدفع</label>
+                        <select
+                            class="form-control form-control-sm"
+                            name="account_id"
+                            id="account_id"
+                            v-model="payment_method"
+                        >
+                            <option
+                                v-for="account in accounts"
+                                :value="account.id"
+                                :key="account.id"
+                            >
+                                {{ account.name }}</option
+                            >
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -21,22 +44,15 @@
                             class="form-control form-control-sm"
                             name="stock_id"
                             id="stock_id"
+                            v-model="stock_id"
                         >
-                            <option>المخزن الاول</option>
-                            <option>المخزن الثاني</option>
-                            <option>المخزن الثالث</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="stock_id">المخزن</label>
-                        <select
-                            class="form-control form-control-sm"
-                            name="stock_id"
-                            id="stock_id"
-                        >
-                            <option>المخزن الاول</option>
-                            <option>المخزن الثاني</option>
-                            <option>المخزن الثالث</option>
+                            <option
+                                v-for="stock in stocks"
+                                :value="stock.id"
+                                :key="stock.id"
+                            >
+                                {{ stock.name }}</option
+                            >
                         </select>
                     </div>
 
@@ -64,34 +80,23 @@
                     </div>
 
                     <div class="form-group col-md-4 mr-auto">
-                        <label for="product_name">رقم الفاتوره</label>
+                        <label for="invoice_number">رقم الفاتوره</label>
                         <input
-                            id="product_name"
-                            @keyup="get_product_name"
+                            id="invoice_number"
                             type="text"
-                            v-model="product_name"
+                            v-model="invoice_number"
                             class="form-control"
                             placeholder="رقم الفاتوره"
                         />
-                        <ul style="position: absolute;" class="list-group">
-                            <li
-                                class="list-group-item"
-                                @click="select_product(product)"
-                                v-for="product in products"
-                                :key="product.id"
-                            >
-                                {{ product.name }}
-                            </li>
-                            <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
-                        </ul>
                     </div>
                     <div class="form-group col-md-4 mr-auto">
-                        <label for="product_name">الباركود</label>
+                        <label for="product_barcode">الباركود</label>
                         <input
-                            id="product_name"
-                            @keyup="get_product_name"
+                            id="product_barcode"
+                            ref="product_barcode"
+                            @keyup.enter="get_product_barcode"
                             type="text"
-                            v-model="product_name"
+                            v-model="product_barcode"
                             class="form-control"
                             placeholder="الباركود"
                         />
@@ -147,7 +152,7 @@
                 </table>
             </div>
 
-            <div class="card-footer text-muted">
+            <div class="col-md-12">
                 <div class="row">
                     <!-- accepted payments column -->
                     <div class="col-6">
@@ -157,7 +162,7 @@
                             class="text-muted well well-sm shadow-none"
                             style="margin-top: 10px;"
                         >
-                            الفاتورة صالحه لمده اسبوعين فقط
+                            <!-- الفاتورة صالحه لمده اسبوعين فقط -->
                         </p>
                     </div>
                     <!-- /.col -->
@@ -173,11 +178,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <button @click="btnSave" class="btn btn-success">
-                        اضافه
-                    </button>
+            <div class="card-footer text-muted">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button
+                            @click="create_purchase_invoice"
+                            class="btn btn-lg btn-info"
+                        >
+                            انشاء فاتوره
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,42 +207,64 @@ export default {
         Customer
     },
     mounted() {
-        console.log("");
+        this.get_stock_name();
+        this.get_supplier_name();
+        this.get_accounts();
     },
     data() {
         return {
             product_name: "",
+            invoice_number: "",
+            product_barcode: "",
             products: [],
             products_list: [],
             products_table: [],
 
+            accounts: [],
+            account_id: 1,
+
             stocks: [],
             stock_id: 0,
+
+            suppliers: [],
+            supplier_id: 0,
+
+            payment_method: 1,
+
             total: 0
         };
     },
     methods: {
-
-        () {
-            // console.log("btnSave");
+        create_purchase_invoice() {
+            // validtions
+            if (this.supplier_id == 0 || this.supplier_id == "") {
+                swal("عفوا!", "الرجاء اختيار المورد اولا!", "warning");
+                return;
+            } else if (this.stock_id == 0 || this.stock_id == "") {
+                swal("عفوا!", "الرجاء اختيار المخزن اولا!", "warning");
+                return;
+            } else if (this.total == 0 || this.total == "") {
+                swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
+                return;
+            }
             axios
-                .get("/api/pos", {
+                .get("/api/create_purchase_invoice", {
                     params: {
-                        products_table: this.products_table,
-                        total: this.total
+                        products_table:  this.products_table,
+                        total: this.total,
+                        invoice_number: this.invoice_number,
+                        stock_id: this.stock_id,
+                        supplier_id: this.supplier_id,
+                        payment_method: this.payment_method
                     }
                 })
                 .then(response => {
-                    // this.products_table.total = null;
-                    // console.log(this.products_table[0].name);
-                    console.log(response);
-
-                    // alert(response.data);
-                    // const map = new Map(Object.entries(this.products_table));
-                    if (response.status === 201) {
-                        this.products_table = [];
-                        this.total = null;
-                        alert(response.data);
+                    console.log(response.data);
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        // this.products_table = [];
+                        // this.total = null;
+                        swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {
                         alert("الرجاء وضع منتجات اولا");
@@ -245,6 +277,60 @@ export default {
                 .get("/submit", { params: { product_name: this.product_name } })
                 .then(response => {
                     this.products = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_accounts() {
+            axios
+                .get("/api/accounts")
+                .then(response => {
+                    this.accounts = response.data;
+                })
+                .catch(error => {});
+        },
+        get_stock_name() {
+            axios
+                .get("/api/stocks")
+                .then(response => {
+                    console.log("ahmed hme : " + response);
+                    this.stocks = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_supplier_name() {
+            axios
+                .get("/api/suppliers")
+                .then(response => {
+                    this.suppliers = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_product_barcode() {
+            axios
+                .get("/api/get_product_barcode", {
+                    params: { product_barcode: this.product_barcode }
+                })
+                .then(response => {
+                    if (!response.data.barcode) {
+                        swal("تحديث!", "عفوا المنتج غير موجود!", "warning");
+                        this.product_barcode = "";
+                        this.$refs.product_barcode.focus();
+                    } else {
+                        this.select_product(response.data);
+                        this.product_barcode = "";
+                    }
                 })
                 .catch(error => {
                     if (error.response.status === 422) {
@@ -287,6 +373,7 @@ export default {
          * @param product
          */
         remove_form_table(product) {
+            // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
             this.total -= product.subtotal;
 
