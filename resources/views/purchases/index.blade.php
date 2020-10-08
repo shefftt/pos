@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'انشاء فاتورة مشتريات')
+@section('title' ,'فواتير المشتريات')
 
 <div class="card">
     <div class="card-header">
@@ -17,32 +17,41 @@
     <div class="card-body">
         <table class="table">
             <thead>
-            <tr>
-                <th>#</th>
-                <th>المورد</th>
-                <th> المخزن</th>
-                <th> المجموع</th>
-
-                <th>الضبط</th>
-            </tr>
+                <tr>
+                    <th>#</th>
+                    <th>المورد</th>
+                    <th> المخزن</th>
+                    <th> المجموع</th>
+                    <th> الدفع</th>
+                    <th>الضبط</th>
+                </tr>
             </thead>
             <tbody>
-            <?php $i =1; ?>
-            @foreach($purchases as $purchase)
+                <?php $i = 1; ?>
+                @foreach($purchases as $purchase)
                 <tr>
                     <td scope="row">{{$i++}}</td>
-
-                    <td>{{$purchase->transaction->sum('amount')}}</td>
                     <td>{{$purchase->supplier->name}}</td>
                     <td>{{$purchase->stock->name}}</td>
                     <td>{{$purchase->total}}</td>
 
                     <td>
-                        <a class="btn  btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
+                        @if($purchase->transaction->sum('amount') == $purchase->total)
+                        <button class="btn">
+                            تم الدفع <span class="badge badge-primary"></span>
+                        </button>
+                        @else
+                        <?php $amount = $purchase->total - $purchase->transaction->sum('amount') ;?>
+                        <purchase-btn amount="{{$amount}}" />
+                        @endif
+                    </td>
+
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
 
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -15,10 +15,17 @@
         @csrf
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                     <label for="">اسم المنتج</label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                     @error('name')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">باركود المنتج</label>
+                    <input type="text" value="{{old('barcode')}}" class="form-control @error('name') is-invalid @enderror" name="barcode">
+                    @error('barcode')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>

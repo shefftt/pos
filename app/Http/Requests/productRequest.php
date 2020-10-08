@@ -30,7 +30,8 @@ class productRequest extends FormRequest
             'sale_price' => 'required|integer',
             'purchase_price' => 'nullable|integer',
             'stock_id' => 'required',
-            'qyt' => 'nullable|integer'
+            'qyt' => 'nullable|integer',
+            'barcode' => 'nullable'
         ];
     }
 

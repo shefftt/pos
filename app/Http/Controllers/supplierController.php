@@ -58,9 +58,6 @@ class supplierController extends Controller
     public function show($id)
     {
         $supplier =  supplier::find($id);
-       // $suppliers_show = transaction::where($id='transactionable_id')->get;
-        $suppliers_show = transaction::where('transactionable_id', '=', $id)->get();
-
         return view('suppliers.show',compact('supplier','suppliers_show'));
 
     }
