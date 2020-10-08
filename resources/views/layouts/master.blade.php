@@ -51,7 +51,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{url('stocks')}}">المخازن</a>
                 </li>
                 <li class="nav-item">
@@ -72,7 +72,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('customers')}}">العملاء</a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- SEARCH FORM -->
@@ -184,8 +184,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                     style="opacity: .8">
+                <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">لوحه التحكم</span>
             </a>
 
@@ -217,17 +216,37 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{url('/products')}}" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         المنتجات
-                                        <span class="right badge badge-danger">جدید</span>
+                                        <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
-                            </li>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{url('/products')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>عرض المنتجات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/product/create')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>اضافة منتج</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/categories')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>التصنيفات</p>
+                                        </a>
+                                    </li>
+                                </ul>
 
-                            <!-- <li class="nav-item has-treeview">
+                                <!-- <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fa fa-pie-chart"></i>
                                     <p>
@@ -244,32 +263,33 @@
                                     </li>
                                 </ul>
                             </li> -->
-                            <li class="nav-header">اعدادات</li>
-                            <li class="nav-item">
-                                <a href="{{url('categories')}}" class="nav-link">
-                                    <i class="nav-icon fa fa-calendar"></i>
-                                    <p>
-                                        التصنيفات
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{url('stocks')}}" class="nav-link">
-                                    <i class="nav-icon fa fa-calendar"></i>
-                                    <p>
-                                        المخازن
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{url('purchase')}}" class="nav-link">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         المشتريات
+                                        <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="{{url('purchase')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                عرض المشتريات
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/purchase/create')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                انشاء فاتورة مشتريات
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('sales')}}" class="nav-link">
@@ -281,14 +301,63 @@
                             </li>
 
 
-                            <li class="nav-item">
-                                <a href="{{url('suppliers')}}" class="nav-link">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         الموردين
+                                        <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="{{url('suppliers')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                عرض الموردين
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/supplier/create')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                اضافة مورد
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        المخازن
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{url('/stocks')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                عرض المخازن
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/stock/create')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                اضافة مخزن
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item">
                                 <a href="{{url('customers')}}" class="nav-link">
                                     <i class="nav-icon fa fa-calendar"></i>
@@ -308,15 +377,35 @@
                                 </a>
                             </li>
 
-
-                            <li class="nav-item">
-                                <a href="{{url('users')}}" class="nav-link">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fa fa-calendar"></i>
                                     <p>
                                         المستخدمين
+                                        <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="{{url('users')}}" class="nav-link">
+                                            <i class="nav-icon fa fa-calendar"></i>
+                                            <p>
+                                                عرض المستخدمين
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/user/create')}}" class="nav-link">
+                                            <i class="nav-icon fa fa-calendar"></i>
+                                            <p>
+                                                اضافة مستخدم
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+
 
                             <li class="nav-header">اخرى</li>
                             <li class="nav-item">
@@ -413,20 +502,20 @@
     <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js?v=1')}}"></script>
     <!-- Slimscroll -->
     <script src="{{asset('plugins/slimScroll/jquery.slimscroll.min.js?v=1')}}"></script>
-    <!-- FastClick -->
-    <script src="{{asset('plugins/fastclick/fastclick.js?v=1')}}"></script>
+
     <!-- AdminLTE App -->
     <script src="{{asset('/')}}dist/js/adminlte.js?v=1"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{asset('dist/js/pages/dashboard.js?v=1')}}"></script>
-    <script src="{{asset('plugins/toastr/toastr.min.js?v=1')}}"></script>
-    <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js?v=1')}}"></script>
+    <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    <script src="{{asset('js/app.js?v=1')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
     <script>
         const Toast = Swal.mixin({
-            // toast: true,
+            toast: true,
             showConfirmButton: false,
             timer: 3000
         });

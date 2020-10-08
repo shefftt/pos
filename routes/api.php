@@ -1,5 +1,6 @@
 <?php
 
+use App\model\supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('pos', 'posController@store');
+// create_purchase_invoice
+Route::get('create_purchase_invoice', 'API\purchaseController@store');
+
+Route::get('/get_product_barcode', function () {
+    $product_barcode = request()->product_barcode;
+    return \App\Model\product::where('barcode', $product_barcode )->first();
+});
+
+Route::get('/stocks', "API\stockController@index");
+Route::get('/create_purchase_invoice', "API\purchaseController@store");
+
+Route::get('/accounts', "API\accountController@index");
+
+
+Route::get('/suppliers', function(){
+    return supplier::all();
+});

@@ -32,6 +32,7 @@
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
+                    <td>{{$purchase->transaction->sum('amount')}}</td>
                     <td>{{$purchase->supplier->name}}</td>
                     <td>{{$purchase->stock->name}}</td>
                     <td>{{$purchase->total}}</td>

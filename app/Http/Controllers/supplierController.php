@@ -9,6 +9,7 @@ use App\model\transaction;
 use App\Model\purchase_invoice_h;
 use Illuminate\Http\Request;
 use App\Http\Requests\transactionRequest;
+use App\model\account;
 
 class supplierController extends Controller
 {
@@ -68,7 +69,7 @@ class supplierController extends Controller
     {
         $payment =  transaction::find($id);
         $accounts =  account::all();
-        return view('suppliers.payment',compact('payment'));
+        return view('suppliers.payment',compact('payment' ,'accounts'));
     }
 
 
