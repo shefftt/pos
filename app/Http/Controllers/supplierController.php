@@ -58,7 +58,12 @@ class supplierController extends Controller
     public function show($id)
     {
         $supplier =  supplier::find($id);
-        return view('suppliers.show',compact('supplier','suppliers_show'));
+       // $suppliers_show = transaction::where($id='transactionable_id')->get;
+        $suppliers_show = transaction::where('transactionable_id', '=', $id)->get();
+
+        $invoices = purchase_invoice_h::where('supplier_id', '=', $id)->paginate(10);
+
+        return view('suppliers.show',compact('supplier','suppliers_show','invoices'));
 
     }
 
