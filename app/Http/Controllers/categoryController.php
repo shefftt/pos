@@ -14,6 +14,10 @@ class categoryController extends Controller
         $categories =  category::paginate(10);
         return view('categories.index', compact('categories'));
     }
+    public function show($id){
+        $categories = category::find($id);
+        return view('categories.show',compact('categories'));
+    }
 
 
     public function create()
