@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
+    Route::get('/category/{id}', 'categoryController@show');
 
     Route::get('customers', 'customerController@index');
     Route::get('customer/create', 'customerController@create');
