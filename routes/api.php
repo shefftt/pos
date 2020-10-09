@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\customer;
 use App\model\supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,11 +31,32 @@ Route::get('/get_product_barcode', function () {
 });
 
 Route::get('/stocks', "API\stockController@index");
+
 Route::get('/create_purchase_invoice', "API\purchaseController@store");
+
+
+Route::get('/create_sales_invoice', "API\salesController@store");
+
 
 Route::get('/accounts', "API\accountController@index");
 
 
 Route::get('/suppliers', function(){
     return supplier::all();
+});
+
+
+Route::get('/customers', function(){
+    return customer::all();
+});
+
+Route::get('/customer/create', function(){
+
+    // $validated  = $request->validated();
+    customer::create([
+        'name' => request('name') ,
+        'phone' => request('phone') ,
+        'address' => request('address') ,
+    ]);
+    return response('done' , 200);
 });

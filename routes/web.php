@@ -26,12 +26,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/{id}', 'productController@show');
     Route::get('/product/edit/{id}', 'productController@edit');
     Route::put('/product/edit/{id}', 'productController@update');
+    Route::get('product/toggleStatus/{product}', 'productController@toggleStatus');
 
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
 
     Route::get('customers', 'customerController@index');
+    Route::get('customer/create', 'customerController@create');
+    Route::post('customer/create', 'customerController@store');
+    Route::get('customer/toggleStatus/{customer}', 'customerController@toggleStatus');
 
 
     Route::get('stocks', 'stockController@index');
@@ -46,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/{id}', 'purchaseController@show');
 
     Route::get('sales', 'salesController@index');
+    Route::get('/sales/{id}', 'salesController@show');
 
 
 
@@ -67,25 +72,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/create', 'userController@create');
     Route::post('/user/create', 'userController@store');
     Route::get('/user/cancel/{id}', 'userController@cancel');
-        Route::get('/user/activate/{id}', 'userController@activate');
+    Route::get('/user/activate/{id}', 'userController@activate');
 
 
-
-    Route::get('/pos', 'supplierController@create');
-});
     Route::get('pos', 'posController@index');
+});
 
-    Route::get('/submit', function () {
-        $product_name = request()->product_name;
+Route::get('/submit', function () {
+    $product_name = request()->product_name;
+    if (isset($product_name))
         return \App\Model\product::where('name', 'LIKE', '%' . $product_name . '%')->get();
-    });
+    else {
+        return;
+    }
+});
 
 
 
-    Route::get('/create_invoice', function () {
-        return request()->all();
-        // return request('products_table');
-    });
+Route::get('/create_invoice', function () {
+    return request()->all();
+    // return request('products_table');
+});
 
-    Route::get('login', 'loginController@index')->name('login');
-    Route::post('login', 'loginController@store');
+Route::get('login', 'loginController@index')->name('login');
+Route::post('login', 'loginController@store');

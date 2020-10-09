@@ -52,6 +52,7 @@ class productController extends Controller
         $products->sale_price = $request->sale_price;
         $products->stock_id = $request->stock_id;
         $products->qyt = $request->qyt;
+        $products->barcode  = $request->barcode ;
         $products->save();
         return redirect('products');
     }
@@ -60,6 +61,14 @@ class productController extends Controller
         $products = product::find($id);
         $products->status=0;
         $products->save();
+        return redirect('products');
+    }
+
+
+    public function toggleStatus(product $product)
+    {
+         $product->status = !$product->status;
+         $product->save();
         return redirect('products');
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2020 at 09:45 AM
+-- Generation Time: Oct 09, 2020 at 11:35 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -90,6 +90,16 @@ CREATE TABLE `customers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `phone`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'السر على اراهيم', '0915903708', 'جبره', 0, '2020-10-08 17:14:08', '2020-10-08 17:51:52'),
+(2, 'محمد احمد محمد احمد', '123456', 'لايوجد عنوان', 1, '2020-10-09 07:11:37', '2020-10-09 07:11:37'),
+(3, 'محمد احمد محمد احمد', '123456', 'لايوجد عنوان', 1, '2020-10-09 07:12:23', '2020-10-09 07:12:23'),
+(4, 'عرض اختبار', '2455588', 'العنوان الصح', 1, '2020-10-09 07:29:09', '2020-10-09 07:29:09');
+
 -- --------------------------------------------------------
 
 --
@@ -175,8 +185,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `category_id`, `status`, `purchase_price`, `sale_price`, `stock_id`, `qyt`, `barcode`, `created_at`, `updated_at`) VALUES
-(1, 'اسم المنتج', 'product.jpg', '1', 1, 1500, 1000, 1, 120, 10, '2020-09-26 22:00:00', NULL),
-(2, 'المنتج الاول', 'product.jpg', '1', 1, 150, 120, 1, 120, 20, '2020-09-27 16:00:00', '2020-09-27 16:00:00'),
+(1, 'اسم المنتج', 'product.jpg', '1', 0, 1500, 1000, 1, 120, 10, '2020-09-26 22:00:00', '2020-10-08 18:02:59'),
+(2, 'المنتج الاول', 'product.jpg', '1', 0, 150, 120, 1, 120, 20, '2020-09-27 16:00:00', '2020-10-08 18:04:40'),
 (3, 'المنتج الاول', 'product.jpg', '1', 1, 150, 120, 1, 120, 30, '2020-09-27 16:00:47', '2020-09-27 16:00:47'),
 (4, 'المنج الجميل الشديد العجيب', 'product.jpg', '1', 1, 0, 120, 1, 0, 40, '2020-09-27 16:19:10', '2020-09-27 16:19:10');
 
@@ -239,7 +249,9 @@ INSERT INTO `purchase_invoice_d` (`id`, `product_id`, `qyt`, `sub_total`, `price
 (35, 1, '1', 1000.00, '1000', 39, '2020-10-07 22:39:15', '2020-10-07 22:39:15'),
 (36, 2, '1', 120.00, '120', 39, '2020-10-07 22:39:15', '2020-10-07 22:39:15'),
 (37, 1, '2', 2000.00, '1000', 40, '2020-10-08 05:12:43', '2020-10-08 05:12:43'),
-(38, 2, '1', 120.00, '120', 40, '2020-10-08 05:12:43', '2020-10-08 05:12:43');
+(38, 2, '1', 120.00, '120', 40, '2020-10-08 05:12:43', '2020-10-08 05:12:43'),
+(39, 1, '1', 1000.00, '1000', 41, '2020-10-08 18:20:52', '2020-10-08 18:20:52'),
+(40, 1, '1', 1000.00, '1000', 42, '2020-10-08 18:21:47', '2020-10-08 18:21:47');
 
 -- --------------------------------------------------------
 
@@ -301,7 +313,9 @@ INSERT INTO `purchase_invoice_h` (`id`, `supplier_id`, `total`, `stock_id`, `pay
 (37, 1, '1120', 1, 1, '2020-10-07 22:34:32', '2020-10-07 22:34:32'),
 (38, 1, '1120', 1, 1, '2020-10-07 22:37:49', '2020-10-07 22:37:49'),
 (39, 1, '1120', 1, 1, '2020-10-07 22:39:15', '2020-10-07 22:39:15'),
-(40, 2, '2120', 1, 1, '2020-10-08 05:12:43', '2020-10-08 05:12:43');
+(40, 2, '2120', 1, 1, '2020-10-08 05:12:43', '2020-10-08 05:12:43'),
+(41, 1, '1000', 1, 1, '2020-10-08 18:20:52', '2020-10-08 18:20:52'),
+(42, 1, '1000', 1, 1, '2020-10-08 18:21:47', '2020-10-08 18:21:47');
 
 -- --------------------------------------------------------
 
@@ -361,7 +375,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `name`, `phone`, `address`, `status`, `balance`, `created_at`, `updated_at`) VALUES
-(1, 'اراهيم حمدي', '5255', 'العنوان الذى يحب', 1, 1120, '2020-09-29 13:24:46', '2020-10-07 22:30:41'),
+(1, 'ابراهيم حمدي', '5255', 'العنوان الذى يحب', 1, 1120, '2020-09-29 13:24:46', '2020-10-08 19:45:04'),
 (2, 'حسام الدين محمد', '09156585255', 'الحله الجديده', 1, 2480, '2020-09-29 13:37:02', '2020-10-07 22:09:16');
 
 -- --------------------------------------------------------
@@ -388,7 +402,9 @@ CREATE TABLE `transactions` (
 INSERT INTO `transactions` (`id`, `amount`, `from`, `to`, `transactionable_type`, `transactionable_id`, `created_at`, `updated_at`) VALUES
 (1, '1120', 1, 4, 'App\\model\\purchase_invoice_h', 38, '2020-10-07 22:37:49', '2020-10-07 22:37:49'),
 (2, '1120', 1, 4, 'App\\model\\purchase_invoice_h', 39, '2020-10-07 22:39:15', '2020-10-07 22:39:15'),
-(3, '2120', 1, 4, 'App\\model\\purchase_invoice_h', 40, '2020-10-08 05:12:44', '2020-10-08 05:12:44');
+(3, '2120', 1, 4, 'App\\model\\purchase_invoice_h', 40, '2020-10-08 05:12:44', '2020-10-08 05:12:44'),
+(4, '1000', 1, 4, 'App\\model\\purchase_invoice_h', 41, '2020-10-08 18:20:52', '2020-10-08 18:20:52'),
+(5, '1000', 1, 4, 'App\\model\\purchase_invoice_h', 42, '2020-10-08 18:21:47', '2020-10-08 18:21:47');
 
 -- --------------------------------------------------------
 
@@ -523,7 +539,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -547,13 +563,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `purchase_invoice_d`
 --
 ALTER TABLE `purchase_invoice_d`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `purchase_invoice_h`
 --
 ALTER TABLE `purchase_invoice_h`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `sales_invoice_h`
@@ -577,7 +593,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

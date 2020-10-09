@@ -28,38 +28,31 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $i =1; ?>
+                <?php $i = 1; ?>
                 @foreach($products as $product)
                 <tr>
-                    <td scope="row">{{$i++}}</td>
-                    <td>
-                        <img  class="rounded w-25" src="{{url('/image/')}}/{{$product->image}}">
+                    <td>{{$i++}}</td>
+                    <td class="col-1">
+                        <img class="rounded w-100" src="{{url('/image/')}}/{{$product->image}}">
                     </td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->purchase_price}}</td>
                     <td>{{$product->sale_price}}</td>
                     <td>{{$product->category->name}}</td>
-
                     <td>
-                        <div class="form-group">
-                            <div class="row">
-                        @if(!$product->status==0)
-                        <form action="{{url('/product/CheckStatus')}}/{{$product->id}}" method="post">
-                          @csrf
-                            <button class="btn  btn-sm btn-danger" type="submit">ايقاف</button>
-                        </form>
+                        @if($product->status==false)
+                        <a name="" id="" class="btn  btn-sm btn-danger" href="{{url('product/toggleStatus')}}/{{$product->id}}" role="button">تنشيط</a>
                         @else
-                            <span class="label label-sm label-success">
-                                تم الايقاف
-                            </span>
-                        @endif
-                                <br>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
-                            </div>
+                        <a name="" id="" class="btn  btn-sm btn-success" href="{{url('product/toggleStatus')}}/{{$product->id}}" role="button">ايقاف</a>
 
-                        </div>
+                        @endif
+
+                     <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
+
                     </td>
+
+
                 </tr>
                 @endforeach
             </tbody>

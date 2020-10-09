@@ -100,17 +100,6 @@
                             class="form-control"
                             placeholder="الباركود"
                         />
-                        <ul style="position: absolute;" class="list-group">
-                            <li
-                                class="list-group-item"
-                                @click="select_product(product)"
-                                v-for="product in products"
-                                :key="product.id"
-                            >
-                                {{ product.name }}
-                            </li>
-                            <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -262,8 +251,8 @@ export default {
                     console.log(response.data);
                     if (response.status === 200) {
                         console.log(response.data);
-                        // this.products_table = [];
-                        // this.total = null;
+                        this.products_table = [];
+                        this.total = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {

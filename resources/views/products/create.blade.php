@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="">باركود المنتج</label>
-                    <input type="text" value="{{old('barcode')}}" class="form-control @error('name') is-invalid @enderror" name="barcode">
+                    <input type="text" value="{{old('barcode')}}" class="form-control @error('barcode') is-invalid @enderror" name="barcode">
                     @error('barcode')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror

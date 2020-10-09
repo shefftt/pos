@@ -31,7 +31,14 @@
                     <td scope="row">{{$i++}}</td>
 
                     <td>{{$stock->name}}</td>
-                    <td>{{$stock->status}}</td>
+                    <td>
+                        @if($stock->status == 1)
+
+                        <label class="btn  btn-sm btn-success">نشط</label>
+                        @else
+                        <label class="btn  btn-sm btn-danger">متوقف</label>
+                        @endif
+                    </td>
 
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/stock/')}}/{{$stock->id}}" role="button">عرض</a>

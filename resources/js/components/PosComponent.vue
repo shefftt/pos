@@ -1,94 +1,181 @@
 <template>
-    <div class="col-8">
-        <div class="card text-right">
-            <div class="card-header">
-                <div class="row">
-                    <div class="form-group ml-auto"></div>
-                    <div class="form-group mr-auto">
-                        <label for="product_name"></label>
-                        <input
-                            id="product_name"
-                            @keyup="get_product_name"
-                            type="text"
-                            v-model="product_name"
-                            class="form-control"
-                            placeholder="اسم المنتج"
-                        />
-                        <ul style="position: absolute;" class="list-group">
-                            <li
-                                class="list-group-item"
-                                @click="select_product(product)"
-                                v-for="product in products"
-                                :key="product.id"
-                            >
-                                {{ product.name }}
-                            </li>
-                            <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
-                        </ul>
+    <div class="px-4">
+        <div class="row">
+            <div class="col-8">
+                <div class="card text-right">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="stock_id">العميل</label>
+                                <select
+                                    class="form-control form-control-sm"
+                                    name="customer_id"
+                                    id="customer_id"
+                                    v-model="customer_id"
+                                >
+                                    <option
+                                        v-for="customer in customers"
+                                        :value="customer.id"
+                                        :key="customer.id"
+                                    >
+                                        {{ customer.name }}</option
+                                    >
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for=""></label>
+                                <add-customer-btn amount="222222222222"/>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="account_id">طريقه الدفع</label>
+                                <select
+                                    class="form-control form-control-sm"
+                                    name="account_id"
+                                    id="account_id"
+                                    v-model="payment_method"
+                                >
+                                    <option
+                                        v-for="account in accounts"
+                                        :value="account.id"
+                                        :key="account.id"
+                                    >
+                                        {{ account.name }}</option
+                                    >
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6 mr-auto">
+                                <label for="product_name">اسم المنتج</label>
+                                <input
+                                    id="product_name"
+                                    @keyup="get_product_name"
+                                    type="text"
+                                    v-model="product_name"
+                                    class="form-control"
+                                    placeholder="اسم المنتج"
+                                />
+                              <div>
+                                    <ul
+                                    style="position: absolute;z-index: 1000;width: 96%;margin-top: 5px;"
+                                    class="list-group"
+                                >
+                                    <li
+                                        class="list-group-item"
+                                        @click="select_product(product)"
+                                        v-for="product in products"
+                                        :key="product.id"
+                                    >
+                                        {{ product.name }}
+                                    </li>
+                                    <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
+                                </ul>
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-6 mr-auto">
+                                <label for="product_barcode">الباركود</label>
+                                <input
+                                    id="product_barcode"
+                                    ref="product_barcode"
+                                    @keyup.enter="get_product_barcode"
+                                    type="text"
+                                    v-model="product_barcode"
+                                    class="form-control"
+                                    placeholder="الباركود"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>الاسم</th>
-                            <th>السعر</th>
-                            <th>الكميه</th>
-                            <th>السعر الكلى</th>
-                            <th>ضبط</th>
-                        </tr>
-                    </thead>
-                    <tbody id="product">
-                        <tr v-for="product in products_table" :key="product.id">
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.price }}</td>
-                            <td>
-                                    <i  @click="in_crease(product)" class="nav-icon fa fa-plus-circle label-success"></i>
-                                {{ product.qyt }}
-                                    <i @click="de_crease(product)" class="nav-icon fa fa-remove label-danger"></i>
-                            </td>
-                            <td>{{ product.subtotal }}</td>
-                            <td>
-                                <i @click="remove_form_table(product)" class="nav-icon fa fa-remove label-danger"></i>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card-footer text-muted">
-                <div class="row">
-                    <!-- accepted payments column -->
-                    <div class="col-6">
-                        <p class="lead">الدفع:</p>
-
-                        <p
-                            class="text-muted well well-sm shadow-none"
-                            style="margin-top: 10px;"
-                        >
-                            الفاتورة صالحه لمده اسبوعين فقط
-                        </p>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-6">
-                        <div class="table-responsive">
-                            <table class="table">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th>Total:</th>
-                                    <td>SDG {{ total }}</td>
+                                    <th>الاسم</th>
+                                    <th>السعر</th>
+                                    <th>الكميه</th>
+                                    <th>السعر الكلى</th>
+                                    <th>ضبط</th>
                                 </tr>
-                            </table>
+                            </thead>
+                            <tbody id="product">
+                                <tr
+                                    v-for="product in products_table"
+                                    :key="product.id"
+                                >
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.price }}</td>
+                                    <td>
+                                        <i
+                                            @click="in_crease(product)"
+                                            class="nav-icon fa fa-plus-circle label-success"
+                                        ></i>
+                                        {{ product.qyt }}
+                                        <i
+                                            @click="de_crease(product)"
+                                            class="nav-icon fa fa-remove label-danger"
+                                        ></i>
+                                    </td>
+                                    <td>{{ product.subtotal }}</td>
+                                    <td>
+                                        <i
+                                            @click="remove_form_table(product)"
+                                            class="nav-icon fa fa-remove label-danger"
+                                        ></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <!-- accepted payments column -->
+                            <!-- <div class="col-6">
+                                <p class="lead">الدفع:</p>
+
+                                <p
+                                    class="text-muted well well-sm shadow-none"
+                                    style="margin-top: 10px;"
+                                >
+                                    <!-- الفاتورة صالحه لمده اسبوعين فقط -->
+                                <!-- </p>
+                            </div> -->
+                            <!-- /.col -->
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <th class="col-1">المجموع:</th>
+                                            <td class="col-1">SDG {{ total }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button
+                                    @click="create_sales_invoice"
+                                    class="btn btn-lg btn-info"
+                                >
+                                    انشاء فاتوره
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <button @click="btnSave" class="btn btn-success">
-                        اضافه
-                    </button>
+            <div class="col-4">
+                <div class="card text-right">
+                  <img class="card-img-top" src="holder.js/100px180/" alt="">
+                  <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <p class="card-text">Body</p>
+                  </div>
                 </div>
             </div>
         </div>
@@ -101,58 +188,129 @@ const Toast = Swal.mixin({
     timer: 3000
 });
 
-import Customer from "./CustomerComponent";
 
 export default {
-    components: {
-        Customer
-    },
+    components: {},
     mounted() {
-        console.log("");
+        this.get_stock_name();
+        this.get_customer_name();
+        this.get_accounts();
     },
     data() {
         return {
             product_name: "",
+            invoice_number: "",
+            product_barcode: "",
             products: [],
             products_list: [],
             products_table: [],
+
+            accounts: [],
+            account_id: 1,
+
+            stocks: [],
+            stock_id: 0,
+
+            customers: [],
+            customer_id: 0,
+
+            payment_method: 1,
+
             total: 0
         };
     },
     methods: {
-        btnSave() {
-            // console.log("btnSave");
+        create_sales_invoice() {
+            // validtions
+            if ((this.payment_method == 3 ) && (this.customer_id == 0 || this.customer_id == "")) {
+                swal("عفوا!", "فى حاله البيع اجل الرجاء اختيار العميل!", "warning");
+                return;
+            } else if (this.total == 0 || this.total == "") {
+                swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
+                return;
+            }
             axios
-                .get("/api/pos", {
+                .get("/api/create_sales_invoice", {
                     params: {
                         products_table: this.products_table,
-                        total: this.total
+                        total: this.total,
+                        customer_id: this.customer_id,
+                        payment_method: this.payment_method
                     }
                 })
                 .then(response => {
-                    // this.products_table.total = null;
-                        // console.log(this.products_table[0].name);
-                        console.log(response);
-
-                        // alert(response.data);
-                    // const map = new Map(Object.entries(this.products_table));
-                    if (response.status === 201) {
+                    console.log(response.data);
+                    if (response.status === 200) {
+                        console.log(response.data);
                         this.products_table = [];
-                        this.total = null;
-                        alert(response.data);
+                        // this.total = null;
+                        swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {
                         alert("الرجاء وضع منتجات اولا");
                     }
                 })
                 .catch(error => {});
-
         },
         get_product_name() {
             axios
                 .get("/submit", { params: { product_name: this.product_name } })
                 .then(response => {
                     this.products = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_accounts() {
+            axios
+                .get("/api/accounts")
+                .then(response => {
+                    this.accounts = response.data;
+                })
+                .catch(error => {});
+        },
+        get_stock_name() {
+            axios
+                .get("/api/stocks")
+                .then(response => {
+                    console.log("ahmed hme : " + response);
+                    this.stocks = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_customer_name() {
+            axios
+                .get("/api/customers")
+                .then(response => {
+                    this.customers = response.data;
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        console.log("");
+                    }
+                });
+        },
+        get_product_barcode() {
+            axios
+                .get("/api/get_product_barcode", {
+                    params: { product_barcode: this.product_barcode }
+                })
+                .then(response => {
+                    if (!response.data.barcode) {
+                        swal("تحديث!", "عفوا المنتج غير موجود!", "warning");
+                        this.product_barcode = "";
+                        this.$refs.product_barcode.focus();
+                    } else {
+                        this.select_product(response.data);
+                        this.product_barcode = "";
+                    }
                 })
                 .catch(error => {
                     if (error.response.status === 422) {
@@ -195,6 +353,7 @@ export default {
          * @param product
          */
         remove_form_table(product) {
+            // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
             this.total -= product.subtotal;
 
