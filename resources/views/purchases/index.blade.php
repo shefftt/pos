@@ -22,6 +22,7 @@
                     <th>المورد</th>
                     <th> المخزن</th>
                     <th> المجموع</th>
+                    <th>التاريخ</th>
                     <th> الدفع</th>
                     <th>الضبط</th>
                 </tr>
@@ -34,6 +35,7 @@
                     <td>{{$purchase->supplier->name}}</td>
                     <td>{{$purchase->stock->name}}</td>
                     <td>{{$purchase->total}}</td>
+                    <td>{{$purchase->created_at}}</td>
 
                     <td>
                         @if($purchase->transaction->sum('amount') == $purchase->total)

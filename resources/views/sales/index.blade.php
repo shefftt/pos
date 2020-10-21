@@ -21,6 +21,7 @@
                     <th>#</th>
                     <th>العميل</th>
                     <th> المجموع</th>
+                    <th>التاريخ</th>
                     <th>الضبط</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                         @endif
                     </td>
                     <td>{{$sale->total}}</td>
+                    <td>{{$sale->created_at}}</td>
 
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{url('/sales/')}}/{{$sale->id}}" role="button">عرض</a>
