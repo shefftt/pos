@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2020 at 12:32 PM
+-- Generation Time: Oct 21, 2020 at 09:51 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -33,6 +33,8 @@ CREATE TABLE `accounts` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `selectable` int(11) NOT NULL DEFAULT '0',
+  `initial_balance` int(11) NOT NULL DEFAULT '0',
+  `account_no` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -41,12 +43,12 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `name`, `type`, `selectable`, `created_at`, `updated_at`) VALUES
-(1, 'الكاش', '', 1, NULL, NULL),
-(2, 'بطاقه', '', 2, NULL, NULL),
-(3, 'اجل', '', 3, NULL, NULL),
-(4, 'الموردين', '', 0, NULL, NULL),
-(5, 'العملاء', '', 0, NULL, NULL);
+INSERT INTO `accounts` (`id`, `name`, `type`, `selectable`, `initial_balance`, `account_no`, `created_at`, `updated_at`) VALUES
+(1, 'الكاش', '', 1, 0, 0, NULL, NULL),
+(2, 'بطاقه', '', 2, 0, 0, NULL, NULL),
+(3, 'اجل', '', 3, 0, 0, NULL, NULL),
+(4, 'الموردين', '', 0, 0, 0, NULL, NULL),
+(5, 'العملاء', '', 0, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -99,6 +101,44 @@ INSERT INTO `customers` (`id`, `name`, `phone`, `address`, `status`, `created_at
 (2, 'محمد احمد محمد احمد', '123456', 'لايوجد عنوان', 1, '2020-10-09 07:11:37', '2020-10-09 07:11:37'),
 (3, 'محمد احمد محمد احمد', '123456', 'لايوجد عنوان', 1, '2020-10-09 07:12:23', '2020-10-09 07:12:23'),
 (4, 'عرض اختبار', '2455588', 'العنوان الصح', 1, '2020-10-09 07:29:09', '2020-10-09 07:29:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `expense_category_id` int(11) NOT NULL,
+  `stock_id` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `initial_balance` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expense_categories`
+--
+
+CREATE TABLE `expense_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expense_categories`
+--
+
+INSERT INTO `expense_categories` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'الكهرباء', 1, '2020-10-21 05:34:33', '2020-10-21 05:34:33');
 
 -- --------------------------------------------------------
 
@@ -176,6 +216,7 @@ CREATE TABLE `products` (
   `stock_id` int(11) NOT NULL DEFAULT '0',
   `qyt` int(11) NOT NULL DEFAULT '0',
   `barcode` int(11) NOT NULL DEFAULT '0',
+  `vat` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -184,11 +225,11 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `image`, `category_id`, `status`, `purchase_price`, `sale_price`, `stock_id`, `qyt`, `barcode`, `created_at`, `updated_at`) VALUES
-(1, 'اسم المنتج', 'product.jpg', '1', 0, 1500, 1000, 1, 120, 10, '2020-09-26 22:00:00', '2020-10-08 18:02:59'),
-(2, 'المنتج الاول', 'product.jpg', '1', 0, 150, 120, 1, 120, 20, '2020-09-27 16:00:00', '2020-10-08 18:04:40'),
-(3, 'المنتج الاول', 'product.jpg', '1', 1, 150, 120, 1, 120, 30, '2020-09-27 16:00:47', '2020-09-27 16:00:47'),
-(4, 'المنج الجميل الشديد العجيب', 'product.jpg', '1', 1, 0, 120, 1, 0, 40, '2020-09-27 16:19:10', '2020-09-27 16:19:10');
+INSERT INTO `products` (`id`, `name`, `image`, `category_id`, `status`, `purchase_price`, `sale_price`, `stock_id`, `qyt`, `barcode`, `vat`, `created_at`, `updated_at`) VALUES
+(1, 'اسم المنتج', 'product.jpg', '1', 0, 1500, 1000, 1, 120, 10, 0, '2020-09-26 22:00:00', '2020-10-08 18:02:59'),
+(2, 'المنتج الاول', 'product.jpg', '1', 0, 150, 120, 1, 120, 20, 0, '2020-09-27 16:00:00', '2020-10-08 18:04:40'),
+(3, 'المنتج الاول', 'product.jpg', '1', 1, 150, 120, 1, 120, 30, 0, '2020-09-27 16:00:47', '2020-09-27 16:00:47'),
+(4, 'المنج الجميل الشديد العجيب', 'product.jpg', '1', 1, 0, 120, 1, 0, 40, 0, '2020-09-27 16:19:10', '2020-09-27 16:19:10');
 
 -- --------------------------------------------------------
 
@@ -349,7 +390,9 @@ INSERT INTO `sales_invoice_d` (`id`, `price`, `qyt`, `sub_total`, `invoice_id`, 
 (8, 120, 1, 120, 6, 3, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
 (9, 120, 1, 120, 6, 2, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
 (10, 120, 14, 1680, 7, 4, '2020-10-09 08:15:48', '2020-10-09 08:15:48'),
-(11, 1000, 1, 1000, 8, 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13');
+(11, 1000, 1, 1000, 8, 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13'),
+(12, 1000, 10, 10000, 9, 1, '2020-10-17 07:24:52', '2020-10-17 07:24:52'),
+(13, 120, 5, 600, 9, 2, '2020-10-17 07:24:52', '2020-10-17 07:24:52');
 
 -- --------------------------------------------------------
 
@@ -378,7 +421,8 @@ INSERT INTO `sales_invoice_h` (`id`, `customer_id`, `total`, `payment_method_id`
 (5, 2, '13840', 1, '2020-10-09 08:04:50', '2020-10-09 08:04:50'),
 (6, 0, '2240', 1, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
 (7, 0, '1680', 1, '2020-10-09 08:15:48', '2020-10-09 08:15:48'),
-(8, 0, '1000', 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13');
+(8, 0, '1000', 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13'),
+(9, 2, '10600', 3, '2020-10-17 07:24:52', '2020-10-17 07:24:52');
 
 -- --------------------------------------------------------
 
@@ -473,6 +517,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -481,8 +526,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ahmed hmed', 'ahmed7med@gmail.com', NULL, '$2y$10$3ItmAdiD/3I8sF9qu.50y./VpxOoWI8sZw3czkkqj6HoD7sscyqlu', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'ahmed hmed', 'ahmed7med@gmail.com', NULL, '$2y$10$3ItmAdiD/3I8sF9qu.50y./VpxOoWI8sZw3czkkqj6HoD7sscyqlu', NULL, 1, NULL, '2020-10-21 05:38:30'),
+(2, 'حمد يوسف', 'hmed@panda180.com', NULL, '$2y$10$W2CtP1tgedNhVQsx2TWTnuglHlDIJk7exLHMNrWwv40Dye9cM8Enu', NULL, 1, '2020-10-21 05:38:19', '2020-10-21 05:38:19');
 
 --
 -- Indexes for dumped tables
@@ -504,6 +550,18 @@ ALTER TABLE `categories`
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expense_categories`
+--
+ALTER TABLE `expense_categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -602,6 +660,18 @@ ALTER TABLE `customers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `expense_categories`
+--
+ALTER TABLE `expense_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -635,13 +705,13 @@ ALTER TABLE `purchase_invoice_h`
 -- AUTO_INCREMENT for table `sales_invoice_d`
 --
 ALTER TABLE `sales_invoice_d`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `sales_invoice_h`
 --
 ALTER TABLE `sales_invoice_h`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `stocks`
@@ -665,7 +735,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
