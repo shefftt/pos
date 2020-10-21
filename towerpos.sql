@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2020 at 11:35 AM
+-- Generation Time: Oct 09, 2020 at 12:32 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -320,16 +320,65 @@ INSERT INTO `purchase_invoice_h` (`id`, `supplier_id`, `total`, `stock_id`, `pay
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sales_invoice_d`
+--
+
+CREATE TABLE `sales_invoice_d` (
+  `id` bigint(20) NOT NULL,
+  `price` float NOT NULL,
+  `qyt` int(11) NOT NULL,
+  `sub_total` float NOT NULL,
+  `invoice_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sales_invoice_d`
+--
+
+INSERT INTO `sales_invoice_d` (`id`, `price`, `qyt`, `sub_total`, `invoice_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, 1000, 1, 1000, 3, 1, '2020-10-09 07:49:19', '2020-10-09 07:49:19'),
+(2, 1000, 1, 1000, 4, 1, '2020-10-09 07:50:40', '2020-10-09 07:50:40'),
+(3, 1000, 10, 10000, 5, 1, '2020-10-09 08:04:51', '2020-10-09 08:04:51'),
+(4, 120, 10, 1200, 5, 2, '2020-10-09 08:04:51', '2020-10-09 08:04:51'),
+(5, 120, 10, 1200, 5, 3, '2020-10-09 08:04:51', '2020-10-09 08:04:51'),
+(6, 120, 12, 1440, 5, 4, '2020-10-09 08:04:51', '2020-10-09 08:04:51'),
+(7, 1000, 2, 2000, 6, 1, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
+(8, 120, 1, 120, 6, 3, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
+(9, 120, 1, 120, 6, 2, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
+(10, 120, 14, 1680, 7, 4, '2020-10-09 08:15:48', '2020-10-09 08:15:48'),
+(11, 1000, 1, 1000, 8, 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sales_invoice_h`
 --
 
 CREATE TABLE `sales_invoice_h` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `customer_id` int(11) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
   `total` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_method_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sales_invoice_h`
+--
+
+INSERT INTO `sales_invoice_h` (`id`, `customer_id`, `total`, `payment_method_id`, `created_at`, `updated_at`) VALUES
+(1, 0, '1000', 1, '2020-10-09 07:47:44', '2020-10-09 07:47:44'),
+(2, 0, '1000', 1, '2020-10-09 07:48:30', '2020-10-09 07:48:30'),
+(3, 0, '1000', 1, '2020-10-09 07:49:19', '2020-10-09 07:49:19'),
+(4, 0, '1000', 1, '2020-10-09 07:50:40', '2020-10-09 07:50:40'),
+(5, 2, '13840', 1, '2020-10-09 08:04:50', '2020-10-09 08:04:50'),
+(6, 0, '2240', 1, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
+(7, 0, '1680', 1, '2020-10-09 08:15:48', '2020-10-09 08:15:48'),
+(8, 0, '1000', 1, '2020-10-09 08:16:13', '2020-10-09 08:16:13');
 
 -- --------------------------------------------------------
 
@@ -404,7 +453,12 @@ INSERT INTO `transactions` (`id`, `amount`, `from`, `to`, `transactionable_type`
 (2, '1120', 1, 4, 'App\\model\\purchase_invoice_h', 39, '2020-10-07 22:39:15', '2020-10-07 22:39:15'),
 (3, '2120', 1, 4, 'App\\model\\purchase_invoice_h', 40, '2020-10-08 05:12:44', '2020-10-08 05:12:44'),
 (4, '1000', 1, 4, 'App\\model\\purchase_invoice_h', 41, '2020-10-08 18:20:52', '2020-10-08 18:20:52'),
-(5, '1000', 1, 4, 'App\\model\\purchase_invoice_h', 42, '2020-10-08 18:21:47', '2020-10-08 18:21:47');
+(5, '1000', 1, 4, 'App\\model\\purchase_invoice_h', 42, '2020-10-08 18:21:47', '2020-10-08 18:21:47'),
+(6, '1000', 1, 4, 'App\\Model\\sales_invoice_h', 4, '2020-10-09 07:50:40', '2020-10-09 07:50:40'),
+(7, '13840', 1, 4, 'App\\Model\\sales_invoice_h', 5, '2020-10-09 08:04:51', '2020-10-09 08:04:51'),
+(8, '2240', 1, 4, 'App\\Model\\sales_invoice_h', 6, '2020-10-09 08:08:42', '2020-10-09 08:08:42'),
+(9, '1680', 1, 4, 'App\\Model\\sales_invoice_h', 7, '2020-10-09 08:15:48', '2020-10-09 08:15:48'),
+(10, '1000', 1, 4, 'App\\Model\\sales_invoice_h', 8, '2020-10-09 08:16:13', '2020-10-09 08:16:13');
 
 -- --------------------------------------------------------
 
@@ -486,6 +540,12 @@ ALTER TABLE `purchase_invoice_d`
 -- Indexes for table `purchase_invoice_h`
 --
 ALTER TABLE `purchase_invoice_h`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales_invoice_d`
+--
+ALTER TABLE `sales_invoice_d`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -572,10 +632,16 @@ ALTER TABLE `purchase_invoice_h`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
+-- AUTO_INCREMENT for table `sales_invoice_d`
+--
+ALTER TABLE `sales_invoice_d`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `sales_invoice_h`
 --
 ALTER TABLE `sales_invoice_h`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `stocks`
@@ -593,7 +659,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

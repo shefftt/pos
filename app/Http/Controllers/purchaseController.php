@@ -5,6 +5,7 @@ use App\Model\purchase_invoice_h;
 use App\Model\stock;
 use App\model\supplier;
 
+
 class purchaseController extends Controller
 {
     public function index()
@@ -15,7 +16,6 @@ class purchaseController extends Controller
 
     public function create()
     {
-
         $suppliers =  supplier::all();
         $stocks    =  stock::all();
         return view('purchases.create', compact('suppliers', 'stocks'));

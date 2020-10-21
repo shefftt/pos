@@ -344,9 +344,9 @@ export default {
                 });
             }
 
+            this.total += product.sale_price;
             this.products = null;
             this.product_name = "";
-            this.total += product.sale_price;
         },
         /**
          * حذف المنتج من الفاتوره

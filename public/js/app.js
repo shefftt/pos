@@ -2682,9 +2682,9 @@ var Toast = Swal.mixin({
         });
       }
 
+      this.total += product.sale_price;
       this.products = null;
       this.product_name = "";
-      this.total += product.sale_price;
     },
 
     /**

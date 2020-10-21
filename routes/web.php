@@ -33,6 +33,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/category/create', 'categoryController@store');
     Route::get('/category/{id}', 'categoryController@show');
 
+    Route::get('expense_category','expenseCategoryController@index');
+    Route::get('expense_category/create','expenseCategoryController@create');
+    Route::post('expense_category/create','expenseCategoryController@store');
+    Route::get('expense_category/cancel/{id}', 'expenseCategoryController@cancel');
+    Route::get('expense_category/activate/{id}', 'expenseCategoryController@activate');
+
+
+    Route::get('expenses','expensesController@index');
+    Route::get('expense/create','expensesController@create');
+    Route::post('expense/create','expensesController@store');
+
     Route::get('customers', 'customerController@index');
     Route::get('customer/create', 'customerController@create');
     Route::post('customer/create', 'customerController@store');
@@ -74,6 +85,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/create', 'userController@store');
     Route::get('/user/cancel/{id}', 'userController@cancel');
     Route::get('/user/activate/{id}', 'userController@activate');
+
+    Route::get('units', 'unitController@index');
+    Route::get('unit/create', 'unitController@create');
+    Route::post('unit/create', 'unitController@store');
 
 
     Route::get('pos', 'posController@index');
