@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="_token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>لوحه التحكم - @yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -76,16 +77,7 @@
         </ul>
 
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="البحث" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+
 
         <!-- Right navbar links -->
         <ul class="navbar-nav mr-auto">
@@ -553,6 +545,7 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js?v=1')}}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js?v=1"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="{{asset('plugins/morris/morris.min.js?v=1')}}"></script>
 <!-- Sparkline -->
 <script src="{{asset('plugins/sparkline/jquery.sparkline.min.js?v=1')}}"></script>
@@ -590,6 +583,25 @@
 </script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="{{asset('dist/js/demo.js?v=1')}}"></script> -->
+<script type="text/javascript">
+    $('#search').on('keyup',function(){
+        $value = $('#search').val();
+console.log($value + " dd")
+        $.ajax({
+            type : 'get',
+            url : '{{URL::to('search')}}',
+            data:{'search':$value},
+            success:function(data){
+                $('tbody').html(data);
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
+
+
 </body>
 
 </html>

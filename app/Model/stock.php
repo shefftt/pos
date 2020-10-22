@@ -12,9 +12,17 @@ class stock extends Model
 
         return $this->hasMany(purchase_invoice_h::class);
     }
-    public function purchase_invoice_d(){
+   public function purchase_invoice_d(){
+//->groupBy('product_id')
+   //$prcduct = purchase_invoice_d::all()->groupBy('product_id');
 
-        return $this->hasManyThrough(purchase_invoice_d::class,purchase_invoice_h::class,'stock_id','invoice_id','id','id');
+        return $this->hasManyThrough(purchase_invoice_d::class, purchase_invoice_h::class,'stock_id', 'invoice_id','id','id' ) ;
     }
+
+
+
+
+
+
 
 }

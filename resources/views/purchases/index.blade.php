@@ -8,10 +8,14 @@
             <div class="col">
                 <h6>فواتير المشتريات</h6>
             </div>
+
             <div class="col text-left">
                 <a class="btn btn-dark" href="{{url('/purchase/create')}}" role="button"> انشاء فاتوره</a>
 
             </div>
+        </div>
+
+        <div  class="dataTables_filter"><label>بحث : <input type="search"  id="search" class="form-control form-control-sm" placeholder="" aria-controls="example1" name="search"></label>
         </div>
     </div>
     <div class="card-body">
@@ -67,3 +71,4 @@
 </div>
 
 @endsection
+

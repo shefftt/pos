@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,6 +93,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('pos', 'posController@index');
+    Route::get('search', 'purchaseController@search');
+
 });
 
 Route::get('/submit', function () {
