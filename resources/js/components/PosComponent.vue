@@ -96,6 +96,8 @@
                                     <th>السعر</th>
                                     <th>الكميه</th>
                                     <th>السعر الكلى</th>
+                                    <th>الضريبه</th>
+                                    <th>مجموع الضريبه</th>
                                     <th>ضبط</th>
                                 </tr>
                             </thead>
@@ -118,6 +120,8 @@
                                         ></i>
                                     </td>
                                     <td>{{ product.subtotal }}</td>
+                                    <td>{{ product.vat }}</td>
+                                    <td>{{ product.vat  * product.qyt }}</td>
                                     <td>
                                         <i
                                             @click="remove_form_table(product)"
@@ -337,6 +341,7 @@ export default {
             if (product_exe !== true) {
                 this.products_table.push({
                     id: product.id,
+                    vat: product.vat,
                     name: product.name,
                     price: product.sale_price,
                     qyt: 1,

@@ -41,15 +41,18 @@
             <tr>
                 <th>#</th>
                 <th>المنتج</th>
-                <th>المجموع</th>
+                <th>الكميه</th>
                 <th> سعر الوحده</th>
                 <th> المجموع</th>
+                <th>الضريبه</th>
+                <th>مجموع الضريبه</th>
 
             </tr>
             </thead>
             <tbody>
-            <?php $i =1; ?>
+                <?php $i = 1; $vat_total = 0; ?>
             @foreach($invoice->products as $product)
+                <?php  $vat_total += $product->sub_vat; ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
@@ -57,6 +60,8 @@
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
+                    <td>{{$product->vat}}</td>
+                    <td>{{$product->sub_vat}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -65,19 +70,19 @@
         <hr>
         <div class="col-md-4">
             <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <td>المجموع</td>
-                    <td>1520 </td>
-                </tr>
-                <tr>
-                    <td>الضريبه</td>
-                    <td>17% </td>
-                </tr>
-                <tr>
-                    <td>المجموع الكلى</td>
-                    <td>12555 </td>
-                </tr>
+            <tbody>
+                    <tr>
+                        <td>المجموع</td>
+                        <td>{{$invoice->total}} </td>
+                    </tr>
+                    <tr>
+                        <td>الضريبه</td>
+                        <td>{{ $vat_total}}</td>
+                    </tr>
+                    <tr>
+                        <td>المجموع الكلى</td>
+                        <td>{{$vat_total + ($invoice->total)}} </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

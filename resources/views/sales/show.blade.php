@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,' فاتورة مبيعات   ')
+@section('title' ,' فاتورة مبيعات ')
 
 <div class="card">
     <div class="card-header">
@@ -34,31 +34,36 @@
         </div>
 
         <hr>
-        <table class="table">
+        <table  id="DataTable" class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>المنتج</th>
-                    <th>المجموع</th>
                     <th> سعر الوحده</th>
                     <th> المجموع</th>
+                    <th> الضربيه</th>
+                    <th>مجموع الضريبه</th>
 
                 </tr>
             </thead>
             <tbody>
-                <?php $i = 1; ?>
+                <?php $i = 1;
+                $vat_total = 0; ?>
                 @foreach($invoice->products as $product)
+                <?php $vat_total += $product->sub_vat; ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
-
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
-                </tr>
-                @endforeach
+                    <td>{{$product->vat}}</td>
+                    <td>{{$product->sub_vat}}</td>
+                    @endforeach
             </tbody>
         </table>
+
+
 
         <hr>
         <div class="col-md-4">
@@ -70,11 +75,11 @@
                     </tr>
                     <tr>
                         <td>الضريبه</td>
-                        <td>{{$invoice->total * 0.17}}</td>
+                        <td>{{ $vat_total}}</td>
                     </tr>
                     <tr>
                         <td>المجموع الكلى</td>
-                        <td>{{($invoice->total * 0.17) + ($invoice->total)}} </td>
+                        <td>{{$vat_total + ($invoice->total)}} </td>
                     </tr>
                 </tbody>
             </table>

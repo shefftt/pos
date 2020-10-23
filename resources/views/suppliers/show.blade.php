@@ -58,21 +58,19 @@
                                         <th>#</th>
                                         <th>رقم الفاتورة</th>
                                         <th>المبلغ</th>
-                                        <th>من حساب </th>
-                                        <th>الي حساب </th>
+                                        <th>التاريخ</th>
 
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    @foreach($supplier->transaction as $supplier_show)
+                                    @foreach($supplier->transaction as $transaction)
                                     <tr>
                                         <td scope="row">{{$i++}}</td>
-                                        <td>{{$supplier_show->transactionable_id}}</td>
-                                        <td>{{$supplier_show->amount}}</td>
-                                        <td>{{$supplier_show->from}}</td>
-                                        <td>{{$supplier_show->to}}</td>
+                                        <td>{{$transaction->transactionable_id}}</td>
+                                        <td>{{$transaction->amount}}</td>
+                                        <td>{{$transaction->created_at}}</td>
 
 
                                     </tr>

@@ -31,6 +31,7 @@ class purchaseController extends Controller
                     'product_id'        => json_decode($product)->id,
                     'price'             => json_decode($product)->price,
                     'qyt'               => json_decode($product)->qyt,
+                    'current_qyt'       => json_decode($product)->qyt,
                     'sub_total'         => json_decode($product)->subtotal,
                     'invoice_id'        => $invoice->id
                 ]

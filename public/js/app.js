@@ -2521,6 +2521,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2675,6 +2679,7 @@ var Toast = Swal.mixin({
       if (product_exe !== true) {
         this.products_table.push({
           id: product.id,
+          vat: product.vat,
           name: product.name,
           price: product.sale_price,
           qyt: 1,
@@ -3166,6 +3171,8 @@ var Toast = Swal.mixin({
       } else if (this.stock_id == 0 || this.stock_id == "") {
         swal("عفوا!", "الرجاء اختيار المخزن اولا!", "warning");
         return;
+      } else if (this.invoice_number == "") {
+        this.invoice_number = 0;
       } else if (this.total == 0 || this.total == "") {
         swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
         return;
@@ -3187,6 +3194,7 @@ var Toast = Swal.mixin({
           console.log(response.data);
           _this.products_table = [];
           _this.total = null;
+          _this.invoice_number = null;
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
 
@@ -21589,6 +21597,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(product.subtotal))]),
                     _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(product.vat))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
+                    _vm._v(" "),
                     _c("td", [
                       _c("i", {
                         staticClass: "nav-icon fa fa-remove label-danger",
@@ -21663,6 +21675,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("الكميه")]),
         _vm._v(" "),
         _c("th", [_vm._v("السعر الكلى")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("الضريبه")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("مجموع الضريبه")]),
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])

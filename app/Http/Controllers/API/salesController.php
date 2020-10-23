@@ -35,6 +35,8 @@ class salesController extends Controller
                 [
                     'product_id'        => json_decode($product)->id,
                     'price'             => json_decode($product)->price,
+                    'vat'               => json_decode($product)->vat,
+                    'sub_vat'           => json_decode($product)->vat * json_decode($product)->qyt,
                     'qyt'               => json_decode($product)->qyt,
                     'sub_total'         => json_decode($product)->subtotal,
                     'invoice_id'        => $invoice->id
