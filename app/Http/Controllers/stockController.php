@@ -20,8 +20,12 @@ class stockController extends Controller
     public function show($id){
 
         $stocks =  stock::find($id);
-        return  $stocks->purchase_invoice_d;
-        return view('stocks.show', compact('stocks'));
+      //  return  $stocks->purchase_invoice_d;
+
+
+     // return $users;
+
+        return view('stocks.show', compact('stocks','users'));
 
     }
 

@@ -47,6 +47,7 @@
                 <th>الضريبه</th>
                 <th>مجموع الضريبه</th>
 
+
             </tr>
             </thead>
             <tbody>
@@ -62,7 +63,7 @@
                     <td>{{$product->sub_total}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
-                </tr>
+                   </tr>
             @endforeach
             </tbody>
         </table>

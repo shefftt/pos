@@ -54,7 +54,7 @@
     <center>
         <div class="card-footer">
             <div class="col-md-4">
-                {{ $stocks->links() }}
+
             </div>
         </div>
     </center>

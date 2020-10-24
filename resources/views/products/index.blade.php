@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table">
+        <table class="table"  id="DataTable" >
             <thead>
                 <tr>
                     <th>#</th>
@@ -51,8 +51,9 @@
 
                         @endif
 
-                     <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
+                     <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
+                    <a  name="" id="" class="btn  btn-sm btn-warning" target="_blank"  href="{{url('/barcode/')}}/{{$product->id}}" role="button">طباعه الباركود</a>
 
                     </td>
 

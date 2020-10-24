@@ -2525,6 +2525,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -21696,9 +21698,16 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("h4", { staticClass: "card-title" }, [_vm._v("Title")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [_vm._v("Body")])
+          _c("div", { staticClass: "col text-left" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-dark btn-block",
+                attrs: { target: "_blank", href: "/pos", role: "button" }
+              },
+              [_vm._v(" تعليق فاتورة ")]
+            )
+          ])
         ])
       ])
     ])
@@ -35072,8 +35081,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\admin\PhpstormProjects\poss\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\admin\PhpstormProjects\poss\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table">
+        <table class="table"  id="DataTable" >
             <thead>
                 <tr>
                     <th>#</th>
@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('customer/toggleStatus')}}/{{$customer->id}}" role="button">توقيف</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">عرض</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/customer/show')}}/{{$customer->id}}" role="button">عرض</a>
 
                     </td>
                 </tr>

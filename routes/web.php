@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/product/edit/{id}', 'productController@update');
     Route::get('product/toggleStatus/{product}', 'productController@toggleStatus');
 
+    Route::get('/barcode/{id}', 'productController@barcode');
+
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
@@ -53,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('customer/create', 'customerController@create');
     Route::post('customer/create', 'customerController@store');
     Route::get('customer/toggleStatus/{customer}', 'customerController@toggleStatus');
+    Route::get('/customer/show/{id}', 'customerController@show');
 
 
     Route::get('stocks', 'stockController@index');
@@ -65,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/create', 'purchaseController@create');
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
+
 
     Route::get('sales', 'salesController@index');
     Route::get('/sales/{id}', 'salesController@show');

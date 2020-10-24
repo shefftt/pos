@@ -54,6 +54,7 @@ class productController extends Controller
         $products->qyt             = $request->qyt;
         $products->barcode         = $request->barcode ;
         $products->vat             = $request->vat ;
+
         $products->save();
         return redirect('products');
     }
@@ -73,5 +74,11 @@ class productController extends Controller
         return redirect('products');
     }
 
+
+    public function barcode($id){
+
+        $product = product::find($id);
+        return view('products.barcode',compact('product'));
+    }
 
 }
