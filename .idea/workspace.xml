@@ -6,17 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/purchaseBtnComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/supplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/supplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pos.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/purchases/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/purchases/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/suppliers/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/suppliers/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +154,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -191,7 +181,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="31f9e793-9f19-4c7d-8825-04a82879f41a" name="Default Changelist" comment="new features" />
+      <changelist id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="" />
       <created>1601108626370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -208,6 +198,8 @@
       <workItem from="1601884399310" duration="2105000" />
       <workItem from="1601990412816" duration="1162000" />
       <workItem from="1602071077652" duration="9297000" />
+      <workItem from="1603356575850" duration="17034000" />
+      <workItem from="1603523701505" duration="1685000" />
     </task>
     <task id="LOCAL-00001" summary="git inti">
       <created>1601112128064</created>
@@ -407,30 +399,35 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2105" y="262" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601569253483" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601108771225">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom" timestamp="1603524519556">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1601108771225">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603524519556" />
+    <state width="1323" height="170" key="GridCell.Tab.0.center" timestamp="1603524519555">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1601108771224">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603524519555" />
+    <state width="1323" height="170" key="GridCell.Tab.0.left" timestamp="1603524519554">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771224" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1601108771225">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603524519554" />
+    <state width="1323" height="170" key="GridCell.Tab.0.right" timestamp="1603524519555">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
+    <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603524519555" />
     <state x="1493" y="0" width="1514" height="1040" key="MergeDialog" timestamp="1602086202870">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1493" y="0" width="1514" height="1040" key="MergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1602086202870" />
-    <state x="1964" y="281" key="MultipleFileMergeDialog" timestamp="1601540230159">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state x="425" y="197" key="MultipleFileMergeDialog" timestamp="1603525479251">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1964" y="281" key="MultipleFileMergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601540230159" />
+    <state x="425" y="197" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1603525479251" />
     <state x="2161" y="443" key="NewPhpFileDialog" timestamp="1601211266922">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
