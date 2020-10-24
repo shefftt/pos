@@ -38,7 +38,7 @@ Route::get('/create_purchase_invoice', "API\purchaseController@store");
 Route::get('/create_sales_invoice', "API\salesController@store");
 
 
-Route::get('/accounts', "API\accountController@index");
+Route::get('/payments', "API\paymentsController@index");
 
 
 Route::get('/suppliers', function(){

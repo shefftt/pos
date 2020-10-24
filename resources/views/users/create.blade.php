@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,' اضافة مستخدم  ')
+@section('title' ,' اضافة موظف  ')
 
 <div class="card">
     <div class="card-header">
@@ -16,8 +16,8 @@
         <div class="card-body">
             <div class="row">
 
-                <div class="form-group col-md-6">
-                    <label for="">اسم المستخدم  </label>
+                <div class="form-group col-md-12">
+                    <label for="">اسم الموظف  </label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                     @error('name')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -31,9 +31,9 @@
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-group col-md-12">
-                    <label for=""> كلمة السر </label>
-                    <textarea  name="password" class="form-control @error('password') is-invalid @enderror">{{old('password')}}</textarea>
+                <div class="form-group col-md-6">
+                    <label for="">كلمه السر</label>
+                    <input type="text" class="form-control @error('password') is-invalid @enderror" name="password">
                     @error('password')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror

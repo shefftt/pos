@@ -21,8 +21,8 @@
             <tr>
                 <th>#</th>
                 <th>الحساب</th>
-                <th> نوع الحساب </th>
-
+                <th> رقم الحساب </th>
+                <th> الرصيد </th>
                 <th>الضبط</th>
             </tr>
             </thead>
@@ -33,7 +33,8 @@
                     <td scope="row">{{$i++}}</td>
 
                     <td>{{$account->name}}</td>
-                    <td>{{$account->type}}</td>
+                    <td>{{$account->account_no}}</td>
+                    <td>{{$account->initial_balance}}</td>
 
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">توقيف</a>
@@ -45,13 +46,6 @@
             </tbody>
         </table>
     </div>
-    <center>
-        <div class="card-footer">
-            <div class="col-md-4">
-                {{$accounts->links()}}
-            </div>
-        </div>
-    </center>
 </div>
 
 @endsection

@@ -10,7 +10,7 @@ class purchaseController extends Controller
 {
     public function index()
     {
-        $purchases =  purchase_invoice_h::paginate(10);
+        $purchases =  purchase_invoice_h::all();
         return view('purchases.index', compact('purchases'));
     }
 
