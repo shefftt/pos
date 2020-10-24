@@ -29,6 +29,4 @@ class accountController extends Controller
         return redirect('accounts');
     }
 
-
-
 }

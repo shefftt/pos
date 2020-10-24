@@ -24,7 +24,7 @@ class userController extends Controller
         return view('users.create', compact('users'));
     }
 
-    public function store(Request $request)
+    public function store(userRequest $request)
     {
         $users = new User();
         $users->name = $request->name;

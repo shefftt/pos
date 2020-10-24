@@ -3,7 +3,6 @@
 use App\model\purchase_invoice_h;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,8 +97,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('pos', 'posController@index');
-    Route::get('search', 'purchaseController@search');
 
+    Route::get('payments', 'paymentsController@index');
+    Route::get('payments/toggle/{id}', 'paymentsController@toggle');
+    Route::post('payments/create', 'paymentsController@store');
 });
 
 Route::get('/submit', function () {

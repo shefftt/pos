@@ -469,6 +469,33 @@
                                 </ul>
                             </li>
 
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <img data-v-0288d978="" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyMjYgMjI2Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyMjZ2LTIyNmgyMjZ2MjI2eiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiNjY2NjY2MiPjxwYXRoIGQ9Ik00OS40Mzc1LDI4LjI1Yy0zLjkxNzQ4LDAgLTcuMDYyNSwzLjE0NTAyIC03LjA2MjUsNy4wNjI1YzAsMy45MTc0OCAzLjE0NTAyLDcuMDYyNSA3LjA2MjUsNy4wNjI1YzMuOTE3NDgsMCA3LjA2MjUsLTMuMTQ1MDIgNy4wNjI1LC03LjA2MjVjMCwtMy45MTc0OCAtMy4xNDUwMiwtNy4wNjI1IC03LjA2MjUsLTcuMDYyNXpNMTYyLjQzNzUsMjguMjVjLTMuOTE3NDgsMCAtNy4wNjI1LDMuMTQ1MDIgLTcuMDYyNSw3LjA2MjVjMCwzLjkxNzQ4IDMuMTQ1MDIsNy4wNjI1IDcuMDYyNSw3LjA2MjVjMy45MTc0OCwwIDcuMDYyNSwtMy4xNDUwMiA3LjA2MjUsLTcuMDYyNWMwLC0zLjkxNzQ4IC0zLjE0NTAyLC03LjA2MjUgLTcuMDYyNSwtNy4wNjI1ek0xMjIuNzEwOTQsNTYuNWwtMzguODQzNzUsNTEuOTc1NTlsLTM3LjI5ODgzLC0yMy4xNzM4M2wtMzIuOTk1MTEsNDguNDQ0MzNsMTEuNjk3MjcsNy45NDUzMWwyNS4zMjU2NywtMzcuMTg4NDdsMzYuODAyMjUsMjIuNzMyNDJsMzcuMDc4MTMsLTQ5LjU0Nzg2bDM3Ljk2MDk0LDM2LjE5NTMxbDM0Ljg3MTA5LC0zMi44Mjk1OWwtOS43MTA5NCwtMTAuMjYyNjlsLTI1LjE2MDE2LDIzLjY3MDQxek00OS40Mzc1LDU2LjVjLTMuOTE3NDgsMCAtNy4wNjI1LDMuMTQ1MDIgLTcuMDYyNSw3LjA2MjVjMCwzLjkxNzQ4IDMuMTQ1MDIsNy4wNjI1IDcuMDYyNSw3LjA2MjVjMy45MTc0OCwwIDcuMDYyNSwtMy4xNDUwMiA3LjA2MjUsLTcuMDYyNWMwLC0zLjkxNzQ4IC0zLjE0NTAyLC03LjA2MjUgLTcuMDYyNSwtNy4wNjI1ek0xNjIuNDM3NSw1Ni41Yy0zLjkxNzQ4LDAgLTcuMDYyNSwzLjE0NTAyIC03LjA2MjUsNy4wNjI1YzAsMy45MTc0OCAzLjE0NTAyLDcuMDYyNSA3LjA2MjUsNy4wNjI1YzMuOTE3NDgsMCA3LjA2MjUsLTMuMTQ1MDIgNy4wNjI1LC03LjA2MjVjMCwtMy45MTc0OCAtMy4xNDUwMiwtNy4wNjI1IC03LjA2MjUsLTcuMDYyNXpNNDkuNDM3NSwxMjcuMTI1Yy0zLjkxNzQ4LDAgLTcuMDYyNSwzLjE0NTAyIC03LjA2MjUsNy4wNjI1YzAsMy45MTc0OCAzLjE0NTAyLDcuMDYyNSA3LjA2MjUsNy4wNjI1YzMuOTE3NDgsMCA3LjA2MjUsLTMuMTQ1MDIgNy4wNjI1LC03LjA2MjVjMCwtMy45MTc0OCAtMy4xNDUwMiwtNy4wNjI1IC03LjA2MjUsLTcuMDYyNXpNMTYyLjQzNzUsMTI3LjEyNWMtMy45MTc0OCwwIC03LjA2MjUsMy4xNDUwMiAtNy4wNjI1LDcuMDYyNWMwLDMuOTE3NDggMy4xNDUwMiw3LjA2MjUgNy4wNjI1LDcuMDYyNWMzLjkxNzQ4LDAgNy4wNjI1LC0zLjE0NTAyIDcuMDYyNSwtNy4wNjI1YzAsLTMuOTE3NDggLTMuMTQ1MDIsLTcuMDYyNSAtNy4wNjI1LC03LjA2MjV6TTQ5LjQzNzUsMTU1LjM3NWMtMy45MTc0OCwwIC03LjA2MjUsMy4xNDUwMiAtNy4wNjI1LDcuMDYyNWMwLDMuOTE3NDggMy4xNDUwMiw3LjA2MjUgNy4wNjI1LDcuMDYyNWMzLjkxNzQ4LDAgNy4wNjI1LC0zLjE0NTAyIDcuMDYyNSwtNy4wNjI1YzAsLTMuOTE3NDggLTMuMTQ1MDIsLTcuMDYyNSAtNy4wNjI1LC03LjA2MjV6TTE2Mi40Mzc1LDE1NS4zNzVjLTMuOTE3NDgsMCAtNy4wNjI1LDMuMTQ1MDIgLTcuMDYyNSw3LjA2MjVjMCwzLjkxNzQ4IDMuMTQ1MDIsNy4wNjI1IDcuMDYyNSw3LjA2MjVjMy45MTc0OCwwIDcuMDYyNSwtMy4xNDUwMiA3LjA2MjUsLTcuMDYyNWMwLC0zLjkxNzQ4IC0zLjE0NTAyLC03LjA2MjUgLTcuMDYyNSwtNy4wNjI1ek0xOTcuNzUsMTgzLjYyNWwtMTgzLjYyNSwwLjI3NTg4djE0LjEyNWwxODMuNjI1LC0wLjI3NTg4eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+" alt="icon" width="26" height="22">
+                                    <p>
+                                        اعدادات
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{url('/payments')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                طرق الدفع
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/stock/create')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                اضافة مخزن
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <li class="nav-header">اخرى</li>
                             <li class="nav-item">

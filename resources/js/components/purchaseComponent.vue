@@ -22,19 +22,19 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="account_id">طريقه الدفع</label>
+                        <label for="payment_id">طريقه الدفع</label>
                         <select
                             class="form-control form-control-sm"
-                            name="account_id"
-                            id="account_id"
+                            name="payment_id"
+                            id="payment_id"
                             v-model="payment_method"
                         >
                             <option
-                                v-for="account in accounts"
-                                :value="account.id"
-                                :key="account.id"
+                                v-for="payment in payments"
+                                :valuh="payment.id"
+                                :key="payment.id"
                             >
-                                {{ account.name }}</option
+                                {{ payment.name }}</option
                             >
                         </select>
                     </div>
@@ -198,7 +198,7 @@ export default {
     mounted() {
         this.get_stock_name();
         this.get_supplier_name();
-        this.get_accounts();
+        this.get_payments();
     },
     data() {
         return {
@@ -209,7 +209,7 @@ export default {
             products_list: [],
             products_table: [],
 
-            accounts: [],
+            payments: [],
             account_id: 1,
 
             stocks: [],
@@ -276,11 +276,11 @@ export default {
                     }
                 });
         },
-        get_accounts() {
+        get_payments() {
             axios
-                .get("/api/accounts")
+                .get("/api/payments")
                 .then(response => {
-                    this.accounts = response.data;
+                    this.payments = response.data;
                 })
                 .catch(error => {});
         },

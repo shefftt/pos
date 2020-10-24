@@ -28,7 +28,7 @@ class userRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' =>  Hash::make('request'),
+            'email' =>  'required|unique:users',
             'password' => 'required',
 
         ];
@@ -45,7 +45,8 @@ class userRequest extends FormRequest
     {
         return [
             'name.required' => 'الاسم اجبارى',
-            'email.required' => 'رقم الايميل اجبارى',
+            'email.required' => 'الايميل اجبارى',
+            'email.unique' => 'البريد الالكترونيى مستخدم مسبقا',
             'password.required' => ' كلمة السر اجبارية',
 
         ];
