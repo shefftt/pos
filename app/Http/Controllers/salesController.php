@@ -9,7 +9,7 @@ class salesController extends Controller
 {
     public function index()
     {
-        $sales =  sales_invoice_h::paginate(10);
+        $sales =  sales_invoice_h::all();
         return view('sales.index',compact('sales'));
     }
 

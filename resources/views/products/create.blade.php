@@ -15,13 +15,26 @@
         @csrf
         <div class="card-body">
             <div class="row">
-            <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <label for="">اسم المنتج</label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                     @error('name')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+
+                <div class="form-group col-md-6">
+                  <label for="vat">الضريبه</label>
+                  <select class="form-control  @error('vat') is-invalid @enderror" name="vat" id="vat">
+                    <option value="15">شامل</option>
+                    <option value="0">غير شامل</option>
+                  </select>
+                  @error('vat')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+
                 <div class="form-group col-md-6">
                     <label for="">باركود المنتج</label>
                     <input type="text" value="{{old('barcode')}}" class="form-control @error('barcode') is-invalid @enderror" name="barcode">

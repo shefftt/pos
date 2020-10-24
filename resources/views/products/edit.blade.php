@@ -22,8 +22,23 @@
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="">الكميه الافتتاحيه</label>
+                  <label for="vat">الضريبه</label>
+                  <select class="form-control" name="vat" id="vat">
+                    <option @if($products->vat == 15)  selected="selected"  @endif value="15">شامل</option>
+                    <option value="0">غير شامل</option>
+                  </select>
+                  @error('vat')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="">الكميه </label>
                     <input type="text" value="{{$products->qyt}}" class="form-control" name="qyt">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">الباركود </label>
+                    <input type="text" value="{{$products->barcode}}" class="form-control" name="barcode">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="">سعر البيع</label>

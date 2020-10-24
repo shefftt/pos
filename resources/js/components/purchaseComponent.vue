@@ -232,6 +232,8 @@ export default {
             } else if (this.stock_id == 0 || this.stock_id == "") {
                 swal("عفوا!", "الرجاء اختيار المخزن اولا!", "warning");
                 return;
+            } else if (this.invoice_number == "") {
+                this.invoice_number = 0;
             } else if (this.total == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
                 return;
@@ -239,7 +241,7 @@ export default {
             axios
                 .get("/api/create_purchase_invoice", {
                     params: {
-                        products_table:  this.products_table,
+                        products_table: this.products_table,
                         total: this.total,
                         invoice_number: this.invoice_number,
                         stock_id: this.stock_id,
@@ -253,6 +255,7 @@ export default {
                         console.log(response.data);
                         this.products_table = [];
                         this.total = null;
+                        this.invoice_number = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {

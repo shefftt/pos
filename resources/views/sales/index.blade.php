@@ -15,13 +15,13 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table">
+        <table  id="DataTable" class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>العميل</th>
                     <th> المجموع</th>
-                    <th>التاريخ</th>
+                    <th> التاريخ</th>
                     <th>الضبط</th>
                 </tr>
             </thead>
@@ -48,13 +48,6 @@
             </tbody>
         </table>
     </div>
-    <center>
-        <div class="card-footer">
-            <div class="col-md-4">
-                {{$sales->links()}}
-            </div>
-        </div>
-    </center>
 </div>
 
 @endsection

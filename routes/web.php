@@ -1,5 +1,6 @@
 <?php
 
+use App\model\purchase_invoice_h;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 //ahmed hmed
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/ahmed', function () {
+        return purchase_invoice_h::all();
+    });
 
     Route::get('/', function () {
         return view('dashboard');

@@ -46,13 +46,14 @@ class productController extends Controller
     public function update(Request $request,$id)
     {
         $products = product::find($id);
-        $products->name = $request->name;
-        $products->category_id = $request->category_id;
-        $products->purchase_price = $request->purchase_price;
-        $products->sale_price = $request->sale_price;
-        $products->stock_id = $request->stock_id;
-        $products->qyt = $request->qyt;
-        $products->barcode  = $request->barcode ;
+        $products->name            = $request->name;
+        $products->category_id     = $request->category_id;
+        $products->purchase_price  = $request->purchase_price;
+        $products->sale_price      = $request->sale_price;
+        $products->stock_id        = $request->stock_id;
+        $products->qyt             = $request->qyt;
+        $products->barcode         = $request->barcode ;
+        $products->vat             = $request->vat ;
         $products->save();
         return redirect('products');
     }
