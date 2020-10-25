@@ -68,10 +68,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/create', 'purchaseController@create');
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
+    Route::get('purchases_report', 'purchaseController@purchases_report');
+    Route::post('report', 'purchaseController@report');
 
 
     Route::get('sales', 'salesController@index');
     Route::get('/sales/{id}', 'salesController@show');
+    Route::get('sales_report', 'salesController@sales_report');
+    Route::post('sales_report', 'salesController@report');
 
 
 

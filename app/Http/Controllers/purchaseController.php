@@ -58,7 +58,31 @@ class purchaseController extends Controller
 
     }
 
+    public function purchases_report(Request $request)
+    {
+        $from = request('from'). " 00:00:00";
+        $to= request('to'). " 23:59:59";
 
+
+
+//        $purchases_report = \DB::table('purchase_invoice_h')->whereBetween('created_at', [$from, $to])->get();
+        $purchases_report = \DB::table('purchase_invoice_h')
+            ->where('created_at', '<= ', $from)
+            ->where('created_at', '>= ', $to)->get();
+        //return $purchases_report;
+       return view('purchases.purchases_report', compact('purchases_report'));
+    }
+
+    public function report(Request $request)
+    {
+        $from = request('from'). " 00:00:00";
+        $to= request('to'). " 23:59:59";
+
+
+        $purchases_report = \DB::table('purchase_invoice_h')-> whereBetween('created_at', [$from, $to])->get();
+        return view('purchases.purchases_report', compact('purchases_report'));
+
+    }
 
 
 

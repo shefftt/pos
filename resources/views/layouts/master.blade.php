@@ -458,6 +458,24 @@
                                             </p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{url('/purchases_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                              تقرير المشتريات
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('sales_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                تقرير المبيعات
+                                            </p>
+                                        </a>
+                                    </li>
+
                                     <li class="nav-item">
                                         <a href="{{url('/stock/create')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>

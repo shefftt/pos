@@ -109,7 +109,7 @@
 
 
                                             <td>
-                                                <a class="btn  btn-sm btn-primary" href="{{url('/purchase/')}}/{{$invoice->id}}" role="button">عرض</a>
+                                                <a class="btn  btn-sm btn-primary" href="{{url('/sales/')}}/{{$invoice->id}}" role="button">عرض</a>
 
                                             </td>
                                         </tr>

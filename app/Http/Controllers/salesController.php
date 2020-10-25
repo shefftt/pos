@@ -20,4 +20,28 @@ class salesController extends Controller
 
         return view('sales.show', compact('invoice'));
     }
+
+    public function sales_report(Request $request)
+    {
+        $from = request('from'). " 00:00:00";
+        $to= request('to'). " 23:59:59";
+
+//        $sales_report = \DB::table('purchase_invoice_h')->whereBetween('created_at', [$from, $to])->get();
+        $sales_report = \DB::table('sales_invoice_h')
+            ->where('created_at', '<= ', $from)
+            ->where('created_at', '>= ', $to)->get();
+        //return $purchases_report;
+        return view('sales.sales_report', compact('sales_report'));
+    }
+
+    public function report(Request $request)
+    {
+        $from = request('from'). " 00:00:00";
+        $to= request('to'). " 23:59:59";
+
+
+        $sales_report = \DB::table('sales_invoice_h')-> whereBetween('created_at', [$from, $to])->get();
+        return view('sales.sales_report', compact('sales_report'));
+
+    }
 }
