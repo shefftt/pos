@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\User;
+use http\Exception\BadConversionException;
 use Illuminate\Database\Eloquent\Model;
 
 class sales_invoice_h extends Model
@@ -21,6 +23,14 @@ class sales_invoice_h extends Model
     public function products()
     {
         return $this->hasMany(sales_invoice_d::class, 'invoice_id', 'id');
+    }
+
+    public function payment(){
+
+        return $this->belongsTo(payment::class,'payment_method_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'created_by','id');
     }
 
 }

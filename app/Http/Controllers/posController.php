@@ -13,6 +13,12 @@ class posController extends Controller
         return view('pos.index', compact('products'));
     }
 
+    public function print()
+    {
+
+        return view('pos.invoice');
+    }
+
     public function store(Request $request)
     {
 
