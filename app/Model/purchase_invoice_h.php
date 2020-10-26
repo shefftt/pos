@@ -3,6 +3,7 @@
 namespace App\model;
 
 use App\Model\stock;
+use App\Model\payment;
 use Illuminate\Database\Eloquent\Model;
 
 class purchase_invoice_h extends Model
@@ -26,7 +27,10 @@ class purchase_invoice_h extends Model
     {
         return $this->belongsTo(stock::class);
     }
-
+    public function payment_method()
+    {
+        return $this->belongsTo(payment::class);
+    }
     public function transaction()
     {
         return $this->morphMany(transaction::class, 'transactionable');
