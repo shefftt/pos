@@ -700,6 +700,25 @@
 
     <!-- AdminLTE for demo purposes -->
     <!-- <scrip src="{{asset('dist/js/demo.js?v=1')}}"></scrip> -->
+
+    <script>
+        function printDiv()
+        {
+
+            var divToPrint=document.getElementById('DivIdToPrint');
+
+            var newWin=window.open('','Print-Window');
+
+            newWin.document.open();
+
+            newWin.document.write('<html  <link rel="stylesheet" href="dist/css/bootstrap-rtl.min.css">><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function(){newWin.close();},10);
+
+        }
+    </script>
 </body>
 
 </html>

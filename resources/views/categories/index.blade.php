@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table"  id="DataTable" >
+        <table  id="DataTable" class="table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -46,13 +46,7 @@
             </tbody>
         </table>
     </div>
-    <center>
-        <div class="card-footer">
-            <div class="col-md-4">
-                {{ $categories->links() }}
-            </div>
-        </div>
-    </center>
+
 </div>
 
 @endsection

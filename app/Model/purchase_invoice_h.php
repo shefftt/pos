@@ -22,6 +22,10 @@ class purchase_invoice_h extends Model
     {
         return $this->belongsTo(supplier::class);
     }
+    public function payment(){
+
+        return $this->belongsTo(\App\model\payment::class,'payment_method_id');
+    }
 
     public function stock()
     {
