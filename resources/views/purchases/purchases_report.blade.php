@@ -2,7 +2,7 @@
 @section('content')
 @section('title' ,' تقرير المشتريات ')
 
-<form action="{{url('report')}}" method="post">
+<form action="{{url('purchases_report')}}" method="post">
     @csrf
     <div class="card-body">
         <div class="row">

@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
     Route::get('purchases_report', 'purchaseController@purchases_report');
-    Route::post('report', 'purchaseController@report');
+    Route::post('purchases_report', 'purchaseController@report');
 
 
     Route::get('sales', 'salesController@index');
