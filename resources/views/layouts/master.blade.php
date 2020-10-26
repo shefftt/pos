@@ -475,6 +475,14 @@
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('general/report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                التقرير العام
+                                            </p>
+                                        </a>
+                                    </li>
 
                                     <li class="nav-item">
                                         <a href="{{url('/stock/create')}}" class="nav-link">

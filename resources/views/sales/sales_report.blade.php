@@ -8,12 +8,12 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="">من  </label>
-                <input type="date" class="form-control"   name="from">
+                <input type="date" class="form-control" value="{{$from}}"  name="from">
 
             </div>
             <div class="form-group col-md-4">
                 <label for="">الي  </label>
-                <input type="date" class="form-control"   name="to">
+                <input type="date" class="form-control" value="{{$to}}"   name="to">
 
             </div>
             <div class="form-group col-md-4">
@@ -29,7 +29,7 @@
 
 
 <div class="card-body">
-    <table  id="DataTable" class="table">
+    <table class="table">
         <thead>
         <tr>
             <th>#</th>
@@ -39,6 +39,9 @@
             <th>الضبط</th>
         </tr>
         </thead>
+        <div class="col-1">
+            <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
+        </div>
         <tbody>
         <?php $i = 1; ?>
         @foreach($sales_report as $sale)
@@ -61,7 +64,10 @@
         @endforeach
         </tbody>
     </table>
-</div>
 
+</div>
+<div class="card-footer">
+    <span> الاجمالي:{{$sales_report->sum('total')}}</span>
+</div>
 @endsection
 

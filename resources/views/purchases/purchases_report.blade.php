@@ -29,7 +29,7 @@
 
 
 <div class="card-body">
-    <table  id="DataTable" class="table">
+    <table class="table">
         <thead>
         <tr>
             <th>#</th>
@@ -43,6 +43,9 @@
             <th>الضبط</th>
         </tr>
         </thead>
+        <div class="col-1">
+            <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
+        </div>
         <tbody>
         <?php $i = 1; ?>
         @foreach($purchases_report as $purchase)
@@ -65,6 +68,8 @@
         </tbody>
     </table>
 </div>
-
+<div class="card-footer">
+    <span> الاجمالي:{{$purchases_report->sum('total')}}</span>
+</div>
 @endsection
 

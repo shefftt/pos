@@ -20,6 +20,10 @@ class salesController extends Controller
 
         return view('sales.show', compact('invoice'));
     }
+    public function invoice(){
+        return view('pos.invoice');
+
+    }
 
     public function sales_report(Request $request)
     {
@@ -41,7 +45,7 @@ class salesController extends Controller
 
 
         $sales_report = \DB::table('sales_invoice_h')-> whereBetween('created_at', [$from, $to])->get();
-        return view('sales.sales_report', compact('sales_report'));
+        return view('sales.sales_report', compact('sales_report','from','to'));
 
     }
 }

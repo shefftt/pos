@@ -106,6 +106,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('pos', 'posController@index');
 
+
+    Route::get('general/report', 'salereportController@index');
+    Route::post('general/report', 'salereportController@sales');
+
+
+
     Route::get('payments', 'paymentsController@index');
     Route::get('payments/toggle/{id}', 'paymentsController@toggle');
     Route::post('payments/create', 'paymentsController@store');
