@@ -32,6 +32,7 @@ class productRequest extends FormRequest
             'stock_id' => 'required',
             'vat' => 'required|integer',
             'qyt' => 'nullable|integer',
+            'unit_id'=>'required',
             'barcode' => 'nullable'
         ];
     }
@@ -54,7 +55,8 @@ class productRequest extends FormRequest
             'sale_price.required' => 'سعر الببيع اجبارى',
             'vat.required' => 'الضريبه اجبارى',
             'vat.integer' => 'عفوا الضريبه تكون عباره عن رقم',
-            'stock_id.required' => 'المخزن الافتراضى اجبارى'
+            'stock_id.required' => 'المخزن الافتراضى اجبارى',
+            'unit_id.required'=>'الوحده اجبارية'
         ];
     }
 }

@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
     Route::get('purchases_report', 'purchaseController@purchases_report');
-    Route::post('report', 'purchaseController@report');
+    Route::post('purchases_report', 'purchaseController@report');
 
 
     Route::get('sales', 'salesController@index');
@@ -105,6 +105,12 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('pos', 'posController@index');
+
+
+    Route::get('general/report', 'salereportController@index');
+    Route::post('general/report', 'salereportController@sales');
+
+
 
     Route::get('payments', 'paymentsController@index');
     Route::get('payments/toggle/{id}', 'paymentsController@toggle');

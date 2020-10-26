@@ -6,7 +6,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/salereportController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/24129506_669181793470635_818525428311983714_n.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pos/invoice.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/reports/sale.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/productController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/productController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/purchaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/purchaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/salesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/salesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/stockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/stockController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/productRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/purchase_invoice_d.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/purchase_invoice_d.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/sales_invoice_d.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/sales_invoice_d.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/sales_invoice_h.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/sales_invoice_h.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/stock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/stock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/dist/css/adminlte.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/css/adminlte.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/purchases/purchases_report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/purchases/purchases_report.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/purchases/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/purchases/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/sales_report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/sales_report.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +162,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
-      <path value="$PROJECT_DIR$/vendor/milon/barcode" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1i2bKyPyGuBtTmBLGgsC1fkkLXb" />
@@ -155,7 +181,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -173,21 +199,19 @@
       <recent name="E:\panda180\Tower Dev\pos\resources\views\purchases" />
     </key>
   </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="IDE" />
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6ac8513b-c55e-4364-8148-29b46038236e" name="Default Changelist" comment="" />
+      <changelist id="31f9e793-9f19-4c7d-8825-04a82879f41a" name="Default Changelist" comment="new features" />
       <created>1601108626370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -204,11 +228,6 @@
       <workItem from="1601884399310" duration="2105000" />
       <workItem from="1601990412816" duration="1162000" />
       <workItem from="1602071077652" duration="9297000" />
-      <workItem from="1603356575850" duration="17034000" />
-      <workItem from="1603523701505" duration="20502000" />
-      <workItem from="1603615256526" duration="7547000" />
-      <workItem from="1603623560825" duration="4937000" />
-      <workItem from="1603697540137" duration="1299000" />
     </task>
     <task id="LOCAL-00001" summary="git inti">
       <created>1601112128064</created>
@@ -294,28 +313,7 @@
       <option name="project" value="LOCAL" />
       <updated>1602143254016</updated>
     </task>
-    <task id="LOCAL-00013" summary="add database">
-      <created>1603525730464</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1603525730464</updated>
-    </task>
-    <task id="LOCAL-00014" summary="add database">
-      <created>1603549905816</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1603549905816</updated>
-    </task>
-    <task id="LOCAL-00015" summary="add database">
-      <created>1603630392399</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1603630392400</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,17 +410,16 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1918" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601541416703" />
-    <state x="491" y="193" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603548597067">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="575" y="227" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603654014068">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="2056" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601392127851" />
-    <state x="491" y="193" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603548597067" />
-    <state x="38" y="0" width="1866" height="849" key="CommitChangelistDialog2" timestamp="1603630379887">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="575" y="227" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1603654014068" />
+    <state x="1420" y="102" width="1866" height="849" key="CommitChangelistDialog2" timestamp="1602143252635">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="38" y="71" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1601896751084" />
     <state x="1420" y="102" width="1866" height="849" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1602143252635" />
-    <state x="38" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1603630379887" />
     <state x="1776" y="117" width="1092" height="610" maximized="true" key="DiffContextDialog" timestamp="1602092093534">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -431,35 +428,30 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2105" y="262" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601569253483" />
-    <state width="1367" height="175" key="GridCell.Tab.0.bottom" timestamp="1603530531616">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601108771225">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state width="1367" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603530531616" />
-    <state width="1367" height="175" key="GridCell.Tab.0.center" timestamp="1603530531616">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1601108771225">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state width="1367" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603530531616" />
-    <state width="1367" height="175" key="GridCell.Tab.0.left" timestamp="1603530531616">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1601108771224">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771224" />
-    <state width="1367" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603530531616" />
-    <state width="1367" height="175" key="GridCell.Tab.0.right" timestamp="1603530531616">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1601108771225">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601108771225" />
-    <state width="1367" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603530531616" />
     <state x="1493" y="0" width="1514" height="1040" key="MergeDialog" timestamp="1602086202870">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1493" y="0" width="1514" height="1040" key="MergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1602086202870" />
-    <state x="425" y="197" key="MultipleFileMergeDialog" timestamp="1603525479251">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="1964" y="281" key="MultipleFileMergeDialog" timestamp="1601540230159">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1964" y="281" key="MultipleFileMergeDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601540230159" />
-    <state x="425" y="197" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1603525479251" />
     <state x="2161" y="443" key="NewPhpFileDialog" timestamp="1601211266922">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -480,18 +472,17 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2212" y="434" key="VCS.EditChangelistDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601989578589" />
-    <state x="393" y="177" key="Vcs.Push.Dialog.v2" timestamp="1603630464001">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="1918" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602142487128">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1918" y="253" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1602142487128" />
-    <state x="393" y="177" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603630464001" />
     <state x="2143" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601539913557">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2143" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601539913557" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1603531177019">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="456" y="195" key="run.anything.popup" timestamp="1603654455852">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1603531177019" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1603654455852" />
   </component>
 </project>

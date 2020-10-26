@@ -25,7 +25,7 @@ class stockController extends Controller
 
      // return $users;
 
-        return view('stocks.show', compact('stocks','users'));
+        return view('stocks.show', compact('stocks'));
 
     }
 

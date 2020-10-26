@@ -6,6 +6,7 @@ use App\Http\Requests\productRequest;
 use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
+use App\Model\unit;
 
 class productController extends Controller
 {
@@ -24,16 +25,18 @@ class productController extends Controller
 
     public function create()
     {
+        $units = unit::all();
         $categories =  category::all();
         $stocks     =  stock::all();
-        return view('products.create', compact('categories', 'stocks'));
+        return view('products.create', compact('categories', 'stocks','units'));
     }
     public function edit($id)
     {
-        $products = product::find($id);
+        $products   = product::find($id);
         $categories =  category::all();
+        $units      =     unit::all();
         $stocks     =  stock::all();
-        return view('products.edit', compact('categories', 'stocks','products'));
+        return view('products.edit', compact('categories', 'stocks','products','units'));
     }
     public function store(productRequest $request)
     {
@@ -51,6 +54,7 @@ class productController extends Controller
         $products->purchase_price  = $request->purchase_price;
         $products->sale_price      = $request->sale_price;
         $products->stock_id        = $request->stock_id;
+        $products->unit_id         =      $request->unit_id;
         $products->qyt             = $request->qyt;
         $products->barcode         = $request->barcode ;
         $products->vat             = $request->vat ;

@@ -74,6 +74,14 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="category_id">الوحده</label>
+                    <select class="form-control" name="unit_id" id="unit">
+                        @foreach($units as $unit)
+                            <option value="{{$unit->id}}">{{$unit->unit_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
                     <label for="stock_id">المخزن الافتراضى</label>
                     <select class="form-control" name="stock_id" id="stock_id">
                         @foreach($stocks as $stock)

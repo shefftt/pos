@@ -24,6 +24,7 @@
                     <th>سعر الشراء</th>
                     <th>سعر البيع</th>
                     <th>التصنيف</th>
+                    <th>الوحده</th>
                     <th>باركود</th>
                     <th>الضريبه</th>
                     <th>الضبط</th>
@@ -41,6 +42,7 @@
                     <td>{{$product->purchase_price}}</td>
                     <td>{{$product->sale_price}}</td>
                     <td>{{$product->category->name}}</td>
+                    <td>{{$product->unit->unit_name}}</td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->vat}}</td>
                     <td>

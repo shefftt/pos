@@ -23,5 +23,4 @@ class sales_invoice_h extends Model
         return $this->hasMany(sales_invoice_d::class, 'invoice_id', 'id');
     }
 
-
 }
