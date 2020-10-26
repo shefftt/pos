@@ -28,6 +28,7 @@
                     <th>التاريخ</th>
                     <th> الدفع</th>
                     <th> رقم الفاتوره</th>
+                    <th>  طريقة الدفع</th>
                     <th> التاريخ</th>
                     <th>الضبط</th>
                 </tr>
@@ -54,6 +55,7 @@
                     </td>
 
                     <td>{{$purchase->invoice_number}}</td>
+                    <td>{{$purchase->payment_method->name}}</td>
                     <td>{{$purchase->created_at}}</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
