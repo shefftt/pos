@@ -522,6 +522,14 @@
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('units')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                 الوحدات
+                                            </p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

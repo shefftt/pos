@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/category/')}}/{{$category->id}}" role="button">عرض</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+
                     </td>
                 </tr>
                 @endforeach
