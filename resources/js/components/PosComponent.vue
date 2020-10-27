@@ -245,11 +245,11 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response.data);
                     if (response.status === 200) {
                         console.log(response.data);
                         this.products_table = [];
-                        // this.total = null;
+                        this.total = 0;
+                        window.location.replace('print/' + response.data.invoice_id);
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {

@@ -110,7 +110,10 @@
                             <th>الاسم</th>
                             <th>السعر</th>
                             <th>الكميه</th>
-                            <th>السعر الكلى</th>
+                            <th>مجموع السعر </th>
+                            <th>الضريبه</th>
+                            <th>مجموع الضريبه</th>
+                            <th>مجموع السعر + الضريبه</th>
                             <th>ضبط</th>
                         </tr>
                     </thead>
@@ -130,6 +133,9 @@
                                 ></i>
                             </td>
                             <td>{{ product.subtotal }}</td>
+                            <td>{{ product.vat }}</td>
+                            <td>{{ product.vat * product.qyt }}</td>
+                            <td>{{ (product.subtotal) + product.vat * product.vat }}</td>
                             <td>
                                 <i
                                     @click="remove_form_table(product)"
@@ -234,7 +240,7 @@ export default {
                 return;
             } else if (this.invoice_number == "") {
                 this.invoice_number = 0;
-            } else if (this.total == 0 || this.total == "") {
+            } else if (this.products_table.length == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
                 return;
             }
@@ -250,11 +256,12 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response.data);
+
                     if (response.status === 200) {
                         console.log(response.data);
                         this.products_table = [];
-                        this.total = null;
+                        // this.total = 0;
+                        this.total = "";
                         this.invoice_number = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
@@ -349,6 +356,7 @@ export default {
             if (product_exe !== true) {
                 this.products_table.push({
                     id: product.id,
+                    vat: product.vat,
                     name: product.name,
                     price: product.sale_price,
                     qyt: 1,
