@@ -1,6 +1,8 @@
 <?php
 
 use App\model\purchase_invoice_h;
+use App\Model\sales_invoice_h;
+use App\model\setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/ahmed', function () {
-        return purchase_invoice_h::all();
-    });
+Route::get('print/{id}', function($id){
+    $info =  setting::find(1);
+    $invoice = sales_invoice_h::find($id);
+    return view('sales.print', compact('info' , 'invoice'));
+});
+    Route::get('/', 'dashboardController@index');
 
-    Route::get('/', function () {
-        return view('dashboard');
-    });
     Route::get('products', 'productController@index');
     Route::get('/product/create', 'productController@create');
     Route::post('/product/create', 'productController@store');

@@ -2,11 +2,12 @@
 
 namespace App\Model;
 
+use App\model\payment;
 use Illuminate\Database\Eloquent\Model;
 
 class sales_invoice_h extends Model
 {
-    protected $fillable = ['customer_id', 'total', 'payment_method_id'];
+    protected $fillable = ['customer_id', 'total', 'created_by','payment_method_id'];
     protected $table='sales_invoice_h';
 
 
@@ -17,6 +18,10 @@ class sales_invoice_h extends Model
     public function transaction()
     {
         return $this->morphMany(transaction::class, 'transactionable');
+    }
+    public function payment()
+    {
+        return $this->belongsTo(payment::class, 'payment_method_id' , 'id');
     }
     public function products()
     {

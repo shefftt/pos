@@ -25,7 +25,9 @@ class salesController extends Controller
             [
                 'customer_id'       => $request->customer_id,
                 'total'             => $request->total,
-                'payment_method_id' => $request->payment_method
+                'payment_method_id' => $request->payment_method,
+                // 'created_by'        => auth()->user()->id
+                'created_by'        => 1
             ]
         );
 
@@ -60,6 +62,6 @@ class salesController extends Controller
 
 
         // if suppler id using
-        return $request->products_table;
+        return ['invoice_id' => $invoice->id];
     }
 }
