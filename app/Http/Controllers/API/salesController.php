@@ -44,6 +44,8 @@ class salesController extends Controller
             );
         }
 
+
+
             // الكاش - 1
             // بطاقه - 2
             // اجل - 3
