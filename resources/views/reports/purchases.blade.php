@@ -47,11 +47,10 @@
 
 </form>
 </div>
-<input type='button' id='btn' value='Print' onclick='printDiv();'>
-
 <div class="col-1">
     <a class="btn btn-success" onclick="printDiv('invoice')"  role="button">طباعه</a>
 </div>
+<br>
 
 <div id="DivIdToPrint" class="invoice p-3 mb-3">
 

@@ -69,8 +69,11 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</div>--}}
-
-<div class="invoice p-3 mb-3">
+<div class="col-1">
+    <a class="btn btn-success" onclick="printDiv('invoice')"  role="button">طباعه</a>
+</div>
+<br>
+<div id="DivIdToPrint" class="invoice p-3 mb-3">
 <div class="card-body">
     <table class="table">
         <thead>
@@ -84,9 +87,7 @@
             <th>الضبط</th>
         </tr>
         </thead>
-        <div class="col-1">
-            <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
-        </div>
+
         <tbody>
         <?php $i = 1; ?>
         @foreach($sales_report as $sale)
