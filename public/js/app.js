@@ -2537,7 +2537,7 @@ var Toast = Swal.mixin({
   mounted: function mounted() {
     this.get_stock_name();
     this.get_customer_name();
-    this.get_accounts();
+    this.get_payments();
   },
   data: function data() {
     return {
@@ -2547,7 +2547,7 @@ var Toast = Swal.mixin({
       products: [],
       products_list: [],
       products_table: [],
-      accounts: [],
+      payments: [],
       account_id: 1,
       stocks: [],
       stock_id: 0,
@@ -2606,11 +2606,11 @@ var Toast = Swal.mixin({
         }
       });
     },
-    get_accounts: function get_accounts() {
+    get_payments: function get_payments() {
       var _this3 = this;
 
-      axios.get("/api/accounts").then(function (response) {
-        _this3.accounts = response.data;
+      axios.get("/api/payments").then(function (response) {
+        _this3.payments = response.data;
       })["catch"](function (error) {});
     },
     get_stock_name: function get_stock_name() {
@@ -21402,7 +21402,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "account_id" } }, [
+                _c("label", { attrs: { for: "payment_id" } }, [
                   _vm._v("طريقه الدفع")
                 ]),
                 _vm._v(" "),
@@ -21418,7 +21418,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control form-control-sm",
-                    attrs: { name: "account_id", id: "account_id" },
+                    attrs: { name: "payment_id", id: "payment_id" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -21435,14 +21435,14 @@ var render = function() {
                       }
                     }
                   },
-                  _vm._l(_vm.accounts, function(account) {
+                  _vm._l(_vm.payments, function(payment) {
                     return _c(
                       "option",
-                      { key: account.id, domProps: { value: account.id } },
+                      { key: payment.id, domProps: { value: payment.id } },
                       [
                         _vm._v(
                           "\n                                    " +
-                            _vm._s(account.name)
+                            _vm._s(payment.name)
                         )
                       ]
                     )
@@ -35100,8 +35100,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\admin\PhpstormProjects\poss\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\admin\PhpstormProjects\poss\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\panda180\Tower Dev\pos\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
