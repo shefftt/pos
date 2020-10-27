@@ -8,6 +8,7 @@ use App\model\purchase_invoice_h;
 use App\Model\sales_invoice_d;
 use App\Model\sales_invoice_h;
 use App\model\supplier;
+use App\model\product;
 use Illuminate\Http\Request;
 
 class salesController extends Controller
@@ -44,7 +45,23 @@ class salesController extends Controller
                     'invoice_id'        => $invoice->id
                 ]
             );
+
         }
+        foreach ($request->products_table as $product) {
+
+
+            $id = json_decode($product)->id;
+            $product_qyt = product::findOrFail($id);
+
+            $product_qyt->qyt = $product_qyt->qyt - json_decode($product)->qyt;
+            $product_qyt-> save();
+
+        }
+
+
+
+
+
 
             // الكاش - 1
             // بطاقه - 2
