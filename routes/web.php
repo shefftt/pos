@@ -68,14 +68,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/create', 'purchaseController@create');
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
-    Route::get('purchases_report', 'purchaseController@purchases_report');
-    Route::post('purchases_report', 'purchaseController@report');
+
 
 
     Route::get('sales', 'salesController@index');
     Route::get('/sales/{id}', 'salesController@show');
-    Route::get('sales_report', 'salesController@sales_report');
-    Route::post('sales_report', 'salesController@report');
+
 
 
 
@@ -105,10 +103,18 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('pos', 'posController@index');
+    Route::get('pos/print', 'posController@print');
 
 
-    Route::get('general/report', 'salereportController@index');
-    Route::post('general/report', 'salereportController@sales');
+    Route::get('general/report', 'reportController@general');
+    Route::post('general/report', 'reportController@general_report');
+
+    Route::get('sales_report', 'reportController@sales');
+    Route::post('sales_report', 'reportController@sales_report');
+
+    Route::get('purchases_report', 'reportController@purchases');
+    Route::post('purchases_report', 'reportController@purchases_report');
+
 
 
 

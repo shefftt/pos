@@ -34,6 +34,24 @@ class salereportController extends Controller
 
     }
 
+    public function employe()
+    {
+        $sales = sales_invoice_h::all();
+        $customer = customer::all();
+        return view('reports.employe', compact('sales','customer'));
+
+
+    }
+
+    public function employes(Request $request)
+    {
+        $data = $request->all();
+        $customer_id = $data['customer_id'];
+        $sales = sales_invoice_h::where('customer_id',$customer_id)->whereBetween('created_at',[$request->start_date,$request->end_date])
+            ->get();
+        return view('reports.employe', compact('sales'));
+
+    }
 
 
 }
