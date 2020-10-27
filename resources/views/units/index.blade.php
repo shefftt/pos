@@ -27,7 +27,7 @@
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
-                    <td>{{$unit->unit_name}}</td>
+                    <td>{{$unit->name}}</td>
                     <!--<td>-->
                         <!--<a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">ايقاف</a>-->
                         <!--<a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>-->
@@ -38,7 +38,7 @@
             </tbody>
         </table>
     </div>
-  
+
 </div>
 
 @endsection

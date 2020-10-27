@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\customerRequest;
 use App\Model\customer;
+use App\Model\sales_invoice_h;
+use App\model\transaction;
 use Illuminate\Http\Request;
 
 class customerController extends Controller
@@ -31,5 +33,17 @@ class customerController extends Controller
          $customer->status = !$customer->status;
          $customer->save();
         return redirect('customers');
+    }
+
+    public function show($id)
+    {
+        $customer =  customer::find($id);
+        // $suppliers_show = transaction::where($id='transactionable_id')->get;
+        $customers_show = transaction::where('transactionable_id', '=', $id)->get();
+
+        $invoices = sales_invoice_h::where('customer_id', '=', $id)->paginate(10);
+
+        return view('customers.show',compact('customer','customers_show','invoices'));
+
     }
 }

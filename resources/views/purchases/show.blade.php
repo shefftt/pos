@@ -11,7 +11,7 @@
                 </h3>
             </div>
             <div class="col-1">
-                <a class="btn btn-dark" href="#" role="button">طباعه</a>
+                <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
                     <td> التاريخ</td>
                     <td>{{$invoice->created_at}} </td>
                 </tr>
+
                 </tbody>
             </table>
         </div>
@@ -44,8 +45,10 @@
                 <th>الكميه</th>
                 <th> سعر الوحده</th>
                 <th> المجموع</th>
+                <th>الوحده</th>
                 <th>الضريبه</th>
                 <th>مجموع الضريبه</th>
+
 
             </tr>
             </thead>
@@ -60,9 +63,10 @@
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
+                    <td>{{$product->product->unit->unit_name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
-                </tr>
+                   </tr>
             @endforeach
             </tbody>
         </table>
@@ -91,5 +95,10 @@
 
         </div>
 </div>
+<script type="text/javascript">
+    function auto_print() {
+        window.print()
+    }
+</script>
 
 @endsection

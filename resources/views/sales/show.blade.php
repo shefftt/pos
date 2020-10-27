@@ -2,50 +2,26 @@
 @section('content')
 @section('title' ,' فاتورة مبيعات ')
 
-<div class="card">
-    <div class="card-header">
-        <div class="row">
-            <div class="col text-center">
-                <h3>فاتوره مبيعات
-                    #{{$invoice->id}}
-                </h3>
-            </div>
-            <div class="col-1">
-                <a class="btn btn-dark" href="#" role="button">طباعه</a>
-            </div>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="col-md-4">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td>العميل</td>
-                        <td> @if(isset($invoice->customer->name)){{$invoice->customer->name}} @else
-                            غير معروف
-                            @endif</td>
-                    </tr>
-                    <tr>
-                        <td> التاريخ</td>
-                        <td>{{$invoice->created_at}} </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
         <hr>
-        <table  id="DataTable" class="table">
+<table class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>المنتج</th>
-                    <th> سعر الوحده</th>
-                    <th> المجموع</th>
-                    <th> الضربيه</th>
+                    <th>  الكمية</th>
+                    <th>الكميه</th>
+                    <th>سعر الوحده</th>
+                    <th> الوحده</th>
+                    <th> الضريبه</th>
                     <th>مجموع الضريبه</th>
+                    <th> المجموع</th>
 
                 </tr>
             </thead>
+    <div class="col-1">
+        <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
+    </div>
+    <br>
             <tbody>
                 <?php $i = 1;
                 $vat_total = 0; ?>
@@ -56,9 +32,10 @@
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->sub_total}}</td>
+                    <td>{{$product->product->unit->unit_name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
+                    <td>{{$product->sub_total}}</td>
                     @endforeach
             </tbody>
         </table>

@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table">
+        <table  id="DataTable" class="table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -39,20 +39,14 @@
                     </td>
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/category/')}}/{{$category->id}}" role="button">عرض</a>
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="#" role="button">تعديل</a>
+
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    <center>
-        <div class="card-footer">
-            <div class="col-md-4">
-                {{ $categories->links() }}
-            </div>
-        </div>
-    </center>
+
 </div>
 
 @endsection

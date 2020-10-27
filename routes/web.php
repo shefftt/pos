@@ -35,6 +35,8 @@ Route::get('print/{id}', function($id){
     Route::put('/product/edit/{id}', 'productController@update');
     Route::get('product/toggleStatus/{product}', 'productController@toggleStatus');
 
+    Route::get('/barcode/{id}', 'productController@barcode');
+
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
     Route::post('/category/create', 'categoryController@store');
@@ -55,6 +57,7 @@ Route::get('print/{id}', function($id){
     Route::get('customer/create', 'customerController@create');
     Route::post('customer/create', 'customerController@store');
     Route::get('customer/toggleStatus/{customer}', 'customerController@toggleStatus');
+    Route::get('/customer/show/{id}', 'customerController@show');
 
 
     Route::get('stocks', 'stockController@index');
@@ -68,8 +71,11 @@ Route::get('print/{id}', function($id){
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
 
+
+
     Route::get('sales', 'salesController@index');
     Route::get('/sales/{id}', 'salesController@show');
+
 
 
 
@@ -99,6 +105,20 @@ Route::get('print/{id}', function($id){
 
 
     Route::get('pos', 'posController@index');
+    Route::get('pos/print', 'posController@print');
+
+
+    Route::get('general/report', 'reportController@general');
+    Route::post('general/report', 'reportController@general_report');
+
+    Route::get('sales_report', 'reportController@sales');
+    Route::post('sales_report', 'reportController@sales_report');
+
+    Route::get('purchases_report', 'reportController@purchases');
+    Route::post('purchases_report', 'reportController@purchases_report');
+
+
+
 
     Route::get('payments', 'paymentsController@index');
     Route::get('payments/toggle/{id}', 'paymentsController@toggle');

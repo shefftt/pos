@@ -42,6 +42,8 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
     <style>
         #DataTable_filter input {
             border-radius: 5px;
@@ -458,6 +460,32 @@
                                             </p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{url('/purchases_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                              تقرير المشتريات
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('sales_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                تقرير المبيعات
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('general/report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                التقرير العام
+                                            </p>
+                                        </a>
+                                    </li>
+
                                     <li class="nav-item">
                                         <a href="{{url('/stock/create')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>
@@ -491,6 +519,14 @@
                                             <i class="fa fa-circle nav-icon"></i>
                                             <p>
                                                 اضافة مخزن
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('units')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                 الوحدات
                                             </p>
                                         </a>
                                     </li>
@@ -618,6 +654,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
 
     <script src="{{asset('js/app.js')}}"></script>
@@ -660,9 +698,35 @@
 
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('select').selectize({
+                sortField: 'text'
+            });
+        });
+    </script>
 
     <!-- AdminLTE for demo purposes -->
     <!-- <scrip src="{{asset('dist/js/demo.js?v=1')}}"></scrip> -->
+
+    <script>
+        function printDiv()
+        {
+
+            var divToPrint=document.getElementById('DivIdToPrint');
+
+            var newWin=window.open('','Print-Window');
+
+            newWin.document.open();
+
+            newWin.document.write('<html  <link rel="stylesheet" href="dist/css/bootstrap-rtl.min.css">><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function(){newWin.close();},10);
+
+        }
+    </script>
 </body>
 
 </html>

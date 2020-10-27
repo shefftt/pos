@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    protected $fillable = ['name' , 'vat', 'barcode' , 'category_id', 'status', 'purchase_price', 'sale_price', 'stock_id', 'qyt'];
+    protected $fillable = ['name' , 'vat', 'barcode' , 'category_id', 'status', 'purchase_price', 'sale_price', 'stock_id', 'qyt','unit_id'];
 
     public function category()
     {
@@ -14,6 +14,9 @@ class product extends Model
     }
     public function stock(){
      return  $this->belongsTo(stock::class);
+    }
+    public function unit(){
+        return $this->belongsTo(unit::class);
     }
 
 }

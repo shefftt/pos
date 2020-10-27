@@ -8,9 +8,13 @@
             <div class="col">
                 <h6>فواتير المشتريات</h6>
             </div>
+
             <div class="col text-left">
                 <a class="btn btn-dark" href="{{url('/purchase/create')}}" role="button"> انشاء فاتوره</a>
             </div>
+        </div>
+
+        <div  class="dataTables_filter"><label>بحث : <input type="search"  id="search" class="form-control form-control-sm" placeholder="" aria-controls="example1" name="search"></label>
         </div>
     </div>
     <div class="card-body">
@@ -24,6 +28,7 @@
                     <th>التاريخ</th>
                     <th> الدفع</th>
                     <th> رقم الفاتوره</th>
+                    <th>  طريقة الدفع</th>
                     <th> التاريخ</th>
                     <th>الضبط</th>
                 </tr>
@@ -50,6 +55,7 @@
                     </td>
 
                     <td>{{$purchase->invoice_number}}</td>
+                    <td>{{$purchase->payment_method->name}}</td>
                     <td>{{$purchase->created_at}}</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
@@ -62,3 +68,4 @@
     </div>
 </div>
 @endsection
+

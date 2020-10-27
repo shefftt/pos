@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table">
+        <table class="table"  id="DataTable" >
             <thead>
                 <tr>
                     <th>#</th>
@@ -24,6 +24,7 @@
                     <th>سعر الشراء</th>
                     <th>سعر البيع</th>
                     <th>التصنيف</th>
+                    <th>الوحده</th>
                     <th>باركود</th>
                     <th>الضريبه</th>
                     <th>الضبط</th>
@@ -41,6 +42,7 @@
                     <td>{{$product->purchase_price}}</td>
                     <td>{{$product->sale_price}}</td>
                     <td>{{$product->category->name}}</td>
+                    <td>{{$product->unit->unit_name}}</td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->vat}}</td>
                     <td>
@@ -51,8 +53,9 @@
 
                         @endif
 
-                     <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
+                     <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product/edit/')}}/{{$product->id}}" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/product')}}/{{$product->id}}" role="button">عرض</a>
+                    <a  name="" id="" class="btn  btn-sm btn-warning" target="_blank"  href="{{url('/barcode/')}}/{{$product->id}}" role="button">طباعه الباركود</a>
 
                     </td>
 

@@ -24,13 +24,13 @@ class unitRequest extends FormRequest
     public function rules()
     {
         return [
-            'unit_name' => 'required',
+            'name' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'unit_name.required' => 'اسم الوحده اجباري',
+            'name.required' => 'اسم الوحده اجباري',
 
         ];
     }

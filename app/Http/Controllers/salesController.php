@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\customer;
+use App\model\payment;
 use App\Model\sales_invoice_h;
+use App\User;
 use Illuminate\Http\Request;
 
 class salesController extends Controller
@@ -20,4 +23,9 @@ class salesController extends Controller
 
         return view('sales.show', compact('invoice'));
     }
+    public function invoice(){
+        return view('pos.invoice');
+
+    }
+
 }
