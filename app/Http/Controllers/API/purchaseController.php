@@ -56,4 +56,7 @@ class purchaseController extends Controller
         // if suppler id using
         return $request->products_table;
     }
+
+
+
 }

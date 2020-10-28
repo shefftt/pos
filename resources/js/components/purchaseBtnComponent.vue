@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         showModel (){
-            alert('wwwwwwwwwwwwww')
+            <a class="btn btn-dark" href="{{url('/purchase/payment')}}" role="button">  </a>
         }
     }
 };
