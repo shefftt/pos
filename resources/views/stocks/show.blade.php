@@ -24,12 +24,12 @@
             </thead>
             <tbody>
             <?php $i =1; ?>
-            @foreach($stocks->purchase_invoice_d as $stock)
+            @foreach($stocks->stock_product as $stock_product)
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
-                    <td>{{$stock->product->name}}</td>
-                    <td>{{$stock->qyt}}</td>
+                    <td>{{$stock_product->product->name}}</td>
+                    <td>{{$stock_product->qyt}}</td>
 
 
                 </tr>

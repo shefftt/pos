@@ -27,8 +27,8 @@ class productRequest extends FormRequest
         return [
             'name' => 'required',
             'category_id' => 'required',
-            'sale_price' => 'required|integer',
-            'purchase_price' => 'nullable|integer',
+            'sale_price' => 'required|numeric',
+            'purchase_price' => 'nullable|numeric',
             'stock_id' => 'required',
             'vat' => 'required|integer',
             'qyt' => 'nullable|integer',

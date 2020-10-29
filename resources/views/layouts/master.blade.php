@@ -49,7 +49,7 @@
             border-radius: 5px;
         }
 
-        button span{
+        button span {
             font-family: 'Vazir', sans-serif !important;
         }
     </style>
@@ -465,7 +465,7 @@
                                         <a href="{{url('/purchases_report')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>
                                             <p>
-                                              تقرير المشتريات
+                                                تقرير المشتريات
                                             </p>
                                         </a>
                                     </li>
@@ -507,6 +507,14 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
+                                        <a href="{{url('/settings')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                            اعدات النظام
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{url('/payments')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>
                                             <p>
@@ -526,7 +534,7 @@
                                         <a href="{{url('units')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>
                                             <p>
-                                                 الوحدات
+                                                الوحدات
                                             </p>
                                         </a>
                                     </li>
@@ -633,12 +641,14 @@
     <!-- AdminLTE App -->
     <script src="{{asset('/')}}dist/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+    <!-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> -->
     <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+@if(!isset($purchase))
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src=" https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 
@@ -654,11 +664,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
 
-    <script src="{{asset('js/app.js')}}"></script>
 
     <script>
         $(document).ready(function() {
@@ -699,34 +708,59 @@
         });
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('select').selectize({
                 sortField: 'text'
             });
         });
     </script>
 
+@endif
     <!-- AdminLTE for demo purposes -->
     <!-- <scrip src="{{asset('dist/js/demo.js?v=1')}}"></scrip> -->
 
     <script>
-        function printDiv()
-        {
+        function printDiv() {
 
-            var divToPrint=document.getElementById('DivIdToPrint');
+            var divToPrint = document.getElementById('DivIdToPrint');
 
-            var newWin=window.open('','Print-Window');
+            var newWin = window.open('', 'Print-Window');
 
             newWin.document.open();
 
-            newWin.document.write('<html  <link rel="stylesheet" href="dist/css/bootstrap-rtl.min.css">><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+            newWin.document.write(`<html>
+            <style>
+            .col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+            .text-center {
+    text-align: center !important;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -7.5px;
+    margin-left: -7.5px;
+}
+        table{border: 1px solid; width: 100%;}
+        table , tr , th , td{border: 1px solid;}
+    </style>
 
-            newWin.document.close();
+             <link rel="stylesheet" href="dist/css/bootstrap-rtl.min.css">
+             <body onload="window.print()">` + divToPrint.innerHTML + `</body></html>`);
 
-            setTimeout(function(){newWin.close();},10);
+            // newWin.document.close();
+
+            // setTimeout(function(){newWin.close();},10);
 
         }
     </script>
+
+
+    <script src="{{asset('js/app.js')}}"></script>
+
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Http\Requests\stockRequest;
 use App\Model\stock;
 use Illuminate\Http\Request;
 use App\Model\purchase_invoice_d;
+use App\model\purchase_invoice_h;
 
 class stockController extends Controller
 {
@@ -17,16 +18,10 @@ class stockController extends Controller
     }
 
 
-    public function show($id){
-
-        $stocks =  stock::find($id);
-      //  return  $stocks->purchase_invoice_d;
-
-
-     // return $users;
-
+    public function show($id)
+    {
+        $stocks = stock::find($id);
         return view('stocks.show', compact('stocks'));
-
     }
 
     public function create()

@@ -31,7 +31,7 @@
                         >
                             <option
                                 v-for="payment in payments"
-                                :valuh="payment.id"
+                                :value="payment.id"
                                 :key="payment.id"
                             >
                                 {{ payment.name }}</option
@@ -110,7 +110,7 @@
                             <th>الاسم</th>
                             <th>السعر</th>
                             <th>الكميه</th>
-                            <th>مجموع السعر </th>
+                            <th>مجموع السعر</th>
                             <th>الضريبه</th>
                             <th>مجموع الضريبه</th>
                             <th>مجموع السعر + الضريبه</th>
@@ -135,7 +135,11 @@
                             <td>{{ product.subtotal }}</td>
                             <td>{{ product.vat }}</td>
                             <td>{{ product.vat * product.qyt }}</td>
-                            <td>{{ (product.subtotal) + product.vat * product.vat }}</td>
+                            <td>
+                                {{
+                                    product.subtotal + product.vat * product.vat
+                                }}
+                            </td>
                             <td>
                                 <i
                                     @click="remove_form_table(product)"
@@ -256,12 +260,11 @@ export default {
                     }
                 })
                 .then(response => {
-
                     if (response.status === 200) {
                         console.log(response.data);
                         this.products_table = [];
-                        // this.total = 0;
-                        this.total = "";
+                        this.total = 0;
+                        // this.total = "";
                         this.invoice_number = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
@@ -358,24 +361,24 @@ export default {
                     id: product.id,
                     vat: product.vat,
                     name: product.name,
-                    price: product.sale_price,
+                    price: product.purchase_price,
                     qyt: 1,
-                    subtotal: product.sale_price
+                    subtotal: product.purchase_price
                 });
             }
 
+           this.total = parseFloat(this.total) + parseFloat(product.purchase_price);
             this.products = null;
             this.product_name = "";
-            this.total += product.sale_price;
         },
         /**
          * حذف المنتج من الفاتوره
          * @param product
          */
         remove_form_table(product) {
-            // swal("هل انت متاكد من حذف المنتج!", "error");
+                // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
-            this.total -= product.subtotal;
+            (this.total) =  parseFloat(this.total) - parseFloat(product.subtotal);
 
             // جلب الاندكس بتاع المنتج فى الجدول
             let id = this.products_table.indexOf(product);
@@ -384,27 +387,27 @@ export default {
             this.products_table.splice(id, 1);
         },
         in_crease(product) {
-            let obj;
+              let obj;
             // التاكد من عدمlogin وجود المنتج فى القائمه
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     obj.qyt += 1;
-                    obj.subtotal = obj.price * obj.qyt;
+                    (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
                 }
             }
-            this.total += obj.price;
+            (this.total) = parseFloat(this.total) +  parseFloat(obj.price);
         },
         de_crease(product) {
-            let obj;
+               let obj;
             // التاكد من عدم وجود المنتج فى القائمه
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     if (obj.qyt > 1) {
-                        obj.qyt -= 1;
-                        obj.subtotal = obj.price * obj.qyt;
-                        this.total -= obj.price;
+                       (obj.qyt) -= 1;
+                        (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
+                        (this.total) -= parseFloat(obj.price);
                     }
                 }
             }

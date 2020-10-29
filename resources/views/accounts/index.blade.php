@@ -1,50 +1,86 @@
 @extends('layouts.master')
 @section('content')
 @section('title' ,'الحسابات')
+<div class="row">
+    <div class="col-lg-4 col-12">
+        <!-- small card -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>150</h3>
 
-<div class="card">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <h6>الحسابات</h6>
+                <p>الكاش</p>
             </div>
-            <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/account/create')}}" role="button">اضافة حساب </a>
-
+            <div class="icon">
+                <i class="fa fa-plus-circle"></i>
             </div>
         </div>
-
     </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-12">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>شبكه</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-12">
+        <!-- small card -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>44</h3>
+
+                <p>اجل</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-university"></i>
+            </div>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+
+<div class="card">
     <div class="card-body">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>الحساب</th>
-                <th> رقم الحساب </th>
-                <th> الرصيد </th>
-                <th>الضبط</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php $i =1; ?>
-            @foreach($accounts as $account)
-                <tr>
-                    <td scope="row">{{$i++}}</td>
+        <form action="" method="post">
 
-                    <td>{{$account->name}}</td>
-                    <td>{{$account->account_no}}</td>
-                    <td>{{$account->initial_balance}}</td>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="starting_date">تاريخ البدايه</label>
+                    <input type="date" class="form-control" name="starting_date" id="starting_date" aria-describedby="helpId">
+                    <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="end_date">تاريخ النهايه</label>
+                    <input type="date" class="form-control" name="end_date" id="end_date" aria-describedby="helpId">
+                    <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="payment">طريقه الدفع</label>
+                    <select class="form-control" name="payment_id" id="payment">
+                        <option value="0">الكل</option>
+                        @foreach($payments as $payment)
+                        <option value="{{ $payment->id}}">{{ $payment->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="payment">الفواتير</label>
+                    <select class="form-control" name="payment_id" id="payment">
+                        <option value="purchases">مشتريات</option>
+                        <option value="sales">مبيعات</option>
+                    </select>
+                </div>
 
-                    <td>
-                        <a name="" id="" class="btn  btn-sm btn-danger" href="#" role="button">توقيف</a>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="#" role="button">عرض</a>
+            </div>
 
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        </form>
     </div>
 </div>
 

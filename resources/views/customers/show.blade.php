@@ -20,7 +20,7 @@
                     </tr>
                     <tr>
                         <td> الرصيد</td>
-                        <td>{{$customer->name}} </td>
+                        <td>{{$customer->balance}} </td>
                     </tr>
                     </tbody>
                 </table>

@@ -2527,6 +2527,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2582,7 +2594,7 @@ var Toast = Swal.mixin({
           console.log(response.data);
           _this.products_table = [];
           _this.total = 0;
-          window.location.replace('print/' + response.data.invoice_id);
+          window.location.replace("print/" + response.data.invoice_id);
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
 
@@ -2688,7 +2700,7 @@ var Toast = Swal.mixin({
         });
       }
 
-      this.total += product.sale_price;
+      this.total = parseFloat(this.total) + parseFloat(product.sale_price);
       this.products = null;
       this.product_name = "";
     },
@@ -2700,7 +2712,7 @@ var Toast = Swal.mixin({
     remove_form_table: function remove_form_table(product) {
       // swal("هل انت متاكد من حذف المنتج!", "error");
       // تحديث السعر الكلى
-      this.total -= product.subtotal; // جلب الاندكس بتاع المنتج فى الجدول
+      this.total = parseFloat(this.total) - parseFloat(product.subtotal); // جلب الاندكس بتاع المنتج فى الجدول
 
       var id = this.products_table.indexOf(product); // حذف المنتج من الجدول
 
@@ -2715,11 +2727,11 @@ var Toast = Swal.mixin({
             return o.id === product.id;
           });
           obj.qyt += 1;
-          obj.subtotal = obj.price * obj.qyt;
+          obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
         }
       }
 
-      this.total += obj.price;
+      this.total = parseFloat(this.total) + parseFloat(obj.price);
     },
     de_crease: function de_crease(product) {
       var obj; // التاكد من عدم وجود المنتج فى القائمه
@@ -2732,8 +2744,8 @@ var Toast = Swal.mixin({
 
           if (obj.qyt > 1) {
             obj.qyt -= 1;
-            obj.subtotal = obj.price * obj.qyt;
-            this.total -= obj.price;
+            obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+            this.total -= parseFloat(obj.price);
           }
         }
       }
@@ -3134,6 +3146,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -3197,9 +3213,9 @@ var Toast = Swal.mixin({
       }).then(function (response) {
         if (response.status === 200) {
           console.log(response.data);
-          _this.products_table = []; // this.total = 0;
+          _this.products_table = [];
+          _this.total = 0; // this.total = "";
 
-          _this.total = "";
           _this.invoice_number = null;
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
@@ -3300,15 +3316,15 @@ var Toast = Swal.mixin({
           id: product.id,
           vat: product.vat,
           name: product.name,
-          price: product.sale_price,
+          price: product.purchase_price,
           qyt: 1,
-          subtotal: product.sale_price
+          subtotal: product.purchase_price
         });
       }
 
+      this.total = parseFloat(this.total) + parseFloat(product.purchase_price);
       this.products = null;
       this.product_name = "";
-      this.total += product.sale_price;
     },
 
     /**
@@ -3318,7 +3334,7 @@ var Toast = Swal.mixin({
     remove_form_table: function remove_form_table(product) {
       // swal("هل انت متاكد من حذف المنتج!", "error");
       // تحديث السعر الكلى
-      this.total -= product.subtotal; // جلب الاندكس بتاع المنتج فى الجدول
+      this.total = parseFloat(this.total) - parseFloat(product.subtotal); // جلب الاندكس بتاع المنتج فى الجدول
 
       var id = this.products_table.indexOf(product); // حذف المنتج من الجدول
 
@@ -3333,11 +3349,11 @@ var Toast = Swal.mixin({
             return o.id === product.id;
           });
           obj.qyt += 1;
-          obj.subtotal = obj.price * obj.qyt;
+          obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
         }
       }
 
-      this.total += obj.price;
+      this.total = parseFloat(this.total) + parseFloat(obj.price);
     },
     de_crease: function de_crease(product) {
       var obj; // التاكد من عدم وجود المنتج فى القائمه
@@ -3350,8 +3366,8 @@ var Toast = Swal.mixin({
 
           if (obj.qyt > 1) {
             obj.qyt -= 1;
-            obj.subtotal = obj.price * obj.qyt;
-            this.total -= obj.price;
+            obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+            this.total -= parseFloat(obj.price);
           }
         }
       }
@@ -21340,7 +21356,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-8" }, [
         _c("div", { staticClass: "card text-right" }, [
-          _c("div", { staticClass: "card-header" }, [
+          _c("div", { staticClass: "card-header h-10" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "form-group col-md-4" }, [
                 _c("label", { attrs: { for: "stock_id" } }, [_vm._v("العميل")]),
@@ -21509,9 +21525,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                    " +
+                            "\n                                        " +
                               _vm._s(product.name) +
-                              "\n                                "
+                              "\n                                    "
                           )
                         ]
                       )
@@ -21565,7 +21581,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "card-body h-70" }, [
             _c("table", { staticClass: "table" }, [
               _vm._m(0),
               _vm._v(" "),
@@ -21634,30 +21650,34 @@ var render = function() {
                       _c("th", { staticClass: "col-1" }, [_vm._v("المجموع:")]),
                       _vm._v(" "),
                       _c("td", { staticClass: "col-1" }, [
-                        _vm._v("SDG " + _vm._s(_vm.total))
+                        _vm._v(
+                          "\n                                            SDG " +
+                            _vm._s(_vm.total) +
+                            "\n                                        "
+                        )
                       ])
                     ])
                   ])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer text-muted" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-lg btn-info",
-                    on: { click: _vm.create_sales_invoice }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                انشاء فاتوره\n                            "
-                    )
-                  ]
-                )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-lg btn-info",
+                      on: { click: _vm.create_sales_invoice }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                    انشاء فاتوره\n                                "
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -21710,7 +21730,11 @@ var staticRenderFns = [
                 staticClass: "btn btn-dark btn-block",
                 attrs: { target: "_blank", href: "/pos", role: "button" }
               },
-              [_vm._v(" تعليق فاتورة ")]
+              [
+                _vm._v(
+                  "\n                            تعليق فاتورة\n                        "
+                )
+              ]
             )
           ])
         ])
@@ -22093,7 +22117,7 @@ var render = function() {
               _vm._l(_vm.payments, function(payment) {
                 return _c(
                   "option",
-                  { key: payment.id, attrs: { valuh: payment.id } },
+                  { key: payment.id, domProps: { value: payment.id } },
                   [
                     _vm._v(
                       "\n                            " + _vm._s(payment.name)
@@ -22335,7 +22359,11 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
                 _vm._v(" "),
                 _c("td", [
-                  _vm._v(_vm._s(product.subtotal + product.vat * product.vat))
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(product.subtotal + product.vat * product.vat) +
+                      "\n                        "
+                  )
                 ]),
                 _vm._v(" "),
                 _c("td", [
@@ -22407,7 +22435,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("الكميه")]),
         _vm._v(" "),
-        _c("th", [_vm._v("مجموع السعر ")]),
+        _c("th", [_vm._v("مجموع السعر")]),
         _vm._v(" "),
         _c("th", [_vm._v("الضريبه")]),
         _vm._v(" "),

@@ -3,6 +3,7 @@
 use App\model\purchase_invoice_h;
 use App\Model\sales_invoice_h;
 use App\model\setting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +20,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
 
-Route::get('print/{id}', function($id){
-    $info =  setting::find(1);
-    $invoice = sales_invoice_h::find($id);
-    return view('sales.print', compact('info' , 'invoice'));
-});
+
+
+    Route::get('print/{id}', function ($id) {
+        $info =  setting::find(1);
+        $invoice = sales_invoice_h::find($id);
+        return view('sales.print', compact('info', 'invoice'));
+    });
+
+    Route::get('ahmedhmed', function () {
+
+        return Auth::id();
+    });
+
+
     Route::get('/', 'dashboardController@index');
 
     Route::get('products', 'productController@index');
@@ -42,16 +52,16 @@ Route::get('print/{id}', function($id){
     Route::post('/category/create', 'categoryController@store');
     Route::get('/category/{id}', 'categoryController@show');
 
-    Route::get('expense_category','expenseCategoryController@index');
-    Route::get('expense_category/create','expenseCategoryController@create');
-    Route::post('expense_category/create','expenseCategoryController@store');
+    Route::get('expense_category', 'expenseCategoryController@index');
+    Route::get('expense_category/create', 'expenseCategoryController@create');
+    Route::post('expense_category/create', 'expenseCategoryController@store');
     Route::get('expense_category/cancel/{id}', 'expenseCategoryController@cancel');
     Route::get('expense_category/activate/{id}', 'expenseCategoryController@activate');
 
 
-    Route::get('expenses','expensesController@index');
-    Route::get('expense/create','expensesController@create');
-    Route::post('expense/create','expensesController@store');
+    Route::get('expenses', 'expensesController@index');
+    Route::get('expense/create', 'expensesController@create');
+    Route::post('expense/create', 'expensesController@store');
 
     Route::get('customers', 'customerController@index');
     Route::get('customer/create', 'customerController@create');
@@ -120,9 +130,13 @@ Route::get('print/{id}', function($id){
 
 
 
+
     Route::get('payments', 'paymentsController@index');
     Route::get('payments/toggle/{id}', 'paymentsController@toggle');
     Route::post('payments/create', 'paymentsController@store');
+
+    Route::get('settings', 'settingsController@index');
+    Route::get('settings/edit/{id}', 'settingsController@edit');
 });
 
 Route::get('/submit', function () {
