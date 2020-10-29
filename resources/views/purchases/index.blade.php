@@ -50,7 +50,9 @@
                         </button>
                         @else
                         <?php $amount = $purchase->total - $purchase->transaction->sum('amount'); ?>
-                        <purchase-btn amount="{{$amount}}" />
+                            <a href="{{url('/purchase/payment')}}/{{$purchase->id}}"  type="button" class="btn btn-sm btn-primary">
+                                المتبقى <span class="badge badge-light">{{$amount}}</span>
+                            </a>
                         @endif
                     </td>
 

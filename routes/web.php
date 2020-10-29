@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/create', 'purchaseController@create');
     Route::post('/purchase/create', 'purchaseController@store');
     Route::get('/purchase/{id}', 'purchaseController@show');
+    Route::get('/purchase/payment/{id}', 'purchaseController@payment');
+    Route::post('/purchase/payment/{id}', 'purchaseController@payment_post');
 
 
 

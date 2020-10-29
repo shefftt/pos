@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Model\purchase_invoice_h;
 use App\Model\stock;
 use App\model\supplier;
+use App\model\transaction;
 use App\Model\payment;
 use DB;
 use Illuminate\Http\Request;
@@ -59,6 +60,28 @@ class purchaseController extends Controller
             return Response($output);
         }
 
+
+
+    }
+
+
+    public function payment($id)
+    {
+        $invoice   = purchase_invoice_h::find($id);
+
+        return view('purchases.payment', compact('invoice'));
+
+
+        // $invoice->transaction()->create(['amount' => $request->total , 'to' => 4 , 'from' => 1]);
+    }
+    public function payment_post(Request $request,$id)
+    {
+
+
+        $invoice=(['amount' => $request->amount ,'transactionable_type' => "App\Model\purchase_invoice_h",'transactionable_id'=>$id, 'to' => 4 , 'from' => 1]);
+        transaction::create($invoice);
+
+        return redirect('purchase');
     }
 
 
