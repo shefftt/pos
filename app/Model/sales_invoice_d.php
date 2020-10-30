@@ -13,4 +13,6 @@ class sales_invoice_d extends Model
     {
         return $this->belongsTo(product::class);
     }
+
+
 }

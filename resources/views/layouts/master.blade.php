@@ -452,14 +452,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{url('/stocks')}}" class="nav-link">
-                                            <i class="fa fa-circle nav-icon"></i>
-                                            <p>
-                                                عرض المخازن
-                                            </p>
-                                        </a>
-                                    </li>
+
 
                                     <li class="nav-item">
                                         <a href="{{url('/purchases_report')}}" class="nav-link">
@@ -487,10 +480,10 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="{{url('/stock/create')}}" class="nav-link">
+                                        <a href="{{url('product_report')}}" class="nav-link">
                                             <i class="fa fa-circle nav-icon"></i>
                                             <p>
-                                                اضافة مخزن
+                                                 تقرير حركة المنتجات
                                             </p>
                                         </a>
                                     </li>
@@ -656,8 +649,8 @@
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js "></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js" ></script>
     <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>

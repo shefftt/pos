@@ -17,6 +17,11 @@ class purchase_invoice_h extends Model
     {
         return $this->hasMany(purchase_invoice_d::class, 'invoice_id', 'id');
     }
+    public function purchase_invoice_d()
+    {
+        return $this->belongsTo(purchase_invoice_d::class,'id');
+    }
+
 
     public function supplier()
     {

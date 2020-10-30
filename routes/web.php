@@ -129,6 +129,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('purchases_report', 'reportController@purchases');
     Route::post('purchases_report', 'reportController@purchases_report');
 
+    Route::get('product_report', 'reportController@product');
+    Route::post('product_report', 'reportController@product_report');
+
 
 
 

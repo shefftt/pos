@@ -79,14 +79,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th># متسلسل</th>
                         <th>المورد</th>
                         <th> المخزن</th>
                         <th> المجموع</th>
-                        <th>التاريخ</th>
                         <th> رقم الفاتوره</th>
                         <th> طريقه الدفع</th>
                         <th> التاريخ</th>
+                        <th>الضبط</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,12 +98,15 @@
                         <td>{{$purchase->supplier->name}}</td>
                         <td>{{$purchase->stock->name}}</td>
                         <td>{{$purchase->total}}</td>
-                        <td>{{$purchase->created_at}}</td>
-
 
                         <td>{{$purchase->invoice_number}}</td>
+
                         <td>{{$purchase->payment->name}}</td>
                         <td>{{$purchase->created_at}}</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
+
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

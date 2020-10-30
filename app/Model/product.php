@@ -15,8 +15,16 @@ class product extends Model
     public function stock(){
      return  $this->belongsTo(stock::class);
     }
+
     public function unit(){
         return $this->belongsTo(unit::class);
+    }
+
+    public function sales(){
+        return $this->hasMany(sales_invoice_d::class);
+    }
+    public function purchases(){
+        return $this->hasMany(purchase_invoice_d::class);
     }
 
 }

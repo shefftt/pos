@@ -48,6 +48,7 @@
                 <th>الوحده</th>
                 <th>الضريبه</th>
                 <th>مجموع الضريبه</th>
+                <th>الضبط</th>
 
 
             </tr>
@@ -66,6 +67,7 @@
                     <td>{{$product->product->unit->unit_name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
+                    <td></td>
                    </tr>
             @endforeach
             </tbody>
