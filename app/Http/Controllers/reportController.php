@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\customer;
 use App\model\payment;
+use App\Model\product;
 use App\Model\sales_invoice_h;
 use App\Model\purchase_invoice_h;
 use App\Model\purchase_invoice_d;
@@ -104,7 +105,6 @@ class reportController extends Controller
     public function purchases_report(Request $request)
     {
 
-        //        return $request;
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
 
@@ -126,4 +126,20 @@ class reportController extends Controller
         }
         return view('reports.purchases', compact('purchases_report', 'suppliers', 'payment_methods', 'setting', 'from', 'to'));
     }
+
+    public function product(){
+
+        $products = product::all();
+        return view('reports.product', compact('products'));
+
+    }
+    public function product_report(Request $request){
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+
+        $products = product::whereBetween('created_at', [$from, $to])
+            ->get();
+        return view('reports.product', compact('products'));
+    }
+
 }

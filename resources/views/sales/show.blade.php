@@ -2,34 +2,13 @@
 @section('content')
 @section('title' ,' فاتورة مبيعات ')
 
-<hr>
-<div class="card">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <img src="{{url('/image/logo.png')}}" class="rounded float-right" alt="logo">
-            </div>
-            <div class="col text-center">
-                <h2>{{\App\Model\setting::find(1)->name}}</h2>
-                <h6>{{\App\Model\setting::find(1)->address}}</h6>
-                <h6>{{\App\Model\setting::find(1)->phone}}</h6>
-
-            </div>
-            <div class="col">
-                <img src="{{url('/image/logo.png')}}" class="rounded float-left" alt="logo">
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="card text-left">
-    <img class="card-img-top" src="holder.js/100px180/" alt="">
-    <div class="card-body">
-        <table class="table">
+        <hr>
+<table class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>المنتج</th>
+                    <th>  الكمية</th>
                     <th>الكميه</th>
                     <th>سعر الوحده</th>
                     <th> الوحده</th>
@@ -39,19 +18,24 @@
 
                 </tr>
             </thead>
-            <br>
+    <div class="col-1">
+        <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
+    </div>
+    <br>
             <tbody>
-                <?php $i = 1; ?>
+                <?php $i = 1;
+                $vat_total = 0; ?>
                 @foreach($invoice->products as $product)
+                <?php $vat_total += $product->sub_vat; ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->product->unit->name}}</td>
+                    <td>{{$product->product->unit->unit_name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
-                    <td>{{$product->sub_total + $product->sub_vat }}</td>
+                    <td>{{$product->sub_total}}</td>
                     @endforeach
             </tbody>
         </table>
@@ -59,7 +43,7 @@
 
 
         <hr>
-        <div class="col-md-4 text-right">
+        <div class="col-md-4">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
@@ -68,22 +52,19 @@
                     </tr>
                     <tr>
                         <td>الضريبه</td>
-                        <td>{{ $invoice->vat_total}}</td>
+                        <td>{{ $vat_total}}</td>
                     </tr>
                     <tr>
                         <td>المجموع الكلى</td>
-                        <td>{{ $invoice->vat_total + $invoice->total}} </td>
+                        <td>{{$vat_total + ($invoice->total)}} </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+    <div class="card-footer">
 
-</div>
-<div class="card-footer">
-
-</div>
+    </div>
 </div>
 
 @endsection
