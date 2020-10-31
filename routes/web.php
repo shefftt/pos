@@ -5,6 +5,7 @@ use App\Model\sales_invoice_h;
 use App\model\setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\resources\lang\ar;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,17 @@ Route::middleware(['auth'])->group(function () {
         return Auth::id();
     });
 
+    Route::get('lang/{locale}', function ($locale) {
+        session()->put('locale',$locale);     
+        App::setLocale($locale);
+
+         return redirect()->back();
+    });
+
+    // Route::get('/', function () {
+      
+    //      return view('welcome');
+    // });
 
     Route::get('/', 'dashboardController@index');
 

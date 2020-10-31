@@ -227,7 +227,8 @@
                                 <a href="{{url('/')}}" class="nav-link active">
                                     <i class="nav-icon fa fa-dashboard"></i>
                                     <p>
-                                        الرئيسيه
+                                        {{ __('messages.well') }}
+
                                     </p>
                                 </a>
                             </li>
@@ -533,6 +534,41 @@
                                     </li>
                                 </ul>
                             </li>
+
+
+
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <img data-v-0288d978="" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyMjYgMjI2Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyMjZ2LTIyNmgyMjZ2MjI2eiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiNjY2NjY2MiPjxwYXRoIGQ9Ik00OS40Mzc1LDI4LjI1Yy0xMS42NDIwOSwwIC0yMS4xODc1LDkuNTQ1NDEgLTIxLjE4NzUsMjEuMTg3NXYxMTNjMCwxMS42NDIwOSA5LjU0NTQxLDIxLjE4NzUgMjEuMTg3NSwyMS4xODc1aDEyNy4xMjVjMTEuNjQyMDksMCAyMS4xODc1LC05LjU0NTQxIDIxLjE4NzUsLTIxLjE4NzV2LTExM2MwLC0xMS42NDIwOSAtOS41NDU0MSwtMjEuMTg3NSAtMjEuMTg3NSwtMjEuMTg3NXpNNDkuNDM3NSw0Mi4zNzVoMTI3LjEyNWMzLjk3MjY2LDAgNy4wNjI1LDMuMDg5ODQgNy4wNjI1LDcuMDYyNXYxMTNjMCwzLjk3MjY2IC0zLjA4OTg0LDcuMDYyNSAtNy4wNjI1LDcuMDYyNWgtMTI3LjEyNWMtMy45NzI2NiwwIC03LjA2MjUsLTMuMDg5ODQgLTcuMDYyNSwtNy4wNjI1di0xMTNjMCwtMy45NzI2NiAzLjA4OTg0LC03LjA2MjUgNy4wNjI1LC03LjA2MjV6TTYzLjU2MjUsNTYuNWMtMy45MTc0OCwwIC03LjA2MjUsMy4xNDUwMiAtNy4wNjI1LDcuMDYyNXY1Ni41YzAsMy45MTc0OCAzLjE0NTAyLDcuMDYyNSA3LjA2MjUsNy4wNjI1aDk4Ljg3NWMzLjkxNzQ4LDAgNy4wNjI1LC0zLjE0NTAyIDcuMDYyNSwtNy4wNjI1di01Ni41YzAsLTMuOTE3NDggLTMuMTQ1MDIsLTcuMDYyNSAtNy4wNjI1LC03LjA2MjV6TTcwLjYyNSw3MC42MjVoNTYuNXYxNC4xMjVoLTU2LjV6TTE0MS4yNSw3MC42MjVoMTQuMTI1djE0LjEyNWgtMTQuMTI1ek03MC42MjUsOTguODc1aDU2LjV2MTQuMTI1aC01Ni41ek0xNDEuMjUsOTguODc1aDE0LjEyNXYxNC4xMjVoLTE0LjEyNXpNMTEzLDE0MS4yNXYxNC4xMjVoNTYuNXYtMTQuMTI1eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+" alt="icon" width="26" height="22">
+                                    <p>
+                                        اللغه
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="lang/ar" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                عربي
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="lang/en" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                انجليزي                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+
 
                             <li class="nav-header">اخرى</li>
                             <li class="nav-item">
