@@ -2539,6 +2539,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2561,15 +2579,25 @@ var Toast = Swal.mixin({
       products_table: [],
       payments: [],
       account_id: 1,
+      amount_paid: null,
       stocks: [],
       stock_id: 0,
+      invoice_type: "normal",
       customers: [],
       customer_id: 0,
       payment_method: 1,
-      total: 0
+      total: 0,
+      vat_total: 0
     };
   },
   methods: {
+    hold_sales_invoice: function hold_sales_invoice() {
+      document.getElementById("new_pos").onClick();
+    },
+    delete_sales_invoice: function delete_sales_invoice() {
+      this.products_table = [];
+      this.total = 0;
+    },
     create_sales_invoice: function create_sales_invoice() {
       var _this = this;
 
@@ -2657,7 +2685,7 @@ var Toast = Swal.mixin({
         }
       }).then(function (response) {
         if (!response.data.barcode) {
-          swal("تحديث!", "عفوا المنتج غير موجود!", "warning");
+          swal("خطاء!", "عفوا المنتج غير موجود!", "warning");
           _this6.product_barcode = "";
 
           _this6.$refs.product_barcode.focus();
@@ -2938,8 +2966,7 @@ var Toast = Swal.mixin({
     return {};
   },
   methods: {
-    showModel: function showModel() {
-      alert('wwwwwwwwwwwwww');
+    showModel: function showModel() {//
     }
   }
 });
@@ -21355,336 +21382,496 @@ var render = function() {
   return _c("div", { staticClass: "px-4" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-8" }, [
-        _c("div", { staticClass: "card text-right" }, [
-          _c("div", { staticClass: "card-header h-10" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-group col-md-4" }, [
-                _c("label", { attrs: { for: "stock_id" } }, [_vm._v("العميل")]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.customer_id,
-                        expression: "customer_id"
-                      }
-                    ],
-                    staticClass: "form-control form-control-sm",
-                    attrs: { name: "customer_id", id: "customer_id" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.customer_id = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  _vm._l(_vm.customers, function(customer) {
-                    return _c(
-                      "option",
-                      { key: customer.id, domProps: { value: customer.id } },
-                      [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(customer.name)
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group col-md-2" },
-                [
-                  _c("label", { attrs: { for: "" } }),
+        _c(
+          "div",
+          {
+            staticClass: "card text-right",
+            staticStyle: { "min-height": "95vh" }
+          },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "form-group col-md-4" }, [
+                  _c("label", { attrs: { for: "stock_id" } }, [
+                    _vm._v("العميل")
+                  ]),
                   _vm._v(" "),
-                  _c("add-customer-btn", { attrs: { amount: "222222222222" } })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "payment_id" } }, [
-                  _vm._v("طريقه الدفع")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.payment_method,
-                        expression: "payment_method"
-                      }
-                    ],
-                    staticClass: "form-control form-control-sm",
-                    attrs: { name: "payment_id", id: "payment_id" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.payment_method = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  _vm._l(_vm.payments, function(payment) {
-                    return _c(
-                      "option",
-                      { key: payment.id, domProps: { value: payment.id } },
-                      [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(payment.name)
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6 mr-auto" }, [
-                _c("label", { attrs: { for: "product_name" } }, [
-                  _vm._v("اسم المنتج")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.product_name,
-                      expression: "product_name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    id: "product_name",
-                    type: "text",
-                    placeholder: "اسم المنتج"
-                  },
-                  domProps: { value: _vm.product_name },
-                  on: {
-                    keyup: _vm.get_product_name,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.product_name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", [
                   _c(
-                    "ul",
+                    "select",
                     {
-                      staticClass: "list-group",
-                      staticStyle: {
-                        position: "absolute",
-                        "z-index": "1000",
-                        width: "96%",
-                        "margin-top": "5px"
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.customer_id,
+                          expression: "customer_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { name: "customer_id", id: "customer_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.customer_id = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
                       }
                     },
-                    _vm._l(_vm.products, function(product) {
+                    _vm._l(_vm.customers, function(customer) {
                       return _c(
-                        "li",
-                        {
-                          key: product.id,
-                          staticClass: "list-group-item",
-                          on: {
-                            click: function($event) {
-                              return _vm.select_product(product)
-                            }
-                          }
-                        },
+                        "option",
+                        { key: customer.id, domProps: { value: customer.id } },
                         [
                           _vm._v(
-                            "\n                                        " +
-                              _vm._s(product.name) +
-                              "\n                                    "
+                            "\n                                    " +
+                              _vm._s(customer.name)
                           )
                         ]
                       )
                     }),
                     0
                   )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6 mr-auto" }, [
-                _c("label", { attrs: { for: "product_barcode" } }, [
-                  _vm._v("الباركود")
                 ]),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.product_barcode,
-                      expression: "product_barcode"
-                    }
+                _c(
+                  "div",
+                  { staticClass: "form-group col-md-2" },
+                  [
+                    _c("label", { attrs: { for: "" } }),
+                    _vm._v(" "),
+                    _c("add-customer-btn", {
+                      attrs: { amount: "222222222222" }
+                    })
                   ],
-                  ref: "product_barcode",
-                  staticClass: "form-control",
-                  attrs: {
-                    id: "product_barcode",
-                    type: "text",
-                    placeholder: "الباركود"
-                  },
-                  domProps: { value: _vm.product_barcode },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-3" }, [
+                  _c("label", { attrs: { for: "payment_id" } }, [
+                    _vm._v("طريقه الدفع")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment_method,
+                          expression: "payment_method"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { name: "payment_id", id: "payment_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.payment_method = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
                       }
-                      return _vm.get_product_barcode($event)
                     },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    _vm._l(_vm.payments, function(payment) {
+                      return _c(
+                        "option",
+                        { key: payment.id, domProps: { value: payment.id } },
+                        [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(payment.name)
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-3" }, [
+                  _c("label", { attrs: { for: "payment_id" } }, [
+                    _vm._v("نوع الفاتوره")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.invoice_type,
+                          expression: "invoice_type"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { name: "invoice_type", id: "payment_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.invoice_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
                       }
-                      _vm.product_barcode = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body h-70" }, [
-            _c("table", { staticClass: "table" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                { attrs: { id: "product" } },
-                _vm._l(_vm.products_table, function(product) {
-                  return _c("tr", { key: product.id }, [
-                    _c("td", [_vm._v(_vm._s(product.name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(product.price))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("i", {
-                        staticClass: "nav-icon fa fa-plus-circle label-success",
-                        on: {
-                          click: function($event) {
-                            return _vm.in_crease(product)
-                          }
-                        }
-                      }),
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(product.qyt) +
-                          "\n                                    "
-                      ),
-                      _c("i", {
-                        staticClass: "nav-icon fa fa-remove label-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.de_crease(product)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(product.subtotal))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(product.vat))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("i", {
-                        staticClass: "nav-icon fa fa-remove label-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.remove_form_table(product)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                }),
-                0
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-12" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c("table", { staticClass: "table" }, [
-                    _c("tr", [
-                      _c("th", { staticClass: "col-1" }, [_vm._v("المجموع:")]),
+                    },
+                    [
+                      _c("option", { attrs: { value: "normal" } }, [
+                        _vm._v("فاتورة عاديه")
+                      ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "col-1" }, [
-                        _vm._v(
-                          "\n                                            SDG " +
-                            _vm._s(_vm.total) +
-                            "\n                                        "
-                        )
+                      _c("option", { attrs: { value: "refund" } }, [
+                        _vm._v("فاتورة راجعه")
                       ])
-                    ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-6 mr-auto" }, [
+                  _c("label", { attrs: { for: "product_name" } }, [
+                    _vm._v("اسم المنتج")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product_name,
+                        expression: "product_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "product_name",
+                      type: "text",
+                      placeholder: "اسم المنتج"
+                    },
+                    domProps: { value: _vm.product_name },
+                    on: {
+                      keyup: _vm.get_product_name,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.product_name = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "list-group",
+                        staticStyle: {
+                          position: "absolute",
+                          "z-index": "1000",
+                          width: "96%",
+                          "margin-top": "5px"
+                        }
+                      },
+                      _vm._l(_vm.products, function(product) {
+                        return _c(
+                          "li",
+                          {
+                            key: product.id,
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.select_product(product)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(product.name) +
+                                "\n                                    "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-6 mr-auto" }, [
+                  _c("label", { attrs: { for: "product_barcode" } }, [
+                    _vm._v("الباركود")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product_barcode,
+                        expression: "product_barcode"
+                      }
+                    ],
+                    ref: "product_barcode",
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "product_barcode",
+                      type: "text",
+                      placeholder: "الباركود"
+                    },
+                    domProps: { value: _vm.product_barcode },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.get_product_barcode($event)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.product_barcode = $event.target.value
+                      }
+                    }
+                  })
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-lg btn-info",
-                      on: { click: _vm.create_sales_invoice }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                    انشاء فاتوره\n                                "
-                      )
-                    ]
-                  )
-                ])
+            _c("div", { staticClass: "card-body" }, [
+              _c("table", { staticClass: "table" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { attrs: { id: "product" } },
+                  _vm._l(_vm.products_table, function(product) {
+                    return _c("tr", { key: product.id }, [
+                      _c("td", [_vm._v(_vm._s(product.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.price))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("img", {
+                          attrs: { src: "image/add.png" },
+                          on: {
+                            click: function($event) {
+                              return _vm.in_crease(product)
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(product.qyt) +
+                            "\n\n                                    "
+                        ),
+                        _c("img", {
+                          attrs: { src: "image/minus.png" },
+                          on: {
+                            click: function($event) {
+                              return _vm.de_crease(product)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.subtotal))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.vat))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("img", {
+                          attrs: { src: "image/delete.png" },
+                          on: {
+                            click: function($event) {
+                              return _vm.remove_form_table(product)
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  }),
+                  0
+                )
               ])
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-4" }, [
+        _c("div", { staticClass: "card text-right" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("table", { staticClass: "table table-bordered " }, [
+              _c("tr", [
+                _c("td", [_vm._v("المجموع")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.total))])
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("المبلغ المدفوع")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.amount_paid,
+                          expression: "amount_paid"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "المبلغ المدفوع" },
+                      domProps: { value: _vm.amount_paid },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.amount_paid = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("المبلغ المبتقى")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.amount_paid - _vm.total))])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 form-group text-right" }, [
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "shortkey",
+                      rawName: "v-shortkey.push",
+                      value: ["f1"],
+                      expression: "['f1']",
+                      modifiers: { push: true }
+                    }
+                  ],
+                  staticClass: "btn btn-dark btn-block",
+                  attrs: {
+                    id: "new_pos",
+                    target: "_blank",
+                    href: "/pos",
+                    role: "button"
+                  },
+                  on: { shortkey: _vm.hold_sales_invoice }
+                },
+                [
+                  _vm._v(
+                    "\n                            تعليق فاتورة F1\n                        "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 form-group text-right" }, [
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "shortkey",
+                      rawName: "v-shortkey.push",
+                      value: ["f2"],
+                      expression: "['f2']",
+                      modifiers: { push: true }
+                    }
+                  ],
+                  staticClass: "btn-info btn btn-block btn-info",
+                  on: {
+                    click: _vm.create_sales_invoice,
+                    shortkey: _vm.create_sales_invoice
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                            انشاء فاتوره F2\n                        "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 form-group text-right" }, [
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "shortkey",
+                      rawName: "v-shortkey.push",
+                      value: ["f3"],
+                      expression: "['f3']",
+                      modifiers: { push: true }
+                    }
+                  ],
+                  staticClass: "btn-danger btn btn-block btn-info",
+                  on: {
+                    click: _vm.delete_sales_invoice,
+                    shortkey: _vm.delete_sales_invoice
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                            حذف F3\n                        "
+                  )
+                ]
+              )
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _vm._m(1)
+      ])
     ])
   ])
 }
@@ -21715,30 +21902,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4" }, [
-      _c("div", { staticClass: "card text-right" }, [
-        _c("img", {
-          staticClass: "card-img-top",
-          attrs: { src: "holder.js/100px180/", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "col text-left" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-dark btn-block",
-                attrs: { target: "_blank", href: "/pos", role: "button" }
-              },
-              [
-                _vm._v(
-                  "\n                            تعليق فاتورة\n                        "
-                )
-              ]
-            )
-          ])
-        ])
-      ])
+    return _c("tr", [
+      _c("td", [_vm._v("الضريبه")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("123")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("المجموع + الضريبه")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("123")])
     ])
   }
 ]
@@ -22576,6 +22753,18 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-shortkey/dist/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-shortkey/dist/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t():undefined}("undefined"!=typeof self?self:this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="../dist/",t(t.s=0)}([function(e,t,n){"use strict";(function(r){function o(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var c;n(2),n(3);var u={},i={},a=[],l=[],s=!1,f=function(e){return e="string"==typeof e?JSON.parse(e.replace(/\'/gi,'"')):e,e instanceof Array?{"":e}:e},p=function(e,t,n,r){var o=!0===n.modifiers.push,c=!0===n.modifiers.avoid,u=!0==!n.modifiers.focus,i=!0===n.modifiers.once;c?(a=a.filter(function(e){return!e===t}),a.push(t)):v({b:e,push:o,once:i,focus:u,el:r.elm})},y=function(e,t){for(var n in e){var r=u.encodeKey(e[n]),o=i[r].el.indexOf(t);i[r].el.length>1&&o>-1?i[r].el.splice(o,1):delete i[r]}};u.install=function(e,t){l=[].concat(o(t&&t.prevent?t.prevent:[])),e.directive("shortkey",{bind:function(e,t,n){var r=f(t.value);p(r,e,t,n)},update:function(e,t,n){var r=f(t.oldValue);y(r,e);var o=f(t.value);p(o,e,t,n)},unbind:function(e,t){var n=f(t.value);y(n,e)}})},u.decodeKey=function(e){return d(e)},u.encodeKey=function(e){var t={};t.shiftKey=e.includes("shift"),t.ctrlKey=e.includes("ctrl"),t.metaKey=e.includes("meta"),t.altKey=e.includes("alt");var n=d(t);return n+=e.filter(function(e){return!["shift","ctrl","meta","alt"].includes(e)}).join("")};var d=function(e){var t="";return("Shift"===e.key||e.shiftKey)&&(t+="shift"),("Control"===e.key||e.ctrlKey)&&(t+="ctrl"),("Meta"===e.key||e.metaKey)&&(t+="meta"),("Alt"===e.key||e.altKey)&&(t+="alt"),"ArrowUp"===e.key&&(t+="arrowup"),"ArrowLeft"===e.key&&(t+="arrowleft"),"ArrowRight"===e.key&&(t+="arrowright"),"ArrowDown"===e.key&&(t+="arrowdown"),"AltGraph"===e.key&&(t+="altgraph"),"Escape"===e.key&&(t+="esc"),"Enter"===e.key&&(t+="enter"),"Tab"===e.key&&(t+="tab")," "===e.key&&(t+="space"),"PageUp"===e.key&&(t+="pageup"),"PageDown"===e.key&&(t+="pagedown"),"Home"===e.key&&(t+="home"),"End"===e.key&&(t+="end"),"Delete"===e.key&&(t+="del"),"Backspace"===e.key&&(t+="backspace"),"Insert"===e.key&&(t+="insert"),"NumLock"===e.key&&(t+="numlock"),"CapsLock"===e.key&&(t+="capslock"),"Pause"===e.key&&(t+="pause"),"ContextMenu"===e.key&&(t+="contextmenu"),"ScrollLock"===e.key&&(t+="scrolllock"),"BrowserHome"===e.key&&(t+="browserhome"),"MediaSelect"===e.key&&(t+="mediaselect"),(e.key&&" "!==e.key&&1===e.key.length||/F\d{1,2}|\//g.test(e.key))&&(t+=e.key.toLowerCase()),t},h=function(e){var t=new CustomEvent("shortkey",{bubbles:!1});i[e].key&&(t.srcKey=i[e].key);var n=i[e].el;n[n.length-1].dispatchEvent(t)};u.keyDown=function(e){(!i[e].once&&!i[e].push||i[e].push&&!s)&&h(e)},r&&Object({NODE_ENV:"production"})&&function(){document.addEventListener("keydown",function(e){var t=u.decodeKey(e);if(m(t))if(e.preventDefault(),e.stopPropagation(),i[t].focus)u.keyDown(t),s=!0;else if(!s){var n=i[t].el;n[n.length-1].focus(),s=!0}},!0),document.addEventListener("keyup",function(e){var t=u.decodeKey(e);m(t)&&(e.preventDefault(),e.stopPropagation(),(i[t].once||i[t].push)&&h(t)),s=!1},!0)}();var v=function(e){var t=e.b,n=e.push,r=e.once,o=e.focus,c=e.el;for(var a in t){var l=u.encodeKey(t[a]),s=i[l]&&i[l].el?i[l].el:[];s.push(c),i[l]={push:n,once:r,focus:o,key:a,el:s}}},m=function(e){var t=!!a.find(function(e){return e===document.activeElement}),n=!!l.find(function(e){return document.activeElement&&document.activeElement.matches(e)});return!!i[e]&&!(t||n)};void 0!==e&&e.exports?e.exports=u:void 0!==(c=function(){return u}.call(t,n,t,e))&&(e.exports=c)}).call(t,n(1))},function(e,t){function n(){throw new Error("setTimeout has not been defined")}function r(){throw new Error("clearTimeout has not been defined")}function o(e){if(s===setTimeout)return setTimeout(e,0);if((s===n||!s)&&setTimeout)return s=setTimeout,setTimeout(e,0);try{return s(e,0)}catch(t){try{return s.call(null,e,0)}catch(t){return s.call(this,e,0)}}}function c(e){if(f===clearTimeout)return clearTimeout(e);if((f===r||!f)&&clearTimeout)return f=clearTimeout,clearTimeout(e);try{return f(e)}catch(t){try{return f.call(null,e)}catch(t){return f.call(this,e)}}}function u(){h&&y&&(h=!1,y.length?d=y.concat(d):v=-1,d.length&&i())}function i(){if(!h){var e=o(u);h=!0;for(var t=d.length;t;){for(y=d,d=[];++v<t;)y&&y[v].run();v=-1,t=d.length}y=null,h=!1,c(e)}}function a(e,t){this.fun=e,this.array=t}function l(){}var s,f,p=e.exports={};!function(){try{s="function"==typeof setTimeout?setTimeout:n}catch(e){s=n}try{f="function"==typeof clearTimeout?clearTimeout:r}catch(e){f=r}}();var y,d=[],h=!1,v=-1;p.nextTick=function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];d.push(new a(e,t)),1!==d.length||h||o(i)},a.prototype.run=function(){this.fun.apply(null,this.array)},p.title="browser",p.browser=!0,p.env={},p.argv=[],p.version="",p.versions={},p.on=l,p.addListener=l,p.once=l,p.off=l,p.removeListener=l,p.removeAllListeners=l,p.emit=l,p.prependListener=l,p.prependOnceListener=l,p.listeners=function(e){return[]},p.binding=function(e){throw new Error("process.binding is not supported")},p.cwd=function(){return"/"},p.chdir=function(e){throw new Error("process.chdir is not supported")},p.umask=function(){return 0}},function(e,t){Element.prototype.matches||(Element.prototype.matches=Element.prototype.matchesSelector||Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector)},function(e,t){!function(){if("undefined"!=typeof window)try{var e=new window.CustomEvent("test",{cancelable:!0});if(e.preventDefault(),!0!==e.defaultPrevented)throw new Error("Could not prevent default")}catch(e){var t=function(e,t){var n,r;return t=t||{},t.bubbles=!!t.bubbles,t.cancelable=!!t.cancelable,n=document.createEvent("CustomEvent"),n.initCustomEvent(e,t.bubbles,t.cancelable,t.detail),r=n.preventDefault,n.preventDefault=function(){r.call(this);try{Object.defineProperty(this,"defaultPrevented",{get:function(){return!0}})}catch(e){this.defaultPrevented=!0}},n};t.prototype=window.Event.prototype,window.CustomEvent=t}}()}])});
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -34649,7 +34838,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // require('./bootstrap');
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(__webpack_require__(/*! vue-shortkey */ "./node_modules/vue-shortkey/dist/index.js")); // require('./bootstrap');
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example', __webpack_require__(/*! ./components/ExampleCo.vue */ "./resources/js/components/ExampleCo.vue")["default"]);
@@ -34976,14 +35166,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/js/components/purchaseBtnComponent.vue ***!
   \**********************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _purchaseBtnComponent_vue_vue_type_template_id_db229d26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./purchaseBtnComponent.vue?vue&type=template&id=db229d26&scoped=true& */ "./resources/js/components/purchaseBtnComponent.vue?vue&type=template&id=db229d26&scoped=true&");
 /* harmony import */ var _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./purchaseBtnComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/purchaseBtnComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -35013,7 +35204,7 @@ component.options.__file = "resources/js/components/purchaseBtnComponent.vue"
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/purchaseBtnComponent.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

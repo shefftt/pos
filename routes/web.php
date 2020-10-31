@@ -159,3 +159,5 @@ Route::get('/create_invoice', function () {
 
 Route::get('login', 'loginController@index')->name('login');
 Route::post('login', 'loginController@store');
+
+Route::get('logout', 'loginController@logout');

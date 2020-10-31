@@ -2,7 +2,7 @@
 <html dir="rtl" lang="en">
 
 <head>
-    <title>POS</title>
+    <title>المبيعات</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Tell the browser to be responsive to screen width -->
@@ -38,11 +38,47 @@
     <link rel="stylesheet" href="{{asset('dist/css/custom-style.css?v=1')}}">
     <link rel="stylesheet" href="{{asset('css/app.css?v=1')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.19.0/dist/sweetalert2.min.css?v=1">
+    <style>
+        .img-icon{width: 20px; height: 20px;}
+    </style>
 
 </head>
 
 <body>
     <div id="app" class="wrapper">
+
+        <nav class="navbar align-top navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand">
+                <img src="{{url('/image/logo.png')}}" class="rounded" width="48" height="48" class="" alt="logo">
+            </a>
+            <div class="col-6 mr-auto ">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" type="search" id="search" placeholder="البحث عن فاتوره">
+                    </div>
+                    <div class="form-group">
+                        <button id="searchBtn" class="btn-info btn btn-info">بحث</button>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav" id="navId">
+                <li class="nav-item">
+
+                    <a href="{{url('/')}}" class="nav-link"> <img src="{{url('/image/dashboard.png')}}" class="img-icon"> لوحه التحكم </a>
+                </li>
+
+                <div class="row mr-auto">
+                    <li class="nav-item">
+                        <a href="#tab5Id" class="nav-link"><img src="{{url('/image/user_male.png')}}" class="img-icon"> مرحبا بك {{auth()->user()->name}}  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('logout')}}" class="nav-link"><img src="{{url('/image/sign_out.png')}}" class="img-icon"> خروج  </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+
         <pos />
 
     </div>
@@ -86,6 +122,19 @@
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        $("#search").on('keypress', function(e) {
+            if (e.which == 13) {
+                var id = $("#search").val();
+                window.location = "/print/" + id
+
+            }
+        });
+        $("#searchBtn").click(function() {
+            var id = $("#search").val();
+            window.location = "/print/" + id
+        });
+    </script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@ import './bootstrap';
 import Vue from 'vue';
 import axios from 'axios'
 import swal from 'sweetalert';
+Vue.use(require('vue-shortkey'))
 
 // require('./bootstrap');
 window.Vue = require('vue');

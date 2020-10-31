@@ -2,8 +2,8 @@
     <div class="px-4">
         <div class="row">
             <div class="col-8">
-                <div class="card text-right">
-                    <div class="card-header h-10">
+                <div class="card text-right" style="min-height: 95vh;">
+                    <div class="card-header">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="stock_id">العميل</label>
@@ -28,7 +28,7 @@
                                 <add-customer-btn amount="222222222222" />
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="payment_id">طريقه الدفع</label>
                                 <select
                                     class="form-control form-control-sm"
@@ -43,6 +43,18 @@
                                     >
                                         {{ payment.name }}</option
                                     >
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="payment_id">نوع الفاتوره</label>
+                                <select
+                                    class="form-control form-control-sm"
+                                    name="invoice_type"
+                                    id="payment_id"
+                                    v-model="invoice_type"
+                                >
+                                    <option value="normal">فاتورة عاديه</option>
+                                    <option value="refund">فاتورة راجعه</option>
                                 </select>
                             </div>
 
@@ -88,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body h-70">
+                    <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -109,89 +121,95 @@
                                     <td>{{ product.name }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>
-                                        <i
-                                            @click="in_crease(product)"
-                                            class="nav-icon fa fa-plus-circle label-success"
-                                        ></i>
+
+                                        <img src="image/add.png"   @click="in_crease(product)">
                                         {{ product.qyt }}
-                                        <i
-                                            @click="de_crease(product)"
-                                            class="nav-icon fa fa-remove label-danger"
-                                        ></i>
+
+                                        <img src="image/minus.png"  @click="de_crease(product)">
                                     </td>
                                     <td>{{ product.subtotal }}</td>
                                     <td>{{ product.vat }}</td>
                                     <td>{{ product.vat * product.qyt }}</td>
                                     <td>
-                                        <i
-                                            @click="remove_form_table(product)"
-                                            class="nav-icon fa fa-remove label-danger"
-                                        ></i>
+                                        <img src="image/delete.png" @click="remove_form_table(product)">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="col-md-12">
-                        <div class="row">
-                            <!-- accepted payments column -->
-                            <!-- <div class="col-6">
-                                <p class="lead">الدفع:</p>
-
-                                <p
-                                    class="text-muted well well-sm shadow-none"
-                                    style="margin-top: 10px;"
-                                >
-                                    <!-- الفاتورة صالحه لمده اسبوعين فقط -->
-                            <!-- </p>
-                            </div> -->
-                            <!-- /.col -->
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tr>
-                                            <th class="col-1">المجموع:</th>
-                                            <td class="col-1">
-                                                SDG {{ total }}
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button
-                                        @click="create_sales_invoice"
-                                        class="btn btn-lg btn-info"
-                                    >
-                                        انشاء فاتوره
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="card text-right">
-                    <img
-                        class="card-img-top"
-                        src="holder.js/100px180/"
-                        alt=""
-                    />
                     <div class="card-body">
-                        <div class="col text-left">
-                            <a
+                        <table class="table table-bordered ">
+                            <!-- <table class="table table-striped table-inverse table-responsive"> -->
+                            <tr>
+                                <td>المجموع</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            <tr>
+                                <td>الضريبه</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td>المجموع + الضريبه</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td>المبلغ المدفوع</td>
+                                <td>
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            v-model="amount_paid"
+                                            placeholder="المبلغ المدفوع"
+                                        />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>المبلغ المبتقى</td>
+                                <td>{{ amount_paid - total }}</td>
+                            </tr>
+                        </table>
+
+                        <hr />
+                        <div class="col-12 form-group text-right">
+                            <a id="new_pos"
+
+                                v-shortkey.push="['f1']"
+                                @shortkey="hold_sales_invoice"
                                 class="btn btn-dark btn-block"
                                 target="_blank"
                                 href="/pos"
                                 role="button"
                             >
-                                تعليق فاتورة
+                                تعليق فاتورة F1
                             </a>
+                        </div>
+                        <div class="col-12 form-group text-right">
+                            <button
+                                @click="create_sales_invoice"
+
+                                v-shortkey.push="['f2']"
+                                @shortkey="create_sales_invoice"
+                                class="btn-info btn btn-block btn-info"
+                            >
+                                انشاء فاتوره F2
+                            </button>
+                        </div>
+                        <div class="col-12 form-group text-right">
+                            <button
+                                @click="delete_sales_invoice"
+                                class="btn-danger btn btn-block btn-info"
+
+                                v-shortkey.push="['f3']"
+                                @shortkey="delete_sales_invoice"
+                            >
+                                حذف F3
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -224,19 +242,29 @@ export default {
 
             payments: [],
             account_id: 1,
+            amount_paid: null,
 
             stocks: [],
             stock_id: 0,
+            invoice_type: "normal",
 
             customers: [],
             customer_id: 0,
 
             payment_method: 1,
 
-            total: 0
+            total: 0,
+            vat_total: 0
         };
     },
     methods: {
+        hold_sales_invoice() {
+            document.getElementById("new_pos").onClick();
+        },
+        delete_sales_invoice() {
+            this.products_table = [];
+            this.total = 0;
+        },
         create_sales_invoice() {
             // validtions
             if (
@@ -330,7 +358,7 @@ export default {
                 })
                 .then(response => {
                     if (!response.data.barcode) {
-                        swal("تحديث!", "عفوا المنتج غير موجود!", "warning");
+                        swal("خطاء!", "عفوا المنتج غير موجود!", "warning");
                         this.product_barcode = "";
                         this.$refs.product_barcode.focus();
                     } else {
@@ -371,7 +399,8 @@ export default {
                 });
             }
 
-           this.total = parseFloat(this.total) + parseFloat(product.sale_price);
+            this.total =
+                parseFloat(this.total) + parseFloat(product.sale_price);
             this.products = null;
             this.product_name = "";
         },
@@ -382,7 +411,7 @@ export default {
         remove_form_table(product) {
             // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
-            (this.total) =  parseFloat(this.total) - parseFloat(product.subtotal);
+            this.total = parseFloat(this.total) - parseFloat(product.subtotal);
 
             // جلب الاندكس بتاع المنتج فى الجدول
             let id = this.products_table.indexOf(product);
@@ -397,10 +426,10 @@ export default {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     obj.qyt += 1;
-                    (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
+                    obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
                 }
             }
-            (this.total) = parseFloat(this.total) +  parseFloat(obj.price);
+            this.total = parseFloat(this.total) + parseFloat(obj.price);
         },
         de_crease(product) {
             let obj;
@@ -409,9 +438,10 @@ export default {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     if (obj.qyt > 1) {
-                       (obj.qyt) -= 1;
-                        (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
-                        (this.total) -= parseFloat(obj.price);
+                        obj.qyt -= 1;
+                        obj.subtotal =
+                            parseFloat(obj.price) * parseFloat(obj.qyt);
+                        this.total -= parseFloat(obj.price);
                     }
                 }
             }
