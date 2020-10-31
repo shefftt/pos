@@ -15,7 +15,7 @@
         @csrf
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label for="">اسم المنتج</label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                     @error('name')
@@ -77,7 +77,7 @@
                     <label for="category_id">الوحده</label>
                     <select class="form-control" name="unit_id" id="unit">
                         @foreach($units as $unit)
-                            <option value="{{$unit->id}}">{{$unit->unit_name}}</option>
+                            <option value="{{$unit->id}}">{{$unit->name}}</option>
                         @endforeach
                     </select>
                 </div>

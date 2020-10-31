@@ -23,7 +23,8 @@ class purchaseController extends Controller
     {
         $suppliers =  supplier::all();
         $stocks    =  stock::all();
-        return view('purchases.create', compact('suppliers', 'stocks'));
+        $purchase = "purchase";
+        return view('purchases.create', compact('suppliers', 'stocks' ,'purchase'));
     }
 
     protected function show($id)

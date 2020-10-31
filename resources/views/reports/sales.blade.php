@@ -78,7 +78,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>#</th>
+            <th># متسلسل</th>
             <th>العميل</th>
             <th> المجموع</th>
             <th> طريقة الدفع</th>

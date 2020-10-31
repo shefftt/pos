@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-8">
                 <div class="card text-right">
-                    <div class="card-header">
+                    <div class="card-header h-10">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="stock_id">العميل</label>
@@ -25,23 +25,23 @@
 
                             <div class="form-group col-md-2">
                                 <label for=""></label>
-                                <add-customer-btn amount="222222222222"/>
+                                <add-customer-btn amount="222222222222" />
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="account_id">طريقه الدفع</label>
+                                <label for="payment_id">طريقه الدفع</label>
                                 <select
                                     class="form-control form-control-sm"
-                                    name="account_id"
-                                    id="account_id"
+                                    name="payment_id"
+                                    id="payment_id"
                                     v-model="payment_method"
                                 >
                                     <option
-                                        v-for="account in accounts"
-                                        :value="account.id"
-                                        :key="account.id"
+                                        v-for="payment in payments"
+                                        :value="payment.id"
+                                        :key="payment.id"
                                     >
-                                        {{ account.name }}</option
+                                        {{ payment.name }}</option
                                     >
                                 </select>
                             </div>
@@ -56,22 +56,22 @@
                                     class="form-control"
                                     placeholder="اسم المنتج"
                                 />
-                              <div>
+                                <div>
                                     <ul
-                                    style="position: absolute;z-index: 1000;width: 96%;margin-top: 5px;"
-                                    class="list-group"
-                                >
-                                    <li
-                                        class="list-group-item"
-                                        @click="select_product(product)"
-                                        v-for="product in products"
-                                        :key="product.id"
+                                        style="position: absolute;z-index: 1000;width: 96%;margin-top: 5px;"
+                                        class="list-group"
                                     >
-                                        {{ product.name }}
-                                    </li>
-                                    <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
-                                </ul>
-                              </div>
+                                        <li
+                                            class="list-group-item"
+                                            @click="select_product(product)"
+                                            v-for="product in products"
+                                            :key="product.id"
+                                        >
+                                            {{ product.name }}
+                                        </li>
+                                        <!-- <li class="list-group-item"  @click="create_product()">اضافة منتج</li> -->
+                                    </ul>
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6 mr-auto">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body h-70">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -121,7 +121,7 @@
                                     </td>
                                     <td>{{ product.subtotal }}</td>
                                     <td>{{ product.vat }}</td>
-                                    <td>{{ product.vat  * product.qyt }}</td>
+                                    <td>{{ product.vat * product.qyt }}</td>
                                     <td>
                                         <i
                                             @click="remove_form_table(product)"
@@ -144,7 +144,7 @@
                                     style="margin-top: 10px;"
                                 >
                                     <!-- الفاتورة صالحه لمده اسبوعين فقط -->
-                                <!-- </p>
+                            <!-- </p>
                             </div> -->
                             <!-- /.col -->
                             <div class="col-12">
@@ -152,22 +152,24 @@
                                     <table class="table">
                                         <tr>
                                             <th class="col-1">المجموع:</th>
-                                            <td class="col-1">SDG {{ total }}</td>
+                                            <td class="col-1">
+                                                SDG {{ total }}
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <button
-                                    @click="create_sales_invoice"
-                                    class="btn btn-lg btn-info"
-                                >
-                                    انشاء فاتوره
-                                </button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button
+                                        @click="create_sales_invoice"
+                                        class="btn btn-lg btn-info"
+                                    >
+                                        انشاء فاتوره
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -175,13 +177,23 @@
             </div>
             <div class="col-4">
                 <div class="card text-right">
-                  <img class="card-img-top" src="holder.js/100px180/" alt="">
-                  <div class="card-body">
-                      <div class="col text-left">
-                          <a class="btn btn-dark btn-block" target="_blank" href="/pos" role="button"> تعليق فاتورة </a>
-
-                      </div>
-                  </div>
+                    <img
+                        class="card-img-top"
+                        src="holder.js/100px180/"
+                        alt=""
+                    />
+                    <div class="card-body">
+                        <div class="col text-left">
+                            <a
+                                class="btn btn-dark btn-block"
+                                target="_blank"
+                                href="/pos"
+                                role="button"
+                            >
+                                تعليق فاتورة
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,13 +206,12 @@ const Toast = Swal.mixin({
     timer: 3000
 });
 
-
 export default {
     components: {},
     mounted() {
         this.get_stock_name();
         this.get_customer_name();
-        this.get_accounts();
+        this.get_payments();
     },
     data() {
         return {
@@ -211,7 +222,7 @@ export default {
             products_list: [],
             products_table: [],
 
-            accounts: [],
+            payments: [],
             account_id: 1,
 
             stocks: [],
@@ -228,8 +239,15 @@ export default {
     methods: {
         create_sales_invoice() {
             // validtions
-            if ((this.payment_method == 3 ) && (this.customer_id == 0 || this.customer_id == "")) {
-                swal("عفوا!", "فى حاله البيع اجل الرجاء اختيار العميل!", "warning");
+            if (
+                this.payment_method == 3 &&
+                (this.customer_id == 0 || this.customer_id == "")
+            ) {
+                swal(
+                    "عفوا!",
+                    "فى حاله البيع اجل الرجاء اختيار العميل!",
+                    "warning"
+                );
                 return;
             } else if (this.total == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
@@ -249,7 +267,9 @@ export default {
                         console.log(response.data);
                         this.products_table = [];
                         this.total = 0;
-                        window.location.replace('print/' + response.data.invoice_id);
+                        window.location.replace(
+                            "print/" + response.data.invoice_id
+                        );
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {
@@ -270,11 +290,11 @@ export default {
                     }
                 });
         },
-        get_accounts() {
+        get_payments() {
             axios
-                .get("/api/accounts")
+                .get("/api/payments")
                 .then(response => {
-                    this.accounts = response.data;
+                    this.payments = response.data;
                 })
                 .catch(error => {});
         },
@@ -351,7 +371,7 @@ export default {
                 });
             }
 
-            this.total += product.sale_price;
+           this.total = parseFloat(this.total) + parseFloat(product.sale_price);
             this.products = null;
             this.product_name = "";
         },
@@ -362,7 +382,7 @@ export default {
         remove_form_table(product) {
             // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
-            this.total -= product.subtotal;
+            (this.total) =  parseFloat(this.total) - parseFloat(product.subtotal);
 
             // جلب الاندكس بتاع المنتج فى الجدول
             let id = this.products_table.indexOf(product);
@@ -377,10 +397,10 @@ export default {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     obj.qyt += 1;
-                    obj.subtotal = obj.price * obj.qyt;
+                    (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
                 }
             }
-            this.total += obj.price;
+            (this.total) = parseFloat(this.total) +  parseFloat(obj.price);
         },
         de_crease(product) {
             let obj;
@@ -389,9 +409,9 @@ export default {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     if (obj.qyt > 1) {
-                        obj.qyt -= 1;
-                        obj.subtotal = obj.price * obj.qyt;
-                        this.total -= obj.price;
+                       (obj.qyt) -= 1;
+                        (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
+                        (this.total) -= parseFloat(obj.price);
                     }
                 }
             }
