@@ -7,6 +7,7 @@ use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
+use App\Model\purchase_invoice_d;
 
 class productController extends Controller
 {
@@ -84,5 +85,14 @@ class productController extends Controller
         $product = product::find($id);
         return view('products.barcode',compact('product'));
     }
+    public function baraah(){
+
+        $product = purchase_invoice_d::all();
+
+        return view('products.baraah',compact('product'));
+        //return $product ;
+
+    }
+
 
 }
