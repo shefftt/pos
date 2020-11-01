@@ -1,0 +1,36 @@
+[28-Oct-2020 20:45:11 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:45:17 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:45:36 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:46:11 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:46:15 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:47:00 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:47:20 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:50:42 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 20:53:24 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/towersac/public_html/towerpos/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[28-Oct-2020 22:06:41 UTC] PHP Warning:  include(/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:06:41 UTC] PHP Warning:  include(): Failed opening '/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:06:41 UTC] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(269): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Contai in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[28-Oct-2020 22:06:54 UTC] PHP Warning:  include(/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:06:54 UTC] PHP Warning:  include(): Failed opening '/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:06:54 UTC] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(269): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Contai in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[28-Oct-2020 22:07:01 UTC] PHP Warning:  include(/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:07:01 UTC] PHP Warning:  include(): Failed opening '/home/towersac/public_html/towerpos/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/towersac/public_html/towerpos/vendor/composer/ClassLoader.php on line 444
+[28-Oct-2020 22:07:01 UTC] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(269): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Contai in /home/towersac/public_html/towerpos/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811

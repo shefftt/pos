@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\product;
+use App\model\setting;
 use Illuminate\Http\Request;
 
 class posController extends Controller
@@ -10,7 +11,8 @@ class posController extends Controller
     public function index()
     {
         $products = product::take(10)->get();
-        return view('pos.index', compact('products'));
+        $setting = setting::find(1);
+        return view('pos.index', compact('products','setting'));
     }
 
     public function print()

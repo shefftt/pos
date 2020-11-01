@@ -100,6 +100,7 @@
 </head>
 
 <body>
+    @if(isset($invoice))
 
     <div style="max-width:400px;margin:0 auto">
         <div class="hidden-print">
@@ -187,6 +188,7 @@
         </div>
     </div>
 
+
     <script type="text/javascript">
         function auto_print() {
             // window.print()
@@ -194,6 +196,15 @@
         setTimeout(auto_print, 1000);
     </script>
 
+
+    @else
+    <center>
+        <h3>
+            عفوا لاتوجد فاتوره بهذا الرقم
+        </h3>
+        <a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> الى الخلف</a>
+    </center>
+    @endif
 
 
 </body>
