@@ -1,15 +1,15 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'المستخدمين')
+@section('title' ,__('messages.Users') )
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>المستخدمين</h6>
+                <h6>{{ __('messages.Users') }}</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/user/create')}}" role="button"> اضافة مستخدم </a>
+                <a class="btn btn-secondary" href="{{url('/user/create')}}" role="button">   {{ __('messages.Add Users') }}</a>
 
             </div>
         </div>
@@ -20,10 +20,10 @@
             <tr>
                 <th>#</th>
                 <th>الاسم</th>
-                <th>البريد الالكتروني </th>
+                <th>  {{ __('messages.E-mail') }}</th>
 
 
-                <th>الضبط</th>
+                <th>{{ __('messages.product Settings') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -41,10 +41,10 @@
 
     @if (($user->status)==1)
 
-                             <a name="" id="" class="btn  btn-sm btn-danger" href="{{url('/user/cancel')}}/{{$user->id}}" role="button">ايقاف</a>
+                             <a name="" id="" class="btn  btn-sm btn-danger" href="{{url('/user/cancel')}}/{{$user->id}}" role="button">{{ __('messages.turning off') }}</a>
 
                         @else
-                            <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/user/activate')}}/{{$user->id}}" role="button">تنشيط</a>
+                            <a name="" id="" class="btn  btn-sm btn-success" href="{{url('/user/activate')}}/{{$user->id}}" role="button">{{ __('messages.Energizing') }}</a>
 
                         @endif
 

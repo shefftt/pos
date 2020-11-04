@@ -1,27 +1,29 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'التصنيفات')
+@section('title' ,__('messages.Classifications'))
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>التصنيفات</h6>
+                <h6>{{ __('messages.Classifications') }}</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/category/create')}}" role="button">اضافة تصنيف</a>
+                <a class="btn btn-secondary" href="{{url('/category/create')}}" role="button">{{ __('messages.Add a classification') }}</a>
 
             </div>
         </div>
+        
     </div>
     <div class="card-body">
         <table  id="DataTable" class="table">
             <thead>
                 <tr>
+                    
                     <th>#</th>
-                    <th>اسم التصنيف</th>
-                    <th>نوع التصنيف</th>
-                    <th>الضبط</th>
+                    <th>{{ __('messages.Category name') }}</th>
+                    <th>{{ __('messages.Type of classification') }}</th>
+                    <th>{{ __('messages.product Settings') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +40,7 @@
                         @endif
                     </td>
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/category/')}}/{{$category->id}}" role="button">عرض</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/category/')}}/{{$category->id}}" role="button">{{ __('messages.Show') }}</a>
 
                     </td>
                 </tr>

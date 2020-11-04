@@ -6,11 +6,11 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>طرق الدفع</h6>
+                <h6> {{ __('messages.paymentmethods') }}</h6>
             </div>
             <div class="col text-left">
                 <button type="button" class="btn btn-secondary btn-md" data-toggle="modal" data-target="#paymentsModel">
-                    اضافة طريقه دفع
+                    {{ __('messages.Add a payment method') }} 
                 </button>
             </div>
         </div>
@@ -20,8 +20,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>الاسم</th>
-                    <th>الحالة </th>
+                    <th>{{ __('messages.name') }}</th>
+                    <th>{{ __('messages.Case') }} </th>
                 </tr>
             </thead>
             <tbody>
@@ -34,9 +34,9 @@
                     <td>
                         @if($payment->status == 1)
 
-                        <a class="btn  btn-sm btn-success" href="{{url('/payments/toggle/')}}/{{$payment->id}}" role="button">نشط</a>
+                        <a class="btn  btn-sm btn-success" href="{{url('/payments/toggle/')}}/{{$payment->id}}" role="button">{{ __('messages.active') }}</a>
                         @else
-                        <a class="btn  btn-sm btn-danger" href="{{url('/payments/toggle/')}}/{{$payment->id}}" role="button">متوقف</a>
+                        <a class="btn  btn-sm btn-danger" href="{{url('/payments/toggle/')}}/{{$payment->id}}" role="button">{{ __('messages.not active') }}</a>
                         @endif
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
 
             <form action="{{url('payments/create')}}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title">اضافة طريقة دفع</h5>
+                    <h5 class="modal-title">  {{ __('messages.Add a payment method') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -64,7 +64,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="">اسم طريقة الدفع </label>
+                                    <label for="">{{ __('messages.name') }}</label>
                                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                                     @error('name')
                                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -75,8 +75,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Exit') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('messages.Add') }}</button>
                 </div>
             </form>
         </div>

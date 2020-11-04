@@ -7,19 +7,19 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>المنتج</th>
-                    <th>  الكمية</th>
-                    <th>الكميه</th>
-                    <th>سعر الوحده</th>
-                    <th> الوحده</th>
-                    <th> الضريبه</th>
-                    <th>مجموع الضريبه</th>
-                    <th> المجموع</th>
+                    <th>{{ __('product name') }}</th>
+                    <th>  {{ __('messages.Quantity') }}</th>
+                    <th>{{ __('messages.Quantity') }}</th>
+                    <th> {{ __('messages.price') }}</th>
+                    <th> {{ __('messages.product Unit') }}</th>
+                    <th> {{ __('messages.Tax') }}</th>
+                    <th> {{ __('messages.Sum Tax') }}</th>
+                    <th> {{ __('messages.Total') }}</th>
 
                 </tr>
             </thead>
     <div class="col-1">
-        <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
+        <a class="btn btn-success" onclick="window.print();" role="button">{{ __('messages.Print') }}</a>
     </div>
     <br>
             <tbody>
@@ -47,15 +47,15 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <td>المجموع</td>
+                        <td>{{ __('messages.Total') }}</td>
                         <td>{{$invoice->total}} </td>
                     </tr>
                     <tr>
-                        <td>الضريبه</td>
+                        <td> {{ __('messages.Tax') }}</td>
                         <td>{{ $vat_total}}</td>
                     </tr>
                     <tr>
-                        <td>المجموع الكلى</td>
+                        <td> {{ __('messages.total summation') }}</td>
                         <td>{{$vat_total + ($invoice->total)}} </td>
                     </tr>
                 </tbody>

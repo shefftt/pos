@@ -2,7 +2,7 @@
 <html dir="rtl" lang="en">
 
 <head>
-    <title>المبيعات</title>
+    <title>{{ __('messages.Sales') }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Tell the browser to be responsive to screen width -->
@@ -57,7 +57,7 @@
                         <input type="text" class="form-control" type="search" id="search" placeholder="البحث عن فاتوره">
                     </div>
                     <div class="form-group">
-                        <button id="searchBtn" class="btn-info btn btn-info">بحث</button>
+                        <button id="searchBtn" class="btn-info btn btn-info">{{ __('messages.Search') }}</button>
                     </div>
                 </div>
             </div>
@@ -65,15 +65,15 @@
             <ul class="nav" id="navId">
                 <li class="nav-item">
 
-                    <a href="{{url('/')}}" class="nav-link"> <img src="{{url('/image/dashboard.png')}}" class="img-icon"> لوحه التحكم </a>
+                    <a href="{{url('/')}}" class="nav-link"> <img src="{{url('/image/dashboard.png')}}" class="img-icon">   {{ __('messages.control Board') }}</a>
                 </li>
 
                 <div class="row mr-auto">
                     <li class="nav-item">
-                        <a href="#tab5Id" class="nav-link"><img src="{{url('/image/user_male.png')}}" class="img-icon"> مرحبا بك {{auth()->user()->name}}  </a>
+                        <a href="#tab5Id" class="nav-link"><img src="{{url('/image/user_male.png')}}" class="img-icon">   {{ __('messages.welcome') }}{{auth()->user()->name}}  </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('logout')}}" class="nav-link"><img src="{{url('/image/sign_out.png')}}" class="img-icon"> خروج  </a>
+                        <a href="{{url('logout')}}" class="nav-link"><img src="{{url('/image/sign_out.png')}}" class="img-icon">  {{ __('messages.Exit') }} </a>
                     </li>
                 </div>
             </ul>

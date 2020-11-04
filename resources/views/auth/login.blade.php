@@ -28,7 +28,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>تسجيل دخول</b></a>
+            <a href="#"><b>{{ __('messages.Login') }}</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -78,7 +78,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">دخول</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">{{ __('messages.Loginbtn') }}</button>
                         </div>
                         <!-- /.col -->
                     </div>

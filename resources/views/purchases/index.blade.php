@@ -1,16 +1,16 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'فواتير المشتريات')
+@section('title' ,__('messages.Purchase bills'))
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>فواتير المشتريات</h6>
+                <h6> {{ __('messages.Purchase bills') }}</h6>
             </div>
-
+            
             <div class="col text-left">
-                <a class="btn btn-dark" href="{{url('/purchase/create')}}" role="button"> انشاء فاتوره</a>
+                <a class="btn btn-dark" href="{{url('/purchase/create')}}" role="button"> {{ __('messages.Create an invoice') }}</a>
             </div>
         </div>
 
@@ -21,16 +21,17 @@
         <table  id="DataTable" class="table">
             <thead>
                 <tr>
+                    
                     <th>#</th>
-                    <th>المورد</th>
-                    <th> المخزن</th>
-                    <th> المجموع</th>
-                    <th>التاريخ</th>
-                    <th> الدفع</th>
-                    <th> رقم الفاتوره</th>
-                    <th>  طريقة الدفع</th>
-                    <th> التاريخ</th>
-                    <th>الضبط</th>
+                    <th>{{ __('messages.Suppliers') }}</th>
+                    <th> {{ __('messages.Storesitem') }}</th>
+                    <th> {{ __('messages.Total') }}</th>
+                    <th>{{ __('messages.Date') }}</th>
+                    <th> {{ __('messages.Payment') }}</th>
+                    <th> {{ __('messages.invoice number') }}</th>
+                    <th>   {{ __('messages.paymentmethods') }}</th>
+                    <th> {{ __('messages.Date') }}</th>
+                    <th>{{ __('messages.product Settings') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +61,7 @@
                     <td>{{$purchase->payment_method->name}}</td>
                     <td>{{$purchase->created_at}}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
+                        <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">{{ __('messages.Show') }}</a>
 
                     </td>
                 </tr>

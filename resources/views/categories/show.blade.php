@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'التصنيفات')
+@section('title' ,__('messages.Classifications'))
 
 <div class="card">
     <div class="card-header">
@@ -15,11 +15,11 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>الصوره</th>
-                <th>اسم المنتج</th>
-                <th>سعر الشراء</th>
-                <th>سعر البيع</th>
-                <th>الضبط</th>
+                <th>{{ __('messages.Image') }}</th>
+                <th> {{ __('messages.product name') }}</th>
+                <th>{{ __('messages.Purchasing price') }}</th>
+                <th> {{ __('messages.selling price') }}</th>
+                <th> {{ __('messages.product Settings') }}</th>
 
             </tr>
             </thead>
@@ -40,16 +40,16 @@
                                 @if(!$category->status==0)
                                     <form action="{{url('/product/CheckStatus')}}/{{$category->id}}" method="post">
                                         @csrf
-                                        <button class="btn  btn-sm btn-danger" type="submit">ايقاف</button>
+                                        <button class="btn  btn-sm btn-danger" type="submit"> {{ __('messages.turning off') }}</button>
                                     </form>
                                 @else
                                     <span class="label label-sm label-success">
-                                تم الايقاف
+                                        {{ __('messages.Steeingdone') }}
                             </span>
                                 @endif
                                 <br>
-                                <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$category->id}}" role="button">تعديل</a>
-                                <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$category->id}}" role="button">عرض</a>
+                                <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/product/edit/')}}/{{$category->id}}" role="button">{{ __('messages.Modify') }}</a>
+                                <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/product')}}/{{$category->id}}" role="button">{{ __('messages.Show') }}</a>
                             </div>
 
                         </div>

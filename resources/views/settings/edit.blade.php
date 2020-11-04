@@ -6,7 +6,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>البيانات</h6>
+                <h6>{{ __('messages.data') }}</h6>
             </div>
             <div class="col text-left">
 

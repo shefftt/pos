@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'التقارير العامه')
+@section('title' ,__('messages.Generalreport') )
 
 {{--<hr>--}}
 {{--<table class="table">--}}
@@ -34,11 +34,10 @@
         <div class="row">
             <div class="col text-center">
                 <h3>
-                    التقارير العامه
-                </h3>
+                    {{ __('messages.Generalreport') }}                </h3>
             </div>
             <div class="col-1">
-                <a class="btn btn-secondary" onclick="window.print();" role="button">طباعه</a>
+                <a class="btn btn-secondary" onclick="window.print();" role="button">{{ __('messages.Print') }}</a>
             </div>
         </div>
 
@@ -48,18 +47,18 @@
     <div class="card-body">
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="">من  </label>
+                <label for="">  {{ __('messages.Start Date') }}   </label>
                 <input type="date" class="form-control"   name="start_date">
 
             </div>
             <div class="form-group col-md-4">
-                <label for="">الي  </label>
+                <label for="">   {{ __('messages.Expiry date') }}  </label>
                 <input type="date" class="form-control"   name="end_date">
 
             </div>
             <div class="form-group col-md-4">
                 <br>
-                <button class="btn btn-md btn-success btn-block" type="submit">بحث</button>
+                <button class="btn btn-md btn-success btn-block" type="submit"> {{ __('messages.Search') }}  </button>
             </div>
 
 
@@ -76,7 +75,7 @@
                 <div class="inner">
                     <h3>{{$purchase->sum('total')-$purchase_d->sum('sub_vat')}}</h3>
 
-                    <p>مجموع صافي المشتريات</p>
+                    <p>   {{ __('messages.Total net purchases') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-shopping-cart"></i>
@@ -90,7 +89,7 @@
                 <div class="inner">
                     <h3>{{$sales->sum('total')-$sales_d->sum('sub_vat')}}</h3>
 
-                    <p>مجموع صافي المبيعات</p>
+                    <p>   {{ __('messages.Total net sales') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -104,7 +103,7 @@
                 <div class="inner">
                     <h3>{{$sales_d->sum('sub_vat')}}</h3>
 
-                    <p>مجموع ضريبة المبيعات </p>
+                    <p>    {{ __('messages.Total sales tax') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
@@ -118,7 +117,7 @@
                 <div class="inner">
                     <h3>{{$purchase_d->sum('sub_vat')}}</h3>
 
-                    <p>مجموع ضريبة المشتريات</p>
+                    <p>   {{ __('messages.Total purchase tax') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-chart-pie"></i>
@@ -131,7 +130,7 @@
                 <div class="inner">
                     <h3>0</h3>
 
-                    <p>مجموع مرتجع المشتريات</p>
+                    <p>   {{ __('messages.Total purchases returned') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-chart-pie"></i>
@@ -145,7 +144,7 @@
                 <div class="inner">
                     <h3>0</h3>
 
-                    <p>مجموع مرتجع المبيعات </p>
+                    <p>    {{ __('messages.Total sales returns') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
@@ -158,7 +157,7 @@
                 <div class="inner">
                     <h3>{{($sales->sum('total')-$sales_d->sum('sub_vat'))-($purchase->sum('total')-$purchase_d->sum('sub_vat'))}}</h3>
 
-                    <p>صافي الربح</p>
+                    <p>  {{ __('messages.Net profit') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-chart-pie"></i>
@@ -172,7 +171,7 @@
                 <div class="inner">
                     <h3>{{$sales->sum('total')}}</h3>
 
-                    <p>مجموع المصروفات </p>
+                    <p>   {{ __('messages.Total expenses') }}  </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>

@@ -6,10 +6,10 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>الوحدات</h6>
+                <h6>{{ __('messages.Units') }}</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/unit/create')}}" role="button">اضافة وحده </a>
+                <a class="btn btn-secondary" href="{{url('/unit/create')}}" role="button"> {{ __('messages.Add Units') }} </a>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>اسم الوحده</th>
+                <th> {{ __('messages.product Unit') }}</th>
             </tr>
             </thead>
             <tbody>

@@ -15,7 +15,7 @@
             <div class="row">
 
                 <div class="form-group col-md-6">
-                    <label for="">اسم المورد </label>
+                    <label for=""> {{ __('messages.name') }} </label>
                     <input type="text" value="{{$supplier->name }}" class="form-control @error('name') is-invalid @enderror" name="name" >
                     @error('name')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -23,14 +23,14 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="">هاتف المورد </label>
+                    <label for=""> {{ __('messages.phone') }} </label>
                     <input type="text" value="{{$supplier->phone }}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{$supplier->phone }}">
                     @error('phone')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="">عنوان المورد </label>
+                    <label for=""> {{ __('messages.Title') }}  </label>
                     <input type="text"  name="address"  value="{{$supplier->address }}"class="form-control @error('address') is-invalid @enderror">{{old('address')}}
                     @error('address')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="card-footer text-muted">
-            <button type="submit" class="btn btn-success">تعديل</button>
+            <button type="submit" class="btn btn-success">{{ __('messages.Modify') }} </button>
         </div>
     </form>
 </div>
