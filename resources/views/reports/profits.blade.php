@@ -2,6 +2,40 @@
 @section('content')
 @section('title' ,' تقرير الارباح ')
 
+<div class="callout callout-info">
+    <form action="{{url('profits_report')}}" method="post">
+        @csrf
+        <div class="card-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="">من </label>
+                    <input type="date" class="form-control" required name="from">
+
+                </div>
+                <div class="form-group col-md-6">
+
+                    <label for="">الي </label>
+                    <input type="date" class="form-control" required name="to">
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="category_id">المنتجات</label>
+                    <select class="form-control" name="product_id" id="select-state">
+                        <option value=""> اختار منتج</option>
+                        @foreach($products as $product)
+                            <option value="{{$product->id}}">{{$product->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <br>
+                    <button class="btn btn-md btn-success btn-block" type="submit" style="margin-top: 0.5rem;">بحث</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 {{--<div class="card bg-light">--}}
 {{--    <div class="card-header text-muted border-bottom-0">--}}
