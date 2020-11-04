@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\paymentRequest;
-use App\model\payment;
-use App\model\setting;
+use App\Model\payment;
+use App\Model\setting;
 use Illuminate\Http\Request;
 
 

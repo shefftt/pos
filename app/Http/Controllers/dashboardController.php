@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\categoryRequest;
 use App\Model\category;
-use App\model\payment;
+use App\Model\payment;
 use App\Model\product;
-use App\model\purchase_invoice_h;
+use App\Model\purchase_invoice_h;
 use App\Model\sales_invoice_h;
 use App\Model\supplier;
 use Carbon\Carbon;

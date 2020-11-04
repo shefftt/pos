@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\model\account;
+use App\Model\account;
 use App\Model\stock;
 use Illuminate\Http\Request;
 

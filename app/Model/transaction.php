@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 use App\Model\purchase_invoice_h;
 use App\model\supplier;
 use Illuminate\Database\Eloquent\Model;

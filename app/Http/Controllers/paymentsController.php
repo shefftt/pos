@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\paymentRequest;
-use App\model\payment;
+use App\Model\payment;
 use Illuminate\Http\Request;
 
 

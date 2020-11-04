@@ -1,8 +1,8 @@
 <?php
 
-use App\model\purchase_invoice_h;
+use App\Model\purchase_invoice_h;
 use App\Model\sales_invoice_h;
-use App\model\setting;
+use App\Model\setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

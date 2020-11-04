@@ -7,7 +7,7 @@ use App\Http\Requests\stockRequest;
 use App\Model\stock;
 use Illuminate\Http\Request;
 use App\Model\purchase_invoice_d;
-use App\model\purchase_invoice_h;
+use App\Model\purchase_invoice_h;
 
 class stockController extends Controller
 {

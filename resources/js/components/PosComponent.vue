@@ -196,6 +196,10 @@
                             </tr>
 
                             <tr>
+                                <td>المبلغ المجموع قبل التحفيض</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            <tr>
                                 <td>المبلغ المبتقى</td>
                                 <td>{{ total - amount_paid }}</td>
                             </tr>

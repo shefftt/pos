@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use App\Model\purchase_invoice_h;
 use App\Model\stock;
-use App\model\supplier;
-use App\model\transaction;
+use App\Model\supplier;
+use App\Model\transaction;
 use App\Model\payment;
 use DB;
 use Illuminate\Http\Request;

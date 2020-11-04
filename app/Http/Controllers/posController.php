@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\product;
-use App\model\setting;
+use App\Model\setting;
 use Illuminate\Http\Request;
 
 class posController extends Controller

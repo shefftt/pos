@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\supplierRequest;
 use App\Model\stock;
-use App\model\supplier;
-use App\model\transaction;
+use App\Model\supplier;
+use App\Model\transaction;
 use App\Model\purchase_invoice_h;
 use Illuminate\Http\Request;
 use App\Http\Requests\transactionRequest;
-use App\model\account;
+use App\Model\account;
 
 class supplierController extends Controller
 {

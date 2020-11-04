@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\model\purchase_invoice_d;
-use App\model\purchase_invoice_h;
-use App\model\stock_product;
-use App\model\supplier;
+use App\Model\purchase_invoice_d;
+use App\Model\purchase_invoice_h;
+use App\Model\stock_product;
+use App\Model\supplier;
 use Illuminate\Http\Request;
 
 class purchaseController extends Controller

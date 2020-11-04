@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Model\customer;
-use App\model\payment;
+use App\Model\payment;
 use App\Model\product;
 use App\Model\sales_invoice_h;
 use App\Model\purchase_invoice_h;
 use App\Model\purchase_invoice_d;
 use App\Model\sales_invoice_d;
-use App\model\setting;
-use App\model\supplier;
+use App\Model\setting;
+use App\Model\supplier;
 use App\User;
 use Illuminate\Http\Request;
 use DB;
