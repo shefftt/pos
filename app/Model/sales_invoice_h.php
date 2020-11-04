@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class sales_invoice_h extends Model
 {
-    protected $fillable = ['customer_id', 'total', 'created_by','payment_method_id'];
+    protected $fillable = ['customer_id', 'total', 'created_by','payment_method_id' ,'discount'];
     protected $table='sales_invoice_h';
 
 

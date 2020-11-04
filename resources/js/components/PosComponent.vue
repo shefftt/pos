@@ -28,7 +28,7 @@
                                 <add-customer-btn amount="222222222222" />
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-6">
                                 <label for="payment_id">طريقه الدفع</label>
                                 <select
                                     class="form-control form-control-sm"
@@ -45,7 +45,7 @@
                                     >
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <!-- <div class="form-group col-md-3">
                                 <label for="payment_id">نوع الفاتوره</label>
                                 <select
                                     class="form-control form-control-sm"
@@ -56,7 +56,7 @@
                                     <option value="normal">فاتورة عاديه</option>
                                     <option value="refund">فاتورة راجعه</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="form-group col-md-6 mr-auto">
                                 <label for="product_name">اسم المنتج</label>
@@ -121,17 +121,25 @@
                                     <td>{{ product.name }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>
-
-                                        <img src="image/add.png"   @click="in_crease(product)">
+                                        <img
+                                            src="image/add.png"
+                                            @click="in_crease(product)"
+                                        />
                                         {{ product.qyt }}
 
-                                        <img src="image/minus.png"  @click="de_crease(product)">
+                                        <img
+                                            src="image/minus.png"
+                                            @click="de_crease(product)"
+                                        />
                                     </td>
                                     <td>{{ product.subtotal }}</td>
                                     <td>{{ product.vat }}</td>
-                                    <td>{{ product.vat * product.qyt }}</td>
+                                    <td>{{ product.sub_vat }}</td>
                                     <td>
-                                        <img src="image/delete.png" @click="remove_form_table(product)">
+                                        <img
+                                            src="image/delete.png"
+                                            @click="remove_form_table(product)"
+                                        />
                                     </td>
                                 </tr>
                             </tbody>
@@ -150,11 +158,24 @@
                             </tr>
                             <tr>
                                 <td>الضريبه</td>
-                                <td>123</td>
+                                <td>{{ vat_total }}</td>
                             </tr>
                             <tr>
                                 <td>المجموع + الضريبه</td>
-                                <td>123</td>
+                                <td>{{ vat_total + total }}</td>
+                            </tr>
+                            <tr>
+                                <td>نسبه التخفيض</td>
+                                <td>
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            v-model="discount"
+                                            placeholder="نسبه التخفيض"
+                                        />
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>المبلغ المدفوع</td>
@@ -170,15 +191,20 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>المبلغ بعد التخفيض</td>
+                                <td>{{ total - total * (discount / 100) }}</td>
+                            </tr>
+
+                            <tr>
                                 <td>المبلغ المبتقى</td>
-                                <td>{{ amount_paid - total }}</td>
+                                <td>{{ total - amount_paid }}</td>
                             </tr>
                         </table>
 
                         <hr />
                         <div class="col-12 form-group text-right">
-                            <a id="new_pos"
-
+                            <a
+                                id="new_pos"
                                 v-shortkey.push="['f1']"
                                 @shortkey="hold_sales_invoice"
                                 class="btn btn-dark btn-block"
@@ -192,7 +218,6 @@
                         <div class="col-12 form-group text-right">
                             <button
                                 @click="create_sales_invoice"
-
                                 v-shortkey.push="['f2']"
                                 @shortkey="create_sales_invoice"
                                 class="btn-info btn btn-block btn-info"
@@ -204,7 +229,6 @@
                             <button
                                 @click="delete_sales_invoice"
                                 class="btn-danger btn btn-block btn-info"
-
                                 v-shortkey.push="['f3']"
                                 @shortkey="delete_sales_invoice"
                             >
@@ -251,6 +275,8 @@ export default {
             customers: [],
             customer_id: 0,
 
+            discount: 0,
+
             payment_method: 1,
 
             total: 0,
@@ -264,6 +290,7 @@ export default {
         delete_sales_invoice() {
             this.products_table = [];
             this.total = 0;
+            this.vat_total = 0;
         },
         create_sales_invoice() {
             // validtions
@@ -383,6 +410,7 @@ export default {
                     obj = this.products_table.find(o => o.id === product.id);
                     obj.qyt += 1;
                     obj.subtotal = obj.price * obj.qyt;
+                    obj.sub_vat = obj.vat * obj.qyt;
                 }
             }
 
@@ -392,6 +420,7 @@ export default {
                 this.products_table.push({
                     id: product.id,
                     vat: product.vat,
+                    sub_vat: product.vat,
                     name: product.name,
                     price: product.sale_price,
                     qyt: 1,
@@ -401,6 +430,8 @@ export default {
 
             this.total =
                 parseFloat(this.total) + parseFloat(product.sale_price);
+            this.vat_total =
+                parseFloat(this.vat_total) + parseFloat(product.vat);
             this.products = null;
             this.product_name = "";
         },
@@ -427,9 +458,11 @@ export default {
                     obj = this.products_table.find(o => o.id === product.id);
                     obj.qyt += 1;
                     obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+                    obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
                 }
             }
             this.total = parseFloat(this.total) + parseFloat(obj.price);
+            this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
         },
         de_crease(product) {
             let obj;
@@ -441,6 +474,8 @@ export default {
                         obj.qyt -= 1;
                         obj.subtotal =
                             parseFloat(obj.price) * parseFloat(obj.qyt);
+                        this.vat_total =
+                            parseFloat(this.vat_total) + parseFloat(obj.vat);
                         this.total -= parseFloat(obj.price);
                     }
                 }
