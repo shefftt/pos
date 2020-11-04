@@ -7,6 +7,8 @@ use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
+use App\Model\purchase_invoice_d;
+use DB;
 
 class productController extends Controller
 {
@@ -84,5 +86,38 @@ class productController extends Controller
         $product = product::find($id);
         return view('products.barcode',compact('product'));
     }
+    public function baraah(){
+
+      //$product = purchase_invoice_d::
+       // select(purchase_invoice_d::raw('expir_date'), purchase_invoice_d::raw('sum(qyt) as qyt'))
+           //->groupBy(purchase_invoice_d::raw('expir_date') )
+          //->get();
+//        $product = DB::table('purchase_invoice_d')
+//            //->where('product_id', '=', '4')
+//            ->where(function ($query) {
+//                $query->where('qyt', '<>', '0')
+//                    ->Where('expir_date', '>=', today());
+//            })
+//            ->groupBy('product_id')->get();
+
+
+        //return view('products.baraah',compact('product'));
+        //DB::enableQueryLog();
+
+        $product = product::whereHas('purchases', function ($query){
+
+            $query
+//                    ->where('qyt', '>', '0')
+//                    ->Where('expir_date', '>=', today())
+//                ->groupBy('expir_date')->
+                ->with('purchases')
+//                ->sum('qyt')
+            ;
+        })->get();
+      return $product ;
+
+
+    }
+
 
 }

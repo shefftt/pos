@@ -19,8 +19,17 @@
                     <input type="date" class="form-control" required name="to">
 
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="category_id">المنتجات</label>
+                    <select class="form-control" name="product_id" id="select-state">
+                        <option value=""> اختار منتج</option>
+                        @foreach($all as $product)
+                            <option value="{{$product->id}}">{{$product->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <br>
                     <button class="btn btn-md btn-success btn-block" type="submit" style="margin-top: 0.5rem;">بحث</button>
                 </div>
@@ -69,16 +78,16 @@
 
             <tbody>
             <?php $i = 1; ?>
-            @foreach($products as $product)
+            @foreach($products as $sales)
                 <tr>
                     <td scope="row">{{$i++}}</td>
 
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->barcode}}</td>
-                    <td>{{$product->sales->sum('sub_total')}}</td>
-                    <td>{{$product->sales->sum('sub_vat')}}</td>
-                    <td>{{$product->sales->sum('sub_total') + $product->sales->sum('sub_vat')}}</td>
-                    <td>{{$product->sales->count('id')}}</td>
+                    <td>{{$sales->name}}</td>
+                    <td>{{$sales->barcode}}</td>
+                    <td>{{$sales->sales->sum('sub_total')}}</td>
+                    <td>{{$sales->sales->sum('sub_vat')}}</td>
+                    <td>{{$sales->sales->sum('sub_total') + $sales->sales->sum('sub_vat')}}</td>
+                    <td>{{$sales->sales->count('id')}}</td>
 
 
                 </tr>
@@ -132,9 +141,9 @@
 
                     <td>{{$purchase->name}}</td>
                     <td>{{$purchase->barcode}}</td>
-                    <td>{{$product->purchases->sum('sub_total')}}</td>
-                    <td>{{$product->purchases->sum('sub_vat')}}</td>
-                    <td>{{$product->purchases->sum('sub_total') + $purchase->purchases->sum('sub_vat')}}</td>
+                    <td>{{$purchase->purchases->sum('sub_total')}}</td>
+                    <td>{{$purchase->purchases->sum('sub_vat')}}</td>
+                    <td>{{$purchase->purchases->sum('sub_total') + $purchase->purchases->sum('sub_vat')}}</td>
                     <td>{{$purchase->sales->count('id')}}</td>
 
 

@@ -13,6 +13,11 @@ class customer extends Model
         return $this->hasMany(sales_invoice_h::class);
     }
 
+    public function sales_invoice()
+    {
+        return $this->hasMany(sales_invoice_h::class, 'customer_id', 'id');
+    }
+
     public function transaction()
     {
         return $this->hasManyThrough(

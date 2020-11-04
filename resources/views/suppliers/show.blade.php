@@ -65,7 +65,8 @@
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    @foreach($supplier->transaction as $transaction)
+                                    @foreach($supplier->purchase_invoice as $purchase_invoices)
+                                    @foreach($purchase_invoices->transaction as  $transaction)
                                     <tr>
                                         <td scope="row">{{$i++}}</td>
                                         <td>{{$transaction->transactionable_id}}</td>
@@ -74,6 +75,7 @@
 
 
                                     </tr>
+                                    @endforeach
                                     @endforeach
                                 </tbody>
                             </table>

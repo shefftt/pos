@@ -128,18 +128,28 @@ class reportController extends Controller
     }
 
     public function product(){
-
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+        $all = product::all();
         $products = product::all();
-        return view('reports.product', compact('products'));
+        return view('reports.product', compact('all','products'));
 
     }
     public function product_report(Request $request){
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
+        $all = product::all();
+        if (isset(request()->product_id) ) {
 
-        $products = product::whereBetween('created_at', [$from, $to])
-            ->get();
-        return view('reports.product', compact('products'));
+            $products = product::whereBetween('created_at', [$from, $to])->where('id', request()->product_id)->get();
+        }
+        elseif (request()->product_id === null ){
+            $products = product::whereBetween('created_at', [$from, $to])
+                ->get();
+
+        }
+
+        return view('reports.product', compact('products','all'));
     }
 
 }

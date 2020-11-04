@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/edit/{id}', 'productController@edit');
     Route::put('/product/edit/{id}', 'productController@update');
     Route::get('product/toggleStatus/{product}', 'productController@toggleStatus');
+    Route::get('baraah', 'productController@baraah');
 
     Route::get('/barcode/{id}', 'productController@barcode');
 
