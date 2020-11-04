@@ -23,8 +23,17 @@
                     <label for="category_id">المنتجات</label>
                     <select class="form-control" name="product_id" id="select-state">
                         <option value=""> اختار منتج</option>
-                        @foreach($all as $product)
+                        @foreach($products as $product)
                             <option value="{{$product->id}}">{{$product->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="stock_id">المخزن</label>
+                    <select class="form-control" name="stock_id" id="select-state">
+                        <option value="">اختر المخزن</option>
+                        @foreach($stocks as $stocks)
+                            <option value="{{$stocks->id}}">{{$stocks->name}}</option>
                         @endforeach
                     </select>
                 </div>

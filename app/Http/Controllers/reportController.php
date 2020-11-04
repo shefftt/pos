@@ -131,17 +131,28 @@ class reportController extends Controller
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
         $all = product::all();
+        $stocks = stock::all();
         $products = product::all();
-        return view('reports.product', compact('all','products'));
+        return view('reports.product', compact('all','products','stocks'));
 
     }
     public function product_report(Request $request){
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
-        $all = product::all();
-        if (isset(request()->product_id) ) {
+        $products = product::all();
+        $stocks = stock::all();
 
-            $products = product::whereBetween('created_at', [$from, $to])->where('id', request()->product_id)->get();
+        if (isset(request()->product_id) and request()->stock_id) {
+
+            $products = product::whereBetween('created_at', [$from, $to])->where('id', request()->product_id)->where('stock_id',request()->stock_id)->get();
+        }
+          elseif(isset(request()->stock_id) and request()->product_id === null) {
+
+            $products = product::whereBetween('created_at', [$from, $to])->where('stock_id',request()->stock_id)->get();
+        }
+            elseif(isset(request()->product_id) and request()->stock_id === null) {
+
+            $products = product::whereBetween('created_at', [$from, $to])->where('id',request()->product_id)->get();
         }
         elseif (request()->product_id === null ){
             $products = product::whereBetween('created_at', [$from, $to])
@@ -149,7 +160,17 @@ class reportController extends Controller
 
         }
 
-        return view('reports.product', compact('products','all'));
+        return view('reports.product', compact('products','stocks'));
+    }
+
+    public function profits(){
+
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+        $sales_profits = sales_invoice_d::all();
+
+        //return $purchases_report;
+        return view('reports.profits', compact('sales_profits'));
     }
 
 }

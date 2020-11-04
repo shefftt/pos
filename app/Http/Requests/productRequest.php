@@ -33,7 +33,7 @@ class productRequest extends FormRequest
             'vat' => 'required|integer',
             'qyt' => 'nullable|integer',
             'unit_id'=>'required',
-            'barcode' => 'nullable'
+            'barcode' => 'required|nullable'
         ];
     }
 
@@ -56,7 +56,11 @@ class productRequest extends FormRequest
             'vat.required' => 'الضريبه اجبارى',
             'vat.integer' => 'عفوا الضريبه تكون عباره عن رقم',
             'stock_id.required' => 'المخزن الافتراضى اجبارى',
-            'unit_id.required'=>'الوحده اجبارية'
+            'unit_id.required'=>'الوحده اجبارية',
+            'barcode.nullable'=>'يجب ان يكون الباركود على شكل ارقام',
+            'barcode.required'=>'ادخال الباركود اجباري'
+
+
         ];
     }
 }
