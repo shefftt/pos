@@ -133,7 +133,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('product_report', 'reportController@product');
     Route::post('product_report', 'reportController@product_report');
 
-
+    Route::get('profits_report', 'reportController@profits');
+    Route::post('profits_report', 'reportController@profits_report');
 
 
 

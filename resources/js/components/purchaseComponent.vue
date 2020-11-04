@@ -51,7 +51,7 @@
                                 :value="stock.id"
                                 :key="stock.id"
                             >
-                                {{ stock.name }}</option
+                                {{stock.name}}</option
                             >
                         </select>
                     </div>
