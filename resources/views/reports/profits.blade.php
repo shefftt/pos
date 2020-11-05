@@ -97,7 +97,6 @@
     </div>
     <div class="card-footer">
         <h3>
-
             <span> اجمالي الارباح:{{$sum_profit}}</span>
         </h3>
     </div>

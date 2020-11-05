@@ -16,6 +16,7 @@ class product extends Model
      return  $this->belongsTo(stock::class);
     }
 
+
     public function unit(){
         return $this->belongsTo(unit::class);
     }
