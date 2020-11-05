@@ -24,7 +24,10 @@
                 <div class="form-group col-md-6">
                   <label for="vat">الضريبه</label>
                   <select class="form-control" name="vat" id="vat">
-                    <option @if($products->vat == 15)  selected="selected"  @endif value="15">شامل</option>
+
+                      @foreach($vats as $vat)
+                          <option@if($products->vat == 15) selected="selected" @endif  value="{{$vat->vat}}">شامل</option>
+                      @endforeach
                     <option value="0">غير شامل</option>
                   </select>
                   @error('vat')

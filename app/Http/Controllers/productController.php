@@ -7,7 +7,6 @@ use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
-use App\Model\stock_product;
 use App\Model\purchase_invoice_d;
 use DB;
 
@@ -20,9 +19,8 @@ class productController extends Controller
     }
 
     public function show($id){
-        $product_name = product::find($id);
-        $products = stock_product::where('product_id',$id)->get();
-        return view('products.show',compact('products','product_name'));
+        $products = product::find($id);
+        return view('products.show',compact('products'));
 
     }
 
