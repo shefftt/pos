@@ -26,7 +26,9 @@
                 <div class="form-group col-md-6">
                   <label for="vat">الضريبه</label>
                   <select class="form-control  @error('vat') is-invalid @enderror" name="vat" id="vat">
-                    <option value="15">شامل</option>
+                      @foreach($vats as $vat)
+                    <option value="{{$vat->vat}}">شامل</option>
+                      @endforeach
                     <option value="0">غير شامل</option>
                   </select>
                   @error('vat')
