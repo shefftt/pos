@@ -68,28 +68,38 @@
                 <th> الكمية</th>
                 <th>سعر البيع</th>
                 <th>سعر الشراء</th>
+                <th>مجموع سعر البيع</th>
+                <th>مجموع سعر الشراء</th>
                 <th>الربح</th>
             </tr>
             </thead>
 
             <tbody>
-            <?php $i = 1; ?>
+            <?php $i = 1; $sum_profit = 0; ?>
             @foreach($sales_profits as $profit)
+                <?php  $sum_profit += ($profit->sub_total)-(($profit->product->purchase->price)*($profit->qyt)) ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$profit->product->name}}</td>
-                    <td>{{$profit->product->unit->unit_name}}</td>
+                    <td>{{$profit->product->unit->name}}</td>
                     <td>{{$profit->qyt}}</td>
-                    <td>{{$profit->product->sale_price}}</td>
-                    <td>{{$profit->product->purchase_price}}</td>
-                    <td>{{$profit->product->sale_price-$profit->product->purchase_price}}</td>
+                    <td>{{$profit->price}}</td>
+                    <td>{{$profit->product->purchase->price}}</td>
+                    <td>{{$profit->sub_total}}</td>
+                    <td>{{($profit->product->purchase->price)*($profit->qyt)}}</td>
+                    <td>{{($profit->sub_total)-(($profit->product->purchase->price)*($profit->qyt))}}</td>
 
-{{--                    <td>{{$profit->purchase->price}}</td>--}}
                 </tr>
             @endforeach
             </tbody>
         </table>
 
+    </div>
+    <div class="card-footer">
+        <h3>
+
+            <span> اجمالي الارباح:{{$sum_profit}}</span>
+        </h3>
     </div>
 </div>
 @endsection

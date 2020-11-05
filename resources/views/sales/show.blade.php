@@ -9,7 +9,6 @@
                     <th>#</th>
                     <th>المنتج</th>
                     <th>  الكمية</th>
-                    <th>الكميه</th>
                     <th>سعر الوحده</th>
                     <th> الوحده</th>
                     <th> الضريبه</th>
@@ -32,7 +31,7 @@
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->product->unit->unit_name}}</td>
+                    <td>{{$product->product->unit->name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
                     <td>{{$product->sub_total}}</td>
@@ -61,7 +60,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
     <div class="card-footer">
 
     </div>

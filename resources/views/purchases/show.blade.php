@@ -64,7 +64,7 @@
                     <td>{{$product->qyt}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
-                    <td>{{$product->product->unit->unit_name}}</td>
+                    <td>{{$product->product->unit->name}}</td>
                     <td>{{$product->vat}}</td>
                     <td>{{$product->sub_vat}}</td>
                     <td></td>

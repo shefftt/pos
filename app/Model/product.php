@@ -26,5 +26,9 @@ class product extends Model
     public function purchases(){
         return $this->hasMany(purchase_invoice_d::class);
     }
+    public function purchase(){
+        return $this->belongsTo(purchase_invoice_d::class,'id','product_id');
+    }
+
 
 }
