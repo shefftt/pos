@@ -7,6 +7,7 @@ use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
+use App\Model\vat;
 use App\Model\purchase_invoice_d;
 use DB;
 
@@ -28,9 +29,10 @@ class productController extends Controller
     public function create()
     {
         $units = unit::all();
+        $vats = vat::all();
         $categories =  category::all();
         $stocks     =  stock::all();
-        return view('products.create', compact('categories', 'stocks','units'));
+        return view('products.create', compact('categories', 'stocks','units','vats'));
     }
     public function edit($id)
     {
