@@ -170,7 +170,7 @@
             <!-- small card -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>{{$sales->sum('total')}}</h3>
+                    <h3>0</h3>
 
                     <p>مجموع المصروفات </p>
                 </div>

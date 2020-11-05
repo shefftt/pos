@@ -10,6 +10,7 @@ use App\Model\sales_invoice_d;
 use App\Model\sales_invoice_h;
 use App\model\supplier;
 use App\model\product;
+use App\model\stock_product;
 use Illuminate\Http\Request;
 
 class salesController extends Controller
@@ -49,6 +50,11 @@ class salesController extends Controller
             );
 
             $vat_total += json_decode($product)->vat * json_decode($product)->qyt;
+
+            $ps = product::find(json_decode($product)->id);
+            $stock_product = stock_product::where('product_id', json_decode($product)->id)->where('stock_id', $ps->stock_id)->first();
+            $stock_product->qyt = $stock_product->qyt - json_decode($product)->qyt;
+            $stock_product->save();
         }
 
         $invoice->vat_total = $vat_total;

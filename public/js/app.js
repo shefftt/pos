@@ -2557,6 +2557,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2585,6 +2609,7 @@ var Toast = Swal.mixin({
       invoice_type: "normal",
       customers: [],
       customer_id: 0,
+      discount: 0,
       payment_method: 1,
       total: 0,
       vat_total: 0
@@ -2597,6 +2622,7 @@ var Toast = Swal.mixin({
     delete_sales_invoice: function delete_sales_invoice() {
       this.products_table = [];
       this.total = 0;
+      this.vat_total = 0;
     },
     create_sales_invoice: function create_sales_invoice() {
       var _this = this;
@@ -2712,6 +2738,7 @@ var Toast = Swal.mixin({
           });
           obj.qyt += 1;
           obj.subtotal = obj.price * obj.qyt;
+          obj.sub_vat = obj.vat * obj.qyt;
         }
       } // console.log(obj);
       // return;
@@ -2721,6 +2748,7 @@ var Toast = Swal.mixin({
         this.products_table.push({
           id: product.id,
           vat: product.vat,
+          sub_vat: product.vat,
           name: product.name,
           price: product.sale_price,
           qyt: 1,
@@ -2729,6 +2757,7 @@ var Toast = Swal.mixin({
       }
 
       this.total = parseFloat(this.total) + parseFloat(product.sale_price);
+      this.vat_total = parseFloat(this.vat_total) + parseFloat(product.vat);
       this.products = null;
       this.product_name = "";
     },
@@ -2756,10 +2785,12 @@ var Toast = Swal.mixin({
           });
           obj.qyt += 1;
           obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+          obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
         }
       }
 
       this.total = parseFloat(this.total) + parseFloat(obj.price);
+      this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
     },
     de_crease: function de_crease(product) {
       var obj; // التاكد من عدم وجود المنتج فى القائمه
@@ -2773,6 +2804,7 @@ var Toast = Swal.mixin({
           if (obj.qyt > 1) {
             obj.qyt -= 1;
             obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+            this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
             this.total -= parseFloat(obj.price);
           }
         }
@@ -21454,7 +21486,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-3" }, [
+                _c("div", { staticClass: "form-group col-md-6" }, [
                   _c("label", { attrs: { for: "payment_id" } }, [
                     _vm._v("طريقه الدفع")
                   ]),
@@ -21501,52 +21533,6 @@ var render = function() {
                       )
                     }),
                     0
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-3" }, [
-                  _c("label", { attrs: { for: "payment_id" } }, [
-                    _vm._v("نوع الفاتوره")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.invoice_type,
-                          expression: "invoice_type"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: { name: "invoice_type", id: "payment_id" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.invoice_type = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "normal" } }, [
-                        _vm._v("فاتورة عاديه")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "refund" } }, [
-                        _vm._v("فاتورة راجعه")
-                      ])
-                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -21711,7 +21697,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(product.vat))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
+                      _c("td", [_vm._v(_vm._s(product.sub_vat))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
@@ -21743,9 +21729,47 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(_vm.total))])
               ]),
               _vm._v(" "),
-              _vm._m(1),
+              _c("tr", [
+                _c("td", [_vm._v("الضريبه")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.vat_total))])
+              ]),
               _vm._v(" "),
-              _vm._m(2),
+              _c("tr", [
+                _c("td", [_vm._v("المجموع + الضريبه")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.vat_total + _vm.total))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("نسبه التخفيض")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.discount,
+                          expression: "discount"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "نسبه التخفيض" },
+                      domProps: { value: _vm.discount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.discount = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v("المبلغ المدفوع")]),
@@ -21778,9 +21802,17 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("tr", [
+                _c("td", [_vm._v("المبلغ بعد التخفيض")]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(_vm.total - _vm.total * (_vm.discount / 100)))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
                 _c("td", [_vm._v("المبلغ المبتقى")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.amount_paid - _vm.total))])
+                _c("td", [_vm._v(_vm._s(_vm.total - _vm.amount_paid))])
               ])
             ]),
             _vm._v(" "),
@@ -21896,26 +21928,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("الضريبه")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("123")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("المجموع + الضريبه")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("123")])
     ])
   }
 ]
@@ -35166,15 +35178,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/js/components/purchaseBtnComponent.vue ***!
   \**********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _purchaseBtnComponent_vue_vue_type_template_id_db229d26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./purchaseBtnComponent.vue?vue&type=template&id=db229d26&scoped=true& */ "./resources/js/components/purchaseBtnComponent.vue?vue&type=template&id=db229d26&scoped=true&");
 /* harmony import */ var _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./purchaseBtnComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/purchaseBtnComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _purchaseBtnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -35204,7 +35215,7 @@ component.options.__file = "resources/js/components/purchaseBtnComponent.vue"
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/purchaseBtnComponent.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
