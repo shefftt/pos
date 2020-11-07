@@ -2581,6 +2581,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -21807,6 +21811,12 @@ var render = function() {
                 _c("td", [
                   _vm._v(_vm._s(_vm.total - _vm.total * (_vm.discount / 100)))
                 ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("المبلغ المجموع قبل التحفيض")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.total))])
               ]),
               _vm._v(" "),
               _c("tr", [

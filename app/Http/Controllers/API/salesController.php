@@ -4,13 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Model\customer;
-use App\model\purchase_invoice_d;
-use App\model\purchase_invoice_h;
+use App\Model\purchase_invoice_d;
+use App\Model\purchase_invoice_h;
 use App\Model\sales_invoice_d;
 use App\Model\sales_invoice_h;
-use App\model\supplier;
-use App\model\product;
-use App\model\stock_product;
+use App\Model\supplier;
+use App\Model\product;
+use App\Model\stock_product;
 use Illuminate\Http\Request;
 
 class salesController extends Controller

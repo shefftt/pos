@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\model\account;
+use App\Model\account;
 use App\Model\expense;
 use App\Model\expense_category;
 use App\Model\stock;

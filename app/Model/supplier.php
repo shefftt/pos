@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 use App\Model\transaction;
 use App\Model\purchase_invoice_h;
 

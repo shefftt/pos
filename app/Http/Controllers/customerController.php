@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\customerRequest;
 use App\Model\customer;
 use App\Model\sales_invoice_h;
-use App\model\transaction;
+use App\Model\transaction;
 use Illuminate\Http\Request;
 
 class customerController extends Controller

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\accountRequest;
 use App\Model\stock;
-use App\model\account;
-use App\model\payment;
+use App\Model\account;
+use App\Model\payment;
 use Illuminate\Http\Request;
 
 class accountController extends Controller
