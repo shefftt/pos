@@ -13,6 +13,10 @@ class sales_invoice_d extends Model
     {
         return $this->belongsTo(product::class);
     }
+    public function header(){
 
+        return $this->belongsTo(sales_invoice_h::class,'invoice_id','id');
+
+    }
 
 }

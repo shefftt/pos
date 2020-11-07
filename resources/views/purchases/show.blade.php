@@ -43,12 +43,10 @@
                 <th>#</th>
                 <th>المنتج</th>
                 <th>الكميه</th>
+                <th>الوحده</th>
                 <th> سعر الوحده</th>
                 <th> المجموع</th>
-                <th>الوحده</th>
-                <th>الضريبه</th>
-                <th>مجموع الضريبه</th>
-                <th>الضبط</th>
+
 
 
             </tr>
@@ -62,11 +60,10 @@
 
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
+                    <td>{{$product->product->unit->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
-                    <td>{{$product->product->unit->name}}</td>
-                    <td>{{$product->vat}}</td>
-                    <td>{{$product->sub_vat}}</td>
+
                     <td></td>
                    </tr>
             @endforeach

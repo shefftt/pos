@@ -9,10 +9,8 @@
                     <th>#</th>
                     <th>المنتج</th>
                     <th>  الكمية</th>
-                    <th>سعر الوحده</th>
                     <th> الوحده</th>
-                    <th> الضريبه</th>
-                    <th>مجموع الضريبه</th>
+                    <th>سعر الوحده</th>
                     <th> المجموع</th>
 
                 </tr>
@@ -30,10 +28,8 @@
                     <td scope="row">{{$i++}}</td>
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
-                    <td>{{$product->price}}</td>
                     <td>{{$product->product->unit->name}}</td>
-                    <td>{{$product->vat}}</td>
-                    <td>{{$product->sub_vat}}</td>
+                    <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
                     @endforeach
             </tbody>

@@ -79,8 +79,6 @@
                 <th>اسم المنتج</th>
                 <th>البراكود</th>
                 <th>المجموع</th>
-                <th>الضريبه</th>
-                <th>المجموع + الضريبه</th>
                 <th>عدد مرات البيع</th>
             </tr>
             </thead>
@@ -94,8 +92,6 @@
                     <td>{{$sales->name}}</td>
                     <td>{{$sales->barcode}}</td>
                     <td>{{$sales->sales->sum('sub_total')}}</td>
-                    <td>{{$sales->sales->sum('sub_vat')}}</td>
-                    <td>{{$sales->sales->sum('sub_total') + $sales->sales->sum('sub_vat')}}</td>
                     <td>{{$sales->sales->count('id')}}</td>
 
 
@@ -136,8 +132,6 @@
                 <th>اسم المنتج</th>
                 <th>البراكود</th>
                 <th>المجموع</th>
-                <th>الضريبه</th>
-                <th>المجموع + الضريبه</th>
                 <th>عدد مرات الشراء</th>
             </tr>
             </thead>
@@ -151,8 +145,6 @@
                     <td>{{$purchase->name}}</td>
                     <td>{{$purchase->barcode}}</td>
                     <td>{{$purchase->purchases->sum('sub_total')}}</td>
-                    <td>{{$purchase->purchases->sum('sub_vat')}}</td>
-                    <td>{{$purchase->purchases->sum('sub_total') + $purchase->purchases->sum('sub_vat')}}</td>
                     <td>{{$purchase->sales->count('id')}}</td>
 
 

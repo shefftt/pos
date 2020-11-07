@@ -14,3 +14,4 @@ class transaction extends Model
         return $this->morphTo();
     }
 }
+
