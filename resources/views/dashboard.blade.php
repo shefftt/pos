@@ -7,13 +7,13 @@
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-gear"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">المبيعات</span>
+                <span class="info-box-text">{{ __('messages.Sales') }}</span>
                 <span class="info-box-number">
-                    العدد : {{$sales_statistics->count()}}
-                    <small>فاتوره</small>
+                     {{ __('messages.number') }}: {{$sales_statistics->count()}}
+                    <small>{{ __('messages.Bill') }}</small>
                 </span>
                 <span class="info-box-number">
-                    المبلغ : {{$sales_statistics->sum('total')}}
+                    {{ __('messages.amount') }} : {{$sales_statistics->sum('total')}}
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -26,13 +26,13 @@
             <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">المشتريات</span>
+                <span class="info-box-text">{{ __('messages.Purchases') }}</span>
                 <span class="info-box-number">
-                    العدد : {{$sales_statistics->count()}}
-                    <small>فاتوره</small>
+                    {{ __('messages.number') }} : {{$sales_statistics->count()}}
+                    <small>{{ __('messages.Bill') }}</small>
                 </span>
                 <span class="info-box-number">
-                    المبلغ : {{$sales_statistics->sum('total')}}
+                    {{ __('messages.amount') }}: {{$sales_statistics->sum('total')}}
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -49,10 +49,10 @@
             <span class="info-box-icon bg-success elevation-1"><i class="fa fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">المتجات</span>
+                <span class="info-box-text">{{ __('messages.Products') }}</span>
                 <span class="info-box-number">
-                    العدد : {{$product}}
-                    <small>منتج</small>
+                    {{ __('messages.number') }}: {{$product}}
+                    <small>{{ __('messages.Producer') }}</small>
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -65,12 +65,12 @@
             <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">الموردين</span>
+                <span class="info-box-text">{{ __('messages.Suppliers') }}</span>
                 <span class="info-box-number">
 
                 <span class="info-box-number">
-                    العدد : {{$supplier}}
-                    <small>مورد</small>
+                    {{ __('messages.number') }}: {{$supplier}}
+                    <small>{{ __('messages.Supplier') }}</small>
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -84,16 +84,16 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                احدث عمليات المشتريات
+                {{ __('messages.latest procurement process') }}
             </div>
             <div class="card-body">
                 <table class="table table-striped ">
                     <thead class="thead-inverse">
                         <tr>
                             <th>#</th>
-                            <th>العميل</th>
-                            <th>المجموع</th>
-                            <th>التاريخ</th>
+                            <th>{{ __('messages.Client') }}</th>
+                            <th>{{ __('messages.Total') }}</th>
+                            <th>{{ __('messages.Date') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,23 +114,23 @@
             </div>
             <div class="card-footer text-muted">
 
-                <h3>المجموع : {{$total}}</h3>
+                <h3>{{ __('messages.Total') }} : {{$total}}</h3>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card">
             <div class="card-header">
-                اخر المبيعات
+                {{ __('messages.Latest sales') }}
             </div>
             <div class="card-body">
                 <table class="table table-striped ">
                     <thead class="thead-inverse">
                         <tr>
                             <th>#</th>
-                            <th>العميل</th>
-                            <th>المجموع</th>
-                            <th>التاريخ</th>
+                            <th>{{ __('messages.Client') }}</th>
+                            <th>{{ __('messages.Total') }}</th>
+                            <th>{{ __('messages.Date') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -152,7 +152,7 @@
                 </table>
             </div>
             <div class="card-footer text-muted">
-                <h3>المجموع : {{$total}}</h3>
+                <h3> {{ __('messages.Total') }}: {{$total}}</h3>
             </div>
         </div>
     </div>

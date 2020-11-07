@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>نقاط البيع</title>
+    <title> {{ __('messages.POS') }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -107,8 +107,8 @@
             <table>
                 <tbody>
                     <tr>
-                        <td><a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> الى الخلف</a> </td>
-                        <td><button onclick="window.print();" class="btn btn-primary"><i class="dripicons-print"></i> طباعة</button></td>
+                        <td><a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i>  {{ __('messages.Back') }}</a> </td>
+                        <td><button onclick="window.print();" class="btn btn-primary"><i class="dripicons-print"></i> {{ __('messages.Print') }}</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -122,22 +122,22 @@
                 <h2>
                     {{$info->name}}</h2>
 
-                <p>العنوان:
+                <p>{{ __('messages.Title') }}:
                     {{$info->address}}
-                    <br>رقم الهاتف:
+                    <br> {{ __('messages.phone') }}:
 
                     {{$info->phone}}
                 </p>
             </div>
-            <p>تاريخ:
+            <p>{{ __('messages.Date') }}:
                 {{now()}}
                 <br>
-                مرجع:
+                {{ __('messages.reference') }}:
                 {{$invoice->id}}#
 
                 @if(isset($sale->customer->name))
                 <br>
-                العميل:
+                {{ __('messages.Client') }}:
                 {{$sale->customer->name}} @endif
 
 
@@ -155,15 +155,15 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="2">مجموع: </th>
+                        <th colspan="2">{{ __('messages.Total') }}: </th>
                         <th style="text-align:right">{{$invoice->total}}</th>
                     </tr>
                     <tr>
-                        <th colspan="2">مجموع الضريبه: </th>
+                        <th colspan="2"> {{ __('messages.Sum Tax') }}: </th>
                         <th style="text-align:right">{{$invoice->vat_total}}</th>
                     </tr>
                     <tr>
-                        <th colspan="2">المجموع + الضريبه :</th>
+                        <th colspan="2">  {{ __('messages.total summation') }}:</th>
                         <th style="text-align:right">{{$invoice->total + $invoice->vat_total}}</th>
                     </tr>
                 </tfoot>
@@ -171,12 +171,12 @@
             <table>
                 <tbody>
                     <tr style="background-color:#ddd;">
-                        <td style="padding: 5px;width:30%">دفعت :
+                        <td style="padding: 5px;width:30%"> {{ __('messages.Paid Done') }}:
                             {{$invoice->payment->name}}
                         </td>
                     </tr>
                     <tr>
-                        <td class="centered" colspan="3">شكرا لتسوقك معنا </td>
+                        <td class="centered" colspan="3">{{ __('messages.Thank you for shopping with us') }}</td>
                     </tr>
                     <!-- <tr><td class="centered" colspan="3"><img style="margin-top:10px;" src="blob:null/846e6740-6d83-4a17-a2d3-dbe2072721eb" alt="barcode"></td></tr> -->
                 </tbody>
@@ -200,9 +200,9 @@
     @else
     <center>
         <h3>
-            عفوا لاتوجد فاتوره بهذا الرقم
+                {{ __('messages.Sorry, there is no invoice for this number') }}
         </h3>
-        <a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> الى الخلف</a>
+        <a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> {{ __('messages.Back') }} </a>
     </center>
     @endif
 

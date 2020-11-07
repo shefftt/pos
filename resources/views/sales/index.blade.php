@@ -6,10 +6,10 @@
 <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>فواتير المبيعات</h6>
+                <h6> {{ __('messages.salesinvoices') }}</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-dark" target="_blank" href="{{url('/pos')}}" role="button"> انشاء فاتوره</a>
+                <a class="btn btn-dark" target="_blank" href="{{url('/pos')}}" role="button"> {{ __('messages.Create an invoice') }} </a>
 
             </div>
         </div>
@@ -19,10 +19,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>العميل</th>
-                    <th> المجموع</th>
-                    <th> التاريخ</th>
-                    <th>الضبط</th>
+                    <th>{{ __('messages.Client') }}</th>
+                    <th> {{ __('messages.Total') }}</th>
+                    <th> {{ __('messages.Date') }}</th>
+                    <th>{{ __('messages.product Settings') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                     <td>{{$sale->created_at}}</td>
 
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{url('/sales/')}}/{{$sale->id}}" role="button">عرض</a>
+                        <a class="btn btn-sm btn-primary" href="{{url('/sales/')}}/{{$sale->id}}" role="button">{{ __('messages.Show') }}</a>
 
                     </td>
                 </tr>

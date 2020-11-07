@@ -1,4 +1,5 @@
-<html dir="auto">
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -19,11 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- bootstrap rtl -->
-    @if (App::isLocale('ar'))
-    <link rel="stylesheet" href="../../dist/css/bootstrap.min.css">
-    @else
     <link rel="stylesheet" href="../../dist/css/bootstrap-rtl.min.css">
-    @endif
     <!-- template rtl version -->
     <link rel="stylesheet" href="../../dist/css/custom-style.css">
 </head>
@@ -31,8 +28,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b></b></a>
-            <a href="#"><b>{{__('login/index.login')}} </b></a>
+            <a href="#"><b>{{ __('messages.Login') }}</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -55,7 +51,7 @@
                     @csrf
                     <div class="form-group">
                         <div class="input-group mb-3">
-                            <input type="email" name="email" value="{{old('email')}}" class="form-control  @error('qyt') is-invalid @enderror" placeholder="{{__('login/index.email')}} ">
+                            <input type="email" name="email" value="{{old('email')}}" class="form-control  @error('qyt') is-invalid @enderror" placeholder="البريد الالكتروني">
                             <div class="input-group-append">
                                 <span class="fa fa-envelope input-group-text"></span>
                             </div>
@@ -68,7 +64,7 @@
 
                     <div class="form-group">
                         <div class="input-group mb-3">
-                            <input type="password" name="password" value="{{old('password')}}" class="form-control  @error('password') is-invalid @enderror" placeholder="{{__('login/index.password')}} ">
+                            <input type="password" name="password" value="{{old('password')}}" class="form-control  @error('password') is-invalid @enderror" placeholder="كلمه السر">
                             <div class="input-group-append">
                                 <span class="fa fa-lock input-group-text"></span>
                             </div>
@@ -82,7 +78,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">{{__('login/index.loginBtn')}} </button>
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">{{ __('messages.Loginbtn') }}</button>
                         </div>
                         <!-- /.col -->
                     </div>

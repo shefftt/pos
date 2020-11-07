@@ -7,20 +7,20 @@
         <div class="card-body">
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="">من </label>
+                    <label for=""> {{ __('messages.Start Date') }}</label>
                     <input type="date" class="form-control" required name="from">
 
                 </div>
                 <div class="form-group col-md-6">
 
-                    <label for="">الي </label>
+                    <label for="">{{ __('messages.Expiry date') }} </label>
                     <input type="date" class="form-control" required name="to">
 
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="category_id">المورد</label>
+                    <label for="category_id">{{ __('messages.Suppliers') }}</label>
                     <select class="form-control" name="supplier_id" id="select-state">
-                        <option value="">اختار مورد</option>
+                        <option value=""> {{ __('messages.Suppliers') }}</option>
                         @foreach($suppliers as $supplier)
                         <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                         @endforeach
@@ -28,9 +28,9 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="category_id">طريقه الدفع</label>
+                    <label for="category_id"> {{ __('messages.paymentmethods') }}</label>
                     <select class="form-control" name="payment_method_id" id="select-state">
-                        <option value="">اختار طريقه الدفع</option>
+                        <option value="">  {{ __('messages.paymentmethods') }}</option>
                         @foreach($payment_methods as $payment)
                         <option value="{{$payment->id}}">{{$payment->name}}</option>
                         @endforeach
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <br>
-                    <button class="btn btn-md btn-success btn-block" type="submit" style="margin-top: 0.5rem;">بحث</button>
+                    <button class="btn btn-md btn-success btn-block" type="submit" style="margin-top: 0.5rem;">{{ __('messages.Search') }}</button>
                 </div>
 
 
@@ -48,7 +48,7 @@
     </form>
 </div>
 <div class="col-1">
-    <a class="btn btn-success" onclick="printDiv('invoice')" role="button">طباعه</a>
+    <a class="btn btn-success" onclick="printDiv('invoice')" role="button">{{ __('messages.Print') }}</a>
 </div>
 <br>
 
@@ -64,9 +64,9 @@
                     <h2>{{$setting->name}}</h2>
                     <h6>{{$setting->address}}</h6>
                     <h6>{{$setting->phone}}</h6>
-                    <h6>تقرير المشتريات من
+                    <h6>{{ __('messages.Procurement report from') }}
                         {{$from}}
-                        الى
+                        {{ __('messages.to') }}
                         {{$to}}
                     </h6>
                 </div>
@@ -79,14 +79,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th># متسلسل</th>
-                        <th>المورد</th>
-                        <th> المخزن</th>
-                        <th> المجموع</th>
-                        <th> رقم الفاتوره</th>
-                        <th> طريقه الدفع</th>
-                        <th> التاريخ</th>
-                        <th>الضبط</th>
+                        <th># </th>
+                        <th>{{ __('messages.Suppliers') }}</th>
+                        <th> {{ __('messages.Storesitem') }}</th>
+                        <th> {{ __('messages.Total') }}</th>
+                        <th> {{ __('messages.invoice number') }}</th>
+                        <th>  {{ __('messages.paymentmethods') }}</th>
+                        <th> {{ __('messages.Date') }}</th>
+                        <th>{{ __('messages.product Settings') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +104,7 @@
                         <td>{{$purchase->payment->name}}</td>
                         <td>{{$purchase->created_at}}</td>
                         <td>
-                            <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">عرض</a>
+                            <a class="btn btn-sm btn-primary" href="{{url('/purchase/')}}/{{$purchase->id}}" role="button">{{ __('messages.Show') }}</a>
 
                         </td>
                     </tr>
@@ -115,7 +115,7 @@
         <div class="card-footer">
             <h3>
 
-                <span> الاجمالي:{{$purchases_report->sum('total')}}</span>
+                <span> {{ __('messages.Totals') }}:{{$purchases_report->sum('total')}}</span>
             </h3>
         </div>
 

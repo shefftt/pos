@@ -18,8 +18,8 @@
             <tr>
                 <th>#</th>
 
-                <th>المنتج</th>
-                <th>الكميه</th>
+                <th>{{ __('messages.product name') }}</th>
+                <th>{{ __('messages.Quantity') }}</th>
             </tr>
             </thead>
             <tbody>

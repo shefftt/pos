@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'اعدادات النظام')
+@section('title' , __('messages.data') )
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>البيانات</h6>
+                <h6>{{ __('messages.data') }}</h6>
             </div>
             <div class="col text-left">
 
@@ -17,11 +17,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th> الشعار</th>
-                    <th>اسم المحل</th>
-                    <th>العنوان</th>
-                    <th> الهاتف</th>
-                    <th>الضبط</th>
+                    <th> {{ __('messages.Logo') }}</th>
+                    <th>{{ __('messages.Shop Name') }}</th>
+                    <th>{{ __('messages.Title') }}</th>
+                    <th> {{ __('messages.phone') }}</th>
+                    <th>{{ __('messages.product Settings') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                     <td>{{$setting->phone}}</td>
 
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{url('/settings/')}}/edit/{{$setting->id}}" role="button">تعديل</a>
+                        <a class="btn btn-sm btn-primary" href="{{url('/settings/')}}/edit/{{$setting->id}}" role="button">{{ __('messages.Edit') }}</a>
 
                     </td>
                 </tr>

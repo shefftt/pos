@@ -14,8 +14,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th>المخزن</th>
-                <th>الكمية</th>
+                <th>{{ __('messages.default store') }}</th>
+                <th>{{ __('messages.The opening quantity') }}</th>
             </tr>
             </thead>
             <tbody>

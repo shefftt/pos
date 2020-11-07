@@ -11,15 +11,15 @@
                 <table class="table img-thumbnail">
                     <tbody>
                     <tr>
-                        <td>العميل</td>
+                        <td>{{ __('messages.Client') }}</td>
                         <td>{{$customer->name}} </td>
                     </tr>
                     <tr>
-                        <td>الهاتف</td>
+                        <td>{{ __('messages.phone') }}</td>
                         <td>{{$customer->phone}} </td>
                     </tr>
                     <tr>
-                        <td> الرصيد</td>
+                        <td> {{ __('messages.balance') }}</td>
                         <td>{{$customer->balance}} </td>
                     </tr>
                     </tbody>
@@ -39,7 +39,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">الدفعيات</a>
+                            <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false"> {{ __('messages.Payments') }}</a>
 
                         </li>
                         <li class="nav-item">
@@ -57,9 +57,9 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>رقم الفاتورة</th>
-                                    <th>المبلغ</th>
-                                    <th>التاريخ</th>
+                                    <th> {{ __('messages.invoice number') }}</th>
+                                    <th> {{ __('messages.amount') }}</th>
+                                    <th> {{ __('messages.Date') }}</th>
 
 
                                 </tr>
@@ -92,10 +92,10 @@
                                         <th>#</th>
 
 
-                                        <th> المبلغ المدفوع</th>
-                                        <th> المجموع</th>
+                                        <th> {{ __('messages.amount paid') }}</th>
+                                        <th> {{ __('messages.Total') }}</th>
 
-                                        <th>الضبط</th>
+                                        <th>{{ __('messages.product Settings') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -112,7 +112,7 @@
 
 
                                             <td>
-                                                <a class="btn  btn-sm btn-primary" href="{{url('/sales/')}}/{{$invoice->id}}" role="button">عرض</a>
+                                                <a class="btn  btn-sm btn-primary" href="{{url('/sales/')}}/{{$invoice->id}}" role="button">{{ __('messages.Show') }}</a>
 
                                             </td>
                                         </tr>

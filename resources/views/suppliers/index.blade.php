@@ -1,15 +1,15 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,'الموردين')
+@section('title' , __('messages.Suppliers') )
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>الموردين</h6>
+                <h6>{{ __('messages.Suppliers') }}</h6>
             </div>
             <div class="col text-left">
-                <a class="btn btn-secondary" href="{{url('/supplier/create')}}" role="button">اضافة مورد </a>
+                <a class="btn btn-secondary" href="{{url('/supplier/create')}}" role="button"> {{ __('messages.AddSuppliers') }} </a>
 
             </div>
         </div>
@@ -19,11 +19,11 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>الاسم</th>
-                <th>الهاتف </th>
-                <th>العنوان </th>
+                <th>{{ __('messages.name') }}</th>
+                <th>{{ __('messages.phone') }} </th>
+                <th>{{ __('messages.Title') }} </th>
 
-                <th>الضبط</th>
+                <th>{{ __('messages.product Settings') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -37,9 +37,9 @@
                     <td>{{$supplier->address}}</td>
 
                     <td>
-                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/supplier/show')}}/{{$supplier->id}}" role="button">عرض</a>
+                        <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/supplier/show')}}/{{$supplier->id}}" role="button">{{ __('messages.Show') }} </a>
 
-                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/supplier/edit')}}/{{$supplier->id}}" role="button">تعديل</a>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/supplier/edit')}}/{{$supplier->id}}" role="button">{{ __('messages.Modify') }} </a>
 
                     </td>
                 </tr>
