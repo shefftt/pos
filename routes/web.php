@@ -117,6 +117,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('unit/create', 'unitController@store');
 
 
+    Route::get('vat', 'vatController@index');
+    Route::get('vat/create', 'vatController@create');
+    Route::post('vat/create', 'vatController@store');
+    Route::post('vat/update/{id}', 'vatController@update');
+    Route::get('vat/edit/{id}', 'vatController@edit');
+
     Route::get('pos', 'posController@index');
     Route::get('pos/print', 'posController@print');
 

@@ -487,6 +487,14 @@
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('profits_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                 تقرير الارباح
+                                            </p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -531,6 +539,16 @@
                                             </p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{url('vat')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                الضريبة
+                                            </p>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
 

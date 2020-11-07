@@ -28,6 +28,7 @@
                 <?php $i = 1; ?>
                 @foreach($payments as $payment)
                 <tr>
+
                     <td scope="row">{{$i++}}</td>
 
                     <td>{{$payment->name}}</td>

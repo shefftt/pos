@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\model\stock_product;
 use Illuminate\Http\Request;
 use App\Http\Requests\productRequest;
 use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
+use App\Model\vats;
 use App\Model\purchase_invoice_d;
 use DB;
 
@@ -19,8 +21,9 @@ class productController extends Controller
     }
 
     public function show($id){
-        $products = product::find($id);
-        return view('products.show',compact('products'));
+        $product_name = product::find($id);
+        $products = stock_product::where('product_id',$id)->get();
+        return view('products.show',compact('products','product_name'));
 
     }
 
@@ -28,9 +31,10 @@ class productController extends Controller
     public function create()
     {
         $units = unit::all();
+        $vats = vat::all();
         $categories =  category::all();
         $stocks     =  stock::all();
-        return view('products.create', compact('categories', 'stocks','units'));
+        return view('products.create', compact('categories', 'stocks','units','vats'));
     }
     public function edit($id)
     {

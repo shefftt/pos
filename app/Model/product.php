@@ -16,6 +16,7 @@ class product extends Model
      return  $this->belongsTo(stock::class);
     }
 
+
     public function unit(){
         return $this->belongsTo(unit::class);
     }
@@ -26,5 +27,9 @@ class product extends Model
     public function purchases(){
         return $this->hasMany(purchase_invoice_d::class);
     }
+    public function purchase(){
+        return $this->belongsTo(purchase_invoice_d::class,'id','product_id');
+    }
+
 
 }

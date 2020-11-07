@@ -42,7 +42,7 @@
                     <td>{{$product->purchase_price}}</td>
                     <td>{{$product->sale_price}}</td>
                     <td>{{$product->category->name}}</td>
-                    <td>{{$product->unit->unit_name}}</td>
+                    <td>{{$product->unit->name}}</td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->vat}}</td>
                     <td>

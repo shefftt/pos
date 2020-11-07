@@ -6,7 +6,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h6>{{$products->name}}</h6>
+                <h6>{{$product_name->name}}</h6>
             </div>
         </div>
     </div>
@@ -19,12 +19,13 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($products as $product)
                 <tr>
-                    <td>{{$products->stock->name}}</td>
-                    <td>{{$products->qyt}}</td>
+                    <td>{{$product->stock->name}}</td>
+                    <td>{{$product->qyt}}</td>
 
                 </tr>
-
+            @endforeach
             </tbody>
         </table>
     </div>

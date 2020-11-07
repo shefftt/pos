@@ -2,6 +2,40 @@
 @section('content')
 @section('title' ,' تقرير الارباح ')
 
+<div class="callout callout-info">
+    <form action="{{url('profits_report')}}" method="post">
+        @csrf
+        <div class="card-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="">من </label>
+                    <input type="date" class="form-control" required name="from">
+
+                </div>
+                <div class="form-group col-md-6">
+
+                    <label for="">الي </label>
+                    <input type="date" class="form-control" required name="to">
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="category_id">المنتجات</label>
+                    <select class="form-control" name="product_id" id="select-state">
+                        <option value=""> اختار منتج</option>
+                        @foreach($products as $product)
+                            <option value="{{$product->id}}">{{$product->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <br>
+                    <button class="btn btn-md btn-success btn-block" type="submit" style="margin-top: 0.5rem;">بحث</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 {{--<div class="card bg-light">--}}
 {{--    <div class="card-header text-muted border-bottom-0">--}}
@@ -34,28 +68,37 @@
                 <th> الكمية</th>
                 <th>سعر البيع</th>
                 <th>سعر الشراء</th>
+                <th>مجموع سعر البيع</th>
+                <th>مجموع سعر الشراء</th>
                 <th>الربح</th>
             </tr>
             </thead>
 
             <tbody>
-            <?php $i = 1; ?>
+            <?php $i = 1; $sum_profit = 0; ?>
             @foreach($sales_profits as $profit)
+                <?php  $sum_profit += ($profit->sub_total)-(($profit->product->purchase->price)*($profit->qyt)) ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$profit->product->name}}</td>
-                    <td>{{$profit->product->unit->unit_name}}</td>
+                    <td>{{$profit->product->unit->name}}</td>
                     <td>{{$profit->qyt}}</td>
-                    <td>{{$profit->product->sale_price}}</td>
-                    <td>{{$profit->product->purchase_price}}</td>
-                    <td>{{$profit->product->sale_price-$profit->product->purchase_price}}</td>
+                    <td>{{$profit->price}}</td>
+                    <td>{{$profit->product->purchase->price}}</td>
+                    <td>{{$profit->sub_total}}</td>
+                    <td>{{($profit->product->purchase->price)*($profit->qyt)}}</td>
+                    <td>{{($profit->sub_total)-(($profit->product->purchase->price)*($profit->qyt))}}</td>
 
-{{--                    <td>{{$profit->purchase->price}}</td>--}}
                 </tr>
             @endforeach
             </tbody>
         </table>
 
+    </div>
+    <div class="card-footer">
+        <h3>
+            <span> اجمالي الارباح:{{$sum_profit}}</span>
+        </h3>
     </div>
 </div>
 @endsection

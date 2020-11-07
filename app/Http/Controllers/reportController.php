@@ -168,9 +168,27 @@ class reportController extends Controller
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
         $sales_profits = sales_invoice_d::all();
+        $products = product::all();
 
         //return $purchases_report;
-        return view('reports.profits', compact('sales_profits'));
+        return view('reports.profits', compact('sales_profits','products'));
+    }
+
+    public function profits_report()
+    {
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+        $sales_profits = sales_invoice_d::all();
+        $products = product::all();
+        if (isset(request()->product_id)) {
+
+            $sales_profits = sales_invoice_d::whereBetween('created_at', [$from, $to])->where('product_id', request()->product_id)->get();
+        }
+        elseif (request()->product_id === null) {
+            $sales_profits = sales_invoice_d::whereBetween('created_at', [$from, $to])
+                ->get();
+        }
+        return view('reports.profits', compact('sales_profits','products'));
     }
 
 }
