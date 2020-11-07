@@ -10,6 +10,7 @@ use App\Model\purchase_invoice_h;
 use App\Model\purchase_invoice_d;
 use App\Model\sales_invoice_d;
 use App\Model\setting;
+use App\Model\stock;
 use App\Model\supplier;
 use App\User;
 use Illuminate\Http\Request;
@@ -174,16 +175,17 @@ class reportController extends Controller
         $to = request('to') . " 23:59:59";
         $sales_profits = sales_invoice_d::where('created_at', '<= ', $from)
             ->where('created_at', '>= ', $to)->get();
+
+
         $products = product::all();
         //return $purchases_report;
         return view('reports.profits', compact('sales_profits','products','from','to'));
     }
 
-    public function profits_report()
+    public function profits_report(Request $request)
     {
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
-        $users  = User::all();
         $products = product::all();
         $sales_profits = sales_invoice_d::all();
         if (isset(request()->product_id)) {

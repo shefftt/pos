@@ -77,9 +77,10 @@
             </thead>
 
             <tbody>
-            <?php $i = 1; $sum_profit = 0; ?>
+            <?php $i = 1; $sum_profit = 0; $sum_sales = 0; ?>
             @foreach($sales_profits as $profit)
                 <?php  $sum_profit += ($profit->sub_total)-(($profit->product->purchase->price)*($profit->qyt)) ?>
+                <?php  $sum_sales += $profit->sub_total ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$profit->product->name}}</td>
@@ -102,11 +103,16 @@
             <span> اجمالي الارباح:{{$sum_profit}}</span>
         </h3>
     </div>
+    <div class="card-footer">
+        <h3>
+            <span> اجمالي المبيعات:{{$sum_sales}}</span>
+        </h3>
+    </div>
 </div>
 
 
 {{--<div class="callout callout-info">--}}
-{{--    <form action="{{url('profits_report')}}" method="post">--}}
+{{--    <form action="{{url('profits_report_employee')}}" method="post">--}}
 {{--        @csrf--}}
 {{--        <div class="card-body">--}}
 {{--            <div class="row">--}}
