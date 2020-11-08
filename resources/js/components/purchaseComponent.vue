@@ -111,42 +111,36 @@
                             <th>السعر</th>
                             <th>الكميه</th>
                             <th>مجموع السعر</th>
-                            <th>الضريبه</th>
-                            <th>مجموع الضريبه</th>
-                            <th>مجموع السعر + الضريبه</th>
                             <th>ضبط</th>
                         </tr>
                     </thead>
                     <tbody id="product">
-                        <tr v-for="product in products_table" :key="product.id">
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.price }}</td>
-                            <td>
-                                <i
-                                    @click="in_crease(product)"
-                                    class="nav-icon fa fa-plus-circle label-success"
-                                ></i>
-                                {{ product.qyt }}
-                                <i
-                                    @click="de_crease(product)"
-                                    class="nav-icon fa fa-remove label-danger"
-                                ></i>
-                            </td>
-                            <td>{{ product.subtotal }}</td>
-                            <td>{{ product.vat }}</td>
-                            <td>{{ product.vat * product.qyt }}</td>
-                            <td>
-                                {{
-                                    product.subtotal + product.vat * product.vat
-                                }}
-                            </td>
-                            <td>
-                                <i
-                                    @click="remove_form_table(product)"
-                                    class="nav-icon fa fa-remove label-danger"
-                                ></i>
-                            </td>
-                        </tr>
+                           <tr
+                                    v-for="product in products_table"
+                                    :key="product.id"
+                                >
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.price }}</td>
+                                    <td>
+                                        <img
+                                            src="/../image/add.png"
+                                            @click="in_crease(product)"
+                                        />
+                                        {{ product.qyt }}
+
+                                        <img
+                                            src="/image/minus.png"
+                                            @click="de_crease(product)"
+                                        />
+                                    </td>
+                                    <td>{{ product.subtotal }}</td>
+                                    <td>
+                                        <img
+                                            src="/image/delete.png"
+                                            @click="remove_form_table(product)"
+                                        />
+                                    </td>
+                                </tr>
                     </tbody>
                 </table>
             </div>

@@ -2581,10 +2581,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2817,6 +2813,17 @@ var Toast = Swal.mixin({
     create_product: function create_product() {
       alert("create_product");
     }
+  },
+  computed: {
+    vat: function vat() {
+      this.vat_total = (this.total * 0.15).toFixed(2);
+      return this.vat_total;
+    },
+    vat_total_c: function vat_total_c() {
+      var x;
+      x = parseFloat(this.total) + parseFloat(this.vat);
+      return x.toFixed(2);
+    }
   }
 });
 
@@ -3019,12 +3026,6 @@ var Toast = Swal.mixin({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CustomerComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerComponent */ "./resources/js/components/CustomerComponent.vue");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -21699,10 +21700,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(product.subtotal))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.vat))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.sub_vat))]),
-                      _vm._v(" "),
                       _c("td", [
                         _c("img", {
                           attrs: { src: "image/delete.png" },
@@ -21736,13 +21733,13 @@ var render = function() {
               _c("tr", [
                 _c("td", [_vm._v("الضريبه")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.vat_total))])
+                _c("td", [_vm._v(_vm._s(_vm.vat))])
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v("المجموع + الضريبه")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.vat_total + _vm.total))])
+                _c("td", [_vm._v(_vm._s(_vm.vat_total_c))])
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -21931,10 +21928,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("الكميه")]),
         _vm._v(" "),
         _c("th", [_vm._v("السعر الكلى")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("الضريبه")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("مجموع الضريبه")]),
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])
@@ -22528,8 +22521,8 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(product.price))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("i", {
-                    staticClass: "nav-icon fa fa-plus-circle label-success",
+                  _c("img", {
+                    attrs: { src: "/../image/add.png" },
                     on: {
                       click: function($event) {
                         return _vm.in_crease(product)
@@ -22537,12 +22530,12 @@ var render = function() {
                     }
                   }),
                   _vm._v(
-                    "\n                            " +
+                    "\n                                    " +
                       _vm._s(product.qyt) +
-                      "\n                            "
+                      "\n\n                                    "
                   ),
-                  _c("i", {
-                    staticClass: "nav-icon fa fa-remove label-danger",
+                  _c("img", {
+                    attrs: { src: "/image/minus.png" },
                     on: {
                       click: function($event) {
                         return _vm.de_crease(product)
@@ -22553,21 +22546,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(product.subtotal))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(product.vat))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(product.vat * product.qyt))]),
-                _vm._v(" "),
                 _c("td", [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(product.subtotal + product.vat * product.vat) +
-                      "\n                        "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("i", {
-                    staticClass: "nav-icon fa fa-remove label-danger",
+                  _c("img", {
+                    attrs: { src: "/image/delete.png" },
                     on: {
                       click: function($event) {
                         return _vm.remove_form_table(product)
@@ -22635,12 +22616,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("الكميه")]),
         _vm._v(" "),
         _c("th", [_vm._v("مجموع السعر")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("الضريبه")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("مجموع الضريبه")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("مجموع السعر + الضريبه")]),
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])

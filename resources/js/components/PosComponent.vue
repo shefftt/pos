@@ -108,8 +108,6 @@
                                     <th>السعر</th>
                                     <th>الكميه</th>
                                     <th>السعر الكلى</th>
-                                    <th>الضريبه</th>
-                                    <th>مجموع الضريبه</th>
                                     <th>ضبط</th>
                                 </tr>
                             </thead>
@@ -133,8 +131,6 @@
                                         />
                                     </td>
                                     <td>{{ product.subtotal }}</td>
-                                    <td>{{ product.vat }}</td>
-                                    <td>{{ product.sub_vat }}</td>
                                     <td>
                                         <img
                                             src="image/delete.png"
@@ -158,11 +154,11 @@
                             </tr>
                             <tr>
                                 <td>الضريبه</td>
-                                <td>{{ vat_total }}</td>
+                                <td>{{ vat }}</td>
                             </tr>
                             <tr>
                                 <td>المجموع + الضريبه</td>
-                                <td>{{ vat_total + total }}</td>
+                                <td>{{ vat_total_c }}</td>
                             </tr>
                             <tr>
                                 <td>نسبه التخفيض</td>
@@ -488,7 +484,18 @@ export default {
         create_product() {
             alert("create_product");
         }
-    }
+    },
+    computed: {
+        vat : function(){
+            this.vat_total =  (this.total * 0.15).toFixed(2);
+            return  this.vat_total;
+        },
+        vat_total_c : function(){
+            let x;
+            x= parseFloat(this.total) + parseFloat(this.vat)
+            return x.toFixed(2);
+        },
+    },
 };
 </script>
 <style lang="stylus" scoped></style>
