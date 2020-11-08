@@ -141,7 +141,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('profits_report', 'reportController@profits');
     Route::post('profits_report', 'reportController@profits_report');
-    Route::post('profits_report_employee', 'reportController@profits_employee');
+
+    Route::get('employee_report', 'reportController@employee');
+    Route::post('employee_report', 'reportController@employee_report');
 
 
 

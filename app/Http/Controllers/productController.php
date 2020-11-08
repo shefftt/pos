@@ -8,7 +8,7 @@ use App\Model\category;
 use App\Model\product;
 use App\Model\stock;
 use App\Model\unit;
-use App\Model\vats;
+use App\Model\vat;
 use App\Model\purchase_invoice_d;
 use DB;
 
