@@ -119,18 +119,37 @@
                                     <td>{{ product.name }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>
-                                        <img
-                                            src="image/add.png"
-                                            @click="in_crease(product)"
-                                        />
-                                        {{ product.qyt }}
-
-                                        <img
-                                            src="image/minus.png"
-                                            @click="de_crease(product)"
-                                        />
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <img
+                                                        src="/image/add.png"
+                                                        @click="
+                                                            in_crease(product)
+                                                        "
+                                                /></span>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                @keyup="qyt($event, product)"
+                                                class="form-control col-1 text-center"
+                                                :value="product.qyt"
+                                            />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <img
+                                                        src="/image/minus.png"
+                                                        @click="
+                                                            de_crease(product)
+                                                        "
+                                                /></span>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>{{ product.subtotal }}</td>
+                                    <td>
+
+                                {{ parseFloat(product.subtotal).toFixed(2) }}
+                                    </td>
                                     <td>
                                         <img
                                             src="image/delete.png"
@@ -149,30 +168,28 @@
                         <table class="table table-bordered ">
                             <!-- <table class="table table-striped table-inverse table-responsive"> -->
                             <tr>
-                                <td>المجموع</td>
-                                <td>{{ total }}</td>
-                            </tr>
-                            <tr>
-                                <td>الضريبه</td>
-                                <td>{{ vat }}</td>
-                            </tr>
-                            <tr>
-                                <td>المجموع + الضريبه</td>
-                                <td>{{ vat_total_c }}</td>
-                            </tr>
-                            <tr>
-                                <td>نسبه التخفيض</td>
-                                <td>
-                                    <div class="form-group">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="discount"
-                                            placeholder="نسبه التخفيض"
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
+                                        <th>المجموع:</th>
+                                        <td>SDG {{ vat_total_c }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>الخصم:</th>
+                                        <td>{{ discount_label }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>المبلغ قبل الضريبه:</th>
+                                        <td>SDG {{ total.toFixed(2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>الضريبه:</th>
+                                        <td>SDG {{ vat }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>صافى الفاتورة:</th>
+                                        <td>SDG {{ full_total }}</td>
+                                    </tr>
+
                             <tr>
                                 <td>المبلغ المدفوع</td>
                                 <td>
@@ -186,18 +203,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>المبلغ بعد التخفيض</td>
-                                <td>{{ total - total * (discount / 100) }}</td>
-                            </tr>
+
 
                             <tr>
-                                <td>المبلغ المجموع قبل التحفيض</td>
-                                <td>{{ total }}</td>
-                            </tr>
-                            <tr>
                                 <td>المبلغ المبتقى</td>
-                                <td>{{ total - amount_paid }}</td>
+                                <td>{{ full_total - amount_paid }}</td>
                             </tr>
                         </table>
 
@@ -234,6 +244,45 @@
                             >
                                 حذف F3
                             </button>
+                        </div>
+                        <div class="col-12">
+                            <h3>التخفيض :</h3>
+                            <div class="form-check">
+                                <input
+                                    v-model="discount"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value="percentage"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="exampleRadios1"
+                                >
+                                    نسبه مؤيه
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    v-model="discount"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value="fixed"
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="exampleRadios2"
+                                >
+                                    مبلغ ثابت
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    v-model="discount_value"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -275,7 +324,8 @@ export default {
             customers: [],
             customer_id: 0,
 
-            discount: 0,
+            discount: "percentage",
+            discount_value: 0,
 
             payment_method: 1,
 
@@ -284,6 +334,28 @@ export default {
         };
     },
     methods: {
+        qyt(event, product) {
+            let value = event.target.value;
+            if (value < 1) {
+                this.remove_form_table(product);
+                return;
+            }
+
+            let obj;
+            // التاكد من عدمlogin وجود المنتج فى القائمه
+            for (let i = 0; i < this.products_table.length; i++) {
+                if (this.products_table[i].id === product.id) {
+                    obj = this.products_table.find(o => o.id === product.id);
+
+                    var qyt = value - obj.qyt;
+                    this.total -= parseFloat(obj.subtotal);
+                    obj.qyt = value;
+                    obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+
+                    this.total += parseFloat(obj.subtotal);
+                }
+            }
+        },
         hold_sales_invoice() {
             document.getElementById("new_pos").onClick();
         },
@@ -456,7 +528,7 @@ export default {
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
-                    obj.qyt += 1;
+                    obj.qyt = parseInt(obj.qyt) + 1;
                     obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
                     obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
                 }
@@ -486,16 +558,36 @@ export default {
         }
     },
     computed: {
-        vat : function(){
-            this.vat_total =  (this.total * 0.15).toFixed(2);
-            return  this.vat_total;
+        full_total: function() {
+            if (this.discount == "percentage") {
+                let x;
+                x =
+                    this.vat_total_c -
+                    this.vat_total_c * (this.discount_value / 100);
+                return parseFloat(x).toFixed(2);
+            } else {
+                let x;
+                x = this.vat_total_c = this.vat_total_c - this.discount_value;
+                return parseFloat(x).toFixed(2);
+            }
         },
-        vat_total_c : function(){
+        discount_label: function() {
+            if (this.discount == "percentage") {
+                return this.discount_value + " %";
+            } else {
+                return this.discount_value + " SDG";
+            }
+        },
+        vat: function() {
+            this.vat_total = (this.total * 0.15).toFixed(2);
+            return this.vat_total;
+        },
+        vat_total_c: function() {
             let x;
-            x= parseFloat(this.total) + parseFloat(this.vat)
+            x = parseFloat(this.total) + parseFloat(this.vat);
             return x.toFixed(2);
-        },
-    },
+        }
+    }
 };
 </script>
 <style lang="stylus" scoped></style>

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('plugins/morris/morris.css?v=1')}}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css?v=1')}}">
+    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css?v=1')}}">
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?v=1">

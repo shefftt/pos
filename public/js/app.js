@@ -2581,6 +2581,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2609,13 +2658,37 @@ var Toast = Swal.mixin({
       invoice_type: "normal",
       customers: [],
       customer_id: 0,
-      discount: 0,
+      discount: "percentage",
+      discount_value: 0,
       payment_method: 1,
       total: 0,
       vat_total: 0
     };
   },
   methods: {
+    qyt: function qyt(event, product) {
+      var value = event.target.value;
+
+      if (value < 1) {
+        this.remove_form_table(product);
+        return;
+      }
+
+      var obj; // التاكد من عدمlogin وجود المنتج فى القائمه
+
+      for (var i = 0; i < this.products_table.length; i++) {
+        if (this.products_table[i].id === product.id) {
+          obj = this.products_table.find(function (o) {
+            return o.id === product.id;
+          });
+          var qyt = value - obj.qyt;
+          this.total -= parseFloat(obj.subtotal);
+          obj.qyt = value;
+          obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+          this.total += parseFloat(obj.subtotal);
+        }
+      }
+    },
     hold_sales_invoice: function hold_sales_invoice() {
       document.getElementById("new_pos").onClick();
     },
@@ -2783,7 +2856,7 @@ var Toast = Swal.mixin({
           obj = this.products_table.find(function (o) {
             return o.id === product.id;
           });
-          obj.qyt += 1;
+          obj.qyt = parseInt(obj.qyt) + 1;
           obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
           obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
         }
@@ -2815,6 +2888,25 @@ var Toast = Swal.mixin({
     }
   },
   computed: {
+    full_total: function full_total() {
+      if (this.discount == "percentage") {
+        var x;
+        x = this.vat_total_c - this.vat_total_c * (this.discount_value / 100);
+        return parseFloat(x).toFixed(2);
+      } else {
+        var _x;
+
+        _x = this.vat_total_c = this.vat_total_c - this.discount_value;
+        return parseFloat(_x).toFixed(2);
+      }
+    },
+    discount_label: function discount_label() {
+      if (this.discount == "percentage") {
+        return this.discount_value + " %";
+      } else {
+        return this.discount_value + " SDG";
+      }
+    },
     vat: function vat() {
       this.vat_total = (this.total * 0.15).toFixed(2);
       return this.vat_total;
@@ -3214,6 +3306,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -3244,10 +3401,36 @@ var Toast = Swal.mixin({
       suppliers: [],
       supplier_id: 0,
       payment_method: 1,
-      total: 0
+      discount: "percentage",
+      discount_value: 0,
+      total: 0,
+      vat_total: 0
     };
   },
   methods: {
+    qyt: function qyt(event, product) {
+      var value = event.target.value;
+
+      if (value < 1) {
+        this.remove_form_table(product);
+        return;
+      }
+
+      var obj; // التاكد من عدمlogin وجود المنتج فى القائمه
+
+      for (var i = 0; i < this.products_table.length; i++) {
+        if (this.products_table[i].id === product.id) {
+          obj = this.products_table.find(function (o) {
+            return o.id === product.id;
+          });
+          var qyt = value - obj.qyt;
+          this.total -= parseFloat(obj.subtotal);
+          obj.qyt = value;
+          obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+          this.total += parseFloat(obj.subtotal);
+        }
+      }
+    },
     create_purchase_invoice: function create_purchase_invoice() {
       var _this = this;
 
@@ -3412,12 +3595,14 @@ var Toast = Swal.mixin({
           obj = this.products_table.find(function (o) {
             return o.id === product.id;
           });
-          obj.qyt += 1;
+          obj.qyt = parseInt(obj.qyt) + 1;
           obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+          obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
         }
       }
 
       this.total = parseFloat(this.total) + parseFloat(obj.price);
+      this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
     },
     de_crease: function de_crease(product) {
       var obj; // التاكد من عدم وجود المنتج فى القائمه
@@ -3431,6 +3616,7 @@ var Toast = Swal.mixin({
           if (obj.qyt > 1) {
             obj.qyt -= 1;
             obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+            this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
             this.total -= parseFloat(obj.price);
           }
         }
@@ -3438,6 +3624,36 @@ var Toast = Swal.mixin({
     },
     create_product: function create_product() {
       alert("create_product");
+    }
+  },
+  computed: {
+    full_total: function full_total() {
+      if (this.discount == "percentage") {
+        var x;
+        x = this.vat_total_c - this.vat_total_c * (this.discount_value / 100);
+        return parseFloat(x).toFixed(2);
+      } else {
+        var _x;
+
+        _x = this.vat_total_c = this.vat_total_c - this.discount_value;
+        return parseFloat(_x).toFixed(2);
+      }
+    },
+    discount_label: function discount_label() {
+      if (this.discount == "percentage") {
+        return this.discount_value + " %";
+      } else {
+        return this.discount_value + " SDG";
+      }
+    },
+    vat: function vat() {
+      this.vat_total = (this.total * 0.15).toFixed(2);
+      return this.vat_total;
+    },
+    vat_total_c: function vat_total_c() {
+      var x;
+      x = parseFloat(this.total) + parseFloat(this.vat);
+      return x.toFixed(2);
     }
   }
 });
@@ -21675,30 +21891,53 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(product.price))]),
                       _vm._v(" "),
                       _c("td", [
-                        _c("img", {
-                          attrs: { src: "image/add.png" },
-                          on: {
-                            click: function($event) {
-                              return _vm.in_crease(product)
+                        _c("div", { staticClass: "input-group mb-3" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c("span", { staticClass: "input-group-text" }, [
+                              _c("img", {
+                                attrs: { src: "/image/add.png" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.in_crease(product)
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control col-1 text-center",
+                            attrs: { type: "text" },
+                            domProps: { value: product.qyt },
+                            on: {
+                              keyup: function($event) {
+                                return _vm.qyt($event, product)
+                              }
                             }
-                          }
-                        }),
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(product.qyt) +
-                            "\n\n                                    "
-                        ),
-                        _c("img", {
-                          attrs: { src: "image/minus.png" },
-                          on: {
-                            click: function($event) {
-                              return _vm.de_crease(product)
-                            }
-                          }
-                        })
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-append" }, [
+                            _c("span", { staticClass: "input-group-text" }, [
+                              _c("img", {
+                                attrs: { src: "/image/minus.png" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.de_crease(product)
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.subtotal))]),
+                      _c("td", [
+                        _vm._v(
+                          "\n\n                            " +
+                            _vm._s(parseFloat(product.subtotal).toFixed(2)) +
+                            "\n                                "
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
@@ -21725,51 +21964,33 @@ var render = function() {
           _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table table-bordered " }, [
               _c("tr", [
-                _c("td", [_vm._v("المجموع")]),
+                _c("th", [_vm._v("المجموع:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.total))])
+                _c("td", [_vm._v("SDG " + _vm._s(_vm.vat_total_c))])
               ]),
               _vm._v(" "),
               _c("tr", [
-                _c("td", [_vm._v("الضريبه")]),
+                _c("th", [_vm._v("الخصم:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.vat))])
+                _c("td", [_vm._v(_vm._s(_vm.discount_label))])
               ]),
               _vm._v(" "),
               _c("tr", [
-                _c("td", [_vm._v("المجموع + الضريبه")]),
+                _c("th", [_vm._v("المبلغ قبل الضريبه:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.vat_total_c))])
+                _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
               ]),
               _vm._v(" "),
               _c("tr", [
-                _c("td", [_vm._v("نسبه التخفيض")]),
+                _c("th", [_vm._v("الضريبه:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.discount,
-                          expression: "discount"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "نسبه التخفيض" },
-                      domProps: { value: _vm.discount },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.discount = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ])
+                _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("صافى الفاتورة:")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -21803,23 +22024,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("tr", [
-                _c("td", [_vm._v("المبلغ بعد التخفيض")]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.total - _vm.total * (_vm.discount / 100)))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("المبلغ المجموع قبل التحفيض")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.total))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
                 _c("td", [_vm._v("المبلغ المبتقى")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.total - _vm.amount_paid))])
+                _c("td", [_vm._v(_vm._s(_vm.full_total - _vm.amount_paid))])
               ])
             ]),
             _vm._v(" "),
@@ -21907,6 +22114,102 @@ var render = function() {
                   )
                 ]
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("h3", [_vm._v("التخفيض :")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount,
+                      expression: "discount"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", value: "percentage", checked: "" },
+                  domProps: { checked: _vm._q(_vm.discount, "percentage") },
+                  on: {
+                    change: function($event) {
+                      _vm.discount = "percentage"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "exampleRadios1" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                نسبه مؤيه\n                            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount,
+                      expression: "discount"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", value: "fixed" },
+                  domProps: { checked: _vm._q(_vm.discount, "fixed") },
+                  on: {
+                    change: function($event) {
+                      _vm.discount = "fixed"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "exampleRadios2" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                مبلغ ثابت\n                            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount_value,
+                      expression: "discount_value"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.discount_value },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.discount_value = $event.target.value
+                    }
+                  }
+                })
+              ])
             ])
           ])
         ])
@@ -22521,30 +22824,53 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(product.price))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("img", {
-                    attrs: { src: "/../image/add.png" },
-                    on: {
-                      click: function($event) {
-                        return _vm.in_crease(product)
+                  _c("div", { staticClass: "input-group mb-3" }, [
+                    _c("div", { staticClass: "input-group-prepend" }, [
+                      _c("span", { staticClass: "input-group-text" }, [
+                        _c("img", {
+                          attrs: { src: "/image/add.png" },
+                          on: {
+                            click: function($event) {
+                              return _vm.in_crease(product)
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control col-1 text-center",
+                      attrs: { type: "text" },
+                      domProps: { value: product.qyt },
+                      on: {
+                        keyup: function($event) {
+                          return _vm.qyt($event, product)
+                        }
                       }
-                    }
-                  }),
-                  _vm._v(
-                    "\n                                    " +
-                      _vm._s(product.qyt) +
-                      "\n\n                                    "
-                  ),
-                  _c("img", {
-                    attrs: { src: "/image/minus.png" },
-                    on: {
-                      click: function($event) {
-                        return _vm.de_crease(product)
-                      }
-                    }
-                  })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-append" }, [
+                      _c("span", { staticClass: "input-group-text" }, [
+                        _c("img", {
+                          attrs: { src: "/image/minus.png" },
+                          on: {
+                            click: function($event) {
+                              return _vm.de_crease(product)
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(product.subtotal))]),
+                _c("td", [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(parseFloat(product.subtotal).toFixed(2)) +
+                      "\n                        "
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", [
                   _c("img", {
@@ -22561,41 +22887,163 @@ var render = function() {
             0
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "row" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table" }, [
-                _c("tr", [
-                  _c("th", [_vm._v("Total:")]),
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card text-right" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-6" }, [
+              _c("h3", [_vm._v("التخفيض :")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount,
+                      expression: "discount"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", value: "percentage", checked: "" },
+                  domProps: { checked: _vm._q(_vm.discount, "percentage") },
+                  on: {
+                    change: function($event) {
+                      _vm.discount = "percentage"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "exampleRadios1" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                نسبه مؤيه\n                            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount,
+                      expression: "discount"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", value: "fixed" },
+                  domProps: { checked: _vm._q(_vm.discount, "fixed") },
+                  on: {
+                    change: function($event) {
+                      _vm.discount = "fixed"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "exampleRadios2" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                مبلغ ثابت\n                            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.discount_value,
+                      expression: "discount_value"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.discount_value },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.discount_value = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c("table", { staticClass: "table" }, [
+                  _c("tr", [
+                    _c("th", [_vm._v("المجموع:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("SDG " + _vm._s(_vm.vat_total_c))])
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("SDG " + _vm._s(_vm.total))])
+                  _c("tr", [
+                    _c("th", [_vm._v("الخصم:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.discount_label))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("المبلغ قبل الضريبه:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("الضريبه:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("صافى الفاتورة:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
+                  ])
                 ])
               ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer text-muted" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-lg btn-info",
-                on: { click: _vm.create_purchase_invoice }
-              },
-              [
-                _vm._v(
-                  "\n                        انشاء فاتوره\n                    "
-                )
-              ]
-            )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer text-muted" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-lg btn-info",
+                  on: { click: _vm.create_purchase_invoice }
+                },
+                [
+                  _vm._v(
+                    "\n                            انشاء فاتوره\n                        "
+                  )
+                ]
+              )
+            ])
           ])
         ])
       ])
@@ -22609,29 +23057,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("الاسم")]),
+        _c("th", [_vm._v("الصنف")]),
         _vm._v(" "),
         _c("th", [_vm._v("السعر")]),
         _vm._v(" "),
         _c("th", [_vm._v("الكميه")]),
         _vm._v(" "),
-        _c("th", [_vm._v("مجموع السعر")]),
+        _c("th", [_vm._v("الاجمالى")]),
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("p", { staticClass: "lead" }, [_vm._v("الدفع:")]),
-      _vm._v(" "),
-      _c("p", {
-        staticClass: "text-muted well well-sm shadow-none",
-        staticStyle: { "margin-top": "10px" }
-      })
     ])
   }
 ]

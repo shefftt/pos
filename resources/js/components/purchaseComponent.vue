@@ -51,7 +51,7 @@
                                 :value="stock.id"
                                 :key="stock.id"
                             >
-                                {{stock.name}}</option
+                                {{ stock.name }}</option
                             >
                         </select>
                     </div>
@@ -107,79 +107,144 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>الاسم</th>
+                            <th>الصنف</th>
                             <th>السعر</th>
                             <th>الكميه</th>
-                            <th>مجموع السعر</th>
+                            <th>الاجمالى</th>
                             <th>ضبط</th>
                         </tr>
                     </thead>
                     <tbody id="product">
-                           <tr
-                                    v-for="product in products_table"
-                                    :key="product.id"
-                                >
-                                    <td>{{ product.name }}</td>
-                                    <td>{{ product.price }}</td>
-                                    <td>
-                                        <img
-                                            src="/../image/add.png"
-                                            @click="in_crease(product)"
-                                        />
-                                        {{ product.qyt }}
+                        <tr v-for="product in products_table" :key="product.id">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>
 
-                                        <img
-                                            src="/image/minus.png"
-                                            @click="de_crease(product)"
-                                        />
-                                    </td>
-                                    <td>{{ product.subtotal }}</td>
-                                    <td>
-                                        <img
-                                            src="/image/delete.png"
-                                            @click="remove_form_table(product)"
-                                        />
-                                    </td>
-                                </tr>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">  <img
+                                        src="/image/add.png"
+                                        @click="in_crease(product)"
+                                    /></span>
+                                    </div>
+                                      <input
+                                        type="text"
+                                        @keyup="qyt($event, product)"
+                                        class="form-control col-1 text-center"
+                                        :value="product.qyt"
+                                    />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"
+                                            >
+                                    <img
+                                        src="/image/minus.png"
+                                        @click="de_crease(product)"
+                                    /></span
+                                        >
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                {{ parseFloat(product.subtotal).toFixed(2) }}
+                            </td>
+                            <td>
+                                <img
+                                    src="/image/delete.png"
+                                    @click="remove_form_table(product)"
+                                />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="col-md-12">
-                <div class="row">
-                    <!-- accepted payments column -->
-                    <div class="col-6">
-                        <p class="lead">الدفع:</p>
+        <div class="card text-right">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-6">
+                            <h3>التخفيض :</h3>
+                            <div class="form-check">
+                                <input
+                                    v-model="discount"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value="percentage"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="exampleRadios1"
+                                >
+                                    نسبه مؤيه
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    v-model="discount"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value="fixed"
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="exampleRadios2"
+                                >
+                                    مبلغ ثابت
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    v-model="discount_value"
+                                />
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <th>المجموع:</th>
+                                        <td>SDG {{ vat_total_c }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>الخصم:</th>
+                                        <td>{{ discount_label }}</td>
+                                    </tr>
 
-                        <p
-                            class="text-muted well well-sm shadow-none"
-                            style="margin-top: 10px;"
-                        >
-                            <!-- الفاتورة صالحه لمده اسبوعين فقط -->
-                        </p>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-6">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <th>Total:</th>
-                                    <td>SDG {{ total }}</td>
-                                </tr>
-                            </table>
+                                    <tr>
+                                        <th>المبلغ قبل الضريبه:</th>
+                                        <td>SDG {{ total.toFixed(2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>الضريبه:</th>
+                                        <td>SDG {{ vat }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>صافى الفاتورة:</th>
+                                        <td>SDG {{ full_total }}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer text-muted">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <button
-                            @click="create_purchase_invoice"
-                            class="btn btn-lg btn-info"
-                        >
-                            انشاء فاتوره
-                        </button>
+
+                <div class="card-footer text-muted">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button
+                                @click="create_purchase_invoice"
+                                class="btn btn-lg btn-info"
+                            >
+                                انشاء فاتوره
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,10 +289,36 @@ export default {
 
             payment_method: 1,
 
-            total: 0
+            discount: "percentage",
+            discount_value: 0,
+
+            total: 0,
+            vat_total: 0
         };
     },
     methods: {
+        qyt(event, product) {
+            let value = event.target.value;
+            if (value < 1) {
+                this.remove_form_table(product);
+                return;
+            }
+
+            let obj;
+            // التاكد من عدمlogin وجود المنتج فى القائمه
+            for (let i = 0; i < this.products_table.length; i++) {
+                if (this.products_table[i].id === product.id) {
+                    obj = this.products_table.find(o => o.id === product.id);
+
+                    var qyt = value - obj.qyt;
+                    this.total -= parseFloat(obj.subtotal);
+                    obj.qyt = value;
+                    obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+
+                    this.total += parseFloat(obj.subtotal);
+                }
+            }
+        },
         create_purchase_invoice() {
             // validtions
             if (this.supplier_id == 0 || this.supplier_id == "") {
@@ -313,6 +404,7 @@ export default {
                     }
                 });
         },
+
         get_product_barcode() {
             axios
                 .get("/api/get_product_barcode", {
@@ -361,7 +453,8 @@ export default {
                 });
             }
 
-           this.total = parseFloat(this.total) + parseFloat(product.purchase_price);
+            this.total =
+                parseFloat(this.total) + parseFloat(product.purchase_price);
             this.products = null;
             this.product_name = "";
         },
@@ -370,9 +463,9 @@ export default {
          * @param product
          */
         remove_form_table(product) {
-                // swal("هل انت متاكد من حذف المنتج!", "error");
+            // swal("هل انت متاكد من حذف المنتج!", "error");
             // تحديث السعر الكلى
-            (this.total) =  parseFloat(this.total) - parseFloat(product.subtotal);
+            this.total = parseFloat(this.total) - parseFloat(product.subtotal);
 
             // جلب الاندكس بتاع المنتج فى الجدول
             let id = this.products_table.indexOf(product);
@@ -381,33 +474,69 @@ export default {
             this.products_table.splice(id, 1);
         },
         in_crease(product) {
-              let obj;
+            let obj;
             // التاكد من عدمlogin وجود المنتج فى القائمه
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
-                    obj.qyt += 1;
-                    (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
+                    obj.qyt = parseInt(obj.qyt) + 1;
+                    obj.subtotal = parseFloat(obj.price) * parseFloat(obj.qyt);
+                    obj.sub_vat = parseFloat(obj.vat) * parseFloat(obj.qyt);
                 }
             }
-            (this.total) = parseFloat(this.total) +  parseFloat(obj.price);
+            this.total = parseFloat(this.total) + parseFloat(obj.price);
+            this.vat_total = parseFloat(this.vat_total) + parseFloat(obj.vat);
         },
         de_crease(product) {
-               let obj;
+            let obj;
             // التاكد من عدم وجود المنتج فى القائمه
             for (let i = 0; i < this.products_table.length; i++) {
                 if (this.products_table[i].id === product.id) {
                     obj = this.products_table.find(o => o.id === product.id);
                     if (obj.qyt > 1) {
-                       (obj.qyt) -= 1;
-                        (obj.subtotal) = parseFloat(obj.price) * parseFloat(obj.qyt);
-                        (this.total) -= parseFloat(obj.price);
+                        obj.qyt -= 1;
+                        obj.subtotal =
+                            parseFloat(obj.price) * parseFloat(obj.qyt);
+                        this.vat_total =
+                            parseFloat(this.vat_total) + parseFloat(obj.vat);
+                        this.total -= parseFloat(obj.price);
                     }
                 }
             }
         },
         create_product() {
             alert("create_product");
+        }
+    },
+    computed: {
+        full_total: function() {
+            if (this.discount == "percentage") {
+                let x;
+                x =
+                    this.vat_total_c -
+                    this.vat_total_c * (this.discount_value / 100);
+                return parseFloat(x).toFixed(2);
+            } else {
+                let x;
+                x = this.vat_total_c = this.vat_total_c - this.discount_value;
+                return parseFloat(x).toFixed(2);
+            }
+        },
+        discount_label: function() {
+            if (this.discount == "percentage") {
+                return this.discount_value + " %";
+            } else {
+                return this.discount_value + " SDG";
+            }
+        },
+        vat: function() {
+            this.vat_total = (this.total * 0.15).toFixed(2);
+            return this.vat_total;
+        },
+        vat_total_c: function() {
+            let x;
+            x = parseFloat(this.total) + parseFloat(this.vat);
+            return x.toFixed(2);
         }
     }
 };
