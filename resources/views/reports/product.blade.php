@@ -131,13 +131,11 @@
         <table id="DataTable" class="table">
             <thead>
             <tr>
-                <th># </th>
-                <th> {{ __('messages.product name') }}</th>
-                <th>{{ __('messages.barcode') }}</th>
-                <th>{{ __('messages.Total') }}</th>
-                <th>{{ __('messages.Tax') }}</th>
-                <th>{{ __('messages.total summation') }}</th>
-                <th>  {{ __('messages.number of  purchased') }}</th>
+                <th># متسلسل</th>
+                <th>اسم المنتج</th>
+                <th>البراكود</th>
+                <th>المجموع</th>
+                <th>عدد مرات الشراء</th>
             </tr>
             </thead>
 

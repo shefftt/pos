@@ -44,7 +44,6 @@
                     <td>{{$product->category->name}}</td>
                     <td>{{$product->unit->name}}</td>
                     <td>{{$product->barcode}}</td>
-                    <td>{{$product->vat}}</td>
                     <td>
                         @if($product->status==false)
                         <a name="" id="" class="btn  btn-sm btn-danger" href="{{url('product/toggleStatus')}}/{{$product->id}}" role="button">{{ __('messages.Energizing') }}</a>

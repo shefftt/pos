@@ -22,8 +22,18 @@ class product extends Model
     }
 
     public function sales(){
+
         return $this->hasMany(sales_invoice_d::class);
     }
+    public function sale(){
+
+        return $this->belongsTo(sales_invoice_d::class,'id','product_id');
+    }
+    public function sales_header(){
+
+        return $this->belongsTo(sales_invoice_h::class,'id');
+    }
+
     public function purchases(){
         return $this->hasMany(purchase_invoice_d::class);
     }

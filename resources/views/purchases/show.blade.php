@@ -1,17 +1,17 @@
 @extends('layouts.master')
 @section('content')
-@section('title' ,__('messages.Purchase Invoiceitem') )
+@section('title' ,'انشاء فاتورة مشتريات')
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col text-center">
-                <h3> {{ __('messages.Purchase Invoiceitem') }}
+                <h3>فاتوره المشتريات
                 #{{$invoice->id}}
                 </h3>
             </div>
             <div class="col-1">
-                <a class="btn btn-success" onclick="window.print();" role="button"> {{ __('messages.Print') }}</a>
+                <a class="btn btn-success" onclick="window.print();" role="button">طباعه</a>
             </div>
         </div>
     </div>
@@ -20,15 +20,15 @@
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <td>{{ __('messages.Suppliers') }}</td>
+                    <td>المورد</td>
                     <td>{{$invoice->supplier->name}} </td>
                 </tr>
                 <tr>
-                    <td>{{ __('messages.Storesitem') }}</td>
+                    <td>المخزن</td>
                     <td>{{$invoice->stock->name}} </td>
                 </tr>
                 <tr>
-                    <td> {{ __('messages.Date') }}</td>
+                    <td> التاريخ</td>
                     <td>{{$invoice->created_at}} </td>
                 </tr>
 
@@ -41,14 +41,12 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>{{ __('messages.product name') }}</th>
-                <th>{{ __('messages.Quantity') }}</th>
-                <th>  {{ __('messages.price') }}</th>
-                <th> {{ __('messages.Total') }}</th>
-                <th>{{ __('messages.product Unit') }}</th>
-                <th>{{ __('messages.Tax') }}</th>
-                <th> {{ __('messages.Sum Tax') }}</th>
-                <th>{{ __('messages.product Settings') }}</th>
+                <th>المنتج</th>
+                <th>الكميه</th>
+                <th>الوحده</th>
+                <th> سعر الوحده</th>
+                <th> المجموع</th>
+
 
 
             </tr>
@@ -62,11 +60,10 @@
 
                     <td>{{$product->product->name}}</td>
                     <td>{{$product->qyt}}</td>
+                    <td>{{$product->product->unit->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->sub_total}}</td>
-                    <td>{{$product->product->unit->name}}</td>
-                    <td>{{$product->vat}}</td>
-                    <td>{{$product->sub_vat}}</td>
+
                     <td></td>
                    </tr>
             @endforeach
@@ -78,15 +75,15 @@
             <table class="table table-bordered">
             <tbody>
                     <tr>
-                        <td>{{ __('messages.Total') }}</td>
+                        <td>المجموع</td>
                         <td>{{$invoice->total}} </td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Tax') }}</td>
+                        <td>الضريبه</td>
                         <td>{{ $vat_total}}</td>
                     </tr>
                     <tr>
-                        <td> {{ __('messages.Total') }}</td>
+                        <td>المجموع الكلى</td>
                         <td>{{$vat_total + ($invoice->total)}} </td>
                     </tr>
                 </tbody>
