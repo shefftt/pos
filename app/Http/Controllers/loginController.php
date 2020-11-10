@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
     public function index()
-    { //return Hash::('pass')
+    {
 
+        return product::where('prid', 1)->first()->product_name;
+        return product::paginate();
         return view('auth.login');
     }
 

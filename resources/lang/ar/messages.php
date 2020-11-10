@@ -2,9 +2,9 @@
 
 return [
     'well' => 'الرئسيه',
-    'Products' => 'المنتجات',
-    'Viewproducts' => 'عرض المنتجات',
-    'Addaproduct' => 'اضافه منتج',
+    'Products' => 'الاصناف',
+    'Viewproducts' => 'عرض الاصناف',
+    'Addaproduct' => 'اضافه صنف',
     'Classifications' => 'التصنيفات',
     'Purchases' => 'المشتريات',
     'Viewpurchases' => 'عرض المشتريات',
@@ -27,7 +27,7 @@ return [
     'ProcurementReport' => ' تقرير المشتريات',
     'salesreport' => '  تقرير المبيعات',
     'Generalreport' => 'التقرير العام',
-    'Productmovementreport' => 'تقرير حركة المنتجات',
+    'Productmovementreport' => 'تقرير حركة الاصناف',
     'Settings' => 'اعدادات',
     'systemconfiguration' => 'اعدادات النظام',
     'paymentmethods' => 'طرق الدفع',
@@ -41,7 +41,7 @@ return [
 
 
     'Image' => 'الصوره',
-    'product name' => 'اسم المنتج',
+    'product name' => 'اسم الصنف',
     'Purchasing price' => 'سعر الشراء',
     'selling price' => 'سعر البيع',
     'Category' => 'التصنيف',
@@ -52,12 +52,12 @@ return [
     'Energizing' => 'تنشيط',
     'turning off' => 'ايقاف',
     'Modify' => 'تعديل',
-    'Barcode printing' => 'طباعه الباركود',
+    'Barcode printing' => 'الباركود',
     'Show' => 'عرض',
 
 
 
-    'Add New Product' => 'اضافة منتج جديد',
+    'Add New Product' => 'اضافة صنف جديد',
     'The opening quantity' => 'الكميه الافتتاحيه',
     'Taxes included' => 'شامل',
     'Not including tax' => 'غير شامل',
@@ -65,7 +65,7 @@ return [
     'Add' => 'اضافة',
     'Edit' => 'تعديل',
 
-    
+
     'Category name' => 'اسم الصنف',
     'Type of classification' => 'نوع الصنف',
     'Add a classification' => 'اضافه تصنيف',
@@ -78,6 +78,7 @@ return [
     'Date' => 'التاريخ',
     'invoice number' => 'رقم الفاتوره',
     'Payment' => 'الدفع',
+    'tax_number' => 'الرقم الضريبى',
 
 
     'Purchase Invoiceitem' => 'فاتوره المشتريات',
@@ -140,14 +141,14 @@ return [
     'Bill' => 'فاتوره',
     'number' => 'العدد',
     'Latest sales' => 'اخر المبيعات',
-    'Producer' => 'منتج',
+    'Producer' => 'صنف',
     'latest procurement process' => 'احدث عمليات مشتريات',
     'Supplier' => 'مورد',
 
     'Pay bill' => 'دفع فاتوره',
     'Login' => 'تسجيل الدخول',
     'Loginbtn' => 'دخول',
-    
+
 
     'Back' => 'الي الخلف',
     'reference' => 'مرجع',

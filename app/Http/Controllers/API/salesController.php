@@ -30,26 +30,25 @@ class salesController extends Controller
                 'customer_id'       => $request->customer_id,
                 'total'             => $request->total,
                 'payment_method_id' => $request->payment_method,
+                'vat_total'         => $request->vat,
+                'discount'          => $request->discount_amount,
                 // 'created_by'        => auth()->user()->id
                 'created_by'        => 1
             ]
         );
 
         foreach ($request->products_table as $product) {
-
+            // $product  = json_decode($product);
             sales_invoice_d::create(
                 [
                     'product_id'        => json_decode($product)->id,
                     'price'             => json_decode($product)->price,
-                    'vat'               => json_decode($product)->vat,
-                    'sub_vat'           => json_decode($product)->vat * json_decode($product)->qyt,
                     'qyt'               => json_decode($product)->qyt,
                     'sub_total'         => json_decode($product)->subtotal,
                     'invoice_id'        => $invoice->id
                 ]
             );
 
-            $vat_total += json_decode($product)->vat * json_decode($product)->qyt;
 
             $ps = product::find(json_decode($product)->id);
             $stock_product = stock_product::where('product_id', json_decode($product)->id)->where('stock_id', $ps->stock_id)->first();
@@ -57,8 +56,6 @@ class salesController extends Controller
             $stock_product->save();
         }
 
-        $invoice->vat_total = $vat_total;
-        $invoice->save();
 
 
         foreach ($request->products_table as $product) {

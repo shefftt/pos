@@ -107,7 +107,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td><a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i>  {{ __('messages.Back') }}</a> </td>
+                        <td><a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> {{ __('messages.Back') }}</a> </td>
                         <td><button onclick="window.print();" class="btn btn-primary"><i class="dripicons-print"></i> {{ __('messages.Print') }}</button></td>
                     </tr>
                 </tbody>
@@ -146,27 +146,38 @@
                 <tbody>
                     @foreach($invoice->products as $products)
                     <tr>
-                        <td colspan="2">
+                        <td>
                             {{$products->product->name}}
                             <br> {{$products->qyt}} x {{$products->price}}</td>
                         <td style="text-align:right;vertical-align:bottom">{{$products->sub_total}}</td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td style="font-style: italic;"> اجمالى الفاتوره : </td>
+                        <td style="font-style: italic;"> {{$invoice->total}}</td>
+                    </tr>
+                    @if($invoice->discount > 0)
+                    <tr>
+                        <td style="font-style: italic;"> الخصم:</td>
+                        <td style="font-style: italic;"> {{$invoice->discount }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-style: italic;"> الاجمالي بعد الخصم:</td>
+                        <td style="font-style: italic;"> {{$invoice->total - $invoice->discount }}</td>
+                    </tr>
+                    @endif
+                    <tr>
+                        <td style="font-style: italic;"> الضريبه: </td>
+                        <td style="font-style: italic;"> {{$invoice->vat_total}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="font-style: italic;"> صافي الفاتورة:</td>
+                        <td style="font-style: italic;"> {{$invoice->total - $invoice->discount + $invoice->vat_total}}</td>
+                    </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2">{{ __('messages.Total') }}: </th>
-                        <th style="text-align:right">{{$invoice->total}}</th>
-                    </tr>
-                    <tr>
-                        <th colspan="2"> {{ __('messages.Sum Tax') }}: </th>
-                        <th style="text-align:right">{{$invoice->vat_total}}</th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">  {{ __('messages.total summation') }}:</th>
-                        <th style="text-align:right">{{$invoice->total + $invoice->vat_total}}</th>
-                    </tr>
-                </tfoot>
+
             </table>
             <table>
                 <tbody>
@@ -200,7 +211,7 @@
     @else
     <center>
         <h3>
-                {{ __('messages.Sorry, there is no invoice for this number') }}
+            {{ __('messages.Sorry, there is no invoice for this number') }}
         </h3>
         <a href="{{url('pos')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i> {{ __('messages.Back') }} </a>
     </center>

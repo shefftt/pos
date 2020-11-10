@@ -20,6 +20,7 @@
             <tr>
                 <th>#</th>
                 <th>{{ __('messages.name') }}</th>
+                <th>{{ __('messages.tax_number') }} </th>
                 <th>{{ __('messages.phone') }} </th>
                 <th>{{ __('messages.Title') }} </th>
 
@@ -33,6 +34,7 @@
                     <td scope="row">{{$i++}}</td>
                     <!-- id 	name 	phone 	address -->
                     <td>{{$supplier->name}}</td>
+                    <td>{{$supplier->tax_number}}</td>
                     <td>{{$supplier->phone}}</td>
                     <td>{{$supplier->address}}</td>
 

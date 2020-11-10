@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\product;
 use App\Model\purchase_invoice_h;
 use App\Model\sales_invoice_h;
 use App\Model\setting;
@@ -18,7 +19,9 @@ use App\resources\lang\ar;
 |
 */
 //ahmed hmed
-
+Route::get('/ahmedhmed', function(){
+    return product::all();
+});
 Route::middleware(['auth'])->group(function () {
 
 
@@ -35,14 +38,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('lang/{locale}', function ($locale) {
-        session()->put('locale',$locale);     
+        session()->put('locale',$locale);
         App::setLocale($locale);
 
          return redirect()->back();
     });
 
     // Route::get('/', function () {
-      
+
     //      return view('welcome');
     // });
 

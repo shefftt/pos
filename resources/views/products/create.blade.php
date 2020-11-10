@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('title' , __('messages.Add New Product')  )
+@section('title' , __('messages.Add New Product') )
 
 <div class="card">
     <div class="card-header">
@@ -22,19 +22,6 @@
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-
-                <div class="form-group col-md-6">
-                  <label for="vat">{{ __('messages.Tax') }}</label>
-                  <select class="form-control  @error('vat') is-invalid @enderror" name="vat" id="vat">
-                    <option value="15">{{ __('messages.Taxes included') }}</option>
-                    <option value="0">{{ __('messages.Not including tax') }}</option>
-                  </select>
-                  @error('vat')
-                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-
-
                 <div class="form-group col-md-6">
                     <label for="">{{ __('messages.barcode') }}</label>
                     <input type="text" value="{{old('barcode')}}" class="form-control @error('barcode') is-invalid @enderror" name="barcode">
@@ -77,7 +64,7 @@
                     <label for="category_id">{{ __('messages.product Unit') }}</label>
                     <select class="form-control" name="unit_id" id="unit">
                         @foreach($units as $unit)
-                            <option value="{{$unit->id}}">{{$unit->name}}</option>
+                        <option value="{{$unit->id}}">{{$unit->name}}</option>
                         @endforeach
                     </select>
                 </div>

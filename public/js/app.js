@@ -2630,6 +2630,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2640,7 +2663,7 @@ var Toast = Swal.mixin({
   mounted: function mounted() {
     this.get_stock_name();
     this.get_customer_name();
-    this.get_payments();
+    this.get_payments(); // this.braaha();
   },
   data: function data() {
     return {
@@ -2652,7 +2675,7 @@ var Toast = Swal.mixin({
       products_table: [],
       payments: [],
       account_id: 1,
-      amount_paid: null,
+      amount_paid: 0,
       stocks: [],
       stock_id: 0,
       invoice_type: "normal",
@@ -2707,13 +2730,20 @@ var Toast = Swal.mixin({
       } else if (this.total == 0 || this.total == "") {
         swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
         return;
+      } else if (this.payment_method == 1) {
+        if (this.bill > 0) {
+          swal("عفوا!", "يجب ان يكون المبلغ المدفوع يساوى الفاتورة  !", "warning");
+          return;
+        }
       }
 
       axios.get("/api/create_sales_invoice", {
         params: {
           products_table: this.products_table,
           total: this.total,
+          vat: this.vat,
           customer_id: this.customer_id,
+          discount_amount: this.discount_amount,
           payment_method: this.payment_method
         }
       }).then(function (response) {
@@ -2721,6 +2751,9 @@ var Toast = Swal.mixin({
           console.log(response.data);
           _this.products_table = [];
           _this.total = 0;
+          _this.customer_id = 0;
+          _this.discount_value = 0;
+          _this.vat = 0;
           window.location.replace("print/" + response.data.invoice_id);
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
@@ -2752,12 +2785,19 @@ var Toast = Swal.mixin({
         _this3.payments = response.data;
       })["catch"](function (error) {});
     },
-    get_stock_name: function get_stock_name() {
+    braaha: function braaha() {
       var _this4 = this;
+
+      axios.get("/api/braaha").then(function (response) {
+        _this4.products_table = response.data;
+      })["catch"](function (error) {});
+    },
+    get_stock_name: function get_stock_name() {
+      var _this5 = this;
 
       axios.get("/api/stocks").then(function (response) {
         console.log("ahmed hme : " + response);
-        _this4.stocks = response.data;
+        _this5.stocks = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -2765,10 +2805,10 @@ var Toast = Swal.mixin({
       });
     },
     get_customer_name: function get_customer_name() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get("/api/customers").then(function (response) {
-        _this5.customers = response.data;
+        _this6.customers = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -2776,7 +2816,7 @@ var Toast = Swal.mixin({
       });
     },
     get_product_barcode: function get_product_barcode() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get("/api/get_product_barcode", {
         params: {
@@ -2785,13 +2825,13 @@ var Toast = Swal.mixin({
       }).then(function (response) {
         if (!response.data.barcode) {
           swal("خطاء!", "عفوا المنتج غير موجود!", "warning");
-          _this6.product_barcode = "";
+          _this7.product_barcode = "";
 
-          _this6.$refs.product_barcode.focus();
+          _this7.$refs.product_barcode.focus();
         } else {
-          _this6.select_product(response.data);
+          _this7.select_product(response.data);
 
-          _this6.product_barcode = "";
+          _this7.product_barcode = "";
         }
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -2888,30 +2928,37 @@ var Toast = Swal.mixin({
     }
   },
   computed: {
+    bill: function bill() {
+      var x;
+      x = this.full_total - this.amount_paid;
+      return parseFloat(x).toFixed(2);
+    },
     full_total: function full_total() {
+      var x;
+      x = this.total - this.discount_amount + parseFloat(this.vat);
+      return parseFloat(x).toFixed(2);
+    },
+    discount_amount: function discount_amount() {
       if (this.discount == "percentage") {
         var x;
-        x = this.vat_total_c - this.vat_total_c * (this.discount_value / 100);
+        x = this.total * (this.discount_value / 100);
         return parseFloat(x).toFixed(2);
       } else {
-        var _x;
-
-        _x = this.vat_total_c = this.vat_total_c - this.discount_value;
-        return parseFloat(_x).toFixed(2);
-      }
-    },
-    discount_label: function discount_label() {
-      if (this.discount == "percentage") {
-        return this.discount_value + " %";
-      } else {
-        return this.discount_value + " SDG";
+        return this.discount_value;
       }
     },
     vat: function vat() {
-      this.vat_total = (this.total * 0.15).toFixed(2);
+      var total_after_discount;
+      total_after_discount = this.total - this.discount_amount;
+      this.vat_total = (total_after_discount * 0.15).toFixed(2);
       return this.vat_total;
     },
     vat_total_c: function vat_total_c() {
+      var x;
+      x = parseFloat(this.total) + parseFloat(this.vat);
+      return x.toFixed(2);
+    },
+    invoice_sum: function invoice_sum() {
       var x;
       x = parseFloat(this.total) + parseFloat(this.vat);
       return x.toFixed(2);
@@ -3371,6 +3418,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -3396,6 +3489,9 @@ var Toast = Swal.mixin({
       products_table: [],
       payments: [],
       account_id: 1,
+      invoice_type: 'invoice',
+      amount_paid: 0,
+      taxes_included: true,
       stocks: [],
       stock_id: 0,
       suppliers: [],
@@ -3452,16 +3548,22 @@ var Toast = Swal.mixin({
         params: {
           products_table: this.products_table,
           total: this.total,
+          vat: this.vat,
           invoice_number: this.invoice_number,
           stock_id: this.stock_id,
+          discount_amount: this.discount_amount,
           supplier_id: this.supplier_id,
+          invoice_type: this.invoice_type,
           payment_method: this.payment_method
         }
       }).then(function (response) {
         if (response.status === 200) {
           console.log(response.data);
           _this.products_table = [];
-          _this.total = 0; // this.total = "";
+          _this.total = 0;
+          _this.supplier_id = 0;
+          _this.discount_value = 0;
+          _this.vat = 0; // this.total = "";
 
           _this.invoice_number = null;
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
@@ -3627,30 +3729,37 @@ var Toast = Swal.mixin({
     }
   },
   computed: {
+    bill: function bill() {
+      var x;
+      x = this.full_total - this.amount_paid;
+      return parseFloat(x).toFixed(2);
+    },
     full_total: function full_total() {
+      var x;
+      x = this.total - this.discount_amount + parseFloat(this.vat);
+      return parseFloat(x).toFixed(2);
+    },
+    discount_amount: function discount_amount() {
       if (this.discount == "percentage") {
         var x;
-        x = this.vat_total_c - this.vat_total_c * (this.discount_value / 100);
+        x = this.total * (this.discount_value / 100);
         return parseFloat(x).toFixed(2);
       } else {
-        var _x;
-
-        _x = this.vat_total_c = this.vat_total_c - this.discount_value;
-        return parseFloat(_x).toFixed(2);
-      }
-    },
-    discount_label: function discount_label() {
-      if (this.discount == "percentage") {
-        return this.discount_value + " %";
-      } else {
-        return this.discount_value + " SDG";
+        return this.discount_value;
       }
     },
     vat: function vat() {
-      this.vat_total = (this.total * 0.15).toFixed(2);
-      return this.vat_total;
+      var total_after_discount;
+      total_after_discount = this.total - this.discount_amount;
+      this.vat_total = (total_after_discount * 0.15).toFixed(2);
+      if (this.taxes_included) return this.vat_total;else return 0;
     },
     vat_total_c: function vat_total_c() {
+      var x;
+      x = parseFloat(this.total) + parseFloat(this.vat);
+      return x.toFixed(2);
+    },
+    invoice_sum: function invoice_sum() {
       var x;
       x = parseFloat(this.total) + parseFloat(this.vat);
       return x.toFixed(2);
@@ -21933,7 +22042,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\n                            " +
+                          "\n                                    " +
                             _vm._s(parseFloat(product.subtotal).toFixed(2)) +
                             "\n                                "
                         )
@@ -21959,260 +22068,303 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _c("div", { staticClass: "card text-right" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("table", { staticClass: "table table-bordered " }, [
-              _c("tr", [
-                _c("th", [_vm._v("المجموع:")]),
+      _c("div", { staticClass: "col-4 mt-2" }, [
+        _c(
+          "div",
+          {
+            staticClass: "card text-right",
+            staticStyle: { "background-color": "antiquewhite" }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c("h3", [_vm._v("التخفيض :")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("SDG " + _vm._s(_vm.vat_total_c))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", [_vm._v("الخصم:")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.discount_label))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", [_vm._v("المبلغ قبل الضريبه:")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", [_vm._v("الضريبه:")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", [_vm._v("صافى الفاتورة:")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("المبلغ المدفوع")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.amount_paid,
-                          expression: "amount_paid"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "المبلغ المدفوع" },
-                      domProps: { value: _vm.amount_paid },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-8" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group mx-1" }, [
+                        _c("div", { staticClass: "form-check" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.discount,
+                                expression: "discount"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: {
+                              type: "radio",
+                              value: "percentage",
+                              id: "percentage"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.discount, "percentage")
+                            },
+                            on: {
+                              change: function($event) {
+                                _vm.discount = "percentage"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-check-label",
+                              attrs: { for: "percentage" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                                نسبه مؤيه\n                                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group mx-1" }, [
+                        _c("div", { staticClass: "form-check" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.discount,
+                                expression: "discount"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: {
+                              type: "radio",
+                              value: "fixed",
+                              id: "fixed"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.discount, "fixed")
+                            },
+                            on: {
+                              change: function($event) {
+                                _vm.discount = "fixed"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-check-label",
+                              attrs: { for: "fixed" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                                مبلغ ثابت\n                                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.discount_value,
+                            expression: "discount_value"
                           }
-                          _vm.amount_paid = $event.target.value
+                        ],
+                        staticClass: "form-control ",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.discount_value },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.discount_value = $event.target.value
+                          }
                         }
-                      }
-                    })
+                      })
+                    ])
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("المبلغ المبتقى")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.full_total - _vm.amount_paid))])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 form-group text-right" }, [
-              _c(
-                "a",
-                {
-                  directives: [
-                    {
-                      name: "shortkey",
-                      rawName: "v-shortkey.push",
-                      value: ["f1"],
-                      expression: "['f1']",
-                      modifiers: { push: true }
-                    }
-                  ],
-                  staticClass: "btn btn-dark btn-block",
-                  attrs: {
-                    id: "new_pos",
-                    target: "_blank",
-                    href: "/pos",
-                    role: "button"
-                  },
-                  on: { shortkey: _vm.hold_sales_invoice }
-                },
-                [
-                  _vm._v(
-                    "\n                            تعليق فاتورة F1\n                        "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 form-group text-right" }, [
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "shortkey",
-                      rawName: "v-shortkey.push",
-                      value: ["f2"],
-                      expression: "['f2']",
-                      modifiers: { push: true }
-                    }
-                  ],
-                  staticClass: "btn-info btn btn-block btn-info",
-                  on: {
-                    click: _vm.create_sales_invoice,
-                    shortkey: _vm.create_sales_invoice
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                            انشاء فاتوره F2\n                        "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 form-group text-right" }, [
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "shortkey",
-                      rawName: "v-shortkey.push",
-                      value: ["f3"],
-                      expression: "['f3']",
-                      modifiers: { push: true }
-                    }
-                  ],
-                  staticClass: "btn-danger btn btn-block btn-info",
-                  on: {
-                    click: _vm.delete_sales_invoice,
-                    shortkey: _vm.delete_sales_invoice
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                            حذف F3\n                        "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
-              _c("h3", [_vm._v("التخفيض :")]),
+              _c("hr"),
               _vm._v(" "),
-              _c("div", { staticClass: "form-check" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount,
-                      expression: "discount"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", value: "percentage", checked: "" },
-                  domProps: { checked: _vm._q(_vm.discount, "percentage") },
-                  on: {
-                    change: function($event) {
-                      _vm.discount = "percentage"
-                    }
-                  }
-                }),
+              _c("table", { staticClass: "table table-bordered " }, [
+                _c("tr", [
+                  _c("th", [_vm._v("اجمالي الفاتورة :")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
+                ]),
                 _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "form-check-label",
-                    attrs: { for: "exampleRadios1" }
-                  },
-                  [
+                _c("tr", [
+                  _c("th", [_vm._v("الخصم:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("SDG " + _vm._s(_vm.discount_amount))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("الاجمالي بعد الخصم :")]),
+                  _vm._v(" "),
+                  _c("td", [
                     _vm._v(
-                      "\n                                نسبه مؤيه\n                            "
+                      "\n                                SDG " +
+                        _vm._s(_vm.total.toFixed(2) - _vm.discount_amount) +
+                        "\n                            "
                     )
-                  ]
-                )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("الضريبه:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("صافي الفاتورة:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("المبلغ المدفوع")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.amount_paid,
+                            expression: "amount_paid"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "المبلغ المدفوع" },
+                        domProps: { value: _vm.amount_paid },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.amount_paid = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("المبلغ المبتقى")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.bill))])
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-check" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount,
-                      expression: "discount"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", value: "fixed" },
-                  domProps: { checked: _vm._q(_vm.discount, "fixed") },
-                  on: {
-                    change: function($event) {
-                      _vm.discount = "fixed"
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "form-check-label",
-                    attrs: { for: "exampleRadios2" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                مبلغ ثابت\n                            "
-                    )
-                  ]
-                )
-              ]),
+              _c("hr"),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6 form-group text-right" }, [
+                  _c(
+                    "button",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount_value,
-                      expression: "discount_value"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.discount_value },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey.push",
+                          value: ["f2"],
+                          expression: "['f2']",
+                          modifiers: { push: true }
+                        }
+                      ],
+                      staticClass: "btn-success btn btn-block btn-lg",
+                      on: {
+                        click: _vm.create_sales_invoice,
+                        shortkey: _vm.create_sales_invoice
                       }
-                      _vm.discount_value = $event.target.value
-                    }
-                  }
-                })
+                    },
+                    [
+                      _vm._v(
+                        "\n                                انشاء فاتوره F2\n                            "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-group text-right" }, [
+                  _c(
+                    "a",
+                    {
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey.push",
+                          value: ["f1"],
+                          expression: "['f1']",
+                          modifiers: { push: true }
+                        }
+                      ],
+                      staticClass: "btn btn-dark btn-block btn-lg",
+                      attrs: {
+                        id: "new_pos",
+                        target: "_blank",
+                        href: "/pos",
+                        role: "button"
+                      },
+                      on: { shortkey: _vm.hold_sales_invoice }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                تعليق فاتورة F1\n                            "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-group text-right" }, [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey.push",
+                          value: ["f3"],
+                          expression: "['f3']",
+                          modifiers: { push: true }
+                        }
+                      ],
+                      staticClass: "btn-danger btn btn-block btn-lg",
+                      on: {
+                        click: _vm.delete_sales_invoice,
+                        shortkey: _vm.delete_sales_invoice
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                حذف F3\n                            "
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
-          ])
-        ])
+          ]
+        )
       ])
     ])
   ])
@@ -22232,7 +22384,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("السعر الكلى")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ضبط")])
+        _c("th", [_vm._v("حذف")])
       ])
     ])
   }
@@ -22577,7 +22729,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-4" }, [
             _c("label", { attrs: { for: "payment_id" } }, [
-              _vm._v("طريقه الدفع")
+              _vm._v("نوع الفاتوره")
             ]),
             _vm._v(" "),
             _c(
@@ -22587,8 +22739,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.payment_method,
-                    expression: "payment_method"
+                    value: _vm.invoice_type,
+                    expression: "invoice_type"
                   }
                 ],
                 staticClass: "form-control form-control-sm",
@@ -22603,24 +22755,21 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.payment_method = $event.target.multiple
+                    _vm.invoice_type = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
-              _vm._l(_vm.payments, function(payment) {
-                return _c(
-                  "option",
-                  { key: payment.id, domProps: { value: payment.id } },
-                  [
-                    _vm._v(
-                      "\n                            " + _vm._s(payment.name)
-                    )
-                  ]
-                )
-              }),
-              0
+              [
+                _c("option", { attrs: { value: "invoice" } }, [
+                  _vm._v("مشتريات")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "refund" } }, [
+                  _vm._v("مرتجع مشتريات")
+                ])
+              ]
             )
           ]),
           _vm._v(" "),
@@ -22689,7 +22838,7 @@ var render = function() {
               attrs: {
                 id: "product_name",
                 type: "text",
-                placeholder: "اسم المنتج"
+                placeholder: "اسم الصنف"
               },
               domProps: { value: _vm.product_name },
               on: {
@@ -22891,162 +23040,291 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card text-right" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-6" }, [
-              _c("h3", [_vm._v("التخفيض :")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-check" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount,
-                      expression: "discount"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", value: "percentage", checked: "" },
-                  domProps: { checked: _vm._q(_vm.discount, "percentage") },
-                  on: {
-                    change: function($event) {
-                      _vm.discount = "percentage"
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "form-check-label",
-                    attrs: { for: "exampleRadios1" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                نسبه مؤيه\n                            "
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "card-body",
+          staticStyle: { "background-color": "floralwhite" }
+        },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-12" }, [
+                    _c("h3", [_vm._v("التخفيض :")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check-inline form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.discount,
+                            expression: "discount"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          value: "percentage",
+                          checked: "",
+                          id: "percentage"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.discount, "percentage")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.discount = "percentage"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "percentage" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                        نسبه مؤيه\n                                    "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check-inline form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.discount,
+                            expression: "discount"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: { type: "radio", value: "fixed", id: "fixed" },
+                        domProps: { checked: _vm._q(_vm.discount, "fixed") },
+                        on: {
+                          change: function($event) {
+                            _vm.discount = "fixed"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "fixed" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                        مبلغ ثابت\n                                    "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: " col-12 form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.discount_value,
+                            expression: "discount_value"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.discount_value },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.discount_value = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12" }, [
+                    _c("label", { attrs: { for: "payment_id" } }, [
+                      _vm._v("طريقه الدفع")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.payment_method,
+                            expression: "payment_method"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { name: "payment_id", id: "payment_id" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.payment_method = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.payments, function(payment) {
+                        return _c(
+                          "option",
+                          { key: payment.id, domProps: { value: payment.id } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(payment.name)
+                            )
+                          ]
+                        )
+                      }),
+                      0
                     )
-                  ]
-                )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.taxes_included,
+                              expression: "taxes_included"
+                            }
+                          ],
+                          staticClass: "flat-red",
+                          attrs: { type: "checkbox", checked: "" },
+                          domProps: {
+                            checked: Array.isArray(_vm.taxes_included)
+                              ? _vm._i(_vm.taxes_included, null) > -1
+                              : _vm.taxes_included
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.taxes_included,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.taxes_included = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.taxes_included = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.taxes_included = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                        شامل الضريبه\n                                    "
+                        )
+                      ])
+                    ])
+                  ])
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-check" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount,
-                      expression: "discount"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", value: "fixed" },
-                  domProps: { checked: _vm._q(_vm.discount, "fixed") },
-                  on: {
-                    change: function($event) {
-                      _vm.discount = "fixed"
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "form-check-label",
-                    attrs: { for: "exampleRadios2" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                مبلغ ثابت\n                            "
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.discount_value,
-                      expression: "discount_value"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.discount_value },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.discount_value = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table" }, [
-                  _c("tr", [
-                    _c("th", [_vm._v("المجموع:")]),
+              _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table table-bordered " }, [
+                    _c("tr", [
+                      _c("th", [_vm._v("اجمالي الفاتورة :")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("SDG " + _vm._s(_vm.vat_total_c))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("th", [_vm._v("الخصم:")]),
+                    _c("tr", [
+                      _c("th", [_vm._v("الخصم:")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SDG " + _vm._s(_vm.discount_amount))])
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.discount_label))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("th", [_vm._v("المبلغ قبل الضريبه:")]),
+                    _c("tr", [
+                      _c("th", [_vm._v("الاجمالي بعد الخصم :")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          "\n                                        SDG\n                                        " +
+                            _vm._s(_vm.total.toFixed(2) - _vm.discount_amount) +
+                            "\n                                    "
+                        )
+                      ])
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("SDG " + _vm._s(_vm.total.toFixed(2)))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("th", [_vm._v("الضريبه:")]),
+                    _c("tr", [
+                      _c("th", [_vm._v("الضريبه:")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("SDG " + _vm._s(_vm.vat))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("th", [_vm._v("صافى الفاتورة:")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
+                    _c("tr", [
+                      _c("th", [_vm._v("صافي الفاتورة:")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SDG " + _vm._s(_vm.full_total))])
+                    ])
                   ])
                 ])
               ])
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer text-muted" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-lg btn-info",
-                  on: { click: _vm.create_purchase_invoice }
-                },
-                [
-                  _vm._v(
-                    "\n                            انشاء فاتوره\n                        "
-                  )
-                ]
-              )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer text-muted" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-lg btn-info",
+                    on: { click: _vm.create_purchase_invoice }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            انشاء فاتوره\n                        "
+                    )
+                  ]
+                )
+              ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     ])
   ])
 }
@@ -23067,6 +23345,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("ضبط")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", [_vm._v("الدفع والماليه")])
     ])
   }
 ]

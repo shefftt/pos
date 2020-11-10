@@ -31,10 +31,31 @@
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
+                    <label for=""> هاتف احتياطي </label>
+                    <input type="text" value="{{old('an_other_phone')}}" class="form-control @error('an_other_phone') is-invalid @enderror" name="an_other_phone">
+                    @error('an_other_phone')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for=""> {{ __('messages.tax_number') }}  </label>
+                    <input type="text" value="{{old('tax_number')}}" class="form-control @error('tax_number') is-invalid @enderror" name="tax_number">
+                    @error('tax_number')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
                     <label for=""> {{ __('messages.Title') }} </label>
                     <textarea  name="address" class="form-control @error('address') is-invalid @enderror">{{old('address')}}</textarea>
                     @error('address')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for=""> ملاحظات</label>
+                    <textarea  name="note" class="form-control @error('note') is-invalid @enderror">{{old('note')}}</textarea>
+                    @error('note')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>

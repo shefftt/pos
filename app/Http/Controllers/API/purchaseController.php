@@ -23,6 +23,8 @@ class purchaseController extends Controller
                 'total'             => $request->total,
                 'invoice_number'    => $request->invoice_number,
                 'stock_id'          => $request->stock_id,
+                'vat_total'         => $request->vat,
+                'discount'          => $request->discount_amount,
                 'created_by'          => 1,
                 'payment_method_id' => $request->payment_method
             ]
@@ -36,15 +38,12 @@ class purchaseController extends Controller
                     'price'             => json_decode($product)->price,
                     'qyt'               => json_decode($product)->qyt,
                     'current_qyt'       => json_decode($product)->qyt,
-                    'vat'               => json_decode($product)->vat,
-                    'sub_vat'           => json_decode($product)->vat * json_decode($product)->qyt,
                     'sub_total'         => json_decode($product)->subtotal,
                     'invoice_id'        => $invoice->id
                 ]
             );
 
 
-            $vat_total += json_decode($product)->vat * json_decode($product)->qyt;
 
 
             $stock_product = stock_product::firstOrNew(['stock_id' => $request->stock_id, 'product_id' => $prd->id]);
@@ -52,9 +51,6 @@ class purchaseController extends Controller
             $stock_product->save();
         }
 
-
-        $invoice->vat_total = $vat_total;
-        $invoice->save();
 
         // الكاش - 1
         // بطاقه - 2

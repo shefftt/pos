@@ -38,16 +38,18 @@ class supplierController extends Controller
     public function edit($id)
     {
         $supplier =  supplier::find($id);
+
         return view('suppliers.edit',compact('supplier'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, supplier $supplier)
     {
-        $supplier = supplier::find($id);
-        $supplier->name          = $request->name;
+
+        $supplier->name       = $request->name;
         $supplier->phone      = $request->phone;
-        $supplier->address      = $request->address;
+        $supplier->address    = $request->address;
+        $supplier->tax_number = $request->tax_number;
 
         $supplier->save();
 

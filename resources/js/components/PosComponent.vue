@@ -108,7 +108,7 @@
                                     <th>السعر</th>
                                     <th>الكميه</th>
                                     <th>السعر الكلى</th>
-                                    <th>ضبط</th>
+                                    <th>حذف</th>
                                 </tr>
                             </thead>
                             <tbody id="product">
@@ -147,8 +147,11 @@
                                         </div>
                                     </td>
                                     <td>
-
-                                {{ parseFloat(product.subtotal).toFixed(2) }}
+                                        {{
+                                            parseFloat(
+                                                product.subtotal
+                                            ).toFixed(2)
+                                        }}
                                     </td>
                                     <td>
                                         <img
@@ -162,33 +165,88 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="card text-right">
+            <div class="col-4 mt-2">
+                <div style="background-color: antiquewhite;" class="card text-right">
                     <div class="card-body">
-                        <table class="table table-bordered ">
+                        <div class="col-12">
+                            <h3>التخفيض :</h3>
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="form-group mx-1">
+                                            <div class="form-check">
+                                                <input
+                                                    v-model="discount"
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    value="percentage"
+                                                    id="percentage"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="percentage"
+                                                >
+                                                    نسبه مؤيه
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mx-1">
+                                            <div class="form-check">
+                                                <input
+                                                    v-model="discount"
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    value="fixed"
+                                                    id="fixed"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="fixed"
+                                                >
+                                                    مبلغ ثابت
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control "
+                                            v-model="discount_value"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    <table class="table table-bordered ">
                             <!-- <table class="table table-striped table-inverse table-responsive"> -->
                             <tr>
-                                        <th>المجموع:</th>
-                                        <td>SDG {{ vat_total_c }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>الخصم:</th>
-                                        <td>{{ discount_label }}</td>
-                                    </tr>
+                                <th>اجمالي الفاتورة :</th>
+                                <td>SDG {{ total.toFixed(2) }}</td>
+                            </tr>
+                            <tr>
+                                <th>الخصم:</th>
+                                <td>SDG {{ discount_amount }}</td>
+                            </tr>
+                            <tr>
+                                <th>الاجمالي بعد الخصم :</th>
+                                <td>
+                                    SDG {{ total.toFixed(2) - discount_amount }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>الضريبه:</th>
+                                <td>SDG {{ vat }}</td>
+                            </tr>
 
-                                    <tr>
-                                        <th>المبلغ قبل الضريبه:</th>
-                                        <td>SDG {{ total.toFixed(2) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>الضريبه:</th>
-                                        <td>SDG {{ vat }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>صافى الفاتورة:</th>
-                                        <td>SDG {{ full_total }}</td>
-                                    </tr>
+                            <tr>
+                                <th>صافي الفاتورة:</th>
+                                <td>SDG {{ full_total }}</td>
+                            </tr>
 
                             <tr>
                                 <td>المبلغ المدفوع</td>
@@ -204,84 +262,49 @@
                                 </td>
                             </tr>
 
-
                             <tr>
                                 <td>المبلغ المبتقى</td>
-                                <td>{{ full_total - amount_paid }}</td>
+                                <td>{{ bill }}</td>
                             </tr>
                         </table>
 
                         <hr />
-                        <div class="col-12 form-group text-right">
-                            <a
-                                id="new_pos"
-                                v-shortkey.push="['f1']"
-                                @shortkey="hold_sales_invoice"
-                                class="btn btn-dark btn-block"
-                                target="_blank"
-                                href="/pos"
-                                role="button"
-                            >
-                                تعليق فاتورة F1
-                            </a>
-                        </div>
-                        <div class="col-12 form-group text-right">
-                            <button
-                                @click="create_sales_invoice"
-                                v-shortkey.push="['f2']"
-                                @shortkey="create_sales_invoice"
-                                class="btn-info btn btn-block btn-info"
-                            >
-                                انشاء فاتوره F2
-                            </button>
-                        </div>
-                        <div class="col-12 form-group text-right">
-                            <button
-                                @click="delete_sales_invoice"
-                                class="btn-danger btn btn-block btn-info"
-                                v-shortkey.push="['f3']"
-                                @shortkey="delete_sales_invoice"
-                            >
-                                حذف F3
-                            </button>
-                        </div>
-                        <div class="col-12">
-                            <h3>التخفيض :</h3>
-                            <div class="form-check">
-                                <input
-                                    v-model="discount"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value="percentage"
-                                    checked
-                                />
-                                <label
-                                    class="form-check-label"
-                                    for="exampleRadios1"
+
+                        <hr />
+                        <div class="row">
+                            <div class="col-6 form-group text-right">
+                                <button
+                                    @click="create_sales_invoice"
+                                    v-shortkey.push="['f2']"
+                                    @shortkey="create_sales_invoice"
+                                    class="btn-success btn btn-block btn-lg"
                                 >
-                                    نسبه مؤيه
-                                </label>
+                                    انشاء فاتوره F2
+                                </button>
                             </div>
-                            <div class="form-check">
-                                <input
-                                    v-model="discount"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value="fixed"
-                                />
-                                <label
-                                    class="form-check-label"
-                                    for="exampleRadios2"
+                            <div class="col form-group text-right">
+                                <a
+                                    id="new_pos"
+                                    v-shortkey.push="['f1']"
+                                    @shortkey="hold_sales_invoice"
+                                    class="btn btn-dark btn-block btn-lg"
+                                    target="_blank"
+                                    href="/pos"
+                                    role="button"
                                 >
-                                    مبلغ ثابت
-                                </label>
+                                    تعليق فاتورة F1
+                                </a>
                             </div>
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="discount_value"
-                                />
+
+                            <div class="col form-group text-right">
+                                <button
+                                    @click="delete_sales_invoice"
+                                    class="btn-danger btn btn-block btn-lg"
+                                    v-shortkey.push="['f3']"
+                                    @shortkey="delete_sales_invoice"
+                                >
+                                    حذف F3
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -303,6 +326,7 @@ export default {
         this.get_stock_name();
         this.get_customer_name();
         this.get_payments();
+        // this.braaha();
     },
     data() {
         return {
@@ -315,7 +339,7 @@ export default {
 
             payments: [],
             account_id: 1,
-            amount_paid: null,
+            amount_paid: 0,
 
             stocks: [],
             stock_id: 0,
@@ -379,13 +403,24 @@ export default {
             } else if (this.total == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
                 return;
+            } else if (this.payment_method == 1) {
+                if (this.bill > 0) {
+                    swal(
+                        "عفوا!",
+                        "يجب ان يكون المبلغ المدفوع يساوى الفاتورة  !",
+                        "warning"
+                    );
+                    return;
+                }
             }
             axios
                 .get("/api/create_sales_invoice", {
                     params: {
                         products_table: this.products_table,
                         total: this.total,
+                        vat: this.vat,
                         customer_id: this.customer_id,
+                        discount_amount: this.discount_amount,
                         payment_method: this.payment_method
                     }
                 })
@@ -394,6 +429,9 @@ export default {
                         console.log(response.data);
                         this.products_table = [];
                         this.total = 0;
+                        this.customer_id = 0;
+                        this.discount_value = 0;
+                        this.vat = 0;
                         window.location.replace(
                             "print/" + response.data.invoice_id
                         );
@@ -422,6 +460,14 @@ export default {
                 .get("/api/payments")
                 .then(response => {
                     this.payments = response.data;
+                })
+                .catch(error => {});
+        },
+        braaha() {
+            axios
+                .get("/api/braaha")
+                .then(response => {
+                    this.products_table = response.data;
                 })
                 .catch(error => {});
         },
@@ -558,31 +604,38 @@ export default {
         }
     },
     computed: {
-        full_total: function() {
-            if (this.discount == "percentage") {
-                let x;
-                x =
-                    this.vat_total_c -
-                    this.vat_total_c * (this.discount_value / 100);
-                return parseFloat(x).toFixed(2);
-            } else {
-                let x;
-                x = this.vat_total_c = this.vat_total_c - this.discount_value;
-                return parseFloat(x).toFixed(2);
-            }
+        bill: function() {
+            let x;
+
+            x = this.full_total - this.amount_paid;
+            return parseFloat(x).toFixed(2);
         },
-        discount_label: function() {
+        full_total: function() {
+            let x;
+            x = this.total - this.discount_amount + parseFloat(this.vat);
+            return parseFloat(x).toFixed(2);
+        },
+        discount_amount: function() {
             if (this.discount == "percentage") {
-                return this.discount_value + " %";
+                let x;
+                x = this.total * (this.discount_value / 100);
+                return parseFloat(x).toFixed(2);
             } else {
-                return this.discount_value + " SDG";
+                return this.discount_value;
             }
         },
         vat: function() {
-            this.vat_total = (this.total * 0.15).toFixed(2);
+            let total_after_discount;
+            total_after_discount = this.total - this.discount_amount;
+            this.vat_total = (total_after_discount * 0.15).toFixed(2);
             return this.vat_total;
         },
         vat_total_c: function() {
+            let x;
+            x = parseFloat(this.total) + parseFloat(this.vat);
+            return x.toFixed(2);
+        },
+        invoice_sum: function() {
             let x;
             x = parseFloat(this.total) + parseFloat(this.vat);
             return x.toFixed(2);

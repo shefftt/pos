@@ -82,6 +82,7 @@ return [
     'Date' => 'Date',
     'invoice number' => 'invoice number',
     'Payment' => 'Payment',
+    'tax_number' => 'Tax number',
 
     'Purchase Invoiceitem' => 'Purchase Invoice',
     'Print' => 'Print',
@@ -152,7 +153,7 @@ return [
     'Login' => 'Login Page',
     'Loginbtn' => 'Login',
 
-    
+
     'Back' => 'Back',
     'reference' => 'reference',
     'Sorry, there is no invoice for this number' => 'Sorry, there is no invoice for this number',

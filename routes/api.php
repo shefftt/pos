@@ -1,6 +1,7 @@
 <?php
 
 use App\Model\customer;
+use App\Model\sales_invoice_d;
 use App\model\supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,5 +59,12 @@ Route::get('/customer/create', function(){
         'phone' => request('phone') ,
         'address' => request('address') ,
     ]);
+    return response('done' , 200);
+});
+
+Route::get('/braaha', function(){
+
+    // $validated  = $request->validated();
+    return sales_invoice_d::where('invoice_id', 5)->get();
     return response('done' , 200);
 });

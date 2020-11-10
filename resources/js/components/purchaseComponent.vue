@@ -22,20 +22,15 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="payment_id">طريقه الدفع</label>
+                        <label for="payment_id">نوع الفاتوره</label>
                         <select
                             class="form-control form-control-sm"
                             name="payment_id"
                             id="payment_id"
-                            v-model="payment_method"
+                            v-model="invoice_type"
                         >
-                            <option
-                                v-for="payment in payments"
-                                :value="payment.id"
-                                :key="payment.id"
-                            >
-                                {{ payment.name }}</option
-                            >
+                            <option value="invoice">مشتريات</option>
+                            <option value="refund">مرتجع مشتريات</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -64,7 +59,7 @@
                             type="text"
                             v-model="product_name"
                             class="form-control"
-                            placeholder="اسم المنتج"
+                            placeholder="اسم الصنف"
                         />
                         <ul style="position: absolute;" class="list-group">
                             <li
@@ -119,28 +114,26 @@
                             <td>{{ product.name }}</td>
                             <td>{{ product.price }}</td>
                             <td>
-
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">  <img
-                                        src="/image/add.png"
-                                        @click="in_crease(product)"
-                                    /></span>
+                                        <span class="input-group-text">
+                                            <img
+                                                src="/image/add.png"
+                                                @click="in_crease(product)"
+                                        /></span>
                                     </div>
-                                      <input
+                                    <input
                                         type="text"
                                         @keyup="qyt($event, product)"
                                         class="form-control col-1 text-center"
                                         :value="product.qyt"
                                     />
                                     <div class="input-group-append">
-                                        <span class="input-group-text"
-                                            >
-                                    <img
-                                        src="/image/minus.png"
-                                        @click="de_crease(product)"
-                                    /></span
-                                        >
+                                        <span class="input-group-text">
+                                            <img
+                                                src="/image/minus.png"
+                                                @click="de_crease(product)"
+                                        /></span>
                                     </div>
                                 </div>
                             </td>
@@ -160,65 +153,116 @@
         </div>
 
         <div class="card text-right">
-            <div class="card-body">
+            <div class="card-header">
+                <h3>الدفع والماليه</h3>
+            </div>
+            <div class="card-body" style="background-color: floralwhite;">
                 <div class="col-md-12">
                     <div class="row">
                         <!-- accepted payments column -->
                         <div class="col-6">
-                            <h3>التخفيض :</h3>
-                            <div class="form-check">
-                                <input
-                                    v-model="discount"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value="percentage"
-                                    checked
-                                />
-                                <label
-                                    class="form-check-label"
-                                    for="exampleRadios1"
-                                >
-                                    نسبه مؤيه
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input
-                                    v-model="discount"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value="fixed"
-                                />
-                                <label
-                                    class="form-check-label"
-                                    for="exampleRadios2"
-                                >
-                                    مبلغ ثابت
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="discount_value"
-                                />
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>التخفيض :</h3>
+
+                                    <div class="form-check-inline form-check">
+                                        <input
+                                            v-model="discount"
+                                            class="form-check-input"
+                                            type="radio"
+                                            value="percentage"
+                                            checked
+                                            id="percentage"
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="percentage"
+                                        >
+                                            نسبه مؤيه
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline form-check">
+                                        <input
+                                            v-model="discount"
+                                            class="form-check-input"
+                                            type="radio"
+                                            value="fixed"
+                                            id="fixed"
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="fixed"
+                                        >
+                                            مبلغ ثابت
+                                        </label>
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                    <div class=" col-12 form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            v-model="discount_value"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="payment_id">طريقه الدفع</label>
+                                    <select
+                                        class="form-control form-control-sm"
+                                        name="payment_id"
+                                        id="payment_id"
+                                        v-model="payment_method"
+                                    >
+                                        <option
+                                            v-for="payment in payments"
+                                            :value="payment.id"
+                                            :key="payment.id"
+                                        >
+                                            {{ payment.name }}</option
+                                        >
+                                    </select>
+                                </div>
+                                <div class="form-group col-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                class="flat-red"
+                                                v-model="taxes_included"
+                                                checked
+                                            />
+                                            شامل الضريبه
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <!-- /.col -->
                         <div class="col-6">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-bordered ">
+                                    <!-- <table class="table table-striped table-inverse table-responsive"> -->
                                     <tr>
-                                        <th>المجموع:</th>
-                                        <td>SDG {{ vat_total_c }}</td>
+                                        <th>اجمالي الفاتورة :</th>
+                                        <td>SDG {{ total.toFixed(2) }}</td>
                                     </tr>
                                     <tr>
                                         <th>الخصم:</th>
-                                        <td>{{ discount_label }}</td>
+                                        <td>SDG {{ discount_amount }}</td>
                                     </tr>
-
                                     <tr>
-                                        <th>المبلغ قبل الضريبه:</th>
-                                        <td>SDG {{ total.toFixed(2) }}</td>
+                                        <th>الاجمالي بعد الخصم :</th>
+                                        <td>
+                                            SDG
+                                            {{
+                                                total.toFixed(2) -
+                                                    discount_amount
+                                            }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>الضريبه:</th>
@@ -226,9 +270,11 @@
                                     </tr>
 
                                     <tr>
-                                        <th>صافى الفاتورة:</th>
+                                        <th>صافي الفاتورة:</th>
                                         <td>SDG {{ full_total }}</td>
                                     </tr>
+
+
                                 </table>
                             </div>
                         </div>
@@ -280,6 +326,10 @@ export default {
 
             payments: [],
             account_id: 1,
+            invoice_type: 'invoice',
+
+            amount_paid: 0,
+            taxes_included: true,
 
             stocks: [],
             stock_id: 0,
@@ -338,9 +388,12 @@ export default {
                     params: {
                         products_table: this.products_table,
                         total: this.total,
+                        vat: this.vat,
                         invoice_number: this.invoice_number,
                         stock_id: this.stock_id,
+                        discount_amount: this.discount_amount,
                         supplier_id: this.supplier_id,
+                        invoice_type: this.invoice_type,
                         payment_method: this.payment_method
                     }
                 })
@@ -349,6 +402,9 @@ export default {
                         console.log(response.data);
                         this.products_table = [];
                         this.total = 0;
+                        this.supplier_id = 0;
+                        this.discount_value = 0;
+                        this.vat = 0;
                         // this.total = "";
                         this.invoice_number = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
@@ -509,31 +565,39 @@ export default {
         }
     },
     computed: {
-        full_total: function() {
-            if (this.discount == "percentage") {
-                let x;
-                x =
-                    this.vat_total_c -
-                    this.vat_total_c * (this.discount_value / 100);
-                return parseFloat(x).toFixed(2);
-            } else {
-                let x;
-                x = this.vat_total_c = this.vat_total_c - this.discount_value;
-                return parseFloat(x).toFixed(2);
-            }
+        bill: function() {
+            let x;
+
+            x = this.full_total - this.amount_paid;
+            return parseFloat(x).toFixed(2);
         },
-        discount_label: function() {
+        full_total: function() {
+            let x;
+            x = this.total - this.discount_amount + parseFloat(this.vat);
+            return parseFloat(x).toFixed(2);
+        },
+        discount_amount: function() {
             if (this.discount == "percentage") {
-                return this.discount_value + " %";
+                let x;
+                x = this.total * (this.discount_value / 100);
+                return parseFloat(x).toFixed(2);
             } else {
-                return this.discount_value + " SDG";
+                return this.discount_value;
             }
         },
         vat: function() {
-            this.vat_total = (this.total * 0.15).toFixed(2);
-            return this.vat_total;
+            let total_after_discount;
+            total_after_discount = this.total - this.discount_amount;
+            this.vat_total = (total_after_discount * 0.15).toFixed(2);
+            if (this.taxes_included) return this.vat_total;
+            else return 0;
         },
         vat_total_c: function() {
+            let x;
+            x = parseFloat(this.total) + parseFloat(this.vat);
+            return x.toFixed(2);
+        },
+        invoice_sum: function() {
             let x;
             x = parseFloat(this.total) + parseFloat(this.vat);
             return x.toFixed(2);

@@ -14,13 +14,17 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css?v=1')}}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css?v=1')}}">
     <!-- Morris chart -->
     <link rel="stylesheet" href="{{asset('plugins/morris/morris.css?v=1')}}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css?v=1')}}">
-    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css?v=1')}}">
+
+    <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css?v=1')}}">
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{asset('plugins/iCheck/all.css')}}">
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?v=1">
     <!-- Date Picker -->
@@ -727,6 +731,7 @@
     <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    <script src="{{asset('plugins/iCheck/icheck.min.js')}}"></script>
     <!-- Slimscroll -->
     <script src="{{asset('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
     <!-- FastClick -->

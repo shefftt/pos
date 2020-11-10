@@ -28,6 +28,10 @@ class supplierRequest extends FormRequest
             'name' => 'required',
             'phone' => 'required|numeric|min:8|unique:suppliers',
             'address' => 'required',
+            'note' => 'nullable',
+            'an_other_phone' => 'nullable',
+            'address' => 'required',
+            'tax_number' => 'required|numeric|unique:suppliers,'.$this->supplier->id,
 
         ];
     }
@@ -48,6 +52,9 @@ class supplierRequest extends FormRequest
             'phone.integer' => 'رقم الهاتف لايقبل حروف',
             'phone.unique' => 'رقم الهاتف موجود مسبقا',
             'phone.size' => 'يجب ان يكون طول رقم الهاتف على الاقل ثمانيه ارقام',
+            'tax_number.required' => 'الرجاء ادحال الرقم الضريبى',
+            'tax_number.unique' => 'الرقم الضريبى موجود مسبقا',
+            'tax_number.numeric' => 'لايمكن ان يحتوى الرقم الضريبى على احرف',
         ];
     }
 }
