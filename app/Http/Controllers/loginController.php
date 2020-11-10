@@ -17,9 +17,6 @@ class loginController extends Controller
 {
     public function index()
     {
-
-        return product::where('prid', 1)->first()->product_name;
-        return product::paginate();
         return view('auth.login');
     }
 

@@ -50,6 +50,8 @@ class supplierController extends Controller
         $supplier->phone      = $request->phone;
         $supplier->address    = $request->address;
         $supplier->tax_number = $request->tax_number;
+        $supplier->an_other_phone = $request->an_other_phone;
+        $supplier->note = $request->note;
 
         $supplier->save();
 

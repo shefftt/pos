@@ -31,7 +31,7 @@ class supplierRequest extends FormRequest
             'note' => 'nullable',
             'an_other_phone' => 'nullable',
             'address' => 'required',
-            'tax_number' => 'required|numeric|unique:suppliers,'.$this->supplier->id,
+            'tax_number' => 'required|numeric|unique:suppliers',
 
         ];
     }
