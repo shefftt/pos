@@ -53,6 +53,7 @@ class purchaseController extends Controller
                 $stock_product->qyt = $stock_product->qyt - json_decode($product)->qyt;
                 $stock_product->save();
 
+                $invoice->invoice_type = $request->invoice_type;
                 $invoice->reference = $request->reference;
                 $invoice->save();
             } else {
