@@ -16,26 +16,12 @@
         @method('PUT')
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label for="">{{ __('messages.product name') }}</label>
                     <input type="text"  value="{{$products->name}}" class="form-control" name="name">
 
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="vat">{{ __('messages.Tax') }}</label>
-                  <select class="form-control" name="vat" id="vat">
-                    <option @if($products->vat == 15)  selected="selected"  @endif value="15">{{ __('messages.Taxes included') }}</option>
-                    <option value="0"> {{ __('messages.Not including tax') }}</option>
 
-                      @foreach($vats as $vat)
-                          <option@if($products->vat == 15) selected="selected" @endif  value="{{$vat->vat}}">شامل</option>
-                      @endforeach
-                    <option value="0">غير شامل</option>
-                  </select>
-                  @error('vat')
-                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
 
                 <div class="form-group col-md-6">
                     <label for="">{{ __('messages.The opening quantity') }} </label>
@@ -76,15 +62,7 @@
                 </div>
 
 
-                <div class="form-group col-md-6">
-                    <label for="stock_id">{{ __('messages.default store') }}</label>
-                    <select class="form-control" name="stock_id" id="stock_id">
-                        @foreach($stocks as $stock)
-                            <option value="{{$stock->id}}">{{$stock->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+
         </div>
         <div class="card-footer text-muted">
             <button type="submit" class="btn btn-success">{{ __('messages.Edit') }}</button>

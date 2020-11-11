@@ -29,7 +29,6 @@ class productRequest extends FormRequest
             'category_id' => 'required',
             'sale_price' => 'required|numeric',
             'purchase_price' => 'nullable|numeric',
-            'stock_id' => 'required',
             'qyt' => 'nullable|integer',
             'unit_id'=>'required',
             'barcode' => 'required|nullable'
@@ -52,7 +51,6 @@ class productRequest extends FormRequest
             'sale_price.integer' => 'عفوا يجب ان يكون سعر البيع فى شكل ارقام',
             'category_id.required' => 'التصنيف اجبارى',
             'sale_price.required' => 'سعر الببيع اجبارى',
-            'stock_id.required' => 'المخزن الافتراضى اجبارى',
             'unit_id.required'=>'الوحده اجبارية',
             'barcode.nullable'=>'يجب ان يكون الباركود على شكل ارقام',
             'barcode.required'=>'ادخال الباركود اجباري'
