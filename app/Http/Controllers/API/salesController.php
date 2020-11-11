@@ -38,19 +38,22 @@ class salesController extends Controller
         );
 
         foreach ($request->products_table as $product) {
-            // $product  = json_decode($product);
+
+
+            $product_model = product::find(json_decode($product)->id);
+            $stock_product = stock_product::where('product_id', $stock_id)->first();
+
+
             sales_invoice_d::create(
                 [
                     'product_id'        => json_decode($product)->id,
                     'price'             => json_decode($product)->price,
                     'qyt'               => json_decode($product)->qyt,
                     'sub_total'         => json_decode($product)->subtotal,
+                    'ratio'             => $product_model->ratio,
                     'invoice_id'        => $invoice->id
                 ]
             );
-
-            $product_model = product::find(json_decode($product)->id);
-            $stock_product = stock_product::where('product_id', $stock_id)->first();
 
             if ($request->invoice_type == "refund") {
 
