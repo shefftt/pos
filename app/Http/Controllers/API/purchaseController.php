@@ -25,7 +25,7 @@ class purchaseController extends Controller
                 'stock_id'          => $request->stock_id,
                 'vat_total'         => $request->vat,
                 'discount'          => $request->discount_amount,
-                'created_by'          => 1,
+                'created_by'          => 1, //TODO: replace this number with login user
                 'payment_method_id' => $request->payment_method
             ]
         );
@@ -59,6 +59,7 @@ class purchaseController extends Controller
             } else {
                 $product_model->qyt = $product_model->qyt + json_decode($product)->qyt;
                 $product_model->save();
+
                 $stock_product = stock_product::firstOrNew(['stock_id' => $request->stock_id, 'product_id' => $prd->id]);
                 $stock_product->qyt = $stock_product->qyt + json_decode($product)->qyt;
                 $stock_product->save();
@@ -79,16 +80,13 @@ class purchaseController extends Controller
                 $supplier = supplier::find($request->supplier_id);
                 $supplier->balance  = $supplier->balance + $request->total;
             }
-        } elseif ($request->payment_method == 1) {
-            // transactions `amount`, `from`, `to`, `transactionable_type`, `transactionable_id`
-
-            $invoice->transaction()->create(['amount' => $request->total, 'to' => 4, 'from' => 1]);
-
+        } else{
             $invoice->transaction()->create(['amount' => $request->total, 'payment_method_id' => $request->payment_method]);
         }
 
 
-        // if suppler id using
+        //TODO: return value as response with status code 201 to tell clint invoice has been created
+
         return $request->products_table;
     }
 }

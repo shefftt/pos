@@ -378,7 +378,7 @@ export default {
         },
         create_purchase_invoice() {
             // validtions
-            if (this.supplier_id == 0 || this.supplier_id == "") {
+    if (this.supplier_id == 0 || this.supplier_id == "") {
                 swal("عفوا!", "الرجاء اختيار المورد اولا!", "warning");
                 return;
             } else if (this.invoice_type == "refund") {
@@ -423,13 +423,14 @@ export default {
                 .then(response => {
                     if (response.status === 200) {
                         console.log(response.data);
-                        // this.products_table = [];
-                        // this.total = 0;
-                        // this.supplier_id = 0;
-                        // this.discount_value = 0;
-                        // this.vat = 0;
-                        // // this.total = "";
-                        // this.invoice_number = null;
+                        this.products_table = [];
+                        this.total = 0;
+                        this.supplier_id = 0;
+                        this.discount_value = 0;
+                        this.vat = 0;
+                        // this.total = "";
+                        this.invoice_number = null;
+                        this.reference = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {

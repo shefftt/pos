@@ -28,7 +28,7 @@
                                 <add-customer-btn amount="222222222222" />
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="payment_id">طريقه الدفع</label>
                                 <select
                                     class="form-control form-control-sm"
@@ -43,6 +43,16 @@
                                     >
                                         {{ payment.name }}</option
                                     >
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="payment_id">نوع الفاتوره</label>
+                                <select
+                                    class="form-control form-control-sm"
+                                    v-model="invoice_type"
+                                >
+                                    <option value="invoice">مبيعات</option>
+                                    <option value="refund">مرتجع مبيعات</option>
                                 </select>
                             </div>
                             <!-- <div class="form-group col-md-3">
@@ -166,7 +176,10 @@
                 </div>
             </div>
             <div class="col-4 mt-2">
-                <div style="background-color: antiquewhite;" class="card text-right">
+                <div
+                    style="background-color: antiquewhite;"
+                    class="card text-right"
+                >
                     <div class="card-body">
                         <div class="col-12">
                             <h3>التخفيض :</h3>
@@ -222,7 +235,7 @@
                             </div>
                         </div>
                         <hr />
-                    <table class="table table-bordered ">
+                        <table class="table table-bordered ">
                             <!-- <table class="table table-striped table-inverse table-responsive"> -->
                             <tr>
                                 <th>اجمالي الفاتورة :</th>
@@ -270,7 +283,6 @@
 
                         <hr />
 
-                        <hr />
                         <div class="row">
                             <div class="col-6 form-group text-right">
                                 <button
@@ -307,6 +319,18 @@
                                 </button>
                             </div>
                         </div>
+                        <div
+                            v-show="reference_sataus"
+                            class="form-group col-12"
+                        >
+                            <label for="">رقم الفاتورة الراجعه</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="reference"
+                                placeholder="اجبارى فى حاله المرتجعات"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -339,11 +363,14 @@ export default {
 
             payments: [],
             account_id: 1,
+
+            invoice_type: "invoice",
+            reference: null,
+
             amount_paid: 0,
 
             stocks: [],
             stock_id: 0,
-            invoice_type: "normal",
 
             customers: [],
             customer_id: 0,
@@ -400,6 +427,15 @@ export default {
                     "warning"
                 );
                 return;
+            } else if (this.invoice_type == "refund") {
+                if (this.reference === null || this.reference == "") {
+                    swal(
+                        "عفوا!",
+                        "الرجاء كتابه رقم الفاتورة الراجعه!",
+                        "warning"
+                    );
+                    return;
+                }
             } else if (this.total == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
                 return;
@@ -421,20 +457,22 @@ export default {
                         vat: this.vat,
                         customer_id: this.customer_id,
                         discount_amount: this.discount_amount,
+                        invoice_type: this.invoice_type,
+                        reference: this.reference,
                         payment_method: this.payment_method
                     }
                 })
                 .then(response => {
                     if (response.status === 200) {
                         console.log(response.data);
-                        this.products_table = [];
-                        this.total = 0;
-                        this.customer_id = 0;
-                        this.discount_value = 0;
-                        this.vat = 0;
-                        window.location.replace(
-                            "print/" + response.data.invoice_id
-                        );
+                        // this.products_table = [];
+                        // this.total = 0;
+                        // this.customer_id = 0;
+                        // this.discount_value = 0;
+                        // this.vat = 0;
+                        // window.location.replace(
+                        //     "print/" + response.data.invoice_id
+                        // );
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {
@@ -604,6 +642,11 @@ export default {
         }
     },
     computed: {
+        reference_sataus: function() {
+            if (this.invoice_type == "refund") {
+                return true;
+            } else return false;
+        },
         bill: function() {
             let x;
 

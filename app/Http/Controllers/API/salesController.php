@@ -23,7 +23,7 @@ class salesController extends Controller
     }
     public function store(Request $request)
     {
-        $vat_total = 0;
+        $stock_id = 1; //TODO:: replace this number with stock id for this POS
 
         $invoice = sales_invoice_h::create(
             [
@@ -49,32 +49,49 @@ class salesController extends Controller
                 ]
             );
 
+            $product_model = product::find(json_decode($product)->id);
+            $stock_product = stock_product::where('product_id', $stock_id)->first();
 
-            $ps = product::find(json_decode($product)->id);
-            $stock_product = stock_product::where('product_id', json_decode($product)->id)->where('stock_id', $ps->stock_id)->first();
-            $stock_product->qyt = $stock_product->qyt - json_decode($product)->qyt;
-            $stock_product->save();
+            if ($request->invoice_type == "refund") {
+
+                $product_model->qyt = $product_model->qyt + json_decode($product)->qyt;
+                $product_model->save();
+
+                $stock_product->qyt = $stock_product->qyt + json_decode($product)->qyt;
+                $stock_product->save();
+
+
+                $invoice->invoice_type = $request->invoice_type;
+                $invoice->reference = $request->reference;
+                $invoice->save();
+
+
+            } else {
+                $product_model->qyt = $product_model->qyt - json_decode($product)->qyt;
+                $product_model->save();
+
+
+                $stock_product->qyt = $stock_product->qyt - json_decode($product)->qyt;
+                $stock_product->save();
+            }
         }
 
 
-
-        foreach ($request->products_table as $product) {
-
-
-            $id = json_decode($product)->id;
-            $product_qyt = product::findOrFail($id);
-
-            $product_qyt->qyt = $product_qyt->qyt - json_decode($product)->qyt;
-            $product_qyt->save();
-        }
         // الكاش - 1
         // شبكه - 2
         // اجل - 3
 
         if ($request->payment_method == 3) {  //  اجل
+
             $customer = customer::find($request->customer_id);
-            $customer->balance  = $customer->balance + $request->total;
-            $customer->save();
+
+            if ($request->invoice_type == "refund") {
+                $customer->balance  = $customer->balance - $request->total;
+                $customer->save();
+            } else {
+                $customer->balance  = $customer->balance + $request->total;
+                $customer->save();
+            }
         } else {
             $invoice->transaction()->create(['amount' => $request->total, 'payment_method_id' => $request->payment_method]);
         }
