@@ -41,5 +41,4 @@ class product extends Model
         return $this->belongsTo(purchase_invoice_d::class,'id','product_id');
     }
 
-
 }

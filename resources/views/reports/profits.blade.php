@@ -81,18 +81,18 @@
             <tbody>
           <?php $i = 1;  $sum_profit = 0; ?>
             @foreach($profits as $profit)
-                <?php  $sum_profit += ($profit->sale->price)*($profit->sales->sum('qyt'))-($profit->sale->product->purchase->price)*($profit->sales->sum('qyt')) ?>
+                <?php  $sum_profit += ($profit->sale_price)*($profit->sales->sum('qyt'))-($profit->purchase_price)*($profit->sales->sum('qyt')) ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$profit->name}}</td>
                     <td>{{$profit->unit->name}}</td>
                     <td>{{$profit->sales_header->user->name}}</td>
                     <td>{{$profit->sales->sum('qyt')}}</td>
-                    <td>{{$profit->sale->price}}</td>
-                    <td>{{$profit->sale->product->purchase->price}}</td>
-                    <td>{{($profit->sale->price)*($profit->sales->sum('qyt'))}}</td>
-                    <td>{{($profit->sale->product->purchase->price)*($profit->sales->sum('qyt'))}}</td>
-                    <td>{{($profit->sale->price)*($profit->sales->sum('qyt'))-($profit->sale->product->purchase->price)*($profit->sales->sum('qyt'))}}</td>
+                    <td>{{$profit->sale_price}}</td>
+                    <td>{{$profit->purchase_price}}</td>
+                    <td>{{($profit->sale_price)*($profit->sales->sum('qyt'))}}</td>
+                    <td>{{($profit->purchase_price)*($profit->sales->sum('qyt'))}}</td>
+                    <td>{{($profit->sale_price)*($profit->sales->sum('qyt'))-($profit->purchase_price)*($profit->sales->sum('qyt'))}}</td>
 
                 </tr>
             @endforeach

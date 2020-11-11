@@ -217,8 +217,8 @@ class reportController extends Controller
     {
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
-        $profits = product:: where('created_at', '<= ', $from)
-            ->where('created_at', '>= ', $to)->get();
+        $profits = product:: where('created_at', '<=', $from)
+            ->where('created_at', '>=', $to)->get();
 
         if (isset(request()->product_id)) {
 
