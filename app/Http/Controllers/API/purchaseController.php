@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Model\product;
 use App\Model\purchase_invoice_d;
 use App\Model\purchase_invoice_h;
 use App\Model\stock_product;
@@ -14,7 +15,6 @@ class purchaseController extends Controller
     public function store(Request $request)
     {
 
-        $vat_total = 0;
 
         // // purchase_invoice_h `supplier_id`, `total`, `stock_id`, `created_at`
         $invoice = purchase_invoice_h::create(
@@ -43,12 +43,25 @@ class purchaseController extends Controller
                 ]
             );
 
+            $product_model = product::find(json_decode($product)->id);
 
+            if ($request->invoice_type == "refund") {
+                $product_model->qyt = $product_model->qyt - json_decode($product)->qyt;
+                $product_model->save();
 
+                $stock_product = stock_product::firstOrNew(['stock_id' => $request->stock_id, 'product_id' => $prd->id]);
+                $stock_product->qyt = $stock_product->qyt - json_decode($product)->qyt;
+                $stock_product->save();
 
-            $stock_product = stock_product::firstOrNew(['stock_id' => $request->stock_id, 'product_id' => $prd->id]);
-            $stock_product->qyt = $stock_product->qyt + json_decode($product)->qyt;
-            $stock_product->save();
+                $invoice->reference = $request->reference;
+                $invoice->save();
+            } else {
+                $product_model->qyt = $product_model->qyt + json_decode($product)->qyt;
+                $product_model->save();
+                $stock_product = stock_product::firstOrNew(['stock_id' => $request->stock_id, 'product_id' => $prd->id]);
+                $stock_product->qyt = $stock_product->qyt + json_decode($product)->qyt;
+                $stock_product->save();
+            }
         }
 
 
@@ -57,9 +70,14 @@ class purchaseController extends Controller
         // اجل - 3
 
         if ($request->payment_method == 3) {  //  اجل
-            $supplier = supplier::find($request->supplier_id);
-            $supplier->balance  = $supplier->balance + $request->total;
-            $supplier->save();
+            if ($request->invoice_type == "refund") {
+                $supplier = supplier::find($request->supplier_id);
+                $supplier->balance  = $supplier->balance - $request->total;
+                $supplier->save();
+            } else {
+                $supplier = supplier::find($request->supplier_id);
+                $supplier->balance  = $supplier->balance + $request->total;
+            }
         } elseif ($request->payment_method == 1) {
             // transactions `amount`, `from`, `to`, `transactionable_type`, `transactionable_id`
 
@@ -72,7 +90,4 @@ class purchaseController extends Controller
         // if suppler id using
         return $request->products_table;
     }
-
-
-
 }
