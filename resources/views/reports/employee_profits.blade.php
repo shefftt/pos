@@ -65,26 +65,35 @@
 
             <tbody>
             <?php $i = 1;  $sum_profit = 0; ?>
-            @foreach($sales_profits->products as $profit)
+            @foreach($sales_profits_employee as $profit)
+                            <?php  $sum_profit += ($profit->sales_invoice_d->sub_total)-(($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt)) ?>
+                            <tr>
+                                <td scope="row">{{$i++}}</td>
+                                <td>{{$profit->sales_invoice_d->product->name}}</td>
+                                <td>{{$profit->sales_invoice_d->product->unit->name}}</td>
+                                <td>{{$profit->sales_invoice_d->qyt}}</td>
+                                <td>{{$profit->sales_invoice_d->price}}</td>
+                                <td>{{$profit->sales_invoice_d->product->purchase->price}}</td>
+                                <td>{{$profit->sales_invoice_d->sub_total}}</td>
+                                <td>{{($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt)}}</td>
+                                <td>{{($profit->sales_invoice_d->sub_total)-(($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt))}}</td>
 
-                <tr>
-                    <td scope="row">{{$i++}}</td>
-                    <td>{{$profit->product->name}}</td>
+                            </tr>
+                        @endforeach
 
 
 
-
-                </tr>
-            @endforeach
             </tbody>
         </table>
 
     </div>
     <div class="card-footer">
         <h3>
-
+            <span> اجمالي الارباح:{{$sum_profit}}</span>-
         </h3>
     </div>
 </div>
 
 @endsection
+
+

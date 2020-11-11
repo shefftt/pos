@@ -70,8 +70,6 @@
                 <th> الوحده</th>
                 <th>البائع</th>
                 <th> الكمية</th>
-                <th>سعر البيع</th>
-                <th>سعر الشراء</th>
                 <th>مجموع البيع</th>
                 <th>مجموع  الشراء</th>
                 <th>الربح</th>
@@ -81,18 +79,16 @@
             <tbody>
           <?php $i = 1;  $sum_profit = 0; ?>
             @foreach($profits as $profit)
-                <?php  $sum_profit += ($profit->sales->sum('sub_total'))-($profit->purchase->price)*($profit->sales->sum('qyt')) ?>
+                <?php  $sum_profit += ($profit->sales->sum('sub_total'))-($profit->purchases->sum('sub_total')) ?>
                 <tr>
                     <td scope="row">{{$i++}}</td>
                     <td>{{$profit->name}}</td>
                     <td>{{$profit->unit->name}}</td>
                     <td>{{$profit->sales_header->user->name}}</td>
                     <td>{{$profit->sales->sum('qyt')}}</td>
-                    <td>{{$profit->sale_price}}</td>
-                    <td>{{$profit->purchase->price}}</td>
                     <td>{{($profit->sales->sum('sub_total'))}}</td>
-                    <td>{{($profit->purchase->price)*($profit->sales->sum('qyt'))}}</td>
-                    <td>{{($profit->sales->sum('sub_total'))-($profit->purchase->price)*($profit->sales->sum('qyt'))}}</td>
+                    <td>{{($profit->purchases->sum('sub_total'))}}</td>
+                    <td>{{($profit->sales->sum('sub_total'))-($profit->purchases->sum('sub_total'))}}</td>
 
                 </tr>
             @endforeach

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    protected $fillable = ['name' , 'ratio' ,'vat', 'barcode' , 'category_id', 'status', 'purchase_price', 'sale_price', 'qyt','unit_id'];
+    public $fillable = ['name' , 'vat', 'barcode' , 'category_id', 'status', 'purchase_price', 'sale_price', 'qyt','unit_id'];
 
     public function category()
     {
@@ -40,5 +40,6 @@ class product extends Model
     public function purchase(){
         return $this->belongsTo(purchase_invoice_d::class,'id','product_id');
     }
+
 
 }
