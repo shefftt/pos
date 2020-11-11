@@ -13,13 +13,13 @@
 
             </div>
         </div>
-        
+
     </div>
     <div class="card-body">
         <table  id="DataTable" class="table">
             <thead>
                 <tr>
-                    
+
                     <th>#</th>
                     <th>{{ __('messages.Category name') }}</th>
                     <th>{{ __('messages.Type of classification') }}</th>
@@ -41,6 +41,8 @@
                     </td>
                     <td>
                         <a name="" id="" class="btn  btn-sm btn-primary" href="{{url('/category/')}}/{{$category->id}}" role="button">{{ __('messages.Show') }}</a>
+                        <a name="" id="" class="btn  btn-sm btn-warning" href="{{url('/category/edit/')}}/{{$category->id}}" role="button">{{ __('messages.Modify') }}</a>
+
 
                     </td>
                 </tr>

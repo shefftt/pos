@@ -65,8 +65,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('categories', 'categoryController@index');
     Route::get('/category/create', 'categoryController@create');
+
     Route::post('/category/create', 'categoryController@store');
     Route::get('/category/{id}', 'categoryController@show');
+
+    Route::get('/category/edit/{id}', 'categoryController@edit');
+    Route::post('/category/edit', 'categoryController@update');
 
     Route::get('expense_category', 'expenseCategoryController@index');
     Route::get('expense_category/create', 'expenseCategoryController@create');

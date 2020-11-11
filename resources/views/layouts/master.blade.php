@@ -267,24 +267,25 @@
                                         </a>
                                     </li>
                                 </ul>
+                             </li>
 
-                                <!-- <li class="nav-item has-treeview">
+                            <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fa fa-pie-chart"></i>
+                                    <img data-v-0288d978="" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyMjYgMjI2Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyMjZ2LTIyNmgyMjZ2MjI2eiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiNjY2NjY2MiPjxwYXRoIGQ9Ik02Ni40MzE2NCwyOC4yNWMtNi4xMjQ1MiwwIC0xMS45MTc5NywyLjY0ODQ0IC0xNS45NDU4LDcuMjI4MDNsLTE2Ljk5NDE0LDE5LjQ3NzA1YzAsLTAuMDU1MTcgMCwtMC4wNTUxNyAtMC4wNTUxNywwYy0zLjMxMDU1LDMuODA3MTMgLTUuMTg2NTMsOC44MjgxMyAtNS4xODY1MywxMy45MDQzdjEwNy43MDMxM2MwLDExLjY0MjA5IDkuNTQ1NDEsMjEuMTg3NSAyMS4xODc1LDIxLjE4NzVoMTI3LjEyNWMxMS42NDIwOSwwIDIxLjE4NzUsLTkuNTQ1NDEgMjEuMTg3NSwtMjEuMTg3NXYtMTA3LjcwMzEyYzAsLTUuMDc2MTcgLTEuODc1OTcsLTEwLjA5NzE3IC01LjI0MTcsLTEzLjkwNDNjMCwtMC4wNTUxNyAwLC0wLjA1NTE3IDAsMGwtMTYuOTk0MTQsLTE5LjQ3NzA1Yy00LjAyNzgzLC00LjU3OTU5IC05Ljg3NjQ1LC03LjIyODAzIC0xNS45NDU4LC03LjIyODAzek02Ni40MzE2NCw0Mi4zNzVoOTMuMTM2NzJjMi4wNDE1LDAgMy45NzI2NiwwLjg4MjgxIDUuMjk2ODgsMi40Mjc3M2wxMC4yNjI3LDExLjY5NzI3aC0xMjQuMjU1ODZsMTAuMjYyNjksLTExLjY5NzI3YzEuMzI0MjIsLTEuNTQ0OTIgMy4yNTUzNywtMi40Mjc3MyA1LjI5Njg4LC0yLjQyNzczek00Mi4zNzUsNzAuNjI1aDE0MS4yNXYxMDUuOTM3NWMwLDMuOTcyNjYgLTMuMDg5ODQsNy4wNjI1IC03LjA2MjUsNy4wNjI1aC0xMjcuMTI1Yy0zLjk3MjY2LDAgLTcuMDYyNSwtMy4wODk4NCAtNy4wNjI1LC03LjA2MjV6TTg0Ljc1LDg0Ljc1djE0LjEyNWg1Ni41di0xNC4xMjV6TTEzNC4xODc1LDExM2wtNy4wNjI1LDE0LjEyNXYxNC4xMjVoMTQuMTI1di0xNC4xMjV6TTE2Mi40Mzc1LDExM2wtNy4wNjI1LDE0LjEyNXYxNC4xMjVoMTQuMTI1di0xNC4xMjV6TTEyNy4xMjUsMTU1LjM3NXYxNC4xMjVoNDIuMzc1di0xNC4xMjV6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=" alt="icon" width="26" height="22">
                                     <p>
-                                        اعدادات
+                                        كروت الاصناف
                                         <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{url('categories')}}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>التصنيفات</p>
+                                        <a href="{{url('/products')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p> كروت الاصناف</p>
                                         </a>
                                     </li>
                                 </ul>
-                            </li> -->
+                             </li>
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <img data-v-0288d978="" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyMjYgMjI2Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyMjZ2LTIyNmgyMjZ2MjI2eiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiNjY2NjY2MiPjxwYXRoIGQ9Ik00OS40Mzc1LDI4LjI1Yy0xMS42NDIwOSwwIC0yMS4xODc1LDkuNTQ1NDEgLTIxLjE4NzUsMjEuMTg3NXYxMTNjMCwxMS42NDIwOSA5LjU0NTQxLDIxLjE4NzUgMjEuMTg3NSwyMS4xODc1aDEyNy4xMjVjMTEuNjQyMDksMCAyMS4xODc1LC05LjU0NTQxIDIxLjE4NzUsLTIxLjE4NzV2LTExM2MwLC0xMS42NDIwOSAtOS41NDU0MSwtMjEuMTg3NSAtMjEuMTg3NSwtMjEuMTg3NXpNNDkuNDM3NSw0Mi4zNzVoMTI3LjEyNWMzLjk3MjY2LDAgNy4wNjI1LDMuMDg5ODQgNy4wNjI1LDcuMDYyNXYxMTNjMCwzLjk3MjY2IC0zLjA4OTg0LDcuMDYyNSAtNy4wNjI1LDcuMDYyNWgtMTI3LjEyNWMtMy45NzI2NiwwIC03LjA2MjUsLTMuMDg5ODQgLTcuMDYyNSwtNy4wNjI1di0xMTNjMCwtMy45NzI2NiAzLjA4OTg0LC03LjA2MjUgNy4wNjI1LC03LjA2MjV6TTYzLjU2MjUsNTYuNWMtMy45MTc0OCwwIC03LjA2MjUsMy4xNDUwMiAtNy4wNjI1LDcuMDYyNXY1Ni41YzAsMy45MTc0OCAzLjE0NTAyLDcuMDYyNSA3LjA2MjUsNy4wNjI1aDk4Ljg3NWMzLjkxNzQ4LDAgNy4wNjI1LC0zLjE0NTAyIDcuMDYyNSwtNy4wNjI1di01Ni41YzAsLTMuOTE3NDggLTMuMTQ1MDIsLTcuMDYyNSAtNy4wNjI1LC03LjA2MjV6TTcwLjYyNSw3MC42MjVoNTYuNXYxNC4xMjVoLTU2LjV6TTE0MS4yNSw3MC42MjVoMTQuMTI1djE0LjEyNWgtMTQuMTI1ek03MC42MjUsOTguODc1aDU2LjV2MTQuMTI1aC01Ni41ek0xNDEuMjUsOTguODc1aDE0LjEyNXYxNC4xMjVoLTE0LjEyNXpNMTEzLDE0MS4yNXYxNC4xMjVoNTYuNXYtMTQuMTI1eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+" alt="icon" width="26" height="22">

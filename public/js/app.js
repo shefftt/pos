@@ -2653,6 +2653,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Toast = Swal.mixin({
   toast: true,
   showConfirmButton: false,
@@ -2675,10 +2699,11 @@ var Toast = Swal.mixin({
       products_table: [],
       payments: [],
       account_id: 1,
+      invoice_type: "invoice",
+      reference: null,
       amount_paid: 0,
       stocks: [],
       stock_id: 0,
-      invoice_type: "normal",
       customers: [],
       customer_id: 0,
       discount: "percentage",
@@ -2721,12 +2746,15 @@ var Toast = Swal.mixin({
       this.vat_total = 0;
     },
     create_sales_invoice: function create_sales_invoice() {
-      var _this = this;
-
       // validtions
       if (this.payment_method == 3 && (this.customer_id == 0 || this.customer_id == "")) {
         swal("عفوا!", "فى حاله البيع اجل الرجاء اختيار العميل!", "warning");
         return;
+      } else if (this.invoice_type == "refund") {
+        if (this.reference === null || this.reference == "") {
+          swal("عفوا!", "الرجاء كتابه رقم الفاتورة الراجعه!", "warning");
+          return;
+        }
       } else if (this.total == 0 || this.total == "") {
         swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
         return;
@@ -2744,17 +2772,21 @@ var Toast = Swal.mixin({
           vat: this.vat,
           customer_id: this.customer_id,
           discount_amount: this.discount_amount,
+          invoice_type: this.invoice_type,
+          reference: this.reference,
           payment_method: this.payment_method
         }
       }).then(function (response) {
         if (response.status === 200) {
-          console.log(response.data);
-          _this.products_table = [];
-          _this.total = 0;
-          _this.customer_id = 0;
-          _this.discount_value = 0;
-          _this.vat = 0;
-          window.location.replace("print/" + response.data.invoice_id);
+          console.log(response.data); // this.products_table = [];
+          // this.total = 0;
+          // this.customer_id = 0;
+          // this.discount_value = 0;
+          // this.vat = 0;
+          // window.location.replace(
+          //     "print/" + response.data.invoice_id
+          // );
+
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
 
@@ -2764,14 +2796,14 @@ var Toast = Swal.mixin({
       })["catch"](function (error) {});
     },
     get_product_name: function get_product_name() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get("/submit", {
         params: {
           product_name: this.product_name
         }
       }).then(function (response) {
-        _this2.products = response.data;
+        _this.products = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -2779,25 +2811,25 @@ var Toast = Swal.mixin({
       });
     },
     get_payments: function get_payments() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/api/payments").then(function (response) {
-        _this3.payments = response.data;
+        _this2.payments = response.data;
       })["catch"](function (error) {});
     },
     braaha: function braaha() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.get("/api/braaha").then(function (response) {
-        _this4.products_table = response.data;
+        _this3.products_table = response.data;
       })["catch"](function (error) {});
     },
     get_stock_name: function get_stock_name() {
-      var _this5 = this;
+      var _this4 = this;
 
       axios.get("/api/stocks").then(function (response) {
         console.log("ahmed hme : " + response);
-        _this5.stocks = response.data;
+        _this4.stocks = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -2805,10 +2837,10 @@ var Toast = Swal.mixin({
       });
     },
     get_customer_name: function get_customer_name() {
-      var _this6 = this;
+      var _this5 = this;
 
       axios.get("/api/customers").then(function (response) {
-        _this6.customers = response.data;
+        _this5.customers = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -2816,7 +2848,7 @@ var Toast = Swal.mixin({
       });
     },
     get_product_barcode: function get_product_barcode() {
-      var _this7 = this;
+      var _this6 = this;
 
       axios.get("/api/get_product_barcode", {
         params: {
@@ -2825,13 +2857,13 @@ var Toast = Swal.mixin({
       }).then(function (response) {
         if (!response.data.barcode) {
           swal("خطاء!", "عفوا المنتج غير موجود!", "warning");
-          _this7.product_barcode = "";
+          _this6.product_barcode = "";
 
-          _this7.$refs.product_barcode.focus();
+          _this6.$refs.product_barcode.focus();
         } else {
-          _this7.select_product(response.data);
+          _this6.select_product(response.data);
 
-          _this7.product_barcode = "";
+          _this6.product_barcode = "";
         }
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -2928,6 +2960,11 @@ var Toast = Swal.mixin({
     }
   },
   computed: {
+    reference_sataus: function reference_sataus() {
+      if (this.invoice_type == "refund") {
+        return true;
+      } else return false;
+    },
     bill: function bill() {
       var x;
       x = this.full_total - this.amount_paid;
@@ -3535,6 +3572,8 @@ var Toast = Swal.mixin({
       }
     },
     create_purchase_invoice: function create_purchase_invoice() {
+      var _this = this;
+
       // validtions
       if (this.supplier_id == 0 || this.supplier_id == "") {
         swal("عفوا!", "الرجاء اختيار المورد اولا!", "warning");
@@ -3574,14 +3613,15 @@ var Toast = Swal.mixin({
         }
       }).then(function (response) {
         if (response.status === 200) {
-          console.log(response.data); // this.products_table = [];
-          // this.total = 0;
-          // this.supplier_id = 0;
-          // this.discount_value = 0;
-          // this.vat = 0;
-          // // this.total = "";
-          // this.invoice_number = null;
+          console.log(response.data);
+          _this.products_table = [];
+          _this.total = 0;
+          _this.supplier_id = 0;
+          _this.discount_value = 0;
+          _this.vat = 0; // this.total = "";
 
+          _this.invoice_number = null;
+          _this.reference = null;
           swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
         }
 
@@ -3591,14 +3631,14 @@ var Toast = Swal.mixin({
       })["catch"](function (error) {});
     },
     get_product_name: function get_product_name() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/submit", {
         params: {
           product_name: this.product_name
         }
       }).then(function (response) {
-        _this.products = response.data;
+        _this2.products = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -3606,18 +3646,18 @@ var Toast = Swal.mixin({
       });
     },
     get_payments: function get_payments() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/payments").then(function (response) {
-        _this2.payments = response.data;
+        _this3.payments = response.data;
       })["catch"](function (error) {});
     },
     get_stock_name: function get_stock_name() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get("/api/stocks").then(function (response) {
         console.log("ahmed hme : " + response);
-        _this3.stocks = response.data;
+        _this4.stocks = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -3625,10 +3665,10 @@ var Toast = Swal.mixin({
       });
     },
     get_supplier_name: function get_supplier_name() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get("/api/suppliers").then(function (response) {
-        _this4.suppliers = response.data;
+        _this5.suppliers = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("");
@@ -3636,7 +3676,7 @@ var Toast = Swal.mixin({
       });
     },
     get_product_barcode: function get_product_barcode() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get("/api/get_product_barcode", {
         params: {
@@ -3645,13 +3685,13 @@ var Toast = Swal.mixin({
       }).then(function (response) {
         if (!response.data.barcode) {
           swal("تحديث!", "عفوا المنتج غير موجود!", "warning");
-          _this5.product_barcode = "";
+          _this6.product_barcode = "";
 
-          _this5.$refs.product_barcode.focus();
+          _this6.$refs.product_barcode.focus();
         } else {
-          _this5.select_product(response.data);
+          _this6.select_product(response.data);
 
-          _this5.product_barcode = "";
+          _this6.product_barcode = "";
         }
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -21832,7 +21872,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("div", { staticClass: "form-group col-md-3" }, [
                   _c("label", { attrs: { for: "payment_id" } }, [
                     _vm._v("طريقه الدفع")
                   ]),
@@ -21879,6 +21919,51 @@ var render = function() {
                       )
                     }),
                     0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-3" }, [
+                  _c("label", { attrs: { for: "payment_id" } }, [
+                    _vm._v("نوع الفاتوره")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.invoice_type,
+                          expression: "invoice_type"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.invoice_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "invoice" } }, [
+                        _vm._v("مبيعات")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "refund" } }, [
+                        _vm._v("مرتجع مبيعات")
+                      ])
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -22291,8 +22376,6 @@ var render = function() {
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-6 form-group text-right" }, [
                   _c(
@@ -22377,7 +22460,52 @@ var render = function() {
                     ]
                   )
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.reference_sataus,
+                      expression: "reference_sataus"
+                    }
+                  ],
+                  staticClass: "form-group col-12"
+                },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("رقم الفاتورة الراجعه")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reference,
+                        expression: "reference"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "اجبارى فى حاله المرتجعات"
+                    },
+                    domProps: { value: _vm.reference },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.reference = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              )
             ])
           ]
         )
