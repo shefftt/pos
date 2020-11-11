@@ -69,14 +69,7 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="stock_id">{{ __('messages.default store') }}</label>
-                    <select class="form-control" name="stock_id" id="stock_id">
-                        @foreach($stocks as $stock)
-                        <option value="{{$stock->id}}">{{$stock->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+
             </div>
         </div>
         <div class="card-footer text-muted">

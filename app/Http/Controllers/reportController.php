@@ -170,40 +170,40 @@ class reportController extends Controller
     }
 //
 
-//    public function employee(){
-//        $from = request('from') . " 00:00:00";
-//        $to = request('to') . " 23:59:59";
-//
-//        //        $sales_report = \DB::table('purchase_invoice_h')->whereBetween('created_at', [$from, $to])->get();
-//        $users = User::all();
-//        $sales_profits = sales_invoice_h::
-//            where('created_at', '<= ', $from)
-//            ->where('created_at', '>= ', $to)->get();
-//        //return $purchases_report;
-//        return view('reports.employee_profits', compact('sales_profits', 'users'));
-//    }
-//
-//    public function employee_report(Request $request)
-//    {
-//        $from = request('from') . " 00:00:00";
-//        $to = request('to') . " 23:59:59";
-//        $data = $request->all();
-//        $users = User::all();
-//        $sales_profits = sales_invoice_h::
-//        where('created_at', '<= ', $from)
-//            ->where('created_at', '>= ', $to)->get();
-//        $users = User::all();
-//        if (isset(request()->created_by)) {
-//
-//            $sales_profits = sales_invoice_h::whereBetween('created_at', [$from, $to])->where('created_by', request()->created_by)->get();
-//        }
-//
-//        else
-//            $sales_profits = sales_invoice_h::whereBetween('created_at', [$from, $to])->get();
-//
-//        return view('reports.employee_profits', compact('sales_profits','users','from','to'));
-//    }
-//
+    public function employee(){
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+
+        //        $sales_report = \DB::table('purchase_invoice_h')->whereBetween('created_at', [$from, $to])->get();
+        $users = User::all();
+        $sales_profits_employee = sales_invoice_h::
+            where('created_at', '<= ', $from)
+            ->where('created_at', '>= ', $to)->get();
+        //return $purchases_report;
+        return view('reports.employee_profits', compact('sales_profits_employee', 'users'));
+    }
+
+    public function employee_report(Request $request)
+    {
+        $from = request('from') . " 00:00:00";
+        $to = request('to') . " 23:59:59";
+        $data = $request->all();
+        $users = User::all();
+        $sales_profits_employee= sales_invoice_h::
+        where('created_at', '<= ', $from)
+            ->where('created_at', '>= ', $to)->get();
+        $users = User::all();
+        if (isset(request()->created_by)) {
+
+            $sales_profits_employee = sales_invoice_h::whereBetween('created_at', [$from, $to])->where('created_by', request()->created_by)->get();
+        }
+
+        else
+            $sales_profits_employee = sales_invoice_h::whereBetween('created_at', [$from, $to])->get();
+
+        return view('reports.employee_profits', compact('sales_profits_employee','users','from','to'));
+    }
+
 
     public function profits(){
         $from = request('from') . " 00:00:00";
@@ -217,8 +217,8 @@ class reportController extends Controller
     {
         $from = request('from') . " 00:00:00";
         $to = request('to') . " 23:59:59";
-        $profits = product:: where('created_at', '<= ', $from)
-            ->where('created_at', '>= ', $to)->get();
+        $profits = product:: where('created_at', '<=', $from)
+            ->where('created_at', '>=', $to)->get();
 
         if (isset(request()->product_id)) {
 
