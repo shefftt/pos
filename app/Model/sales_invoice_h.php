@@ -26,7 +26,7 @@ class sales_invoice_h extends Model
     }
     public function sales_invoice_d()
     {
-        return $this->belongsTo(sales_invoice_d::class,'id');
+        return $this->belongsTo(sales_invoice_d::class,'id','invoice_id');
     }
 
     public function payment(){

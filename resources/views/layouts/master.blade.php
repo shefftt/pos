@@ -534,6 +534,14 @@
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('employee_report')}}" class="nav-link">
+                                            <i class="fa fa-circle nav-icon"></i>
+                                            <p>
+                                                تقرير الموظفين
+                                            </p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

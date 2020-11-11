@@ -61,6 +61,7 @@ return [
     'Add New Product' => 'Add New Product',
     'The opening quantity' => 'The opening quantity',
     'Taxes included' => 'Taxes included',
+    'Ratio'=>'Ratio',
     'Not including tax' => 'Not including tax',
     'default store' => 'default store',
     'Add' => 'Add',

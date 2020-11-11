@@ -95,6 +95,7 @@ return [
     'Invoices' => 'الفواتير',
     'Payments' => 'الدفعيات',
     'amount' => 'المبلغ',
+    'Ratio'=>'نسبة المنتج',
     'amount paid' => 'المبلغ المدفوع',
     'Add a new batch' => 'اضافه دفعيه جديده',
     'from account' => 'من حساب',

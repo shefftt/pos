@@ -31,6 +31,7 @@ class productRequest extends FormRequest
             'purchase_price' => 'nullable|numeric',
             'qyt' => 'nullable|integer',
             'unit_id'=>'required',
+            'ratio'=>'numeric',
             'barcode' => 'required|nullable'
         ];
     }
@@ -53,6 +54,7 @@ class productRequest extends FormRequest
             'sale_price.required' => 'سعر الببيع اجبارى',
             'unit_id.required'=>'الوحده اجبارية',
             'barcode.nullable'=>'يجب ان يكون الباركود على شكل ارقام',
+            'ratio.numeric' =>'النسبه على صيغة رقم فقط',
             'barcode.required'=>'ادخال الباركود اجباري'
 
 

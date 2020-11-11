@@ -22,7 +22,7 @@
                     <input type="date" class="form-control" required name="to">
 
                 </div>
-                <<div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="">الموظف</label>
                     <select name="created_by" class="form-control" id="select-state">
                         <option value="">اختر الموظف</option>
@@ -52,32 +52,25 @@
             <thead>
             <tr>
                 <th># متسلسل</th>
+                <th>اسم الموظف</th>
+                <th> المبيعات</th>
                 <th>المنتج</th>
-                <th> الوحده</th>
-                <th> الكمية</th>
-                <th>سعر البيع</th>
-                <th>سعر الشراء</th>
-                <th>مجموع  البيع</th>
-                <th>مجموع  الشراء</th>
-                <th>الربح</th>
+                <th>نسبة الصنف</th>
+                <th>نسبة الموظف</th>
             </tr>
             </thead>
 
             <tbody>
-            <?php $i = 1;  $sum_profit = 0; ?>
-            @foreach($sales_profits_employee as $profit)
-                            <?php  $sum_profit += ($profit->sales_invoice_d->sub_total)-(($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt)) ?>
+            <?php $i = 1;  $sum_ratio = 0; ?>
+            @foreach($employee_ratio as $employee)
+<?php  $sum_ratio += ($employee->sales_invoice_d->ratio)*($employee->products->sum('sub_total')/100) ?>
                             <tr>
                                 <td scope="row">{{$i++}}</td>
-                                <td>{{$profit->sales_invoice_d->product->name}}</td>
-                                <td>{{$profit->sales_invoice_d->product->unit->name}}</td>
-                                <td>{{$profit->sales_invoice_d->qyt}}</td>
-                                <td>{{$profit->sales_invoice_d->price}}</td>
-                                <td>{{$profit->sales_invoice_d->product->purchase->price}}</td>
-                                <td>{{$profit->sales_invoice_d->sub_total}}</td>
-                                <td>{{($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt)}}</td>
-                                <td>{{($profit->sales_invoice_d->sub_total)-(($profit->sales_invoice_d->product->purchase->price)*($profit->sales_invoice_d->qyt))}}</td>
-
+                                <td>{{$employee->user->name}}</td>
+                                <td>{{$employee->products->sum('sub_total')}}</td>
+                                <td>{{$employee->sales_invoice_d->product->name}}</td>
+                                <td>{{$employee->sales_invoice_d->ratio}}</td>
+                                <td>{{($employee->sales_invoice_d->ratio)*($employee->products->sum('sub_total')/100)}}</td>
                             </tr>
                         @endforeach
 
@@ -89,7 +82,7 @@
     </div>
     <div class="card-footer">
         <h3>
-            <span> اجمالي الارباح:{{$sum_profit}}</span>-
+            <span> الاجمالي:{{$sum_ratio}}</span>
         </h3>
     </div>
 </div>
