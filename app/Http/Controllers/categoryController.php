@@ -33,4 +33,26 @@ class categoryController extends Controller
         category::create($validated);
         return redirect('categories');
     }
+
+    public function edit($id)
+    {
+        $category   = category::find($id);
+        $categories =  category::all();
+        return view('categories.edit', compact('categories', 'category'));
+    }
+
+
+
+    public function update(categoryRequest $request)
+    {
+        $validated  = $request->validated();
+
+
+        $category = category::find($request->id);
+        $category->name = $request->name;
+        $category->sub_id = $request->sub_id;
+        $category->save();
+        return redirect('categories');
+    }
+
 }
