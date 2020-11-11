@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 11:25 PM
+-- Generation Time: Nov 10, 2020 at 11:52 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -815,6 +815,8 @@ CREATE TABLE `suppliers` (
   `status` int(11) NOT NULL DEFAULT '1',
   `balance` int(11) NOT NULL DEFAULT '0',
   `tax_number` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci,
+  `an_other_phone` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -823,10 +825,13 @@ CREATE TABLE `suppliers` (
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`id`, `name`, `phone`, `address`, `status`, `balance`, `tax_number`, `created_at`, `updated_at`) VALUES
-(1, 'ابراهيم حمدي', '5255', 'العنوان الذى يحب', 1, 1120, '60', '2020-09-29 13:24:46', '2020-10-08 19:45:04'),
-(2, 'حسام الدين محمد', '09156585255', 'الحله الجديده', 1, 13560, '5412', '2020-09-29 13:37:02', '2020-11-10 12:36:12'),
-(3, 'محمد عكاشه', '249915903708', 'العنوان الذى يذكر', 1, 0, '123456', '2020-11-10 12:26:22', '2020-11-10 12:26:22');
+INSERT INTO `suppliers` (`id`, `name`, `phone`, `address`, `status`, `balance`, `tax_number`, `note`, `an_other_phone`, `created_at`, `updated_at`) VALUES
+(1, 'ابراهيم حمدي', '5255', 'العنوان الذى يحب', 1, 1120, '60', NULL, NULL, '2020-09-29 13:24:46', '2020-10-08 19:45:04'),
+(2, 'حسام الدين محمد', '09156585255', 'الحله الجديده', 1, 13560, '5412', NULL, NULL, '2020-09-29 13:37:02', '2020-11-10 12:36:12'),
+(3, 'محمد عكاشه', '249915903708', 'العنوان الذى يذكر', 1, 0, '123456', NULL, NULL, '2020-11-10 12:26:22', '2020-11-10 12:26:22'),
+(4, 'ahmed hmed', '+249915903708', 'khartoum rayad', 1, 0, '44', 'dddd', '+249915903708', '2020-11-10 20:41:16', '2020-11-10 20:41:16'),
+(5, 'ahmed hmed', '+249915903708', 'khartoum rayad', 1, 0, '44', 'لاتوجد ملاحظات', '+249915903708', '2020-11-10 20:48:20', '2020-11-10 20:48:20'),
+(6, 'ahmed umn', '4333', 'khartoum rayad27', 1, 0, '745', 'لاتوجد ملاحظا88ت', '543', '2020-11-10 20:49:01', '2020-11-10 20:49:01');
 
 -- --------------------------------------------------------
 
@@ -1245,7 +1250,7 @@ ALTER TABLE `stock_products`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transactions`
