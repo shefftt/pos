@@ -197,8 +197,8 @@
                                         </label>
                                     </div>
 
-                                    <br>
-                                    <br>
+                                    <br />
+                                    <br />
                                     <div class=" col-12 form-group">
                                         <input
                                             type="text"
@@ -208,10 +208,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-12">
+                                <div class="form-group col-6">
                                     <label for="payment_id">طريقه الدفع</label>
                                     <select
-                                        class="form-control form-control-sm"
+                                        class="form-control"
                                         name="payment_id"
                                         id="payment_id"
                                         v-model="payment_method"
@@ -225,18 +225,26 @@
                                         >
                                     </select>
                                 </div>
-                                <div class="form-group col-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                class="flat-red"
-                                                v-model="taxes_included"
-                                                checked
-                                            />
-                                            شامل الضريبه
-                                        </label>
-                                    </div>
+
+                                <div class="form-group col-6">
+                                    <label for="">رقم الفاتورة الراجعه</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="reference"
+                                        placeholder="اجبارى فى حاله المرتجعات"
+                                    />
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="flat-red"
+                                            v-model="taxes_included"
+                                            checked
+                                        />
+                                        شامل الضريبه
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -273,8 +281,6 @@
                                         <th>صافي الفاتورة:</th>
                                         <td>SDG {{ full_total }}</td>
                                     </tr>
-
-
                                 </table>
                             </div>
                         </div>
@@ -326,10 +332,11 @@ export default {
 
             payments: [],
             account_id: 1,
-            invoice_type: 'invoice',
+            invoice_type: "invoice",
 
             amount_paid: 0,
             taxes_included: true,
+            reference: null,
 
             stocks: [],
             stock_id: 0,
@@ -374,11 +381,26 @@ export default {
             if (this.supplier_id == 0 || this.supplier_id == "") {
                 swal("عفوا!", "الرجاء اختيار المورد اولا!", "warning");
                 return;
+            } else if (this.invoice_type == "refund") {
+
+                if (this.reference === null || this.reference == "") {
+                    swal(
+                        "عفوا!",
+                        "الرجاء كتابه رقم الفاتورة الراجعه!",
+                        "warning"
+                    );
+                    return;
+                }
             } else if (this.stock_id == 0 || this.stock_id == "") {
                 swal("عفوا!", "الرجاء اختيار المخزن اولا!", "warning");
                 return;
+            }
+             if (this.total == 0 || this.total == "") {
+                swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
+                return;
             } else if (this.invoice_number == "") {
                 this.invoice_number = 0;
+                //  reference  invoice_type: "invoice",
             } else if (this.products_table.length == 0 || this.total == "") {
                 swal("عفوا!", "لايمكن انشاء فاتوره بدون منتجات!", "warning");
                 return;
@@ -394,19 +416,20 @@ export default {
                         discount_amount: this.discount_amount,
                         supplier_id: this.supplier_id,
                         invoice_type: this.invoice_type,
+                        reference: this.reference,
                         payment_method: this.payment_method
                     }
                 })
                 .then(response => {
                     if (response.status === 200) {
                         console.log(response.data);
-                        this.products_table = [];
-                        this.total = 0;
-                        this.supplier_id = 0;
-                        this.discount_value = 0;
-                        this.vat = 0;
-                        // this.total = "";
-                        this.invoice_number = null;
+                        // this.products_table = [];
+                        // this.total = 0;
+                        // this.supplier_id = 0;
+                        // this.discount_value = 0;
+                        // this.vat = 0;
+                        // // this.total = "";
+                        // this.invoice_number = null;
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {

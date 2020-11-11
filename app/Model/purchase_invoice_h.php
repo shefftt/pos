@@ -10,7 +10,7 @@ class purchase_invoice_h extends Model
 {
 
 
-    protected $fillable = ['supplier_id', 'total', 'stock_id','discount', 'vat_total' , 'created_by' , 'invoice_number' , 'payment_method_id'];
+    protected $fillable = ['supplier_id', 'invoice_type', 'total', 'stock_id','discount', 'vat_total' , 'created_by' , 'invoice_number' , 'payment_method_id'];
     protected $table = 'purchase_invoice_h';
 
     public function products()
