@@ -37,6 +37,13 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="">{{ __('messages.Ratio') }}</label>
+                    <input type="text" value="{{old('ratio')}}" class="form-control @error('ratio') is-invalid @enderror" name="ratio">
+                    @error('ratio')
+                    <small id="helpId" class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
                     <label for="">{{ __('messages.selling price') }}</label>
                     <input type="text" value="{{old('sale_price')}}" class="form-control @error('sale_price') is-invalid @enderror" name="sale_price">
                     @error('sale_price')
