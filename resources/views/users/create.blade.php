@@ -16,7 +16,7 @@
         <div class="card-body">
             <div class="row">
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <label for="">  {{ __('messages.name') }} </label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" name="name">
                     @error('name')
@@ -30,6 +30,15 @@
                     @error('email')
                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                     @enderror
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="stock_id">اضافة مخزن</label>
+                    <select class="form-control" name="stock_id" id="stock_id">
+                        @foreach($stocks as $stock)
+                            <option value="{{$stock->id}}">{{$stock->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for=""> {{ __('messages.password') }}</label>

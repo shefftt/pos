@@ -123,7 +123,7 @@ return [
     'Add Units' => 'اضافه وحده',
     'Created by' => 'انشأت بواسطة',
     'unknown' => ' غير معروف',
-
+    'stock'=>'المخزن',
     'Total net purchases'=> 'مجموع صافي المشتريات',
 'Total net sales'=> 'مجموع صافي المبيعات',
 'Total sales tax'=> 'مجموع ضريبة المبيعات',

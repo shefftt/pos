@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\userRequest;
+use App\Model\stock;
 use App\user;
 
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class userController extends Controller
     {
 
         $users =  user::all();
-        return view('users.create', compact('users'));
+        $stocks = stock::all();
+        return view('users.create', compact('users','stocks'));
     }
 
     public function store(userRequest $request)
@@ -29,6 +31,8 @@ class userController extends Controller
         $users = new User();
         $users->name = $request->name;
         $users->email = $request->email;
+        $users->stock_id = $request->stock_id;
+
         $users->password = Hash::make($request['password']);
 
         $users->save();

@@ -22,8 +22,9 @@
                 <th>الاسم</th>
                 <th>  {{ __('messages.E-mail') }}</th>
 
-
+                <th>{{ __('messages.stock') }}</th>
                 <th>{{ __('messages.product Settings') }}</th>
+
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                     <!-- id 	name 	phone 	address -->
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->stock->name}}</td>
 
 
                     <td>

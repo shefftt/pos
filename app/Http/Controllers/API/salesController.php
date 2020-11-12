@@ -12,6 +12,7 @@ use App\Model\supplier;
 use App\Model\product;
 use App\Model\stock_product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class salesController extends Controller
 {
