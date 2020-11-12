@@ -46,12 +46,12 @@ class supplierController extends Controller
     public function update(Request $request, supplier $supplier)
     {
 
-        $supplier->name       = $request->name;
-        $supplier->phone      = $request->phone;
-        $supplier->address    = $request->address;
-        $supplier->tax_number = $request->tax_number;
+        $supplier->name           = $request->name;
+        $supplier->phone          = $request->phone;
+        $supplier->address        = $request->address;
+        $supplier->tax_number     = $request->tax_number;
         $supplier->an_other_phone = $request->an_other_phone;
-        $supplier->note = $request->note;
+        $supplier->note           = $request->note;
 
         $supplier->save();
 
