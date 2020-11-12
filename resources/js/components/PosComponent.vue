@@ -465,14 +465,14 @@ export default {
                 .then(response => {
                     if (response.status === 200) {
                         console.log(response.data);
-                        // this.products_table = [];
-                        // this.total = 0;
-                        // this.customer_id = 0;
-                        // this.discount_value = 0;
-                        // this.vat = 0;
-                        // window.location.replace(
-                        //     "print/" + response.data.invoice_id
-                        // );
+                        this.products_table = [];
+                        this.total = 0;
+                        this.customer_id = 0;
+                        this.discount_value = 0;
+                        this.vat = 0;
+                        window.location.replace(
+                            "print/" + response.data.invoice_id
+                        );
                         swal("رائع!", "تم انشاء الفاتورة بنجاح", "success");
                     }
                     if (response.status === 204) {
