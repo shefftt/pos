@@ -21,7 +21,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "object-path": ">=0.11.5",
+        "object-path": ">=0.11.8",
         "sweetalert": "^2.1.2",
         "vue-shortkey": "^3.1.7"
     }
